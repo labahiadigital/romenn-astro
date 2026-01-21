@@ -15,13 +15,38 @@ const Hero = () => {
     requestAnimationFrame(() => {
       setAnimationsReady(true);
     });
-  }, []);
 
-  // Manejar cuando el video está listo para reproducirse
-  const handleVideoCanPlay = () => {
-    setVideoReady(true);
-    videoRef.current?.play();
-  };
+    // Intentar reproducir el video cuando el componente se monta
+    const video = videoRef.current;
+    if (video) {
+      // Función para manejar cuando el video puede reproducirse
+      const handleCanPlayThrough = () => {
+        setVideoReady(true);
+        video.play().catch(console.error);
+      };
+
+      // Si el video ya está listo (cargado de caché)
+      if (video.readyState >= 3) {
+        handleCanPlayThrough();
+      } else {
+        // Escuchar el evento canplaythrough que es más confiable
+        video.addEventListener('canplaythrough', handleCanPlayThrough);
+        // También escuchar loadeddata como fallback
+        video.addEventListener('loadeddata', () => {
+          if (video.readyState >= 2) {
+            handleCanPlayThrough();
+          }
+        });
+      }
+
+      // Forzar la carga del video
+      video.load();
+
+      return () => {
+        video.removeEventListener('canplaythrough', handleCanPlayThrough);
+      };
+    }
+  }, []);
 
   return (
     <div className="relative h-screen w-full overflow-hidden bg-black">
@@ -44,9 +69,9 @@ const Hero = () => {
           ref={videoRef}
           loop 
           muted 
-          playsInline 
+          playsInline
+          autoPlay
           preload="auto"
-          onCanPlay={handleVideoCanPlay}
           className={`absolute inset-0 w-full h-full object-cover scale-105 transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
         >
           <source src={heroVideo} type="video/mp4" />

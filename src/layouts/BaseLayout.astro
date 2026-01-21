@@ -5,14 +5,25 @@ import Footer from "@/components/Footer.astro";
 import WhatsAppButton from "@/components/WhatsAppButton.astro";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import { SEO } from "astro-seo";
 
 interface Props {
   title: string;
   description?: string;
+  image?: string;
+  noindex?: boolean;
 }
 
-const { title, description = "Römenn - Inmobiliaria Boutique Internacional. Redefiniendo el lujo inmobiliario en Rivas-Vaciamadrid." } = Astro.props;
+const { 
+  title, 
+  description = "Römenn - Inmobiliaria Boutique Internacional. Redefiniendo el lujo inmobiliario en Rivas-Vaciamadrid.",
+  image = "/hero-frame.webp",
+  noindex = false
+} = Astro.props;
+
 const currentPath = Astro.url.pathname;
+const canonicalURL = new URL(currentPath, Astro.site);
+const imageURL = new URL(image, Astro.site);
 ---
 
 <!doctype html>
@@ -20,23 +31,59 @@ const currentPath = Astro.url.pathname;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content={description} />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO -->
+    <SEO
+      title={title}
+      titleTemplate="%s | Römenn"
+      titleDefault="Römenn - Inmobiliaria Boutique"
+      description={description}
+      canonical={canonicalURL.href}
+      noindex={noindex}
+      nofollow={noindex}
+      openGraph={{
+        basic: {
+          title: title,
+          type: "website",
+          image: imageURL.href,
+          url: canonicalURL.href,
+        },
+        optional: {
+          description: description,
+          locale: "es_ES",
+          siteName: "Römenn",
+        },
+        image: {
+          alt: title,
+          width: 1200,
+          height: 630,
+        },
+      }}
+      twitter={{
+        card: "summary_large_image",
+        site: "@romenn_es",
+        creator: "@romenn_es",
+        title: title,
+        description: description,
+        image: imageURL.href,
+        imageAlt: title,
+      }}
+      extend={{
+        link: [
+          { rel: "icon", href: "/romenn-logo.svg", type: "image/svg+xml" },
+          { rel: "sitemap", href: "/sitemap-index.xml" },
+        ],
+        meta: [
+          { name: "theme-color", content: "#1a365d" },
+          { name: "msapplication-TileColor", content: "#1a365d" },
+        ],
+      }}
+    />
     
     <!-- Preconnect to fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:locale" content="es_ES" />
-    
-    <title>{title} | Römenn</title>
     
     <!-- View Transitions -->
     <meta name="view-transition" content="same-origin" />
