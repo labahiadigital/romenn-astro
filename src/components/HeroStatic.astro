@@ -7,8 +7,19 @@ const heroFrame = "/hero-frame.webp";
 ---
 
 <section class="hero-section">
-  <!-- Background with CSS background-image to prevent CLS -->
-  <div class="hero-bg" style={`background-image: url(${heroFrame});`}>
+  <!-- Background image with fetchpriority for LCP optimization + responsive srcset -->
+  <div class="hero-bg">
+    <img 
+      src={heroFrame}
+      srcset="/hero-frame-mobile.webp 800w, /hero-frame.webp 1920w"
+      sizes="100vw"
+      alt=""
+      class="hero-poster"
+      width="1920"
+      height="1080"
+      fetchpriority="high"
+      decoding="async"
+    />
     <!-- Dark overlay -->
     <div class="hero-overlay"></div>
     
@@ -47,23 +58,31 @@ const heroFrame = "/hero-frame.webp";
 </section>
 
 <style>
-  /* Hero section - fixed height, no layout changes possible */
+  /* Hero section - use 100vh (stable) not 100svh (dynamic, causes CLS on mobile) */
   .hero-section {
     position: relative;
     width: 100%;
-    height: 100svh;
+    height: 100vh;
+    min-height: 600px; /* Fallback minimum */
     overflow: hidden;
     background-color: #000;
   }
 
-  /* Background container with CSS background-image - no CLS */
+  /* Background container */
   .hero-bg {
     position: absolute;
     inset: 0;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
     transform: scale(1.05);
+  }
+
+  /* Poster image - fills container, acts as LCP element */
+  .hero-poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
   }
 
   /* Dark overlay */
