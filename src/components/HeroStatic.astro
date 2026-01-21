@@ -124,6 +124,7 @@ const heroFrame = "/hero-frame.webp";
   }
 
   .hero-subtitle {
+    font-family: 'Manrope', 'Manrope Fallback', system-ui, sans-serif;
     text-transform: uppercase;
     letter-spacing: 0.3em;
     font-size: 0.75rem;
@@ -139,11 +140,13 @@ const heroFrame = "/hero-frame.webp";
   }
 
   .hero-title {
-    font-family: var(--font-serif, 'Playfair Display', serif);
+    font-family: 'Playfair Display', 'Playfair Fallback', Georgia, serif;
     font-size: 3rem;
     margin-bottom: 2rem;
     letter-spacing: -0.025em;
     line-height: 1.1;
+    /* Reserve space to prevent CLS when font loads */
+    min-height: 1.1em;
   }
 
   @media (min-width: 768px) {

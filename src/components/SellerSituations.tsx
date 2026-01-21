@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
 import { 
   Heart, 
   Scale, 
@@ -259,16 +258,12 @@ const SellerSituations = () => {
                   </p>
                 </div>
                 <div className="flex flex-col gap-4">
-                  <a href="/valoracion">
-                    <Button className="w-full py-6 text-base bg-primary hover:bg-primary/90 text-white rounded-lg">
-                      Solicitar valoración
-                      <ArrowRight className="w-4 h-4 ml-2" />
-                    </Button>
+                  <a href="/valoracion" className="w-full py-4 text-base bg-primary hover:bg-primary/90 text-white rounded-lg inline-flex items-center justify-center font-medium transition-colors">
+                    Solicitar valoración
+                    <ArrowRight className="w-4 h-4 ml-2" />
                   </a>
-                  <a href="/contacto">
-                    <Button variant="outline" className="w-full py-6 text-base border rounded-lg hover:bg-white">
-                      Prefiero hablar primero
-                    </Button>
+                  <a href="/contacto" className="w-full py-4 text-base border border-slate-200 rounded-lg hover:bg-white inline-flex items-center justify-center font-medium transition-colors">
+                    Prefiero hablar primero
                   </a>
                   <p className="text-center text-xs text-muted-foreground mt-2">
                     Sin compromiso · Sin presión
@@ -285,11 +280,9 @@ const SellerSituations = () => {
             <p className="text-muted-foreground mb-6 font-light">
               ¿Su situación no encaja en ninguna de estas? No importa.
             </p>
-            <a href="/contacto">
-              <Button variant="outline" className="border-slate-200 hover:border-primary hover:text-primary group">
-                Cuéntenos su caso
-                <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
-              </Button>
+            <a href="/contacto" className="inline-flex items-center gap-2 px-6 py-3 border border-slate-200 rounded-md text-sm font-medium hover:border-primary hover:text-primary transition-colors group">
+              Cuéntenos su caso
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </a>
           </FadeIn>
         )}

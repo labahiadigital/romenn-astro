@@ -7,9 +7,9 @@
 /* Fallback for Playfair Display - matches Georgia metrics to Playfair */
 @font-face {
   font-family: 'Playfair Fallback';
-  src: local('Georgia'), local('Times New Roman'), local('serif');
-  size-adjust: 111%;
-  ascent-override: 86%;
+  src: local('Georgia'), local('Times New Roman');
+  size-adjust: 108%;
+  ascent-override: 90%;
   descent-override: 22%;
   line-gap-override: 0%;
 }
@@ -17,10 +17,10 @@
 /* Fallback for Manrope - matches system fonts to Manrope */
 @font-face {
   font-family: 'Manrope Fallback';
-  src: local('Segoe UI'), local('Arial'), local('Helvetica'), local('sans-serif');
-  size-adjust: 100%;
-  ascent-override: 98%;
-  descent-override: 25%;
+  src: local('Segoe UI'), local('Arial'), local('Helvetica Neue'), local('Helvetica');
+  size-adjust: 103%;
+  ascent-override: 95%;
+  descent-override: 22%;
   line-gap-override: 0%;
 }
 
