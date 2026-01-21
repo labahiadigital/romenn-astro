@@ -11,13 +11,15 @@ interface Props {
   description?: string;
   image?: string;
   noindex?: boolean;
+  hasForm?: boolean; // Only load Toaster on pages with forms
 }
 
 const { 
   title, 
   description = "Römenn - Inmobiliaria Boutique Internacional. Redefiniendo el lujo inmobiliario en Rivas-Vaciamadrid.",
   image = "/hero-frame.webp",
-  noindex = false
+  noindex = false,
+  hasForm = false
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
@@ -102,6 +104,6 @@ const imageURL = new URL(image, Astro.site);
     
     <Footer />
     <WhatsAppButton />
-    <Toaster client:load />
+    {hasForm && <Toaster client:load />}
   </body>
 </html>
