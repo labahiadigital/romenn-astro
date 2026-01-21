@@ -35,14 +35,17 @@ const imageURL = new URL(image, Astro.site);
     <meta name="generator" content={Astro.generator} />
     
     <!-- 
-      Preload critical fonts to ensure they load before first paint
-      This reduces CLS by having fonts ready when text renders
+      Preload only critical above-the-fold fonts to reduce chain latency
+      Hero uses: Manrope 300 (subtitle), Playfair 400 normal + italic (h1)
+      Header uses: Manrope 400/500 (nav)
     -->
+    <link rel="preload" href="/fonts/manrope-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/manrope-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/manrope-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/manrope-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/playfair-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/playfair-display-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin />
+    
+    <!-- Preload hero background image for faster LCP -->
+    <link rel="preload" href="/hero-frame.webp" as="image" type="image/webp" />
     
     <!-- SEO -->
     <SEO
