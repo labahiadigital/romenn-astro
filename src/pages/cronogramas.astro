@@ -1,55 +1,238 @@
 ---
-import PageLayout from "@/layouts/PageLayout.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
-<PageLayout title="Blueprints" subtitle="Cronogramas de Operación">
-  <section class="py-32 bg-background">
-    <div class="max-w-4xl mx-auto px-6">
-      <p class="text-xl text-muted-foreground font-light leading-relaxed text-center mb-16">
-        Visualice cada paso de su operación inmobiliaria. Sin sorpresas, sin incertidumbre. Sabe exactamente qué esperar y cuándo.
+<BaseLayout title="Cronogramas - El Blueprint">
+  <main class="flex-grow py-20 px-6 min-h-screen bg-background">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+      <span class="text-xs font-bold uppercase tracking-widest text-accent mb-4 block animate-fade-in">
+        Metodología Römenn
+      </span>
+      <h1 class="text-4xl md:text-6xl font-serif mb-6 animate-fade-in" style="animation-delay: 0.1s;">
+        El Blueprint
+      </h1>
+      <p class="text-xl text-muted-foreground font-sans font-light">
+        La incertidumbre es el enemigo del lujo. <br/>
+        Visualice cada paso de su operación con claridad cristalina.
       </p>
-      
-      <div class="space-y-8">
-        <div class="relative pl-8 border-l-2 border-accent">
-          <div class="absolute -left-3 top-0 w-6 h-6 bg-accent rounded-full flex items-center justify-center text-white text-xs font-bold">1</div>
-          <div class="bg-muted p-6">
-            <h3 class="text-xl font-serif mb-2">Semana 1-2: Preparación</h3>
-            <p class="text-muted-foreground font-light">Valoración, estrategia de precio, home staging y sesión fotográfica profesional.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="w-full max-w-5xl mx-auto">
+      <div class="flex justify-center mb-16">
+        <div class="bg-white border border-border p-1 rounded-full inline-flex">
+          <button 
+            id="tab-venta" 
+            class="tab-button rounded-full px-8 py-3 text-xs uppercase tracking-widest bg-primary text-white transition-all"
+            onclick="switchTab('venta')"
+          >
+            Vender
+          </button>
+          <button 
+            id="tab-compra" 
+            class="tab-button rounded-full px-8 py-3 text-xs uppercase tracking-widest transition-all"
+            onclick="switchTab('compra')"
+          >
+            Comprar
+          </button>
+        </div>
+      </div>
+
+      <!-- Contenido Venta -->
+      <div id="content-venta" class="tab-content">
+        <div class="relative">
+          <!-- Línea vertical -->
+          <div class="absolute left-6 top-0 bottom-0 w-px bg-slate-200"></div>
+          
+          <div class="space-y-8">
+            <!-- Paso 1 -->
+            <div class="relative pl-16">
+              <div class="absolute left-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-serif text-lg z-10">1</div>
+              <div class="bg-white border border-slate-100 rounded-xl p-8 shadow-sm">
+                <h3 class="text-xl font-serif mb-3 text-primary">Análisis & Valoración</h3>
+                <p class="text-muted-foreground font-light leading-relaxed">
+                  Estudio de mercado profundo, análisis jurídico de la propiedad y valoración emocional para fijar el precio óptimo.
+                </p>
+              </div>
+            </div>
+
+            <!-- Paso 2 -->
+            <div class="relative pl-16">
+              <div class="absolute left-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-serif text-lg z-10">2</div>
+              <div class="bg-white border border-slate-100 rounded-xl p-8 shadow-sm">
+                <h3 class="text-xl font-serif mb-3 text-primary">Home Staging & Fotografía</h3>
+                <p class="text-muted-foreground font-light leading-relaxed">
+                  Intervención estética, reportaje fotográfico editorial y vídeo slow-motion para elevar la percepción de valor.
+                </p>
+              </div>
+            </div>
+
+            <!-- Paso 3 -->
+            <div class="relative pl-16">
+              <div class="absolute left-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-serif text-lg z-10">3</div>
+              <div class="bg-white border border-slate-100 rounded-xl p-8 shadow-sm">
+                <h3 class="text-xl font-serif mb-3 text-primary">Estrategia de Lanzamiento</h3>
+                <p class="text-muted-foreground font-light leading-relaxed">
+                  Publicación segmentada en portales internacionales, base de datos privada y campaña en redes sociales.
+                </p>
+              </div>
+            </div>
+
+            <!-- Paso 4 -->
+            <div class="relative pl-16">
+              <div class="absolute left-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-serif text-lg z-10">4</div>
+              <div class="bg-white border border-slate-100 rounded-xl p-8 shadow-sm">
+                <h3 class="text-xl font-serif mb-3 text-primary">Gestión de Visitas</h3>
+                <p class="text-muted-foreground font-light leading-relaxed">
+                  Filtrado riguroso de compradores. Solo visitas de calidad. Informe semanal de feedback.
+                </p>
+              </div>
+            </div>
+
+            <!-- Paso 5 -->
+            <div class="relative pl-16">
+              <div class="absolute left-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-serif text-lg z-10">5</div>
+              <div class="bg-white border border-slate-100 rounded-xl p-8 shadow-sm">
+                <h3 class="text-xl font-serif mb-3 text-primary">Negociación & Cierre</h3>
+                <p class="text-muted-foreground font-light leading-relaxed">
+                  Defensa del precio. Gestión de ofertas y preparación del contrato de arras blindado.
+                </p>
+              </div>
+            </div>
+
+            <!-- Paso 6 -->
+            <div class="relative pl-16">
+              <div class="absolute left-0 w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center font-serif text-lg z-10">6</div>
+              <div class="bg-accent text-white rounded-xl p-8 shadow-lg">
+                <h3 class="text-xl font-serif mb-3">Notaría & Postventa</h3>
+                <p class="font-light leading-relaxed opacity-90">
+                  Acompañamiento a firma y gestión de cambios de suministros. Seguimos contigo después de la venta.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
-        
-        <div class="relative pl-8 border-l-2 border-accent">
-          <div class="absolute -left-3 top-0 w-6 h-6 bg-accent rounded-full flex items-center justify-center text-white text-xs font-bold">2</div>
-          <div class="bg-muted p-6">
-            <h3 class="text-xl font-serif mb-2">Semana 3-6: Comercialización</h3>
-            <p class="text-muted-foreground font-light">Publicación en portales premium, marketing digital y gestión de visitas cualificadas.</p>
-          </div>
-        </div>
-        
-        <div class="relative pl-8 border-l-2 border-accent">
-          <div class="absolute -left-3 top-0 w-6 h-6 bg-accent rounded-full flex items-center justify-center text-white text-xs font-bold">3</div>
-          <div class="bg-muted p-6">
-            <h3 class="text-xl font-serif mb-2">Semana 7-8: Negociación</h3>
-            <p class="text-muted-foreground font-light">Recepción de ofertas, negociación experta y selección del mejor comprador.</p>
-          </div>
-        </div>
-        
-        <div class="relative pl-8 border-l-2 border-accent">
-          <div class="absolute -left-3 top-0 w-6 h-6 bg-accent rounded-full flex items-center justify-center text-white text-xs font-bold">4</div>
-          <div class="bg-muted p-6">
-            <h3 class="text-xl font-serif mb-2">Semana 9-10: Arras</h3>
-            <p class="text-muted-foreground font-light">Redacción de contrato de arras, gestión de documentación y coordinación con notaría.</p>
-          </div>
-        </div>
-        
-        <div class="relative pl-8 border-l-2 border-primary">
-          <div class="absolute -left-3 top-0 w-6 h-6 bg-primary rounded-full flex items-center justify-center text-white text-xs font-bold">5</div>
-          <div class="bg-primary text-white p-6">
-            <h3 class="text-xl font-serif mb-2">Semana 11-12: Escritura</h3>
-            <p class="font-light">Firma en notaría, entrega de llaves y celebración. ¡Operación completada!</p>
+      </div>
+
+      <!-- Contenido Compra -->
+      <div id="content-compra" class="tab-content hidden">
+        <div class="relative">
+          <!-- Línea vertical -->
+          <div class="absolute left-6 top-0 bottom-0 w-px bg-slate-200"></div>
+          
+          <div class="space-y-8">
+            <!-- Paso 1 -->
+            <div class="relative pl-16">
+              <div class="absolute left-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-serif text-lg z-10">1</div>
+              <div class="bg-white border border-slate-100 rounded-xl p-8 shadow-sm">
+                <h3 class="text-xl font-serif mb-3 text-primary">Entrevista Personal / Estudio Financiero</h3>
+                <p class="text-muted-foreground font-light leading-relaxed">
+                  Definición de necesidades, presupuesto y estilo de vida. Creamos tu perfil de comprador único.
+                </p>
+              </div>
+            </div>
+
+            <!-- Paso 2 -->
+            <div class="relative pl-16">
+              <div class="absolute left-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-serif text-lg z-10">2</div>
+              <div class="bg-white border border-slate-100 rounded-xl p-8 shadow-sm">
+                <h3 class="text-xl font-serif mb-3 text-primary">Búsqueda Activa</h3>
+                <p class="text-muted-foreground font-light leading-relaxed">
+                  Rastreo de mercado, incluyendo propiedades 'off-market' que no están en portales.
+                </p>
+              </div>
+            </div>
+
+            <!-- Paso 3 -->
+            <div class="relative pl-16">
+              <div class="absolute left-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-serif text-lg z-10">3</div>
+              <div class="bg-white border border-slate-100 rounded-xl p-8 shadow-sm">
+                <h3 class="text-xl font-serif mb-3 text-primary">Selección & Visitas</h3>
+                <p class="text-muted-foreground font-light leading-relaxed">
+                  Pre-selección por parte de tu agente. Solo visitamos lo que realmente encaja.
+                </p>
+              </div>
+            </div>
+
+            <!-- Paso 4 -->
+            <div class="relative pl-16">
+              <div class="absolute left-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-serif text-lg z-10">4</div>
+              <div class="bg-white border border-slate-100 rounded-xl p-8 shadow-sm">
+                <h3 class="text-xl font-serif mb-3 text-primary">Análisis Técnico</h3>
+                <p class="text-muted-foreground font-light leading-relaxed">
+                  Revisión de cargas, estado arquitectónico y viabilidad financiera antes de ofertar.
+                </p>
+              </div>
+            </div>
+
+            <!-- Paso 5 -->
+            <div class="relative pl-16">
+              <div class="absolute left-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center font-serif text-lg z-10">5</div>
+              <div class="bg-white border border-slate-100 rounded-xl p-8 shadow-sm">
+                <h3 class="text-xl font-serif mb-3 text-primary">Negociación</h3>
+                <p class="text-muted-foreground font-light leading-relaxed">
+                  Conseguimos el mejor precio posible utilizando datos reales de mercado.
+                </p>
+              </div>
+            </div>
+
+            <!-- Paso 6 -->
+            <div class="relative pl-16">
+              <div class="absolute left-0 w-12 h-12 bg-accent text-white rounded-full flex items-center justify-center font-serif text-lg z-10">6</div>
+              <div class="bg-accent text-white rounded-xl p-8 shadow-lg">
+                <h3 class="text-xl font-serif mb-3">Llaves en Mano</h3>
+                <p class="font-light leading-relaxed opacity-90">
+                  Coordinación total hasta la entrega de llaves y ayuda con la mudanza.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </section>
-</PageLayout>
+  </main>
+</BaseLayout>
+
+<script>
+  function switchTab(tab: string) {
+    // Update buttons
+    const ventaBtn = document.getElementById('tab-venta');
+    const compraBtn = document.getElementById('tab-compra');
+    
+    if (tab === 'venta') {
+      ventaBtn?.classList.add('bg-primary', 'text-white');
+      compraBtn?.classList.remove('bg-primary', 'text-white');
+    } else {
+      compraBtn?.classList.add('bg-primary', 'text-white');
+      ventaBtn?.classList.remove('bg-primary', 'text-white');
+    }
+    
+    // Update content
+    const ventaContent = document.getElementById('content-venta');
+    const compraContent = document.getElementById('content-compra');
+    
+    if (tab === 'venta') {
+      ventaContent?.classList.remove('hidden');
+      compraContent?.classList.add('hidden');
+    } else {
+      compraContent?.classList.remove('hidden');
+      ventaContent?.classList.add('hidden');
+    }
+  }
+  
+  // Make function available globally
+  (window as any).switchTab = switchTab;
+</script>
+
+<style>
+  .animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+    }
+  }
+</style>

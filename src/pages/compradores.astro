@@ -1,74 +1,18 @@
 ---
-import PageLayout from "@/layouts/PageLayout.astro";
-import { Button } from "@/components/ui/button";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BuyerTest from "@/components/BuyerTest";
 ---
 
-<PageLayout title="Personal Shopper" subtitle="Servicio Exclusivo">
-  <section class="py-32 bg-background">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <p class="text-xl text-muted-foreground font-light leading-relaxed mb-16">
-        ¿Cansado de buscar en portales sin encontrar lo que realmente necesita? Nuestro servicio de Personal Shopper inmobiliario encuentra propiedades que ni siquiera están en el mercado.
+<BaseLayout title="Personal Shopper - Compradores">
+  <main class="flex-grow py-20 px-6 flex flex-col items-center justify-center bg-muted/30 pt-32">
+    <div class="text-center mb-12 max-w-3xl">
+      <span class="text-xs font-bold uppercase tracking-widest text-accent mb-4 block">Personal Shopper</span>
+      <h1 class="text-4xl md:text-5xl font-serif mb-6">Encontramos su hogar ideal</h1>
+      <p class="text-xl text-muted-foreground font-sans font-light">
+        No pierda el tiempo en portales. Cuéntenos qué necesita y nuestro algoritmo de búsqueda Off-Market lo encontrará.
       </p>
-      
-      <div class="grid md:grid-cols-2 gap-12 text-left mb-20">
-        <div class="bg-muted p-8">
-          <h3 class="text-xl font-serif mb-4">Lo que Incluye</h3>
-          <ul class="space-y-3 text-muted-foreground font-light">
-            <li class="flex items-start gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent mt-1 flex-shrink-0"><path d="M20 6 9 17l-5-5"/></svg>
-              Análisis de su perfil y necesidades reales
-            </li>
-            <li class="flex items-start gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent mt-1 flex-shrink-0"><path d="M20 6 9 17l-5-5"/></svg>
-              Búsqueda proactiva en red de contactos
-            </li>
-            <li class="flex items-start gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent mt-1 flex-shrink-0"><path d="M20 6 9 17l-5-5"/></svg>
-              Acceso a propiedades off-market
-            </li>
-            <li class="flex items-start gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent mt-1 flex-shrink-0"><path d="M20 6 9 17l-5-5"/></svg>
-              Negociación experta en su nombre
-            </li>
-            <li class="flex items-start gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent mt-1 flex-shrink-0"><path d="M20 6 9 17l-5-5"/></svg>
-              Acompañamiento hasta la firma
-            </li>
-          </ul>
-        </div>
-        
-        <div class="bg-muted p-8">
-          <h3 class="text-xl font-serif mb-4">Ideal Para</h3>
-          <ul class="space-y-3 text-muted-foreground font-light">
-            <li class="flex items-start gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent mt-1 flex-shrink-0"><path d="M20 6 9 17l-5-5"/></svg>
-              Profesionales sin tiempo para buscar
-            </li>
-            <li class="flex items-start gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent mt-1 flex-shrink-0"><path d="M20 6 9 17l-5-5"/></svg>
-              Inversores que buscan oportunidades
-            </li>
-            <li class="flex items-start gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent mt-1 flex-shrink-0"><path d="M20 6 9 17l-5-5"/></svg>
-              Familias con requisitos específicos
-            </li>
-            <li class="flex items-start gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent mt-1 flex-shrink-0"><path d="M20 6 9 17l-5-5"/></svg>
-              Compradores de fuera de la zona
-            </li>
-            <li class="flex items-start gap-3">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent mt-1 flex-shrink-0"><path d="M20 6 9 17l-5-5"/></svg>
-              Quienes valoran la discreción
-            </li>
-          </ul>
-        </div>
-      </div>
-      
-      <a href="/contacto">
-        <Button className="btn-premium" client:load>
-          Solicitar Personal Shopper
-        </Button>
-      </a>
     </div>
-  </section>
-</PageLayout>
+    
+    <BuyerTest client:visible />
+  </main>
+</BaseLayout>

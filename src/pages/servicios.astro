@@ -1,78 +1,116 @@
 ---
-import PageLayout from "@/layouts/PageLayout.astro";
-import { Button } from "@/components/ui/button";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Shield, Scale, Ruler, Calculator, Truck, FileCheck, Sparkles } from "lucide-react";
+
+const services = [
+    {
+        title: "Acompañamiento Jurídico",
+        desc: "Contratos blindados, seguridad documental, protección real. No dejamos ni una coma al azar. Nuestro equipo legal revisa cada folio.",
+        icon: "Shield"
+    },
+    {
+        title: "Asesoría Financiera",
+        desc: "Viabilidad, ratios, riesgos explicados sin tecnicismos. Diseñamos la estructura financiera que mejor protege su patrimonio.",
+        icon: "Calculator"
+    },
+    {
+        title: "Arquitectura & Reformas",
+        desc: "Proyectos, licencias, interiorismo, staging premium. Transformamos espacios para maximizar su valor de mercado.",
+        icon: "Ruler"
+    },
+    {
+        title: "Herencias & Fiscalidad",
+        desc: "Acompañamiento humano, serio y organizado en los momentos más delicados. Gestionamos el impuesto de sucesiones y la plusvalía.",
+        icon: "Scale"
+    },
+    {
+        title: "Mudanzas & Logística",
+        desc: "Cero estrés. Coordinamos la logística de su traslado para que usted solo tenga que preocuparse de disfrutar su nuevo hogar.",
+        icon: "Truck"
+    },
+    {
+        title: "Notaría & Postventa",
+        desc: "Tranquilidad total. Le acompañamos a la firma y gestionamos todos los cambios de suministros posteriores. No le soltamos la mano.",
+        icon: "FileCheck"
+    }
+];
 ---
 
-<PageLayout title="Servicios 360°" subtitle="Ecosistema Completo">
-  <section class="py-32 bg-background">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-muted p-10 hover:shadow-xl transition-all duration-500 group">
-          <div class="w-16 h-16 bg-primary rounded-sm flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+<BaseLayout title="Servicios 360° Boutique">
+  <main class="flex-grow">
+    
+    <!-- Hero -->
+    <section class="py-32 px-6 text-center bg-muted/30 pt-44">
+      <div class="max-w-4xl mx-auto">
+        <span class="text-accent uppercase tracking-widest text-xs font-bold mb-4 block">Ecosistema Römenn</span>
+        <h1 class="text-4xl md:text-6xl font-serif mb-8">
+          Servicios 360° Boutique
+        </h1>
+        <p class="text-xl text-muted-foreground font-light leading-relaxed max-w-2xl mx-auto">
+          No somos proveedores aislados. Somos un círculo de protección alrededor de su patrimonio.
+        </p>
+      </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="py-24 px-6">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+        {services.map((service) => (
+          <div class="group">
+            <div class="w-14 h-14 bg-primary/5 rounded-full flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+              {service.icon === "Shield" && (
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+              )}
+              {service.icon === "Calculator" && (
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>
+              )}
+              {service.icon === "Ruler" && (
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.3 15.3a2.4 2.4 0 0 1 0 3.4l-2.6 2.6a2.4 2.4 0 0 1-3.4 0L2.7 8.7a2.41 2.41 0 0 1 0-3.4l2.6-2.6a2.41 2.41 0 0 1 3.4 0Z"/><path d="m14.5 12.5 2-2"/><path d="m11.5 9.5 2-2"/><path d="m8.5 6.5 2-2"/><path d="m17.5 15.5 2-2"/></svg>
+              )}
+              {service.icon === "Scale" && (
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
+              )}
+              {service.icon === "Truck" && (
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></svg>
+              )}
+              {service.icon === "FileCheck" && (
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></svg>
+              )}
+            </div>
+            <h3 class="text-2xl font-serif mb-4 group-hover:text-primary transition-colors">{service.title}</h3>
+            <p class="text-muted-foreground font-light leading-relaxed">
+              {service.desc}
+            </p>
           </div>
-          <h3 class="text-2xl font-serif mb-4">Venta Boutique</h3>
-          <p class="text-muted-foreground font-light leading-relaxed mb-6">
-            Marketing sensorial, fotografía profesional, home staging y estrategia de precio óptima.
+        ))}
+      </div>
+    </section>
+
+    <!-- Staging Highlight -->
+    <section class="py-24 bg-primary text-white overflow-hidden relative">
+      <div class="max-w-6xl mx-auto px-6 relative z-10 grid md:grid-cols-2 gap-16 items-center">
+        <div>
+          <span class="text-accent uppercase tracking-widest text-xs font-bold mb-4 block flex items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+            Valor Diferencial
+          </span>
+          <h2 class="text-3xl md:text-5xl font-serif mb-6">Home Staging Premium</h2>
+          <p class="text-white/80 font-light leading-relaxed mb-8">
+            No vendemos casas vacías. Vendemos hogares llenos de posibilidades. Nuestro equipo de interiorismo interviene cada propiedad para elevar su percepción de valor antes de la primera foto.
           </p>
-          <span class="text-xs uppercase tracking-widest font-bold text-accent">Más información →</span>
+          <ul class="space-y-4 text-sm font-light">
+            <li class="flex items-center gap-3"><div class="w-1 h-1 bg-accent rounded-full"></div> Despersonalización estratégica</li>
+            <li class="flex items-center gap-3"><div class="w-1 h-1 bg-accent rounded-full"></div> Iluminación emocional</li>
+            <li class="flex items-center gap-3"><div class="w-1 h-1 bg-accent rounded-full"></div> Mobiliario de diseño temporal</li>
+          </ul>
         </div>
-        
-        <div class="bg-muted p-10 hover:shadow-xl transition-all duration-500 group">
-          <div class="w-16 h-16 bg-primary rounded-sm flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-          </div>
-          <h3 class="text-2xl font-serif mb-4">Personal Shopper</h3>
-          <p class="text-muted-foreground font-light leading-relaxed mb-6">
-            Búsqueda proactiva de propiedades off-market que se ajusten a su perfil exacto.
+        <div class="bg-white/10 p-8 rounded-sm backdrop-blur-sm border border-white/20">
+          <p class="text-2xl font-serif italic text-center">
+            "El 90% de las decisiones de compra se toman en los primeros 90 segundos de la visita."
           </p>
-          <span class="text-xs uppercase tracking-widest font-bold text-accent">Más información →</span>
-        </div>
-        
-        <div class="bg-muted p-10 hover:shadow-xl transition-all duration-500 group">
-          <div class="w-16 h-16 bg-primary rounded-sm flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
-          </div>
-          <h3 class="text-2xl font-serif mb-4">Asesoría Jurídica</h3>
-          <p class="text-muted-foreground font-light leading-relaxed mb-6">
-            Revisión de contratos, due diligence y protección total en cada operación.
-          </p>
-          <span class="text-xs uppercase tracking-widest font-bold text-accent">Más información →</span>
-        </div>
-        
-        <div class="bg-muted p-10 hover:shadow-xl transition-all duration-500 group">
-          <div class="w-16 h-16 bg-primary rounded-sm flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20h.01"/><path d="M7 20v-4"/><path d="M12 20v-8"/><path d="M17 20V8"/><path d="M22 4v16"/></svg>
-          </div>
-          <h3 class="text-2xl font-serif mb-4">Valoración Inteligente</h3>
-          <p class="text-muted-foreground font-light leading-relaxed mb-6">
-            Análisis de mercado con datos reales y componente emocional de la propiedad.
-          </p>
-          <span class="text-xs uppercase tracking-widest font-bold text-accent">Más información →</span>
-        </div>
-        
-        <div class="bg-muted p-10 hover:shadow-xl transition-all duration-500 group">
-          <div class="w-16 h-16 bg-primary rounded-sm flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
-          </div>
-          <h3 class="text-2xl font-serif mb-4">Financiación</h3>
-          <p class="text-muted-foreground font-light leading-relaxed mb-6">
-            Gestión hipotecaria con las mejores condiciones del mercado.
-          </p>
-          <span class="text-xs uppercase tracking-widest font-bold text-accent">Más información →</span>
-        </div>
-        
-        <div class="bg-muted p-10 hover:shadow-xl transition-all duration-500 group">
-          <div class="w-16 h-16 bg-primary rounded-sm flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-          </div>
-          <h3 class="text-2xl font-serif mb-4">Reformas & Interiorismo</h3>
-          <p class="text-muted-foreground font-light leading-relaxed mb-6">
-            Red de profesionales de confianza para transformar espacios.
-          </p>
-          <span class="text-xs uppercase tracking-widest font-bold text-accent">Más información →</span>
         </div>
       </div>
-    </div>
-  </section>
-</PageLayout>
+    </section>
+
+  </main>
+</BaseLayout>

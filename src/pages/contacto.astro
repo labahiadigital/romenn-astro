@@ -1,130 +1,229 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { Button } from "@/components/ui/button";
+import ContactForm from "@/components/ContactForm";
+
+// Información de la oficina
+const officeInfo = {
+  name: "Römenn Inmobiliaria",
+  address: "Calle de la Estación, 15",
+  city: "28522 Rivas-Vaciamadrid, Madrid",
+  phone: "+34 600 000 000",
+  email: "info@romenn.es",
+  hours: "Lunes a Viernes: 9:30 - 19:30",
+  weekendHours: "Sábados: 10:00 - 14:00"
+};
+
+// Preguntas frecuentes
+const faqs = [
+  {
+    question: "¿Cuánto cuesta valorar mi propiedad?",
+    answer: "La valoración inicial es completamente gratuita y sin compromiso. Realizamos un análisis de mercado profesional que incluye comparativas de zona, tendencias de precios y recomendaciones personalizadas."
+  },
+  {
+    question: "¿Cuánto tiempo tarda en venderse una propiedad?",
+    answer: "El tiempo medio de venta con nuestra metodología es de 45 días, significativamente menor que la media del mercado. Esto se debe a nuestra estrategia de pricing inteligente, marketing sensorial y red de compradores cualificados."
+  },
+  {
+    question: "¿Qué comisión cobráis?",
+    answer: "Nuestros honorarios son competitivos y transparentes. Los detallamos en la primera reunión según el tipo de servicio que necesite. No hay costes ocultos ni sorpresas."
+  },
+  {
+    question: "¿Trabajáis con exclusividad?",
+    answer: "Recomendamos la exclusividad compartida porque nos permite invertir más recursos en la promoción de su propiedad. Sin embargo, ofrecemos diferentes modalidades adaptadas a sus necesidades."
+  },
+  {
+    question: "¿Qué incluye el servicio de Personal Shopper?",
+    answer: "Incluye búsqueda activa en mercado abierto y Off-Market, pre-selección de propiedades, acompañamiento a visitas, negociación, estudio financiero gratuito y due diligence completa antes de la compra."
+  },
+  {
+    question: "¿Puedo vender mi casa si todavía tengo hipoteca?",
+    answer: "Por supuesto. Gestionamos la cancelación de la hipoteca coordinando con su banco y el del comprador para que todo quede resuelto en la firma notarial. Es un proceso habitual que dominamos perfectamente."
+  }
+];
 ---
 
 <BaseLayout title="Contacto">
-  <!-- Hero Banner -->
-  <section class="relative h-[400px] flex items-center justify-center bg-primary text-white pt-24">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <span class="text-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Hablemos</span>
-      <h1 class="text-4xl md:text-6xl font-serif">Contacto</h1>
+  <!-- Hero -->
+  <section class="pt-32 pb-16 bg-gradient-to-b from-slate-50 to-white">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <span class="text-xs uppercase tracking-[0.25em] text-accent font-bold mb-4 block">
+        Estamos aquí para ayudarle
+      </span>
+      <h1 class="text-4xl md:text-6xl font-serif mb-6">Contacto</h1>
+      <p class="text-xl text-muted-foreground font-light max-w-2xl mx-auto">
+        Respuesta garantizada en menos de 2 horas laborables.
+      </p>
     </div>
   </section>
 
-  <!-- Contact Section -->
-  <section class="py-32 bg-background">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid md:grid-cols-2 gap-16">
-        <!-- Contact Info -->
-        <div>
-          <span class="text-accent text-xs uppercase tracking-widest font-bold mb-4 block">Oficina Central</span>
-          <h2 class="text-3xl md:text-4xl font-serif mb-8">Römenn Rivas</h2>
-          
-          <div class="space-y-8">
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-primary rounded-sm flex items-center justify-center flex-shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              </div>
-              <div>
-                <p class="text-xs text-muted-foreground uppercase tracking-widest mb-2">Teléfono</p>
-                <a href="tel:+34600000000" class="text-xl font-serif hover:text-accent transition-colors">
-                  +34 600 000 000
-                </a>
-              </div>
-            </div>
+  <!-- Quick Contact Options -->
+  <section class="py-8 border-b border-slate-100">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="flex flex-wrap justify-center gap-4 md:gap-8">
+        <a
+          href="https://wa.me/34600000000?text=Hola,%20me%20gustaría%20información%20sobre%20vuestros%20servicios."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center gap-3 px-6 py-3 bg-[#25D366] text-white rounded-full hover:bg-[#20BA5A] transition-colors shadow-lg shadow-[#25D366]/20"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span class="font-medium">WhatsApp Directo</span>
+        </a>
+        <a
+          href={`tel:${officeInfo.phone}`}
+          class="flex items-center gap-3 px-6 py-3 bg-primary text-white rounded-full hover:bg-primary/90 transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span class="font-medium">{officeInfo.phone}</span>
+        </a>
+        <a
+          href={`mailto:${officeInfo.email}`}
+          class="flex items-center gap-3 px-6 py-3 bg-slate-100 text-slate-700 rounded-full hover:bg-slate-200 transition-colors"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          <span class="font-medium">{officeInfo.email}</span>
+        </a>
+      </div>
+    </div>
+  </section>
 
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-primary rounded-sm flex items-center justify-center flex-shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-              </div>
-              <div>
-                <p class="text-xs text-muted-foreground uppercase tracking-widest mb-2">Email</p>
-                <a href="mailto:privado@romenn.es" class="text-xl font-serif hover:text-accent transition-colors">
-                  privado@romenn.es
-                </a>
-              </div>
-            </div>
+  <!-- Main Content: Form + Office Info -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-5 gap-12">
+        
+        <!-- Contact Form - 3 columns -->
+        <div class="md:col-span-3">
+          <ContactForm client:visible />
+        </div>
 
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-primary rounded-sm flex items-center justify-center flex-shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        <!-- Office Info - 2 columns -->
+        <div class="md:col-span-2 space-y-8">
+          <div class="bg-slate-50 p-8 rounded-2xl">
+            <h3 class="text-xl font-serif mb-6">Nuestra Oficina</h3>
+            
+            <div class="space-y-6">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                </div>
+                <div>
+                  <p class="font-medium text-foreground">{officeInfo.address}</p>
+                  <p class="text-muted-foreground text-sm">{officeInfo.city}</p>
+                </div>
               </div>
-              <div>
-                <p class="text-xs text-muted-foreground uppercase tracking-widest mb-2">Dirección</p>
-                <p class="text-xl font-serif">
-                  Rivas-Vaciamadrid<br/>
-                  Madrid, España
-                </p>
-              </div>
-            </div>
 
-            <div class="flex items-start gap-4">
-              <div class="w-12 h-12 bg-primary rounded-sm flex items-center justify-center flex-shrink-0">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                </div>
+                <div>
+                  <p class="font-medium text-foreground">{officeInfo.hours}</p>
+                  <p class="text-muted-foreground text-sm">{officeInfo.weekendHours}</p>
+                </div>
               </div>
-              <div>
-                <p class="text-xs text-muted-foreground uppercase tracking-widest mb-2">Horario</p>
-                <p class="text-xl font-serif">
-                  Lunes a Viernes: 9:00 - 19:00
-                </p>
+
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                </div>
+                <div>
+                  <a href={`tel:${officeInfo.phone}`} class="font-medium text-foreground hover:text-primary transition-colors">
+                    {officeInfo.phone}
+                  </a>
+                  <p class="text-muted-foreground text-sm">Llamada directa</p>
+                </div>
+              </div>
+
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 bg-primary/10 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </div>
+                <div>
+                  <a href={`mailto:${officeInfo.email}`} class="font-medium text-foreground hover:text-primary transition-colors">
+                    {officeInfo.email}
+                  </a>
+                  <p class="text-muted-foreground text-sm">Respuesta en 24h</p>
+                </div>
               </div>
             </div>
           </div>
+
+          <!-- Map -->
+          <div class="rounded-2xl overflow-hidden shadow-lg h-64">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d48636.12!2d-3.52!3d40.35!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd422f3d!2sRivas-Vaciamadrid!5e0!3m2!1ses!2ses!4v1234567890"
+              width="100%"
+              height="100%"
+              style="border: 0;"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Ubicación de Römenn"
+            ></iframe>
+          </div>
+
+          <!-- CTA Card -->
+          <div class="bg-primary text-white p-8 rounded-2xl">
+            <h3 class="text-xl font-serif mb-3">¿Prefiere que le llamemos?</h3>
+            <p class="text-white/70 text-sm mb-6">
+              Déjenos su teléfono y le contactamos en menos de 2 horas.
+            </p>
+            <a
+              href="https://wa.me/34600000000?text=Hola,%20me%20gustaría%20información%20sobre%20vuestros%20servicios."
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-full bg-white text-primary py-3 px-6 rounded-xl font-medium flex items-center justify-center gap-2 hover:bg-accent hover:text-white transition-colors"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+              Contactar por WhatsApp
+            </a>
+          </div>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Contact Form -->
-        <div>
-          <form class="bg-muted p-10 space-y-6">
-            <h3 class="text-2xl font-serif mb-8">Envíenos un mensaje</h3>
+  <!-- FAQ Section -->
+  <section class="py-16 md:py-24 bg-slate-50">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <span class="text-xs uppercase tracking-[0.25em] text-accent font-bold mb-4 block">
+          Resolvemos sus dudas
+        </span>
+        <h2 class="text-3xl md:text-4xl font-serif mb-4">Preguntas Frecuentes</h2>
+        <p class="text-muted-foreground font-light">
+          Las respuestas a las consultas más habituales.
+        </p>
+      </div>
 
-            <div class="grid md:grid-cols-2 gap-6">
-              <div>
-                <label for="name" class="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">Nombre</label>
-                <input 
-                  id="name" 
-                  type="text"
-                  placeholder="Su nombre" 
-                  class="w-full px-4 py-3 bg-white border border-border focus:border-accent focus:outline-none transition-colors"
-                />
-              </div>
+      <div class="space-y-4">
+        {faqs.map((faq, index) => (
+          <details class="bg-white rounded-xl border border-slate-100 px-6 group" data-faq>
+            <summary class="text-left font-medium py-5 cursor-pointer list-none flex justify-between items-center hover:text-primary transition-colors">
+              {faq.question}
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform group-open:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+            </summary>
+            <p class="text-muted-foreground pb-5 leading-relaxed">
+              {faq.answer}
+            </p>
+          </details>
+        ))}
+      </div>
 
-              <div>
-                <label for="email" class="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">Email</label>
-                <input 
-                  id="email" 
-                  type="email" 
-                  placeholder="su@email.com" 
-                  class="w-full px-4 py-3 bg-white border border-border focus:border-accent focus:outline-none transition-colors"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label for="phone" class="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">Teléfono</label>
-              <input 
-                id="phone" 
-                type="tel" 
-                placeholder="600 000 000" 
-                class="w-full px-4 py-3 bg-white border border-border focus:border-accent focus:outline-none transition-colors"
-              />
-            </div>
-
-            <div>
-              <label for="message" class="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">Mensaje</label>
-              <textarea
-                id="message"
-                placeholder="¿En qué podemos ayudarle?"
-                rows="5"
-                class="w-full px-4 py-3 bg-white border border-border focus:border-accent focus:outline-none transition-colors resize-none"
-              ></textarea>
-            </div>
-
-            <Button className="btn-premium w-full h-14" client:load>
-              Enviar mensaje
-            </Button>
-          </form>
-        </div>
+      <div class="text-center mt-12">
+        <p class="text-muted-foreground mb-4">
+          ¿No encuentra lo que busca?
+        </p>
+        <a
+          href="https://wa.me/34600000000?text=Hola,%20tengo%20una%20pregunta..."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-primary font-medium hover:text-accent transition-colors"
+        >
+          Pregúntenos directamente por WhatsApp
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+        </a>
       </div>
     </div>
   </section>

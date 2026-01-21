@@ -1,70 +1,105 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import SmartSearch from "@/components/SmartSearch";
-import PropertyCard from "@/components/PropertyCard.astro";
+import PropertiesFilter from "@/components/PropertiesFilter";
 
 // Import assets
 import property1 from "@/assets/property-1.webp";
 import property2 from "@/assets/property-2.jpg";
 import property3 from "@/assets/property-3.jpg";
 import property4 from "@/assets/property-4.jpg";
+import property5 from "@/assets/property-5.jpg";
+import property6 from "@/assets/property-6.jpg";
+
+// Check and use available images, fallback to .jpg if .webp not available
+
+// Datos de ejemplo (conectar con CRM/Idealista)
+const properties = [
+  {
+    id: 1,
+    image: property1.src,
+    title: "Villa Minimalista Rivas Futura",
+    location: "Rivas Futura",
+    price: "850.000 €",
+    beds: 4,
+    baths: 3,
+    sqm: 320,
+    status: "Exclusiva",
+    type: "chalet"
+  },
+  {
+    id: 2,
+    image: property2.src,
+    title: "Ático con Terraza 360",
+    location: "Avenida de los Almendros",
+    price: "495.000 €",
+    beds: 3,
+    baths: 2,
+    sqm: 145,
+    type: "atico"
+  },
+  {
+    id: 3,
+    image: property3.src,
+    title: "Chalet de Diseño Santa Mónica",
+    location: "Santa Mónica",
+    price: "720.000 €",
+    beds: 5,
+    baths: 4,
+    sqm: 410,
+    status: "Nuevo",
+    type: "chalet"
+  },
+  {
+    id: 4,
+    image: property4.src,
+    title: "Loft Industrial Casco Antiguo",
+    location: "Casco Antiguo",
+    price: "380.000 €",
+    beds: 2,
+    baths: 2,
+    sqm: 110,
+    type: "piso"
+  },
+  {
+    id: 5,
+    image: property5.src,
+    title: "Piso Reformado Centro",
+    location: "Pablo Iglesias",
+    price: "285.000 €",
+    beds: 3,
+    baths: 1,
+    sqm: 95,
+    type: "piso"
+  },
+  {
+    id: 6,
+    image: property6.src,
+    title: "Dúplex con Jardín Privado",
+    location: "Covibar",
+    price: "425.000 €",
+    beds: 4,
+    baths: 2,
+    sqm: 180,
+    status: "Reservado",
+    type: "duplex"
+  }
+];
 ---
 
 <BaseLayout title="Propiedades">
-  <!-- Hero Banner -->
-  <section class="relative h-[400px] flex items-center justify-center bg-primary text-white pt-24">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <span class="text-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Portfolio Exclusivo</span>
-      <h1 class="text-4xl md:text-6xl font-serif">Propiedades</h1>
+  <main class="flex-grow">
+    <!-- Hero -->
+    <div class="text-center pt-32 pb-12 px-6 bg-gradient-to-b from-slate-50 to-white">
+      <span class="text-accent uppercase tracking-widest text-xs font-bold mb-4 block">
+        Portfolio Exclusivo
+      </span>
+      <h1 class="text-4xl md:text-6xl font-serif mb-4">Propiedades</h1>
+      <p class="text-muted-foreground font-light max-w-xl mx-auto">
+        Una selección curada de hogares con alma en Rivas-Vaciamadrid y alrededores.
+      </p>
     </div>
-  </section>
-  
-  <!-- Smart Search Integration -->
-  <SmartSearch client:visible />
 
-  <!-- Properties Grid -->
-  <section class="py-32 bg-background">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
-        <PropertyCard 
-          image={property1.src}
-          title="Villa Minimalista Rivas Futura"
-          location="Rivas Futura"
-          price="850.000 €"
-          beds={4}
-          baths={3}
-          sqm={320}
-          status="Exclusiva"
-        />
-        <PropertyCard 
-          image={property2.src}
-          title="Ático con Terraza 360"
-          location="Avenida de los Almendros"
-          price="495.000 €"
-          beds={3}
-          baths={2}
-          sqm={145}
-        />
-        <PropertyCard 
-          image={property3.src}
-          title="Chalet de Diseño Santa Mónica"
-          location="Santa Mónica"
-          price="720.000 €"
-          beds={5}
-          baths={4}
-          sqm={410}
-          status="Nuevo"
-        />
-        <PropertyCard 
-          image={property4.src}
-          title="Loft Industrial Casco Antiguo"
-          location="Casco Antiguo"
-          price="380.000 €"
-          beds={2}
-          baths={2}
-          sqm={110}
-        />
-      </div>
-    </div>
-  </section>
+    <!-- Properties Filter Component (React with interactivity) -->
+    <PropertiesFilter properties={properties} client:load />
+  </main>
 </BaseLayout>

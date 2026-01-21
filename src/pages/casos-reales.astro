@@ -1,90 +1,21 @@
 ---
-import PageLayout from "@/layouts/PageLayout.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
-<PageLayout title="Historias Reales" subtitle="Casos de Éxito">
-  <section class="py-32 bg-background">
-    <div class="max-w-4xl mx-auto px-6">
-      <p class="text-xl text-muted-foreground font-light leading-relaxed text-center mb-20">
-        Cada operación es una historia. Aquí compartimos algunas de las más memorables.
-      </p>
-      
-      <div class="space-y-16">
-        <article class="border-b border-border pb-16">
-          <span class="text-accent text-xs uppercase tracking-widest font-bold">Caso de Éxito #1</span>
-          <h2 class="text-3xl font-serif mt-4 mb-6">La Villa que se Vendió en 7 Días</h2>
-          <p class="text-muted-foreground font-light leading-relaxed mb-4">
-            Los propietarios llevaban 8 meses con otra agencia sin recibir ni una oferta seria. En Römenn, aplicamos nuestra estrategia de pricing emocional y home staging virtual.
-          </p>
-          <p class="text-muted-foreground font-light leading-relaxed mb-4">
-            Resultado: 3 ofertas en la primera semana, venta cerrada al precio solicitado.
-          </p>
-          <div class="flex gap-8 mt-8">
-            <div>
-              <div class="text-2xl font-serif text-accent">7 días</div>
-              <p class="text-sm text-muted-foreground">Tiempo de venta</p>
-            </div>
-            <div>
-              <div class="text-2xl font-serif text-accent">100%</div>
-              <p class="text-sm text-muted-foreground">Del precio pedido</p>
-            </div>
-            <div>
-              <div class="text-2xl font-serif text-accent">3</div>
-              <p class="text-sm text-muted-foreground">Ofertas recibidas</p>
-            </div>
-          </div>
-        </article>
-        
-        <article class="border-b border-border pb-16">
-          <span class="text-accent text-xs uppercase tracking-widest font-bold">Caso de Éxito #2</span>
-          <h2 class="text-3xl font-serif mt-4 mb-6">El Ático Off-Market</h2>
-          <p class="text-muted-foreground font-light leading-relaxed mb-4">
-            Una familia buscaba un ático con terraza en una zona muy concreta. Después de 6 meses sin encontrar nada en portales, activaron nuestro servicio de Personal Shopper.
-          </p>
-          <p class="text-muted-foreground font-light leading-relaxed mb-4">
-            Contactamos directamente con propietarios de la zona. En 3 semanas, encontramos un ático que ni siquiera estaba a la venta. El propietario aceptó vender.
-          </p>
-          <div class="flex gap-8 mt-8">
-            <div>
-              <div class="text-2xl font-serif text-accent">3 semanas</div>
-              <p class="text-sm text-muted-foreground">Tiempo de búsqueda</p>
-            </div>
-            <div>
-              <div class="text-2xl font-serif text-accent">Off-Market</div>
-              <p class="text-sm text-muted-foreground">Tipo de propiedad</p>
-            </div>
-            <div>
-              <div class="text-2xl font-serif text-accent">-15%</div>
-              <p class="text-sm text-muted-foreground">Bajo precio de mercado</p>
-            </div>
-          </div>
-        </article>
-        
-        <article>
-          <span class="text-accent text-xs uppercase tracking-widest font-bold">Caso de Éxito #3</span>
-          <h2 class="text-3xl font-serif mt-4 mb-6">La Herencia Complicada</h2>
-          <p class="text-muted-foreground font-light leading-relaxed mb-4">
-            4 hermanos heredaron una propiedad con cargas ocultas y problemas registrales. Otras agencias rechazaron el caso por su complejidad.
-          </p>
-          <p class="text-muted-foreground font-light leading-relaxed mb-4">
-            Nuestro equipo jurídico resolvió todos los problemas en 3 meses. La propiedad se vendió por encima del valor de tasación inicial.
-          </p>
-          <div class="flex gap-8 mt-8">
-            <div>
-              <div class="text-2xl font-serif text-accent">3 meses</div>
-              <p class="text-sm text-muted-foreground">Resolución legal</p>
-            </div>
-            <div>
-              <div class="text-2xl font-serif text-accent">+12%</div>
-              <p class="text-sm text-muted-foreground">Sobre tasación</p>
-            </div>
-            <div>
-              <div class="text-2xl font-serif text-accent">4</div>
-              <p class="text-sm text-muted-foreground">Herederos satisfechos</p>
-            </div>
-          </div>
-        </article>
+<BaseLayout title="Historias Reales">
+  <main class="flex-grow section-padding container mx-auto px-6 py-32">
+    <h1 class="text-4xl md:text-5xl font-serif mb-12 text-center">Historias Reales</h1>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div class="bg-muted p-8">
+        <span class="text-xs font-bold tracking-widest text-accent mb-2 block">DOCUMENTAL</span>
+        <h3 class="text-2xl font-serif mb-4">La Familia García & El Chalet de los Sueños</h3>
+        <p class="font-sans font-light text-muted-foreground">Una historia sobre cambio, esperanza y nuevos comienzos en Rivas.</p>
+      </div>
+      <div class="bg-muted p-8">
+        <span class="text-xs font-bold tracking-widest text-accent mb-2 block">CASO DE ÉXITO</span>
+        <h3 class="text-2xl font-serif mb-4">Venta en Record: 14 Días</h3>
+        <p class="font-sans font-light text-muted-foreground">Cómo la estrategia de Home Staging transformó una propiedad estancada.</p>
       </div>
     </div>
-  </section>
-</PageLayout>
+  </main>
+</BaseLayout>

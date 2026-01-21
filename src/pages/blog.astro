@@ -1,89 +1,21 @@
 ---
-import PageLayout from "@/layouts/PageLayout.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
-<PageLayout title="Journal" subtitle="Tendencias & Noticias">
-  <section class="py-32 bg-background">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+<BaseLayout title="Römenn Journal">
+  <main class="flex-grow section-padding container mx-auto px-6 py-32">
+    <h1 class="text-4xl md:text-5xl font-serif mb-12 text-center">Römenn Journal</h1>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {[1, 2, 3].map((i) => (
         <article class="group cursor-pointer">
-          <div class="aspect-[4/3] bg-muted mb-6 overflow-hidden">
-            <div class="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 group-hover:scale-105 transition-transform duration-500"></div>
+          <div class="aspect-video bg-muted mb-4 overflow-hidden">
+            <div class="w-full h-full bg-gray-200 transition-transform duration-700 group-hover:scale-105"></div>
           </div>
-          <span class="text-accent text-xs uppercase tracking-widest font-bold">Mercado</span>
-          <h3 class="text-xl font-serif mt-2 mb-3 group-hover:text-accent transition-colors">
-            Tendencias del Mercado Inmobiliario en Rivas 2024
-          </h3>
-          <p class="text-muted-foreground font-light text-sm line-clamp-2">
-            Análisis completo de precios, demanda y proyecciones para el próximo año.
-          </p>
+          <span class="text-xs font-sans text-accent font-bold uppercase tracking-widest">Tendencias</span>
+          <h3 class="text-xl font-serif mt-2 mb-2 group-hover:text-primary transition-colors">El futuro del mercado inmobiliario en Rivas</h3>
+          <p class="text-muted-foreground font-sans text-sm line-clamp-3">Análisis profundo sobre la evolución de precios y demanda en el sector premium...</p>
         </article>
-        
-        <article class="group cursor-pointer">
-          <div class="aspect-[4/3] bg-muted mb-6 overflow-hidden">
-            <div class="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 group-hover:scale-105 transition-transform duration-500"></div>
-          </div>
-          <span class="text-accent text-xs uppercase tracking-widest font-bold">Consejos</span>
-          <h3 class="text-xl font-serif mt-2 mb-3 group-hover:text-accent transition-colors">
-            5 Errores que Cometen los Vendedores Primerizos
-          </h3>
-          <p class="text-muted-foreground font-light text-sm line-clamp-2">
-            Evite estos fallos comunes y maximice el valor de su propiedad.
-          </p>
-        </article>
-        
-        <article class="group cursor-pointer">
-          <div class="aspect-[4/3] bg-muted mb-6 overflow-hidden">
-            <div class="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 group-hover:scale-105 transition-transform duration-500"></div>
-          </div>
-          <span class="text-accent text-xs uppercase tracking-widest font-bold">Legal</span>
-          <h3 class="text-xl font-serif mt-2 mb-3 group-hover:text-accent transition-colors">
-            Nueva Ley de Vivienda: Lo que Necesita Saber
-          </h3>
-          <p class="text-muted-foreground font-light text-sm line-clamp-2">
-            Resumen de los cambios más importantes y cómo le afectan.
-          </p>
-        </article>
-        
-        <article class="group cursor-pointer">
-          <div class="aspect-[4/3] bg-muted mb-6 overflow-hidden">
-            <div class="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 group-hover:scale-105 transition-transform duration-500"></div>
-          </div>
-          <span class="text-accent text-xs uppercase tracking-widest font-bold">Inversión</span>
-          <h3 class="text-xl font-serif mt-2 mb-3 group-hover:text-accent transition-colors">
-            ¿Es Buen Momento para Invertir en Inmuebles?
-          </h3>
-          <p class="text-muted-foreground font-light text-sm line-clamp-2">
-            Análisis de rentabilidad y oportunidades en el mercado actual.
-          </p>
-        </article>
-        
-        <article class="group cursor-pointer">
-          <div class="aspect-[4/3] bg-muted mb-6 overflow-hidden">
-            <div class="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 group-hover:scale-105 transition-transform duration-500"></div>
-          </div>
-          <span class="text-accent text-xs uppercase tracking-widest font-bold">Lifestyle</span>
-          <h3 class="text-xl font-serif mt-2 mb-3 group-hover:text-accent transition-colors">
-            Los Mejores Barrios de Rivas para Familias
-          </h3>
-          <p class="text-muted-foreground font-light text-sm line-clamp-2">
-            Guía completa con colegios, parques y servicios de cada zona.
-          </p>
-        </article>
-        
-        <article class="group cursor-pointer">
-          <div class="aspect-[4/3] bg-muted mb-6 overflow-hidden">
-            <div class="w-full h-full bg-gradient-to-br from-primary/20 to-accent/20 group-hover:scale-105 transition-transform duration-500"></div>
-          </div>
-          <span class="text-accent text-xs uppercase tracking-widest font-bold">Fiscalidad</span>
-          <h3 class="text-xl font-serif mt-2 mb-3 group-hover:text-accent transition-colors">
-            Impuestos al Vender: Guía Completa 2024
-          </h3>
-          <p class="text-muted-foreground font-light text-sm line-clamp-2">
-            Todo sobre plusvalía, IRPF y deducciones disponibles.
-          </p>
-        </article>
-      </div>
+      ))}
     </div>
-  </section>
-</PageLayout>
+  </main>
+</BaseLayout>

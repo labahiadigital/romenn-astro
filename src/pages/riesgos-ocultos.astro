@@ -1,57 +1,64 @@
 ---
-import PageLayout from "@/layouts/PageLayout.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Shield, AlertTriangle, FileWarning, Search } from "lucide-react";
 ---
 
-<PageLayout title="Riesgos Ocultos" subtitle="Lo que Nadie le Cuenta">
-  <section class="py-32 bg-background">
-    <div class="max-w-4xl mx-auto px-6">
-      <p class="text-xl text-muted-foreground font-light leading-relaxed text-center mb-20">
-        El mercado inmobiliario tiene trampas que pueden costarle miles de euros. Aquí le revelamos los riesgos que otras agencias prefieren no mencionar.
-      </p>
-      
+<BaseLayout title="Riesgos Ocultos">
+  <main class="py-32 px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="text-center mb-20">
+        <span class="text-xs font-bold uppercase tracking-widest text-red-500 mb-4 block">Lo que nadie le cuenta</span>
+        <h1 class="text-4xl md:text-6xl font-serif mb-6">Riesgos Ocultos</h1>
+        <p class="text-xl text-muted-foreground font-light">
+          El mercado inmobiliario tiene trampas invisibles. Nosotros las detectamos antes de que firmen.
+        </p>
+      </div>
+
       <div class="space-y-12">
-        <div class="bg-red-50 border-l-4 border-red-500 p-8">
-          <h3 class="text-xl font-serif text-red-800 mb-4">⚠️ Cargas Ocultas</h3>
-          <p class="text-red-700 font-light leading-relaxed">
-            Hipotecas no canceladas, embargos, servidumbres... Una nota simple no siempre muestra todo. Nuestro equipo jurídico realiza una due diligence completa antes de cualquier operación.
-          </p>
+        <div class="flex gap-6 items-start p-8 bg-muted/30 border border-border rounded-sm">
+          <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0 text-red-600">
+            <AlertTriangle className="w-6 h-6" />
+          </div>
+          <div>
+            <h3 class="text-2xl font-serif mb-4">Cargas Registrales Ocultas</h3>
+            <p class="text-muted-foreground leading-relaxed">
+              Afecciones fiscales, servidumbres de paso no inscritas o embargos preventivos que no siempre aparecen en una nota simple básica. Nuestro equipo jurídico realiza una auditoría registral profunda de 40 años.
+            </p>
+          </div>
         </div>
-        
-        <div class="bg-red-50 border-l-4 border-red-500 p-8">
-          <h3 class="text-xl font-serif text-red-800 mb-4">⚠️ Vicios Ocultos</h3>
-          <p class="text-red-700 font-light leading-relaxed">
-            Humedades tapadas, problemas estructurales, instalaciones deficientes... Siempre recomendamos inspecciones técnicas independientes antes de firmar.
-          </p>
+
+        <div class="flex gap-6 items-start p-8 bg-muted/30 border border-border rounded-sm">
+          <div class="w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center flex-shrink-0 text-orange-600">
+            <FileWarning className="w-6 h-6" />
+          </div>
+          <div>
+            <h3 class="text-2xl font-serif mb-4">Vicios Urbanísticos</h3>
+            <p class="text-muted-foreground leading-relaxed">
+              Infracciones urbanísticas prescritas pero no legalizadas, cerramientos de terrazas fuera de ordenación o divisiones horizontales de facto que impiden la financiación bancaria futura.
+            </p>
+          </div>
         </div>
-        
-        <div class="bg-red-50 border-l-4 border-red-500 p-8">
-          <h3 class="text-xl font-serif text-red-800 mb-4">⚠️ Irregularidades Urbanísticas</h3>
-          <p class="text-red-700 font-light leading-relaxed">
-            Ampliaciones sin licencia, cambios de uso no autorizados, construcciones fuera de ordenación... Verificamos la legalidad urbanística de cada propiedad.
-          </p>
-        </div>
-        
-        <div class="bg-red-50 border-l-4 border-red-500 p-8">
-          <h3 class="text-xl font-serif text-red-800 mb-4">⚠️ Derramas Pendientes</h3>
-          <p class="text-red-700 font-light leading-relaxed">
-            Obras en la comunidad aprobadas pero no ejecutadas pueden suponer gastos de miles de euros. Solicitamos las actas de las últimas juntas de vecinos.
-          </p>
-        </div>
-        
-        <div class="bg-red-50 border-l-4 border-red-500 p-8">
-          <h3 class="text-xl font-serif text-red-800 mb-4">⚠️ Inquilinos Conflictivos</h3>
-          <p class="text-red-700 font-light leading-relaxed">
-            Si compra para alquilar, investigamos el historial de la finca. Un vecino problemático puede arruinar su inversión.
-          </p>
+
+        <div class="flex gap-6 items-start p-8 bg-muted/30 border border-border rounded-sm">
+          <div class="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0 text-blue-600">
+            <Search className="w-6 h-6" />
+          </div>
+          <div>
+            <h3 class="text-2xl font-serif mb-4">Derramas Comunitarias Latentes</h3>
+            <p class="text-muted-foreground leading-relaxed">
+              Problemas estructurales del edificio o inspecciones técnicas (ITE) desfavorables que se traducirán en costes millonarios para el nuevo propietario meses después de la compra.
+            </p>
+          </div>
         </div>
       </div>
-      
-      <div class="mt-20 bg-primary text-white p-12 text-center">
-        <h3 class="text-2xl font-serif mb-4">Nuestra Garantía</h3>
-        <p class="font-light text-lg max-w-2xl mx-auto">
-          En Römenn, cada operación pasa por un proceso de verificación exhaustivo. Si encontramos cualquier problema, se lo comunicamos inmediatamente. Sin sorpresas.
+
+      <div class="mt-20 p-12 bg-primary text-white text-center rounded-sm">
+        <Shield className="w-12 h-12 mx-auto mb-6" />
+        <h3 class="text-3xl font-serif mb-4">Protección Römenn</h3>
+        <p class="text-white/80 mb-8 max-w-2xl mx-auto">
+          No permitimos que ninguno de nuestros clientes firme una arras sin un informe de "Due Diligence" completo. Su tranquilidad es nuestra firma.
         </p>
       </div>
     </div>
-  </section>
-</PageLayout>
+  </main>
+</BaseLayout>

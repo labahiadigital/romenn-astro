@@ -1,83 +1,21 @@
 ---
-import PageLayout from "@/layouts/PageLayout.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SmartReviews from "@/components/SmartReviews";
 ---
 
-<PageLayout title="Experiencias" subtitle="Lo que Dicen Nuestros Clientes">
-  <section class="py-32 bg-background">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="bg-muted p-10">
-          <div class="flex gap-1 mb-6">
-            {[1,2,3,4,5].map(() => (
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            ))}
-          </div>
-          <p class="text-lg font-light leading-relaxed mb-6 italic">
-            "Después de meses buscando sin éxito, Römenn encontró nuestra casa en solo 3 semanas. Y ni siquiera estaba publicada en ningún portal. Increíble."
-          </p>
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-primary rounded-full"></div>
-            <div>
-              <p class="font-serif">María y Carlos</p>
-              <p class="text-sm text-muted-foreground">Compradores en Rivas Futura</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="bg-muted p-10">
-          <div class="flex gap-1 mb-6">
-            {[1,2,3,4,5].map(() => (
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            ))}
-          </div>
-          <p class="text-lg font-light leading-relaxed mb-6 italic">
-            "Vendimos por 35.000€ más de lo que nos habían valorado otras agencias. La estrategia de marketing de Römenn es otro nivel."
-          </p>
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-primary rounded-full"></div>
-            <div>
-              <p class="font-serif">Antonio Fernández</p>
-              <p class="text-sm text-muted-foreground">Vendedor en Santa Mónica</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="bg-muted p-10">
-          <div class="flex gap-1 mb-6">
-            {[1,2,3,4,5].map(() => (
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            ))}
-          </div>
-          <p class="text-lg font-light leading-relaxed mb-6 italic">
-            "Lo que más valoré fue la transparencia. En todo momento sabía exactamente en qué punto estaba la operación. Cero estrés."
-          </p>
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-primary rounded-full"></div>
-            <div>
-              <p class="font-serif">Laura Martín</p>
-              <p class="text-sm text-muted-foreground">Compradora en Casco Antiguo</p>
-            </div>
-          </div>
-        </div>
-        
-        <div class="bg-muted p-10">
-          <div class="flex gap-1 mb-6">
-            {[1,2,3,4,5].map(() => (
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            ))}
-          </div>
-          <p class="text-lg font-light leading-relaxed mb-6 italic">
-            "El servicio de Personal Shopper nos ahorró meses de búsqueda. Encontraron exactamente lo que necesitábamos."
-          </p>
-          <div class="flex items-center gap-4">
-            <div class="w-12 h-12 bg-primary rounded-full"></div>
-            <div>
-              <p class="font-serif">Familia González</p>
-              <p class="text-sm text-muted-foreground">Compradores en Avenida de los Almendros</p>
-            </div>
-          </div>
-        </div>
+<BaseLayout title="Experiencia Cliente">
+  <main class="flex-grow py-20 px-6 flex items-center justify-center bg-muted/30">
+    <div class="w-full max-w-4xl">
+      <div class="text-center mb-12">
+        <span class="text-xs font-bold uppercase tracking-widest text-accent mb-4 block">Excelencia</span>
+        <h1 class="text-4xl md:text-5xl font-serif mb-6">Experiencia Cliente</h1>
+        <p class="text-xl text-muted-foreground font-sans font-light max-w-2xl mx-auto">
+          La transparencia es nuestro mayor activo. <br/>
+          Escuchamos para seguir liderando.
+        </p>
       </div>
+
+      <SmartReviews client:visible />
     </div>
-  </section>
-</PageLayout>
+  </main>
+</BaseLayout>

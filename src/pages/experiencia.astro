@@ -1,46 +1,546 @@
 ---
-import PageLayout from "@/layouts/PageLayout.astro";
-import { Button } from "@/components/ui/button";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
-<PageLayout title="Experiencia Römenn" subtitle="La Firma">
-  <section class="py-32 bg-background">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <p class="text-xl md:text-2xl text-muted-foreground font-light leading-relaxed mb-12">
-        La experiencia Römenn va más allá de la transacción inmobiliaria. Es un viaje emocional donde cada detalle cuenta, donde cada decisión está respaldada por datos y donde cada cliente es tratado como único.
-      </p>
-      
-      <div class="grid md:grid-cols-3 gap-12 mt-20">
-        <div class="text-center">
-          <div class="text-5xl font-serif text-accent mb-4">01</div>
-          <h3 class="text-xl font-serif mb-4">Escucha Activa</h3>
-          <p class="text-muted-foreground font-light">
-            Entendemos sus necesidades reales, no solo las aparentes.
+<BaseLayout title="Experiencia Römenn">
+  <main class="flex-grow">
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-6">
+      <div class="max-w-3xl mx-auto">
+        <div class="animate-fade-in">
+          <span class="text-xs uppercase tracking-[0.3em] text-primary/60 font-medium mb-8 block">
+            EXPERIENCIA RÖMENN
+          </span>
+          
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-serif leading-tight mb-8">
+            RÖMENN nace en un momento de cambio.
+          </h1>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Content - Historia -->
+    <section class="pb-24 px-6">
+      <div class="max-w-3xl mx-auto">
+        <div class="space-y-8 text-lg md:text-xl text-foreground/70 font-light leading-relaxed">
+          <p>
+            Después de muchos años dentro del sector inmobiliario, llega un punto en el que ya no se trata de saber cómo funciona el mercado, sino de decidir <span class="text-foreground/90">desde dónde quieres estar en él.</span>
+          </p>
+          
+          <p class="text-foreground/90 font-normal text-2xl md:text-3xl font-serif italic">
+            RÖMENN surge de esa decisión.
+          </p>
+          
+          <p>
+            De parar, mirar con honestidad la experiencia acumulada y elegir una forma de trabajar que tenga sentido con el momento vital que estamos viviendo. Un proyecto construido con respeto, con cuidado y con la voluntad de hacer las cosas bien hechas, sin ruido innecesario.
           </p>
         </div>
-        <div class="text-center">
-          <div class="text-5xl font-serif text-accent mb-4">02</div>
-          <h3 class="text-xl font-serif mb-4">Análisis Profundo</h3>
-          <p class="text-muted-foreground font-light">
-            Datos de mercado + intuición emocional = decisiones perfectas.
+
+        <!-- Separador -->
+        <div class="my-16 h-px bg-slate-200"></div>
+
+        <div class="space-y-8 text-lg md:text-xl text-foreground/70 font-light leading-relaxed">
+          <div class="flex items-start gap-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary mt-1.5 flex-shrink-0"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+            <p>
+              Trabajamos desde <span class="text-foreground font-medium">Rivas-Vaciamadrid</span> y acompañamos a personas que atraviesan cambios y necesitan que el proceso inmobiliario esté bien sostenido, sin convertirse en una carga más.
+            </p>
+          </div>
+          
+          <p>
+            Personas que valoran el orden, la claridad y la tranquilidad de saber que cada paso está pensado.
           </p>
         </div>
-        <div class="text-center">
-          <div class="text-5xl font-serif text-accent mb-4">03</div>
-          <h3 class="text-xl font-serif mb-4">Acompañamiento Total</h3>
-          <p class="text-muted-foreground font-light">
-            Desde el primer contacto hasta las llaves en su mano.
+
+        <!-- Separador -->
+        <div class="my-16 h-px bg-slate-200"></div>
+
+        <div class="space-y-8 text-lg md:text-xl text-foreground/70 font-light leading-relaxed">
+          <p class="text-foreground/90 font-normal">
+            Cada venta se plantea de principio a fin, con una estrategia definida desde el inicio y sostenida hasta el cierre.
+          </p>
+          
+          <p class="text-xl md:text-2xl font-serif text-primary">
+            Nada se improvisa. Nada se deja al azar.
+          </p>
+          
+          <p>
+            La vida sigue mientras una vivienda se vende.<br/>
+            Nuestro trabajo es ocuparnos del proceso para que todo avance con sentido, sin interferir en lo que cada persona necesita vivir en ese momento.
           </p>
         </div>
       </div>
-      
-      <div class="mt-20">
-        <a href="/contacto">
-          <Button className="btn-premium" client:load>
-            Comenzar Mi Experiencia
-          </Button>
-        </a>
+    </section>
+
+    <!-- Nuestros Valores -->
+    <section class="py-24 px-6 bg-slate-50">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-xs uppercase tracking-[0.25em] text-primary/60 font-bold mb-4 block">
+            Nuestro Compromiso
+          </span>
+          <h2 class="text-3xl md:text-4xl font-serif">
+            Los valores que nos definen
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Empatía real -->
+          <div class="text-center">
+            <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+            </div>
+            <h3 class="text-lg font-medium mb-3">Empatía real</h3>
+            <p class="text-muted-foreground font-light text-sm leading-relaxed">
+              Entendemos que detrás de cada operación hay una historia personal. Trabajamos con sensibilidad.
+            </p>
+          </div>
+
+          <!-- Transparencia total -->
+          <div class="text-center">
+            <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+            </div>
+            <h3 class="text-lg font-medium mb-3">Transparencia total</h3>
+            <p class="text-muted-foreground font-light text-sm leading-relaxed">
+              Sin letra pequeña, sin sorpresas. Sabrá exactamente qué esperar en cada momento.
+            </p>
+          </div>
+
+          <!-- Compromiso con los plazos -->
+          <div class="text-center">
+            <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <h3 class="text-lg font-medium mb-3">Compromiso con los plazos</h3>
+            <p class="text-muted-foreground font-light text-sm leading-relaxed">
+              Establecemos cronogramas realistas y los cumplimos. Su tiempo es valioso.
+            </p>
+          </div>
+
+          <!-- Resultados medibles -->
+          <div class="text-center">
+            <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-sm">
+              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            </div>
+            <h3 class="text-lg font-medium mb-3">Resultados medibles</h3>
+            <p class="text-muted-foreground font-light text-sm leading-relaxed">
+              Metodología basada en datos. Cada decisión está respaldada por análisis de mercado.
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
-</PageLayout>
+    </section>
+
+    <!-- Estadísticas -->
+    <section class="py-20 px-6 bg-primary text-white">
+      <div class="max-w-5xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div class="text-4xl md:text-5xl font-serif mb-2">98%</div>
+            <div class="text-white/70 text-sm font-light">Clientes satisfechos</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl md:text-5xl font-serif mb-2">45</div>
+            <div class="text-white/70 text-sm font-light">Días de media para vender</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl md:text-5xl font-serif mb-2">103%</div>
+            <div class="text-white/70 text-sm font-light">Del precio objetivo alcanzado</div>
+          </div>
+          <div class="text-center">
+            <div class="text-4xl md:text-5xl font-serif mb-2">200+</div>
+            <div class="text-white/70 text-sm font-light">Familias acompañadas</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Casos de Éxito -->
+    <section class="py-24 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-xs uppercase tracking-[0.25em] text-primary/60 font-bold mb-4 block">
+            Historias Reales
+          </span>
+          <h2 class="text-3xl md:text-4xl font-serif mb-4">
+            Casos de éxito
+          </h2>
+          <p class="text-muted-foreground font-light max-w-xl mx-auto">
+            Cada familia tiene su historia. Aquí compartimos algunas de las situaciones 
+            que hemos acompañado con éxito.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Caso 1 -->
+          <div class="bg-white border border-slate-100 rounded-xl p-8 hover:shadow-lg transition-shadow">
+            <div class="flex items-center gap-3 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+              <h3 class="font-medium text-lg">Herencia en Rivas Centro</h3>
+            </div>
+            
+            <p class="text-muted-foreground font-light text-sm mb-6 leading-relaxed">
+              Tres hermanos heredaron un piso y necesitaban vender rápido para repartir. Situación delicada con diferentes opiniones.
+            </p>
+            
+            <div class="flex items-center gap-2 text-primary text-sm font-medium mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Vendido en 45 días al precio acordado
+            </div>
+            
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+              <span class="text-xs text-muted-foreground bg-slate-50 px-3 py-1 rounded-full">
+                Coordinación entre 3 herederos
+              </span>
+              <span class="text-xs text-muted-foreground flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                45 días
+              </span>
+            </div>
+          </div>
+
+          <!-- Caso 2 -->
+          <div class="bg-white border border-slate-100 rounded-xl p-8 hover:shadow-lg transition-shadow">
+            <div class="flex items-center gap-3 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+              <h3 class="font-medium text-lg">Divorcio en Santa Mónica</h3>
+            </div>
+            
+            <p class="text-muted-foreground font-light text-sm mb-6 leading-relaxed">
+              Pareja en proceso de separación necesitaba vender la vivienda familiar. Comunicación difícil entre ambas partes.
+            </p>
+            
+            <div class="flex items-center gap-2 text-primary text-sm font-medium mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Gestionamos toda la comunicación y vendimos en 60 días
+            </div>
+            
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+              <span class="text-xs text-muted-foreground bg-slate-50 px-3 py-1 rounded-full">
+                Mediación profesional
+              </span>
+              <span class="text-xs text-muted-foreground flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                60 días
+              </span>
+            </div>
+          </div>
+
+          <!-- Caso 3 -->
+          <div class="bg-white border border-slate-100 rounded-xl p-8 hover:shadow-lg transition-shadow">
+            <div class="flex items-center gap-3 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+              <h3 class="font-medium text-lg">Cambio de ciudad</h3>
+            </div>
+            
+            <p class="text-muted-foreground font-light text-sm mb-6 leading-relaxed">
+              Familia trasladada a Barcelona por trabajo. Necesitaban vender sin poder estar presentes.
+            </p>
+            
+            <div class="flex items-center gap-2 text-primary text-sm font-medium mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Gestionamos todo de forma remota, desde fotos hasta firma
+            </div>
+            
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+              <span class="text-xs text-muted-foreground bg-slate-50 px-3 py-1 rounded-full">
+                Gestión 100% remota
+              </span>
+              <span class="text-xs text-muted-foreground flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                52 días
+              </span>
+            </div>
+          </div>
+
+          <!-- Caso 4 -->
+          <div class="bg-white border border-slate-100 rounded-xl p-8 hover:shadow-lg transition-shadow">
+            <div class="flex items-center gap-3 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+              <h3 class="font-medium text-lg">Inversión para jubilación</h3>
+            </div>
+            
+            <p class="text-muted-foreground font-light text-sm mb-6 leading-relaxed">
+              Propietario mayor quería vender para complementar su pensión. Preocupación por el proceso.
+            </p>
+            
+            <div class="flex items-center gap-2 text-primary text-sm font-medium mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+              Acompañamiento personalizado en cada paso
+            </div>
+            
+            <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+              <span class="text-xs text-muted-foreground bg-slate-50 px-3 py-1 rounded-full">
+                Atención especial seniors
+              </span>
+              <span class="text-xs text-muted-foreground flex items-center gap-1">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                38 días
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <a href="/casos-reales" class="inline-flex items-center gap-2 border border-slate-200 hover:border-primary px-6 py-3 rounded-md transition-colors group">
+            Ver todas las historias
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews de Google -->
+    <section class="py-24 px-6 bg-slate-50">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-xs uppercase tracking-[0.25em] text-primary/60 font-bold mb-4 block">
+            Lo que dicen nuestros clientes
+          </span>
+          <h2 class="text-3xl md:text-4xl font-serif mb-4">
+            Reseñas verificadas
+          </h2>
+          <div class="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+            <div class="flex">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            <span>5.0 en Google</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <!-- Review 1 -->
+          <div class="bg-white rounded-xl p-8 shadow-sm">
+            <div class="flex items-start gap-4 mb-6">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="text-primary font-serif text-lg">M</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h4 class="font-medium">María García</h4>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <p class="text-sm text-muted-foreground">Rivas Futura</p>
+              </div>
+            </div>
+            
+            <div class="flex gap-1 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            
+            <div class="relative">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-100 absolute -top-2 -left-2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+              <p class="text-foreground/80 font-light leading-relaxed relative z-10 pl-4">
+                Vendí mi piso en un momento muy difícil de mi vida. El equipo de Römenn me acompañó en todo el proceso con una sensibilidad que no esperaba de una inmobiliaria. Profesionales de verdad.
+              </p>
+            </div>
+            
+            <p class="text-xs text-muted-foreground mt-6">Noviembre 2024</p>
+          </div>
+
+          <!-- Review 2 -->
+          <div class="bg-white rounded-xl p-8 shadow-sm">
+            <div class="flex items-start gap-4 mb-6">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="text-primary font-serif text-lg">C</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h4 class="font-medium">Carlos y Ana</h4>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <p class="text-sm text-muted-foreground">Covibar</p>
+              </div>
+            </div>
+            
+            <div class="flex gap-1 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            
+            <div class="relative">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-100 absolute -top-2 -left-2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+              <p class="text-foreground/80 font-light leading-relaxed relative z-10 pl-4">
+                Nos ayudaron a vender el piso de mis padres tras su fallecimiento. Gestionaron todo: vaciado, reforma menor, venta... Nosotros solo firmamos. Impecables.
+              </p>
+            </div>
+            
+            <p class="text-xs text-muted-foreground mt-6">Octubre 2024</p>
+          </div>
+
+          <!-- Review 3 -->
+          <div class="bg-white rounded-xl p-8 shadow-sm">
+            <div class="flex items-start gap-4 mb-6">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="text-primary font-serif text-lg">R</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h4 class="font-medium">Roberto Martínez</h4>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <p class="text-sm text-muted-foreground">Centro Rivas</p>
+              </div>
+            </div>
+            
+            <div class="flex gap-1 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            
+            <div class="relative">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-100 absolute -top-2 -left-2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+              <p class="text-foreground/80 font-light leading-relaxed relative z-10 pl-4">
+                Después de 6 meses con otra inmobiliaria sin resultados, contacté con Römenn. En 40 días vendido y por encima del precio que me habían prometido los otros. La diferencia está en la metodología.
+              </p>
+            </div>
+            
+            <p class="text-xs text-muted-foreground mt-6">Septiembre 2024</p>
+          </div>
+
+          <!-- Review 4 -->
+          <div class="bg-white rounded-xl p-8 shadow-sm">
+            <div class="flex items-start gap-4 mb-6">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="text-primary font-serif text-lg">E</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h4 class="font-medium">Elena Ruiz</h4>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <p class="text-sm text-muted-foreground">La Luna</p>
+              </div>
+            </div>
+            
+            <div class="flex gap-1 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            
+            <div class="relative">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-100 absolute -top-2 -left-2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+              <p class="text-foreground/80 font-light leading-relaxed relative z-10 pl-4">
+                El estudio financiero gratuito me ayudó a entender exactamente cuánto podía invertir. Encontraron mi casa en 3 semanas. Servicio excepcional.
+              </p>
+            </div>
+            
+            <p class="text-xs text-muted-foreground mt-6">Agosto 2024</p>
+          </div>
+        </div>
+
+        <div class="text-center mt-12">
+          <a href="/resenas" class="inline-flex items-center gap-2 border border-slate-200 hover:border-primary px-6 py-3 rounded-md transition-colors group">
+            Ver todas las reseñas
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quote Section -->
+    <section class="py-24 bg-white">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <blockquote class="text-2xl md:text-4xl font-serif text-foreground leading-relaxed mb-8">
+          "No trabajamos para forzar decisiones.<br/>
+          <span class="text-primary">Trabajamos para que cada paso tenga sentido.</span>"
+        </blockquote>
+        <div class="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+          <div class="w-8 h-px bg-slate-300"></div>
+          <span class="uppercase tracking-widest">RÖMENN</span>
+          <div class="w-8 h-px bg-slate-300"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Manifiesto Section -->
+    <section class="py-24 px-6 bg-slate-900 text-white">
+      <div class="max-w-3xl mx-auto text-center">
+        <span class="text-xs uppercase tracking-[0.25em] text-white/50 font-bold mb-6 block">
+          Manifiesto
+        </span>
+        <h2 class="text-3xl md:text-4xl font-serif mb-8 leading-relaxed">
+          Creemos que vender una casa es mucho más que una transacción.
+        </h2>
+        <div class="space-y-6 text-white/70 font-light text-lg leading-relaxed">
+          <p>
+            Es cerrar una etapa. Es abrir otra. Es tomar decisiones importantes 
+            en momentos que, a veces, no son fáciles.
+          </p>
+          <p>
+            Por eso trabajamos con calma, con método y con el respeto 
+            que cada situación merece.
+          </p>
+          <p class="text-white font-normal">
+            No prometemos milagros. Prometemos profesionalidad, 
+            honestidad y un acompañamiento real.
+          </p>
+        </div>
+        
+        <div class="mt-12">
+          <a href="/manifiesto" class="inline-flex items-center gap-2 border border-white/30 text-white hover:bg-white hover:text-slate-900 px-6 py-3 rounded-md transition-colors group">
+            Leer manifiesto completo
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary mx-auto mb-6"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <h2 class="text-3xl md:text-4xl font-serif mb-6">
+          ¿Está atravesando un cambio?
+        </h2>
+        <p class="text-lg text-muted-foreground font-light mb-10 max-w-xl mx-auto">
+          Si necesita vender y quiere que el proceso esté bien sostenido, 
+          estaremos encantados de escucharle.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/valoracion" class="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-md text-base inline-block">
+            Solicitar valoración
+          </a>
+          <a href="/contacto" class="border border-slate-200 px-8 py-4 rounded-md text-base inline-block hover:border-primary transition-colors">
+            Prefiero hablar primero
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
