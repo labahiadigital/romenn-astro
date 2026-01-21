@@ -1,37 +1,26 @@
 import { ArrowDown } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
-// Usar video y frame desde public para que coincida con el preload
+// Usar video y frame desde public
 const heroVideo = "/video_hero.mp4";
 const heroFrame = "/hero-frame.webp";
 
 const Hero = () => {
   const [videoReady, setVideoReady] = useState(false);
-  const [animationsReady, setAnimationsReady] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Activar animaciones después del primer paint
-    requestAnimationFrame(() => {
-      setAnimationsReady(true);
-    });
-
-    // Intentar reproducir el video cuando el componente se monta
     const video = videoRef.current;
     if (video) {
-      // Función para manejar cuando el video puede reproducirse
       const handleCanPlayThrough = () => {
         setVideoReady(true);
         video.play().catch(console.error);
       };
 
-      // Si el video ya está listo (cargado de caché)
       if (video.readyState >= 3) {
         handleCanPlayThrough();
       } else {
-        // Escuchar el evento canplaythrough que es más confiable
         video.addEventListener('canplaythrough', handleCanPlayThrough);
-        // También escuchar loadeddata como fallback
         video.addEventListener('loadeddata', () => {
           if (video.readyState >= 2) {
             handleCanPlayThrough();
@@ -39,7 +28,6 @@ const Hero = () => {
         });
       }
 
-      // Forzar la carga del video
       video.load();
 
       return () => {
@@ -49,22 +37,32 @@ const Hero = () => {
   }, []);
 
   return (
-    <div className="relative h-screen w-full overflow-hidden bg-black">
-      {/* Background - Primer frame del video como imagen */}
-      <div className="absolute inset-0 z-0">
+    <section className="relative w-full overflow-hidden bg-black" style={{ height: '100svh' }}>
+      {/* 
+        Background container - usa aspect-ratio para reservar espacio y evitar CLS
+        El contenedor tiene posición absoluta para no afectar el layout
+      */}
+      <div className="absolute inset-0">
+        {/* Overlay oscuro */}
         <div className="absolute inset-0 bg-black/40 z-10" />
         
-        {/* Imagen del primer frame - siempre visible hasta que el video esté listo */}
-        <img 
-          src={heroFrame}
-          alt=""
-          className={`absolute inset-0 w-full h-full object-cover scale-105 transition-opacity duration-500 ${videoReady ? 'opacity-0' : 'opacity-100'}`}
-          fetchPriority="high"
-          loading="eager"
-          decoding="sync"
+        {/* 
+          Imagen del poster - SIEMPRE presente como fondo base
+          No usamos transiciones de opacity para evitar CLS
+        */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ 
+            backgroundImage: `url(${heroFrame})`,
+            transform: 'scale(1.05)'
+          }}
+          aria-hidden="true"
         />
         
-        {/* Video - se carga en background y se muestra cuando está listo */}
+        {/* 
+          Video - se posiciona encima de la imagen cuando está listo
+          Usamos visibility en lugar de opacity para evitar CLS
+        */}
         <video 
           ref={videoRef}
           loop 
@@ -72,40 +70,37 @@ const Hero = () => {
           playsInline
           autoPlay
           preload="auto"
-          className={`absolute inset-0 w-full h-full object-cover scale-105 transition-opacity duration-500 ${videoReady ? 'opacity-100' : 'opacity-0'}`}
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ 
+            transform: 'scale(1.05)',
+            visibility: videoReady ? 'visible' : 'hidden'
+          }}
         >
           <source src={heroVideo} type="video/mp4" />
         </video>
       </div>
 
-      {/* Content - LCP optimizado: H1 visible inmediatamente */}
+      {/* Content - Todo visible desde el inicio para evitar CLS */}
       <div className="relative z-20 h-full flex flex-col items-center justify-center text-center text-white px-4">
-        <span 
-            className={`uppercase tracking-[0.3em] text-xs md:text-sm font-light mb-6 text-gray-300 transition-opacity duration-1000 ${animationsReady ? 'opacity-100' : 'opacity-0'}`}
-            style={{ transitionDelay: '0.3s' }}
-        >
-            Inmobiliaria Boutique Internacional
+        <span className="uppercase tracking-[0.3em] text-xs md:text-sm font-light mb-6 text-gray-300">
+          Inmobiliaria Boutique Internacional
         </span>
         
-        {/* H1 es el elemento LCP - NO usar opacity:0 inicial */}
-        <h1 
-            className="text-5xl md:text-7xl lg:text-8xl font-serif mb-8 tracking-tight"
-        >
-            El verdadero lujo <br />
-            <span className="italic text-gray-200">es sentirse en casa.</span>
+        {/* H1 es el elemento LCP */}
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif mb-8 tracking-tight">
+          El verdadero lujo <br />
+          <span className="italic text-gray-200">es sentirse en casa.</span>
         </h1>
 
-        <div
-            className={`transition-opacity duration-1000 ${animationsReady ? 'opacity-100' : 'opacity-0'}`}
-            style={{ transitionDelay: '0.8s' }}
+        <a 
+          href="#experiencia" 
+          className="group flex flex-col items-center gap-2 text-xs tracking-widest uppercase hover:text-accent transition-colors duration-300"
         >
-            <a href="#experiencia" className="group flex flex-col items-center gap-2 text-xs tracking-widest uppercase hover:text-accent transition-colors duration-300">
-                Descubre Römenn
-                <ArrowDown className="w-4 h-4 animate-bounce mt-2" />
-            </a>
-        </div>
+          Descubre Römenn
+          <ArrowDown className="w-4 h-4 animate-bounce mt-2" />
+        </a>
       </div>
-    </div>
+    </section>
   );
 };
 
