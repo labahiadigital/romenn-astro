@@ -1,0 +1,76 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import { Button } from "@/components/ui/button";
+---
+
+<PageLayout title="Vende con Römenn" subtitle="Maximice su Patrimonio">
+  <section class="py-32 bg-background">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <p class="text-xl text-muted-foreground font-light leading-relaxed mb-16">
+        Vender su casa es una de las decisiones más importantes de su vida. Merece un equipo que trate su propiedad con el respeto y la dedicación que merece.
+      </p>
+      
+      <div class="grid md:grid-cols-3 gap-8 mb-20">
+        <div class="bg-muted p-8 text-center">
+          <div class="text-4xl font-serif text-accent mb-4">98%</div>
+          <p class="text-sm text-muted-foreground font-light">De propiedades vendidas al precio solicitado o superior</p>
+        </div>
+        <div class="bg-muted p-8 text-center">
+          <div class="text-4xl font-serif text-accent mb-4">45 días</div>
+          <p class="text-sm text-muted-foreground font-light">Tiempo medio de venta</p>
+        </div>
+        <div class="bg-muted p-8 text-center">
+          <div class="text-4xl font-serif text-accent mb-4">+12%</div>
+          <p class="text-sm text-muted-foreground font-light">Sobre la valoración inicial de otras agencias</p>
+        </div>
+      </div>
+      
+      <div class="text-left bg-muted p-12 mb-12">
+        <h3 class="text-2xl font-serif mb-8 text-center">Nuestro Proceso de Venta</h3>
+        <div class="space-y-6">
+          <div class="flex gap-4">
+            <span class="text-2xl font-serif text-accent">01</span>
+            <div>
+              <h4 class="font-serif text-lg mb-1">Valoración Inteligente</h4>
+              <p class="text-muted-foreground font-light">Análisis de mercado + componente emocional = precio óptimo</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="text-2xl font-serif text-accent">02</span>
+            <div>
+              <h4 class="font-serif text-lg mb-1">Home Staging & Fotografía</h4>
+              <p class="text-muted-foreground font-light">Preparamos su casa para enamorar a primera vista</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="text-2xl font-serif text-accent">03</span>
+            <div>
+              <h4 class="font-serif text-lg mb-1">Marketing Premium</h4>
+              <p class="text-muted-foreground font-light">Portales, redes sociales, base de datos de compradores cualificados</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="text-2xl font-serif text-accent">04</span>
+            <div>
+              <h4 class="font-serif text-lg mb-1">Negociación Experta</h4>
+              <p class="text-muted-foreground font-light">Maximizamos el valor de cada oferta</p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="text-2xl font-serif text-accent">05</span>
+            <div>
+              <h4 class="font-serif text-lg mb-1">Cierre Seguro</h4>
+              <p class="text-muted-foreground font-light">Gestión legal completa hasta la firma en notaría</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <a href="/valoracion">
+        <Button className="btn-premium" client:load>
+          Solicitar Valoración Gratuita
+        </Button>
+      </a>
+    </div>
+  </section>
+</PageLayout>

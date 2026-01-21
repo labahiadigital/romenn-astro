@@ -1,0 +1,46 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import { Button } from "@/components/ui/button";
+---
+
+<PageLayout title="Experiencia Römenn" subtitle="La Firma">
+  <section class="py-32 bg-background">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <p class="text-xl md:text-2xl text-muted-foreground font-light leading-relaxed mb-12">
+        La experiencia Römenn va más allá de la transacción inmobiliaria. Es un viaje emocional donde cada detalle cuenta, donde cada decisión está respaldada por datos y donde cada cliente es tratado como único.
+      </p>
+      
+      <div class="grid md:grid-cols-3 gap-12 mt-20">
+        <div class="text-center">
+          <div class="text-5xl font-serif text-accent mb-4">01</div>
+          <h3 class="text-xl font-serif mb-4">Escucha Activa</h3>
+          <p class="text-muted-foreground font-light">
+            Entendemos sus necesidades reales, no solo las aparentes.
+          </p>
+        </div>
+        <div class="text-center">
+          <div class="text-5xl font-serif text-accent mb-4">02</div>
+          <h3 class="text-xl font-serif mb-4">Análisis Profundo</h3>
+          <p class="text-muted-foreground font-light">
+            Datos de mercado + intuición emocional = decisiones perfectas.
+          </p>
+        </div>
+        <div class="text-center">
+          <div class="text-5xl font-serif text-accent mb-4">03</div>
+          <h3 class="text-xl font-serif mb-4">Acompañamiento Total</h3>
+          <p class="text-muted-foreground font-light">
+            Desde el primer contacto hasta las llaves en su mano.
+          </p>
+        </div>
+      </div>
+      
+      <div class="mt-20">
+        <a href="/contacto">
+          <Button className="btn-premium" client:load>
+            Comenzar Mi Experiencia
+          </Button>
+        </a>
+      </div>
+    </div>
+  </section>
+</PageLayout>

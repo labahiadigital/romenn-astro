@@ -1,0 +1,60 @@
+---
+import "@/styles/globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer.astro";
+import WhatsAppButton from "@/components/WhatsAppButton.astro";
+import { Toaster } from "@/components/ui/sonner";
+import { TooltipProvider } from "@/components/ui/tooltip";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Römenn - Inmobiliaria Boutique Internacional. Redefiniendo el lujo inmobiliario en Rivas-Vaciamadrid." } = Astro.props;
+const currentPath = Astro.url.pathname;
+
+// Import logo for header/footer
+import logoSrc from "@/assets/romenn-logo.webp";
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content={description} />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- Preconnect to fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    
+    <title>{title} | Römenn</title>
+    
+    <!-- View Transitions -->
+    <meta name="view-transition" content="same-origin" />
+  </head>
+  <body class="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <TooltipProvider client:load>
+      <Header logoSrc={logoSrc.src} currentPath={currentPath} client:load />
+      
+      <main>
+        <slot />
+      </main>
+      
+      <Footer logoSrc={logoSrc.src} />
+      <WhatsAppButton />
+      <Toaster client:load />
+    </TooltipProvider>
+  </body>
+</html>

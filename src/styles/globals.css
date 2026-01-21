@@ -1,0 +1,162 @@
+@import "@fontsource/manrope/200.css";
+@import "@fontsource/manrope/300.css";
+@import "@fontsource/manrope/400.css";
+@import "@fontsource/manrope/500.css";
+@import "@fontsource/manrope/600.css";
+@import "@fontsource/manrope/700.css";
+@import "@fontsource/manrope/800.css";
+@import "@fontsource/playfair-display/400.css";
+@import "@fontsource/playfair-display/500.css";
+@import "@fontsource/playfair-display/600.css";
+@import "@fontsource/playfair-display/700.css";
+@import "@fontsource/playfair-display/800.css";
+@import "@fontsource/playfair-display/900.css";
+@import "@fontsource/playfair-display/400-italic.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* RÖMENN PALETTE */
+    /* Azul Noche Profundo (Deep Night Blue) - Main Brand Color */
+    --romenn-night: 224 35% 11%; 
+    /* Cobalto Metálico (Metallic Cobalt) - Action/Accent - DARKENED FOR A11Y (Original: 217 91% 60%) */
+    --romenn-cobalt: 217 75% 45%;
+    /* Blanco Puro */
+    --romenn-white: 0 0% 100%;
+    /* Plata Elegante (Elegant Silver) */
+    --romenn-silver: 210 20% 96%;
+    
+    /* Semantic Mapping */
+    --background: var(--romenn-white);
+    --foreground: var(--romenn-night);
+
+    --card: var(--romenn-white);
+    --card-foreground: var(--romenn-night);
+
+    --popover: var(--romenn-white);
+    --popover-foreground: var(--romenn-night);
+
+    --primary: var(--romenn-night);
+    --primary-foreground: var(--romenn-white);
+
+    --secondary: var(--romenn-silver);
+    --secondary-foreground: var(--romenn-night);
+
+    --muted: 224 20% 94%;
+    --muted-foreground: 224 10% 45%;
+
+    --accent: var(--romenn-cobalt);
+    --accent-foreground: var(--romenn-white);
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: var(--romenn-night);
+
+    --radius: 0rem; /* Minimalist sharp edges usually look more "luxury" unless specified otherwise */
+
+    /* Sidebar variables (keeping consistent) */
+    --sidebar-background: var(--romenn-white);
+    --sidebar-foreground: var(--romenn-night);
+    --sidebar-primary: var(--romenn-night);
+    --sidebar-primary-foreground: var(--romenn-white);
+    --sidebar-accent: var(--romenn-silver);
+    --sidebar-accent-foreground: var(--romenn-night);
+    --sidebar-border: var(--border);
+    --sidebar-ring: var(--ring);
+  }
+
+  .dark {
+    /* Dark mode mapping (Night Blue Background) */
+    --background: var(--romenn-night);
+    --foreground: var(--romenn-white);
+
+    --card: 224 30% 15%;
+    --card-foreground: var(--romenn-white);
+
+    --popover: 224 30% 15%;
+    --popover-foreground: var(--romenn-white);
+
+    --primary: var(--romenn-white);
+    --primary-foreground: var(--romenn-night);
+
+    --secondary: 224 30% 20%;
+    --secondary-foreground: var(--romenn-white);
+
+    --muted: 224 30% 20%;
+    --muted-foreground: 224 20% 65%;
+
+    --accent: var(--romenn-cobalt);
+    --accent-foreground: var(--romenn-white);
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 224 30% 20%;
+    --input: 224 30% 20%;
+    --ring: var(--romenn-cobalt);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Manrope', sans-serif;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02"; /* Stylistic sets for premium feel */
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    letter-spacing: -0.02em;
+  }
+  
+  /* Luxury Typography Helpers */
+  .font-serif {
+    font-family: 'Playfair Display', serif;
+  }
+  
+  .font-sans {
+    font-family: 'Manrope', sans-serif;
+  }
+}
+
+@layer components {
+  .btn-premium {
+    @apply relative overflow-hidden px-8 py-4 bg-primary text-primary-foreground transition-all duration-500 ease-out hover:bg-accent hover:text-accent-foreground uppercase tracking-widest text-xs font-bold border border-transparent hover:shadow-lg;
+  }
+  
+  .glass-panel {
+    @apply bg-white/80 backdrop-blur-md border border-white/20 shadow-xl;
+  }
+
+  .section-padding {
+    @apply py-20 md:py-32;
+  }
+}
+
+/* View Transitions */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.3s;
+}

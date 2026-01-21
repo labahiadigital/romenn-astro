@@ -1,0 +1,101 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import { Button } from "@/components/ui/button";
+---
+
+<PageLayout title="Valoración Inteligente" subtitle="Conozca el Valor Real">
+  <section class="py-32 bg-background">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <p class="text-xl text-muted-foreground font-light leading-relaxed">
+          Nuestra valoración combina análisis de datos de mercado con el componente emocional único de cada propiedad. No somos algoritmos: somos expertos que entienden que cada casa tiene su propia historia.
+        </p>
+      </div>
+      
+      <form class="bg-muted p-10 space-y-8">
+        <h3 class="text-2xl font-serif text-center mb-8">Solicite su Valoración Gratuita</h3>
+        
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label class="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">Nombre</label>
+            <input 
+              type="text"
+              placeholder="Su nombre" 
+              class="w-full px-4 py-3 bg-white border border-border focus:border-accent focus:outline-none transition-colors"
+            />
+          </div>
+          <div>
+            <label class="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">Teléfono</label>
+            <input 
+              type="tel"
+              placeholder="600 000 000" 
+              class="w-full px-4 py-3 bg-white border border-border focus:border-accent focus:outline-none transition-colors"
+            />
+          </div>
+        </div>
+        
+        <div>
+          <label class="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">Email</label>
+          <input 
+            type="email"
+            placeholder="su@email.com" 
+            class="w-full px-4 py-3 bg-white border border-border focus:border-accent focus:outline-none transition-colors"
+          />
+        </div>
+        
+        <div>
+          <label class="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">Dirección de la Propiedad</label>
+          <input 
+            type="text"
+            placeholder="Calle, número, ciudad" 
+            class="w-full px-4 py-3 bg-white border border-border focus:border-accent focus:outline-none transition-colors"
+          />
+        </div>
+        
+        <div class="grid md:grid-cols-3 gap-6">
+          <div>
+            <label class="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">Metros²</label>
+            <input 
+              type="number"
+              placeholder="120" 
+              class="w-full px-4 py-3 bg-white border border-border focus:border-accent focus:outline-none transition-colors"
+            />
+          </div>
+          <div>
+            <label class="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">Dormitorios</label>
+            <input 
+              type="number"
+              placeholder="3" 
+              class="w-full px-4 py-3 bg-white border border-border focus:border-accent focus:outline-none transition-colors"
+            />
+          </div>
+          <div>
+            <label class="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">Baños</label>
+            <input 
+              type="number"
+              placeholder="2" 
+              class="w-full px-4 py-3 bg-white border border-border focus:border-accent focus:outline-none transition-colors"
+            />
+          </div>
+        </div>
+        
+        <div>
+          <label class="text-xs uppercase tracking-widest text-muted-foreground mb-2 block">Cuéntenos sobre su propiedad</label>
+          <textarea
+            placeholder="¿Qué hace especial a su casa? Reformas recientes, características únicas, historia..."
+            rows="4"
+            class="w-full px-4 py-3 bg-white border border-border focus:border-accent focus:outline-none transition-colors resize-none"
+          ></textarea>
+        </div>
+        
+        <Button className="btn-premium w-full h-14" client:load>
+          Solicitar Valoración Gratuita
+        </Button>
+        
+        <p class="text-xs text-center text-muted-foreground">
+          Le contactaremos en menos de 24 horas para coordinar una visita.
+        </p>
+      </form>
+    </div>
+  </section>
+</PageLayout>

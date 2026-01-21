@@ -1,0 +1,188 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Hero from "@/components/Hero";
+import SmartSearch from "@/components/SmartSearch";
+import Guias from "@/components/Guias";
+import PropertyCard from "@/components/PropertyCard.astro";
+import { Button } from "@/components/ui/button";
+import { ArrowRight, Star, Shield, Heart, Home } from "lucide-react";
+
+// Import assets
+import heroVideo from "@/assets/hero.mp4";
+import heroPoster from "@/assets/hero-couple.webp";
+import property1 from "@/assets/property-1.webp";
+import property2 from "@/assets/property-2.jpg";
+import property3 from "@/assets/property-3.jpg";
+---
+
+<BaseLayout title="Inicio">
+  <Hero 
+    videoSrc={heroVideo} 
+    posterSrc={heroPoster.src} 
+    client:load 
+  />
+
+  <!-- Smart Search Overlay -->
+  <div class="relative z-30 -mt-20 container mx-auto px-6">
+    <div class="bg-white shadow-2xl rounded-sm border border-border">
+      <SmartSearch client:visible />
+    </div>
+  </div>
+
+  <!-- Manifiesto Section -->
+  <section class="py-32 bg-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+        <span class="text-accent uppercase tracking-[0.2em] text-xs font-bold mb-8 block">Nuestra Filosofía</span>
+        <h2 class="text-3xl md:text-5xl font-serif leading-tight mb-8">
+            "No gestionamos inmuebles, <br/>
+            <span class="italic text-primary">gestionamos vidas.</span>"
+        </h2>
+        <p class="text-lg md:text-xl text-muted-foreground font-light font-sans leading-relaxed max-w-2xl mx-auto">
+            En un mercado saturado de frialdad y trámites, Römenn nace para devolver el alma al sector inmobiliario. 
+            Combinamos la seguridad jurídica más estricta con una sensibilidad emocional que entiende que una casa no son solo paredes.
+        </p>
+        <div class="mt-12 flex justify-center gap-8 text-sm uppercase tracking-widest font-bold text-primary/60">
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+              Seguridad Jurídica
+            </div>
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+              Trato Humano
+            </div>
+            <div class="flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              Diseño Boutique
+            </div>
+        </div>
+        
+        <div class="mt-16">
+            <a href="/manifiesto">
+                <Button variant="outline" className="uppercase tracking-widest text-xs font-bold border-primary text-primary hover:bg-primary hover:text-white" client:load>
+                    Leer Manifiesto Completo
+                </Button>
+            </a>
+        </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="py-32 bg-muted">
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-16">
+            <div>
+                <span class="text-xs uppercase tracking-widest text-accent font-bold mb-2 block">Servicios 360°</span>
+                <h2 class="text-4xl font-serif">Ecosistema Römenn</h2>
+            </div>
+            <a href="/servicios" class="group flex items-center gap-2 text-xs uppercase tracking-widest font-bold hover:text-accent transition-colors mt-8 md:mt-0">
+                Ver todos los servicios 
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border">
+            <div class="bg-white p-12 hover:bg-gray-50 transition-colors duration-500 group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="text-primary mb-6 group-hover:text-accent transition-colors"><path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8"/><path d="M3 10a2 2 0 0 1 .709-1.528l7-5.999a2 2 0 0 1 2.582 0l7 5.999A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+                <h3 class="text-2xl font-serif mb-4">Venta Boutique</h3>
+                <p class="text-muted-foreground font-light leading-relaxed mb-8">
+                    Marketing sensorial y estrategia de alto nivel.
+                </p>
+                <span class="text-xs uppercase tracking-widest border-b border-transparent group-hover:border-accent pb-1 transition-all">Descubrir</span>
+            </div>
+            <div class="bg-white p-12 hover:bg-gray-50 transition-colors duration-500 group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="text-primary mb-6 group-hover:text-accent transition-colors"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                <h3 class="text-2xl font-serif mb-4">Personal Shopper</h3>
+                <p class="text-muted-foreground font-light leading-relaxed mb-8">
+                    Encontramos lo que no está en los portales.
+                </p>
+                <span class="text-xs uppercase tracking-widest border-b border-transparent group-hover:border-accent pb-1 transition-all">Descubrir</span>
+            </div>
+            <div class="bg-white p-12 hover:bg-gray-50 transition-colors duration-500 group">
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="text-primary mb-6 group-hover:text-accent transition-colors"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></svg>
+                <h3 class="text-2xl font-serif mb-4">Consultoría Jurídica</h3>
+                <p class="text-muted-foreground font-light leading-relaxed mb-8">
+                    Protección total en cada firma.
+                </p>
+                <span class="text-xs uppercase tracking-widest border-b border-transparent group-hover:border-accent pb-1 transition-all">Descubrir</span>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Featured Properties -->
+  <section class="py-32 bg-background">
+    <div class="max-w-7xl mx-auto px-6">
+         <div class="text-center mb-20">
+            <span class="text-xs uppercase tracking-widest text-accent font-bold mb-4 block">Portfolio</span>
+            <h2 class="text-4xl md:text-5xl font-serif mb-6">Propiedades Destacadas</h2>
+            <p class="text-muted-foreground font-light">Una selección curada de hogares con alma.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+            <PropertyCard 
+                image={property1.src}
+                title="Villa Minimalista Rivas"
+                location="Rivas Futura"
+                price="850.000 €"
+                beds={4}
+                baths={3}
+                sqm={320}
+                status="Exclusiva"
+            />
+             <PropertyCard 
+                image={property2.src}
+                title="Ático con Terraza 360"
+                location="Avenida de los Almendros"
+                price="495.000 €"
+                beds={3}
+                baths={2}
+                sqm={145}
+            />
+             <PropertyCard 
+                image={property3.src}
+                title="Chalet de Diseño"
+                location="Santa Mónica"
+                price="720.000 €"
+                beds={5}
+                baths={4}
+                sqm={410}
+                status="Nuevo"
+            />
+        </div>
+        
+        <div class="text-center mt-20">
+             <a href="/propiedades">
+                <Button className="btn-premium" client:load>Ver Portfolio Completo</Button>
+             </a>
+        </div>
+    </div>
+  </section>
+  
+  <!-- Guides Section Integration -->
+  <Guias propertyImage={property1.src} client:visible />
+
+  <!-- Call to Action - Emotional -->
+  <section class="relative py-32 bg-primary text-primary-foreground overflow-hidden">
+    <div class="absolute inset-0 bg-black/20 z-10"></div>
+    <img src={heroPoster.src} alt="Background" class="absolute inset-0 w-full h-full object-cover opacity-20 grayscale" />
+    
+    <div class="relative z-20 max-w-4xl mx-auto px-6 text-center">
+        <h2 class="text-4xl md:text-6xl font-serif mb-8">¿Está pensando en vender?</h2>
+        <p class="text-xl md:text-2xl font-light mb-12 text-gray-300">
+            Permítanos contar la historia de su casa como se merece.
+        </p>
+        <div class="flex flex-col md:flex-row gap-6 justify-center">
+            <a href="/valoracion">
+                <Button className="bg-white text-primary hover:bg-accent hover:text-white px-10 py-6 text-sm tracking-widest uppercase font-bold" client:load>
+                    Valoración Gratuita
+                </Button>
+            </a>
+            <a href="/contacto">
+                <Button variant="outline" className="border-white text-white hover:bg-white hover:text-primary px-10 py-6 text-sm tracking-widest uppercase font-bold bg-transparent" client:load>
+                    Hablar con un experto
+                </Button>
+            </a>
+        </div>
+    </div>
+  </section>
+</BaseLayout>

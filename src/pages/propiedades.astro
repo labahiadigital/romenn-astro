@@ -1,0 +1,70 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SmartSearch from "@/components/SmartSearch";
+import PropertyCard from "@/components/PropertyCard.astro";
+
+// Import assets
+import property1 from "@/assets/property-1.webp";
+import property2 from "@/assets/property-2.jpg";
+import property3 from "@/assets/property-3.jpg";
+import property4 from "@/assets/property-4.jpg";
+---
+
+<BaseLayout title="Propiedades">
+  <!-- Hero Banner -->
+  <section class="relative h-[400px] flex items-center justify-center bg-primary text-white pt-24">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <span class="text-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">Portfolio Exclusivo</span>
+      <h1 class="text-4xl md:text-6xl font-serif">Propiedades</h1>
+    </div>
+  </section>
+  
+  <!-- Smart Search Integration -->
+  <SmartSearch client:visible />
+
+  <!-- Properties Grid -->
+  <section class="py-32 bg-background">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-20">
+        <PropertyCard 
+          image={property1.src}
+          title="Villa Minimalista Rivas Futura"
+          location="Rivas Futura"
+          price="850.000 €"
+          beds={4}
+          baths={3}
+          sqm={320}
+          status="Exclusiva"
+        />
+        <PropertyCard 
+          image={property2.src}
+          title="Ático con Terraza 360"
+          location="Avenida de los Almendros"
+          price="495.000 €"
+          beds={3}
+          baths={2}
+          sqm={145}
+        />
+        <PropertyCard 
+          image={property3.src}
+          title="Chalet de Diseño Santa Mónica"
+          location="Santa Mónica"
+          price="720.000 €"
+          beds={5}
+          baths={4}
+          sqm={410}
+          status="Nuevo"
+        />
+        <PropertyCard 
+          image={property4.src}
+          title="Loft Industrial Casco Antiguo"
+          location="Casco Antiguo"
+          price="380.000 €"
+          beds={2}
+          baths={2}
+          sqm={110}
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

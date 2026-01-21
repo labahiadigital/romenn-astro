@@ -1,0 +1,60 @@
+---
+interface Props {
+  image: string;
+  title: string;
+  price: string;
+  location: string;
+  beds: number;
+  baths: number;
+  sqm: number;
+  status?: string;
+}
+
+const { image, title, price, location, beds, baths, sqm, status } = Astro.props;
+---
+
+<div class="group cursor-pointer">
+  <div class="relative overflow-hidden mb-4">
+    <div class="aspect-[3/4] w-full relative">
+        <img 
+          src={image} 
+          alt={title}
+          loading="lazy"
+          width="400"
+          height="533"
+          class="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+        />
+    </div>
+    {status && (
+      <div class="absolute top-4 left-4 bg-white/90 backdrop-blur text-primary text-[10px] font-bold px-3 py-1 uppercase tracking-widest shadow-sm">
+        {status}
+      </div>
+    )}
+    <div class="absolute bottom-0 left-0 w-full p-4 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end justify-between text-white">
+         <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+            <span class="text-xs uppercase tracking-widest font-bold">Ver Propiedad</span>
+         </div>
+    </div>
+  </div>
+  <div class="space-y-2">
+    <div class="flex justify-between items-start">
+        <h3 class="text-xl font-serif text-foreground leading-tight group-hover:text-accent transition-colors duration-300">{title}</h3>
+        <div class="text-xl font-serif font-medium text-foreground">{price}</div>
+    </div>
+    <div class="flex items-center gap-2 text-xs text-muted-foreground uppercase tracking-wider mb-3">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+        {location}
+    </div>
+    <div class="flex items-center gap-6 text-sm text-muted-foreground border-t border-border/50 pt-3">
+      <div class="flex items-center gap-2">
+        <span class="font-serif text-foreground">{beds}</span> <span class="text-xs">Dorm</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="font-serif text-foreground">{baths}</span> <span class="text-xs">Baños</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <span class="font-serif text-foreground">{sqm}</span> <span class="text-xs">m²</span>
+      </div>
+    </div>
+  </div>
+</div>

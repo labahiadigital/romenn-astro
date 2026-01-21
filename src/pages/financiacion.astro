@@ -1,0 +1,66 @@
+---
+import PageLayout from "@/layouts/PageLayout.astro";
+import { Button } from "@/components/ui/button";
+---
+
+<PageLayout title="Financiación" subtitle="Las Mejores Condiciones">
+  <section class="py-32 bg-background">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <p class="text-xl text-muted-foreground font-light leading-relaxed mb-16">
+        Trabajamos con los principales bancos para conseguir las mejores condiciones hipotecarias del mercado. Sin coste adicional para usted.
+      </p>
+      
+      <div class="grid md:grid-cols-2 gap-8 mb-20 text-left">
+        <div class="bg-muted p-8">
+          <h3 class="text-xl font-serif mb-4">Lo que Incluye</h3>
+          <ul class="space-y-3 text-muted-foreground font-light">
+            <li class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent mt-1 flex-shrink-0"><path d="M20 6 9 17l-5-5"/></svg>
+              Estudio de viabilidad gratuito
+            </li>
+            <li class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent mt-1 flex-shrink-0"><path d="M20 6 9 17l-5-5"/></svg>
+              Comparativa de ofertas de 10+ bancos
+            </li>
+            <li class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent mt-1 flex-shrink-0"><path d="M20 6 9 17l-5-5"/></svg>
+              Negociación de condiciones
+            </li>
+            <li class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent mt-1 flex-shrink-0"><path d="M20 6 9 17l-5-5"/></svg>
+              Gestión de documentación
+            </li>
+            <li class="flex items-start gap-3">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-accent mt-1 flex-shrink-0"><path d="M20 6 9 17l-5-5"/></svg>
+              Acompañamiento hasta la firma
+            </li>
+          </ul>
+        </div>
+        
+        <div class="bg-muted p-8">
+          <h3 class="text-xl font-serif mb-4">Resultados</h3>
+          <div class="space-y-6">
+            <div>
+              <div class="text-3xl font-serif text-accent">0,3%</div>
+              <p class="text-sm text-muted-foreground">Mejora media en el tipo de interés</p>
+            </div>
+            <div>
+              <div class="text-3xl font-serif text-accent">2.500€</div>
+              <p class="text-sm text-muted-foreground">Ahorro medio en comisiones</p>
+            </div>
+            <div>
+              <div class="text-3xl font-serif text-accent">95%</div>
+              <p class="text-sm text-muted-foreground">Tasa de aprobación</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <a href="/contacto">
+        <Button className="btn-premium" client:load>
+          Solicitar Estudio Gratuito
+        </Button>
+      </a>
+    </div>
+  </section>
+</PageLayout>

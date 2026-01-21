@@ -1,0 +1,105 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Button } from "@/components/ui/button";
+---
+
+<BaseLayout title="Quiénes Somos">
+  <!-- Hero Banner -->
+  <section class="relative h-[400px] flex items-center justify-center bg-primary text-white pt-24">
+    <div class="max-w-7xl mx-auto px-6 text-center">
+      <span class="text-accent uppercase tracking-[0.2em] text-xs font-bold mb-4 block">La Firma</span>
+      <h1 class="text-4xl md:text-6xl font-serif">Quiénes Somos</h1>
+    </div>
+  </section>
+
+  <!-- Intro Story Section -->
+  <section class="py-32 bg-background">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div class="space-y-4">
+          <div class="h-[500px] bg-muted rounded-sm"></div>
+        </div>
+        <div>
+          <span class="text-accent text-xs uppercase tracking-widest font-bold mb-4 block">Nuestra Historia</span>
+          <h2 class="text-3xl md:text-5xl font-serif mb-8 leading-tight">
+            Más de 15 años cuidando de tus nuevos comienzos
+          </h2>
+          <p class="text-lg text-muted-foreground font-light leading-relaxed mb-6">
+            En Römenn, entendemos que comprar, vender o alquilar una vivienda es una de las decisiones más importantes de tu vida. Por eso, nos dedicamos a ofrecer un servicio personalizado, profesional y cercano.
+          </p>
+          <p class="text-lg text-muted-foreground font-light leading-relaxed mb-6">
+            Nuestro equipo de expertos inmobiliarios cuenta con más de 15 años de experiencia en el mercado madrileño. Conocemos cada barrio, cada tendencia y cada detalle que hace que una propiedad sea especial.
+          </p>
+          <p class="text-lg text-muted-foreground font-light leading-relaxed">
+            No somos solo una agencia inmobiliaria. Somos tus aliados en el proceso de encontrar tu hogar ideal o vender tu propiedad al mejor precio.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values Section -->
+  <section class="py-32 bg-muted">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-20">
+        <span class="text-xs uppercase tracking-widest text-accent font-bold mb-4 block">Nuestros Valores</span>
+        <h2 class="text-4xl md:text-5xl font-serif">Lo que nos define</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-12">
+        <div class="text-center p-8 bg-white">
+          <div class="w-20 h-20 bg-primary rounded-full mx-auto mb-8 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <h3 class="text-2xl font-serif mb-4">Transparencia</h3>
+          <p class="text-muted-foreground font-light leading-relaxed">
+            Información clara y honesta en cada paso del proceso
+          </p>
+        </div>
+        <div class="text-center p-8 bg-white">
+          <div class="w-20 h-20 bg-primary rounded-full mx-auto mb-8 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>
+          </div>
+          <h3 class="text-2xl font-serif mb-4">Compromiso</h3>
+          <p class="text-muted-foreground font-light leading-relaxed">
+            Tu satisfacción es nuestra prioridad absoluta
+          </p>
+        </div>
+        <div class="text-center p-8 bg-white">
+          <div class="w-20 h-20 bg-primary rounded-full mx-auto mb-8 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <h3 class="text-2xl font-serif mb-4">Experiencia</h3>
+          <p class="text-muted-foreground font-light leading-relaxed">
+            Más de 1,000 familias han confiado en nosotros
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Banner -->
+  <section class="py-32 bg-primary text-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <div class="flex justify-center mb-12">
+        <div class="bg-white rounded-sm px-8 py-4 shadow-lg flex items-center gap-4">
+          <div class="flex items-center gap-2">
+            <span class="text-[#4285F4] font-bold text-2xl">G</span>
+            <span class="text-3xl font-serif text-primary">4.8</span>
+          </div>
+          <div class="flex gap-1">
+            {[1, 2, 3, 4, 5].map(() => (
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#FBBC05" stroke="#FBBC05" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            ))}
+          </div>
+          <span class="text-sm text-muted-foreground">320 reseñas</span>
+        </div>
+      </div>
+      <h2 class="text-4xl md:text-6xl font-serif mb-8">
+        La confianza de nuestros clientes<br/>es nuestro mayor logro
+      </h2>
+      <p class="text-xl font-light text-gray-300 max-w-2xl mx-auto">
+        Más de 1,000 familias nos han confiado la compra o venta de su vivienda
+      </p>
+    </div>
+  </section>
+</BaseLayout>
