@@ -105,22 +105,21 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Manrope', sans-serif;
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02"; /* Stylistic sets for premium feel */
+    /* Font family defined in BaseLayout.astro with fallbacks to prevent CLS */
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', serif;
+    /* Font family defined in BaseLayout.astro with fallbacks to prevent CLS */
     letter-spacing: -0.02em;
   }
   
-  /* Luxury Typography Helpers */
+  /* Luxury Typography Helpers - using fallbacks defined in BaseLayout */
   .font-serif {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Playfair Display', 'Playfair Fallback', Georgia, serif;
   }
   
   .font-sans {
-    font-family: 'Manrope', sans-serif;
+    font-family: 'Manrope', 'Manrope Fallback', system-ui, -apple-system, sans-serif;
   }
 }
 

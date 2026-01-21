@@ -9,19 +9,10 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 
-// Componente de animación CSS sin framer-motion
-const FadeIn = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
-  const [isVisible, setIsVisible] = useState(false);
-  
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), delay);
-    return () => clearTimeout(timer);
-  }, [delay]);
-  
+// Componente sin animación de translate para evitar CLS
+const FadeIn = ({ children, className = "" }: { children: React.ReactNode; className?: string; delay?: number }) => {
   return (
-    <div 
-      className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'} ${className}`}
-    >
+    <div className={className}>
       {children}
     </div>
   );

@@ -81,7 +81,7 @@ const Hero = () => {
       {/* Content - LCP optimizado: H1 visible inmediatamente */}
       <div className="relative z-20 h-full flex flex-col items-center justify-center text-center text-white px-4">
         <span 
-            className={`uppercase tracking-[0.3em] text-xs md:text-sm font-light mb-6 text-gray-300 transition-all duration-1000 ${animationsReady ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}
+            className={`uppercase tracking-[0.3em] text-xs md:text-sm font-light mb-6 text-gray-300 transition-opacity duration-1000 ${animationsReady ? 'opacity-100' : 'opacity-0'}`}
             style={{ transitionDelay: '0.3s' }}
         >
             Inmobiliaria Boutique Internacional
