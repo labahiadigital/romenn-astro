@@ -27,11 +27,10 @@ import React, { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
 
 interface HeaderProps {
-  logoSrc: string;
-  currentPath: string;
+  currentPath?: string;
 }
 
-const Header = ({ logoSrc, currentPath }: HeaderProps) => {
+const Header = ({ currentPath = "/" }: HeaderProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const isHome = currentPath === "/";
   const isTransparent = isHome && !isScrolled;
@@ -61,16 +60,16 @@ const Header = ({ logoSrc, currentPath }: HeaderProps) => {
     )}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-24">
-          {/* Logo */}
+          {/* Logo - 50% bigger */}
           <a href="/" className="flex items-center gap-3 group">
             <img 
-              src={logoSrc} 
+              src="/romenn-logo.svg" 
               alt="Römenn Logo" 
               width="96"
               height="96"
               className={cn(
-                "h-24 w-auto object-contain transition-all duration-500",
-                isTransparent ? "brightness-0 invert" : ""
+                "h-24 w-auto object-contain transition-all duration-500 brightness-0",
+                isTransparent ? "invert" : ""
               )} 
             />
           </a>
@@ -150,9 +149,6 @@ const Header = ({ logoSrc, currentPath }: HeaderProps) => {
                     <ListItem href="/metodologia" title="Metodología">
                       Ciencia de datos aplicada a la venta.
                     </ListItem>
-                    <ListItem href="/extranjeria" title="Extranjería">
-                      Permisos de residencia y Golden Visa.
-                    </ListItem>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -217,6 +213,7 @@ const Header = ({ logoSrc, currentPath }: HeaderProps) => {
               <Phone className="w-3 h-3" />
               <span>600 000 000</span>
             </a>
+            {/* Button changed from Private Area to Contact */}
             <Button className={cn(
                 "rounded-none h-10 px-6 transition-all duration-500",
                 isTransparent 
@@ -243,7 +240,7 @@ const Header = ({ logoSrc, currentPath }: HeaderProps) => {
             <SheetContent side="right" className="w-[300px] sm:w-[400px] overflow-y-auto bg-white/95 backdrop-blur-xl border-l border-border/50">
               <SheetHeader className="mb-8 text-left border-b border-border/50 pb-6">
                 <SheetTitle className="text-left">
-                    <img src={logoSrc} alt="Römenn" className="h-16 w-auto object-contain" />
+                    <img src="/romenn-logo.svg" alt="Römenn" className="h-16 w-auto object-contain" />
                 </SheetTitle>
                 <SheetDescription className="text-left font-light text-xs tracking-widest uppercase text-muted-foreground mt-4">
                     Inmobiliaria Boutique Internacional
@@ -277,7 +274,6 @@ const Header = ({ logoSrc, currentPath }: HeaderProps) => {
                                 <SheetClose asChild><a href="/cronogramas" className="text-sm font-serif text-muted-foreground hover:text-primary transition-colors py-3 block min-h-[48px]">Blueprints</a></SheetClose>
                                 <SheetClose asChild><a href="/riesgos-ocultos" className="text-sm font-serif text-muted-foreground hover:text-primary transition-colors py-3 block min-h-[48px]">Riesgos Ocultos</a></SheetClose>
                                 <SheetClose asChild><a href="/metodologia" className="text-sm font-serif text-muted-foreground hover:text-primary transition-colors py-3 block min-h-[48px]">Metodología</a></SheetClose>
-                                <SheetClose asChild><a href="/extranjeria" className="text-sm font-serif text-muted-foreground hover:text-primary transition-colors py-3 block min-h-[48px]">Extranjería</a></SheetClose>
                             </div>
                         </AccordionContent>
                     </AccordionItem>
@@ -339,7 +335,7 @@ const ListItem = React.forwardRef<
         <a
           ref={ref}
           className={cn(
-            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground group",
+            "block select-none space-y-1 rounded-md p-4 min-h-[48px] leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground group",
             className
           )}
           {...props}

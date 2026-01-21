@@ -8,8 +8,6 @@ import PropertyCard from "@/components/PropertyCard.astro";
 import { Button } from "@/components/ui/button";
 
 // Import assets
-import heroVideo from "@/assets/hero.mp4";
-import heroPoster from "@/assets/hero-couple.webp";
 import property1 from "@/assets/property-1.webp";
 import property2 from "@/assets/property-2.jpg";
 import property3 from "@/assets/property-3.jpg";
@@ -18,11 +16,7 @@ import property4 from "@/assets/property-4.jpg";
 
 <BaseLayout title="Inicio">
   <!-- 1. HERO -->
-  <Hero 
-    videoSrc={heroVideo} 
-    posterSrc={heroPoster.src} 
-    client:load 
-  />
+  <Hero client:load />
 
   <!-- 2. VENDEDORES - Primera sección tras el hero (PRIORIDAD) -->
   <SellerSituations client:visible />

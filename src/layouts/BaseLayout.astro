@@ -13,9 +13,6 @@ interface Props {
 
 const { title, description = "Römenn - Inmobiliaria Boutique Internacional. Redefiniendo el lujo inmobiliario en Rivas-Vaciamadrid." } = Astro.props;
 const currentPath = Astro.url.pathname;
-
-// Import logo for header/footer
-import logoSrc from "@/assets/romenn-logo.webp";
 ---
 
 <!doctype html>
@@ -46,13 +43,13 @@ import logoSrc from "@/assets/romenn-logo.webp";
   </head>
   <body class="min-h-screen bg-background text-foreground overflow-x-hidden">
     <TooltipProvider client:load>
-      <Header logoSrc={logoSrc.src} currentPath={currentPath} client:load />
+      <Header currentPath={currentPath} client:load />
       
       <main>
         <slot />
       </main>
       
-      <Footer logoSrc={logoSrc.src} />
+      <Footer />
       <WhatsAppButton />
       <Toaster client:load />
     </TooltipProvider>
