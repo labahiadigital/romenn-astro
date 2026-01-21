@@ -1,0 +1,138 @@
+---
+// ExperienciaRomenn - Pure Astro component
+// No client-side JavaScript needed - purely presentational
+
+const successStats = [
+  { number: "150+", label: "Familias acompañadas" },
+  { number: "98%", label: "Clientes satisfechos" },
+  { number: "45", label: "Días de venta media" },
+];
+
+const featuredReviews = [
+  {
+    name: "María G.",
+    context: "Venta por separación",
+    rating: 5,
+    text: "Nos ayudaron en un momento muy difícil. Gestionaron todo con discreción y profesionalidad. Vendimos en el tiempo que necesitábamos.",
+  },
+  {
+    name: "Carlos y Ana",
+    context: "Compra de primera vivienda",
+    rating: 5,
+    text: "Nos encontraron una casa que no estaba en ningún portal. El proceso fue transparente y nos sentimos acompañados en todo momento.",
+  },
+  {
+    name: "Roberto F.",
+    context: "Herencia",
+    rating: 5,
+    text: "Gestionaron toda la herencia de mi madre con una sensibilidad increíble. Me quitaron un peso enorme de encima.",
+  }
+];
+---
+
+<section id="experiencia" class="relative overflow-hidden">
+  
+  <!-- Part 1: Sobre RÖMENN - Extracto -->
+  <div class="py-24 md:py-32 bg-slate-50">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <span class="text-xs uppercase tracking-[0.3em] text-primary/60 font-medium mb-6 block">
+          Sobre RÖMENN
+        </span>
+      </div>
+
+      <div class="space-y-8 text-center">
+        <p class="text-2xl md:text-3xl lg:text-4xl font-serif text-foreground leading-relaxed">
+          Un proyecto construido con respeto, con cuidado y con la voluntad de hacer las cosas bien hechas, <span class="italic text-primary">sin ruido innecesario.</span>
+        </p>
+        
+        <div class="flex items-center justify-center gap-2 text-muted-foreground">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+          <span class="text-sm">Rivas-Vaciamadrid</span>
+        </div>
+      </div>
+
+      <div class="mt-12 text-center">
+        <a href="/experiencia" class="inline-flex items-center gap-2 px-6 py-3 border border-slate-200 rounded-md text-sm font-medium hover:border-primary hover:text-primary transition-colors group">
+          Conocer nuestra historia
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Part 2: Cifras -->
+  <div class="py-16 bg-primary text-white">
+    <div class="max-w-5xl mx-auto px-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        {successStats.map((stat) => (
+          <div class="py-4">
+            <div class="text-4xl md:text-5xl font-serif mb-2">{stat.number}</div>
+            <div class="text-white/60 text-sm uppercase tracking-wider">
+              {stat.label}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <!-- Part 3: Reseñas de Clientes -->
+  <div class="py-24 md:py-32 bg-white">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <span class="text-xs uppercase tracking-[0.3em] text-primary/60 font-medium mb-4 block">
+          Voces de confianza
+        </span>
+        <h2 class="text-3xl md:text-4xl font-serif mb-4">
+          Lo que dicen quienes han trabajado con nosotros
+        </h2>
+        <p class="text-muted-foreground font-light text-sm">
+          Reseñas verificadas de Google
+        </p>
+      </div>
+
+      <!-- Reviews Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+        {featuredReviews.map((review) => (
+          <div class="bg-slate-50 p-8 rounded-lg">
+            <!-- Stars -->
+            <div class="flex gap-0.5 mb-4">
+              {[...Array(review.rating)].map(() => (
+                <svg class="w-4 h-4 fill-amber-400 text-amber-400" viewBox="0 0 24 24">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                </svg>
+              ))}
+            </div>
+            
+            <!-- Quote -->
+            <p class="text-foreground/80 leading-relaxed mb-6 font-light">
+              "{review.text}"
+            </p>
+            
+            <!-- Author -->
+            <div>
+              <div class="font-medium text-foreground text-sm">{review.name}</div>
+              <div class="text-xs text-muted-foreground">{review.context}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <!-- CTA to see all reviews -->
+      <div class="text-center">
+        <a href="/resenas" class="inline-flex items-center gap-2 px-6 py-3 border border-slate-200 rounded-md text-sm font-medium hover:border-primary hover:text-primary transition-colors group">
+          Ver todas las reseñas
+          <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

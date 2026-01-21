@@ -1,11 +1,10 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import Hero from "@/components/Hero";
-import SellerSituations from "@/components/SellerSituations";
-import ExperienciaRomenn from "@/components/ExperienciaRomenn";
-import BuyerSection from "@/components/BuyerSection";
+import HeroStatic from "@/components/HeroStatic.astro";
+import SellerSituationsStatic from "@/components/SellerSituationsStatic.astro";
+import ExperienciaRomennStatic from "@/components/ExperienciaRomennStatic.astro";
+import BuyerSectionStatic from "@/components/BuyerSectionStatic.astro";
 import PropertyCard from "@/components/PropertyCard.astro";
-import { Button } from "@/components/ui/button";
 
 // Import assets
 import property1 from "@/assets/property-1.webp";
@@ -15,16 +14,16 @@ import property4 from "@/assets/property-4.jpg";
 ---
 
 <BaseLayout title="Inicio">
-  <!-- 1. HERO -->
-  <Hero client:load />
+  <!-- 1. HERO - Static Astro component -->
+  <HeroStatic />
 
-  <!-- 2. VENDEDORES - Primera sección tras el hero (PRIORIDAD) -->
-  <SellerSituations client:visible />
+  <!-- 2. VENDEDORES - Static Astro with minimal JS -->
+  <SellerSituationsStatic />
 
-  <!-- 3. EXPERIENCIA RÖMENN - Manifiesto + Compromiso + Reseñas unificados -->
-  <ExperienciaRomenn client:visible />
+  <!-- 3. EXPERIENCIA RÖMENN - Static Astro component -->
+  <ExperienciaRomennStatic />
 
-  <!-- 4. METODOLOGÍA RÖMENN - Apartado propio -->
+  <!-- 4. METODOLOGÍA RÖMENN -->
   <section class="py-24 md:py-32 bg-white">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16">
@@ -64,17 +63,15 @@ import property4 from "@/assets/property-4.jpg";
       </div>
 
       <div class="text-center mt-12">
-        <a href="/metodologia">
-          <Button variant="outline" className="border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-6 text-sm tracking-widest uppercase font-bold rounded-xl group" client:load>
-            Descubrir metodología completa
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </Button>
+        <a href="/metodologia" class="inline-flex items-center gap-2 border-2 border-primary text-primary hover:bg-primary hover:text-white px-8 py-4 text-sm tracking-widest uppercase font-bold rounded-xl transition-all group">
+          Descubrir metodología completa
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- 5. RIESGOS OCULTOS - Diferenciador del servicio -->
+  <!-- 5. RIESGOS OCULTOS -->
   <section class="py-24 md:py-32 bg-gradient-to-br from-red-50 via-white to-orange-50 relative overflow-hidden">
     <div class="max-w-6xl mx-auto px-6 relative z-10">
       <div class="text-center mb-16">
@@ -127,17 +124,15 @@ import property4 from "@/assets/property-4.jpg";
           No permitimos que ninguno de nuestros clientes firme unas arras sin un informe 
           de Due Diligence completo. Su tranquilidad es nuestra firma.
         </p>
-        <a href="/riesgos-ocultos">
-          <Button className="bg-white text-primary hover:bg-accent hover:text-white px-8 py-6 text-sm tracking-widest uppercase font-bold rounded-xl" client:load>
-            Conocer todos los riesgos
-          </Button>
+        <a href="/riesgos-ocultos" class="inline-flex items-center justify-center bg-white text-primary hover:bg-accent hover:text-white px-8 py-4 text-sm tracking-widest uppercase font-bold rounded-xl transition-all">
+          Conocer todos los riesgos
         </a>
       </div>
     </div>
   </section>
 
-  <!-- 6. COMPRADORES - Antes de propiedades -->
-  <BuyerSection client:visible />
+  <!-- 6. COMPRADORES - Static Astro component -->
+  <BuyerSectionStatic />
 
   <!-- 7. PROPIEDADES DESTACADAS -->
   <section class="py-24 md:py-32 bg-white">
@@ -148,7 +143,6 @@ import property4 from "@/assets/property-4.jpg";
         <p class="text-muted-foreground font-light">Una selección curada de hogares con alma.</p>
       </div>
       
-      <!-- Grid 2 columnas como solicitado -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
         <PropertyCard 
           image={property1.src}
@@ -191,17 +185,15 @@ import property4 from "@/assets/property-4.jpg";
       </div>
       
       <div class="text-center mt-16">
-        <a href="/propiedades">
-          <Button className="btn-premium group" client:load>
-            Ver Portfolio Completo
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ml-2 group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </Button>
+        <a href="/propiedades" class="btn-premium inline-flex items-center gap-2 group">
+          Ver Portfolio Completo
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
       </div>
     </div>
   </section>
 
-  <!-- 8. SERVICIOS - Incluye Estudio Financiero -->
+  <!-- 8. SERVICIOS -->
   <section class="py-24 md:py-32 bg-slate-50">
     <div class="max-w-7xl mx-auto px-6">
       <div class="flex flex-col md:flex-row justify-between items-end mb-16">
@@ -271,15 +263,11 @@ import property4 from "@/assets/property-4.jpg";
         Permítanos acompañarle en una de las decisiones más importantes de su vida.
       </p>
       <div class="flex flex-col md:flex-row gap-6 justify-center">
-        <a href="/valoracion">
-          <Button className="bg-white text-primary hover:bg-accent hover:text-white px-10 py-6 text-sm tracking-widest uppercase font-bold rounded-xl shadow-lg" client:load>
-            Solicitar Valoración Gratuita
-          </Button>
+        <a href="/valoracion" class="inline-flex items-center justify-center bg-white text-primary hover:bg-accent hover:text-white px-10 py-4 text-sm tracking-widest uppercase font-bold rounded-xl shadow-lg transition-all">
+          Solicitar Valoración Gratuita
         </a>
-        <a href="/contacto">
-          <Button variant="outline" className="border-2 border-white text-white hover:bg-white hover:text-primary px-10 py-6 text-sm tracking-widest uppercase font-bold bg-transparent rounded-xl" client:load>
-            Hablar con un Experto
-          </Button>
+        <a href="/contacto" class="inline-flex items-center justify-center border-2 border-white text-white hover:bg-white hover:text-primary px-10 py-4 text-sm tracking-widest uppercase font-bold bg-transparent rounded-xl transition-all">
+          Hablar con un Experto
         </a>
       </div>
     </div>

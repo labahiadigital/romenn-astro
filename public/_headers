@@ -1,6 +1,43 @@
-/assets/*
+# Cache headers for static assets
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+# Video files - cache for 1 year
+/video_hero.mp4
   Cache-Control: public, max-age=31536000, immutable
 
-/*
+# Images - cache for 1 year
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/hero-frame.webp
+  Cache-Control: public, max-age=31536000, immutable
+
+/romenn-logo.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/romenn-logo.png
+  Cache-Control: public, max-age=31536000, immutable
+
+# Fonts - cache for 1 year
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# JS and CSS with hashes - cache for 1 year
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# HTML pages - short cache, revalidate
+/*.html
   Cache-Control: public, max-age=0, must-revalidate
 
+/
+  Cache-Control: public, max-age=0, must-revalidate

@@ -1,10 +1,9 @@
 ---
 import "@/styles/globals.css";
-import Header from "@/components/Header";
+import HeaderStatic from "@/components/HeaderStatic.astro";
 import Footer from "@/components/Footer.astro";
 import WhatsAppButton from "@/components/WhatsAppButton.astro";
 import { Toaster } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
 import { SEO } from "astro-seo";
 
 interface Props {
@@ -32,6 +31,16 @@ const imageURL = new URL(image, Astro.site);
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- 
+      Preload critical fonts to ensure they load before first paint
+      This reduces CLS by having fonts ready when text renders
+    -->
+    <link rel="preload" href="/fonts/manrope-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/manrope-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/manrope-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/playfair-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/playfair-display-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin />
     
     <!-- SEO -->
     <SEO
@@ -85,16 +94,14 @@ const imageURL = new URL(image, Astro.site);
     <meta name="view-transition" content="same-origin" />
   </head>
   <body class="min-h-screen bg-background text-foreground overflow-x-hidden">
-    <TooltipProvider client:load>
-      <Header currentPath={currentPath} client:load />
-      
-      <main>
-        <slot />
-      </main>
-      
-      <Footer />
-      <WhatsAppButton />
-      <Toaster client:load />
-    </TooltipProvider>
+    <HeaderStatic currentPath={currentPath} />
+    
+    <main>
+      <slot />
+    </main>
+    
+    <Footer />
+    <WhatsAppButton />
+    <Toaster client:load />
   </body>
 </html>

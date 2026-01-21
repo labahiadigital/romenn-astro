@@ -1,17 +1,5 @@
-/* 
- * Fontsource fonts - loaded locally to prevent CLS
- * These are bundled with the CSS and don't cause font swap
- */
-@import "@fontsource/manrope/300.css";
-@import "@fontsource/manrope/400.css";
-@import "@fontsource/manrope/500.css";
-@import "@fontsource/manrope/600.css";
-@import "@fontsource/manrope/700.css";
-@import "@fontsource/playfair-display/400.css";
-@import "@fontsource/playfair-display/500.css";
-@import "@fontsource/playfair-display/600.css";
-@import "@fontsource/playfair-display/700.css";
-@import "@fontsource/playfair-display/400-italic.css";
+/* Import local font definitions */
+@import './fonts.css';
 
 @tailwind base;
 @tailwind components;
@@ -118,21 +106,23 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    /* Fallback font has adjusted metrics to match Manrope */
+    font-family: 'Manrope', 'Manrope Fallback', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Playfair Display', Georgia, serif;
+    /* Fallback font has adjusted metrics to match Playfair Display */
+    font-family: 'Playfair Display', 'Playfair Fallback', Georgia, 'Times New Roman', serif;
     letter-spacing: -0.02em;
   }
   
   /* Luxury Typography Helpers */
   .font-serif {
-    font-family: 'Playfair Display', Georgia, serif;
+    font-family: 'Playfair Display', 'Playfair Fallback', Georgia, 'Times New Roman', serif;
   }
   
   .font-sans {
-    font-family: 'Manrope', system-ui, -apple-system, sans-serif;
+    font-family: 'Manrope', 'Manrope Fallback', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
 }
 

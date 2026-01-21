@@ -1,0 +1,209 @@
+---
+// Hero component - Pure Astro, no client-side JavaScript
+// This eliminates CLS caused by React hydration
+
+const heroVideo = "/video_hero.mp4";
+const heroFrame = "/hero-frame.webp";
+---
+
+<section class="hero-section">
+  <!-- Background with CSS background-image to prevent CLS -->
+  <div class="hero-bg" style={`background-image: url(${heroFrame});`}>
+    <!-- Dark overlay -->
+    <div class="hero-overlay"></div>
+    
+    <!-- Video - fades in over background when ready -->
+    <video 
+      id="hero-video"
+      loop 
+      muted
+      playsinline
+      preload="auto"
+      class="hero-video"
+    >
+      <source src={heroVideo} type="video/mp4" />
+    </video>
+  </div>
+
+  <!-- Content - positioned over background -->
+  <div class="hero-content">
+    <span class="hero-subtitle">
+      Inmobiliaria Boutique Internacional
+    </span>
+    
+    <h1 class="hero-title">
+      El verdadero lujo <br />
+      <span class="hero-title-italic">es sentirse en casa.</span>
+    </h1>
+
+    <a href="#experiencia" class="hero-cta">
+      Descubre Römenn
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="hero-arrow">
+        <path d="M12 5v14"></path>
+        <path d="m19 12-7 7-7-7"></path>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  /* Hero section - fixed height, no layout changes possible */
+  .hero-section {
+    position: relative;
+    width: 100%;
+    height: 100svh;
+    overflow: hidden;
+    background-color: #000;
+  }
+
+  /* Background container with CSS background-image - no CLS */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transform: scale(1.05);
+  }
+
+  /* Dark overlay */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 2;
+  }
+
+  /* Video - covers background when ready */
+  .hero-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.5s ease-out;
+  }
+
+  .hero-video.ready {
+    opacity: 1;
+  }
+
+  /* Content - always on top, fixed positioning */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    padding: 0 1rem;
+  }
+
+  .hero-subtitle {
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 0.75rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    color: rgb(209 213 219);
+  }
+
+  @media (min-width: 768px) {
+    .hero-subtitle {
+      font-size: 0.875rem;
+    }
+  }
+
+  .hero-title {
+    font-family: var(--font-serif, 'Playfair Display', serif);
+    font-size: 3rem;
+    margin-bottom: 2rem;
+    letter-spacing: -0.025em;
+    line-height: 1.1;
+  }
+
+  @media (min-width: 768px) {
+    .hero-title {
+      font-size: 4.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .hero-title {
+      font-size: 6rem;
+    }
+  }
+
+  .hero-title-italic {
+    font-style: italic;
+    color: rgb(229 231 235);
+  }
+
+  .hero-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .hero-cta:hover {
+    color: var(--accent, #d4af37);
+  }
+
+  .hero-arrow {
+    width: 1rem;
+    height: 1rem;
+    margin-top: 0.5rem;
+    animation: bounce 1s infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateY(-25%);
+      animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+      transform: translateY(0);
+      animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+  }
+</style>
+
+<script is:inline>
+  // Show video when ready and ensure playback
+  // NO DOM manipulation that causes layout shifts - only opacity changes
+  (function() {
+    var video = document.getElementById('hero-video');
+    if (!video) return;
+    
+    var videoShown = false;
+    
+    function showVideo() {
+      if (videoShown) return;
+      videoShown = true;
+      video.classList.add('ready');
+    }
+    
+    function handleCanPlay() {
+      video.muted = true;
+      var playPromise = video.play();
+      if (playPromise !== undefined) {
+        playPromise.then(showVideo).catch(function() {
+          if (video.readyState >= 2) showVideo();
+        });
+      }
+    }
+    
+    video.addEventListener('canplay', handleCanPlay);
+    if (video.readyState >= 3) handleCanPlay();
+  })();
+</script>

@@ -1,0 +1,316 @@
+---
+// SellerSituations - Pure Astro component with minimal inline JS
+// Panel único que aparece debajo del grid cuando se selecciona una situación
+
+const sellerSituations = [
+  {
+    id: "separacion",
+    title: "Separación",
+    subtitle: "Un cambio que no se ha buscado",
+    description: "No todas las ventas se viven igual. Cuando una separación obliga a vender, el proceso necesita discreción, coordinación entre partes y, sobre todo, respeto por el momento.",
+    icon: "heart",
+    colorClass: "from-rose-500/10 to-rose-600/5",
+    iconColor: "text-rose-600",
+  },
+  {
+    id: "herencia",
+    title: "Herencia",
+    subtitle: "El cierre de una etapa",
+    description: "Vender una vivienda heredada implica gestionar emociones además de trámites. Nos ocupamos de todo el proceso legal y fiscal para que usted pueda centrarse en lo importante.",
+    icon: "scale",
+    colorClass: "from-amber-500/10 to-amber-600/5",
+    iconColor: "text-amber-600",
+  },
+  {
+    id: "cambio",
+    title: "Cambio de etapa",
+    subtitle: "Una decisión elegida",
+    description: "A veces llega el momento de cambiar. Una nueva ciudad, más espacio, menos metros. Coordinamos la venta y la compra para que la transición sea fluida.",
+    icon: "home",
+    colorClass: "from-emerald-500/10 to-emerald-600/5",
+    iconColor: "text-emerald-600",
+  },
+  {
+    id: "urgencia",
+    title: "Necesidad de liquidez",
+    subtitle: "Cuando el tiempo apremia",
+    description: "Hay procesos que necesitan rapidez. Activamos nuestra red de compradores cualificados para cerrar en el menor tiempo posible, sin malvender.",
+    icon: "clock",
+    colorClass: "from-blue-500/10 to-blue-600/5",
+    iconColor: "text-blue-600",
+  },
+  {
+    id: "inversion",
+    title: "Desinversión",
+    subtitle: "Optimizar el patrimonio",
+    description: "Vender una propiedad de inversión requiere planificación fiscal y timing. Le asesoramos para maximizar el resultado dentro de la legalidad.",
+    icon: "briefcase",
+    colorClass: "from-violet-500/10 to-violet-600/5",
+    iconColor: "text-violet-600",
+  },
+  {
+    id: "jubilacion",
+    title: "Jubilación",
+    subtitle: "Con calma y cuidado",
+    description: "Acompañamos este proceso con calma, claridad y respeto. Cada paso se explica, cada decisión se toma sin prisa y con la familia.",
+    icon: "users",
+    colorClass: "from-teal-500/10 to-teal-600/5",
+    iconColor: "text-teal-600",
+  }
+];
+
+const icons: Record<string, string> = {
+  heart: '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
+  scale: '<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>',
+  home: '<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+  clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+  briefcase: '<path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/>',
+  users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>'
+};
+---
+
+<section id="vendedores" class="py-24 md:py-32 bg-white relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6 relative z-10">
+    
+    <!-- Introducción reflexiva -->
+    <div class="max-w-4xl mx-auto mb-32">
+      <span class="text-[11px] uppercase tracking-[0.35em] text-primary/70 font-medium mb-16 block text-center">
+        Cuándo tiene sentido vender
+      </span>
+      
+      <p class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-serif text-foreground leading-[1.15] tracking-tight text-center mb-20">
+        Vender una vivienda no siempre<br class="hidden sm:block" /> 
+        llega en un momento cómodo.
+      </p>
+
+      <div class="max-w-2xl mx-auto text-center mb-20">
+        <p class="text-base md:text-lg text-foreground/70 font-light leading-relaxed">
+          A veces es una decisión elegida.
+        </p>
+        <p class="text-base md:text-lg text-foreground/70 font-light leading-relaxed mt-2">
+          Otras, una consecuencia de un cambio que no se ha buscado:<br class="hidden md:block" />
+          una separación, una herencia, el cierre de una etapa.
+        </p>
+      </div>
+
+      <div class="text-center space-y-3 mb-20">
+        <p class="text-2xl md:text-3xl lg:text-4xl font-serif text-foreground/90 tracking-tight">
+          No todas las ventas se viven igual.
+        </p>
+        <p class="text-2xl md:text-3xl lg:text-4xl font-serif text-foreground/90 tracking-tight">
+          Ni deberían tratarse igual.
+        </p>
+      </div>
+
+      <div class="max-w-xl mx-auto text-center mb-24">
+        <p class="text-lg md:text-xl text-foreground/60 font-light leading-loose tracking-wide">
+          Hay procesos que necesitan rapidez.
+        </p>
+        <p class="text-lg md:text-xl text-foreground/60 font-light leading-loose tracking-wide mt-4">
+          Y otros que necesitan pausa.
+        </p>
+      </div>
+
+      <div class="flex justify-center mb-20">
+        <div class="w-12 h-px bg-slate-200"></div>
+      </div>
+
+      <div class="max-w-2xl mx-auto text-center space-y-8">
+        <p class="text-base md:text-lg text-foreground/60 font-light leading-relaxed">
+          En <span class="font-medium text-foreground/80">RÖMENN</span> no intervenimos desde la prisa ni desde la presión.
+          <br class="hidden md:block" />
+          Leemos el contexto, entendemos el momento y actuamos en consecuencia.
+        </p>
+        <p class="text-base md:text-lg text-foreground/60 font-light leading-relaxed">
+          No trabajamos para forzar decisiones.
+          <br class="hidden md:block" />
+          Trabajamos para que cada paso tenga sentido dentro de la situación real de cada persona.
+        </p>
+      </div>
+
+      <div class="mt-24 text-center">
+        <p class="text-xl md:text-2xl lg:text-3xl font-serif text-primary italic tracking-wide">
+          Aquí el tiempo importa.
+        </p>
+      </div>
+    </div>
+
+    <!-- Separador visual -->
+    <div class="flex items-center justify-center mb-20">
+      <div class="h-px w-16 bg-slate-200"></div>
+      <div class="w-2 h-2 rounded-full bg-primary/30 mx-4"></div>
+      <div class="h-px w-16 bg-slate-200"></div>
+    </div>
+
+    <!-- Header de situaciones -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-serif mb-4 tracking-tight">
+        ¿Cuál es su situación?
+      </h2>
+      <p class="text-muted-foreground font-light max-w-xl mx-auto">
+        Cada proceso es diferente. Seleccione la que más se acerque a la suya.
+      </p>
+    </div>
+
+    <!-- Situations Grid -->
+    <div id="situations-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 mb-8">
+      {sellerSituations.map((situation) => (
+        <button 
+          type="button"
+          class="situation-card relative w-full p-6 md:p-8 text-left rounded-xl border border-slate-100 bg-white transition-all duration-300 hover:border-slate-200 hover:shadow-md group"
+          data-situation={situation.id}
+          data-title={situation.title}
+          data-description={situation.description}
+          data-color={situation.colorClass}
+          data-icon-color={situation.iconColor}
+        >
+          <!-- Gradient background -->
+          <div class={`situation-bg absolute inset-0 rounded-xl bg-gradient-to-br ${situation.colorClass} opacity-0 transition-opacity duration-300`}></div>
+          
+          <div class="relative z-10">
+            <div class="situation-icon w-12 h-12 rounded-lg flex items-center justify-center mb-5 bg-slate-50 text-slate-400 transition-all duration-300 group-hover:bg-white group-hover:shadow-sm">
+              <svg class={`w-6 h-6 transition-colors duration-300 group-hover:${situation.iconColor}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[situation.icon]} data-icon-color={situation.iconColor} />
+            </div>
+            
+            <h3 class="text-lg font-medium mb-1 text-foreground group-hover:text-primary transition-colors">
+              {situation.title}
+            </h3>
+            <p class="text-sm text-muted-foreground">
+              {situation.subtitle}
+            </p>
+
+            <!-- Selection indicator -->
+            <div class="situation-indicator absolute top-4 right-4 w-5 h-5 rounded-full border border-slate-200 flex items-center justify-center transition-all duration-300 group-hover:border-slate-300">
+              <svg class="w-3 h-3 text-white opacity-0 check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </div>
+          </div>
+        </button>
+      ))}
+    </div>
+
+    <!-- Detail Panel (single, below grid) -->
+    <div id="detail-panel" class="hidden rounded-xl p-8 md:p-12 border border-slate-100 mb-8 transition-all duration-300" style="min-height: 180px;">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <div id="detail-header" class="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider mb-4">
+            <svg id="detail-icon" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"></svg>
+            <span id="detail-title"></span>
+          </div>
+          <p id="detail-description" class="text-lg text-foreground/80 leading-relaxed"></p>
+        </div>
+        <div class="flex flex-col gap-4">
+          <a href="/valoracion" class="w-full py-4 text-base bg-primary hover:bg-primary/90 text-white rounded-lg inline-flex items-center justify-center font-medium transition-colors">
+            Solicitar valoración
+            <svg class="w-4 h-4 ml-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </a>
+          <a href="/contacto" class="w-full py-4 text-base border border-slate-200 rounded-lg hover:bg-slate-50 inline-flex items-center justify-center font-medium transition-colors">
+            Prefiero hablar primero
+          </a>
+          <p class="text-center text-xs text-muted-foreground mt-2">
+            Sin compromiso · Sin presión
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom CTA -->
+    <div id="default-cta" class="text-center mt-12">
+      <p class="text-muted-foreground mb-6 font-light">
+        ¿Su situación no encaja en ninguna de estas? No importa.
+      </p>
+      <a href="/contacto" class="inline-flex items-center gap-2 px-6 py-3 border border-slate-200 rounded-md text-sm font-medium hover:border-primary hover:text-primary transition-colors group">
+        Cuéntenos su caso
+        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .situation-card.selected {
+    border-color: rgba(30, 41, 59, 0.3);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  .situation-card.selected .situation-bg {
+    opacity: 1;
+  }
+  .situation-card.selected .situation-icon {
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  }
+  .situation-card.selected .situation-indicator {
+    background: hsl(224 35% 11%);
+    border-color: hsl(224 35% 11%);
+  }
+  .situation-card.selected .check-icon {
+    opacity: 1;
+  }
+</style>
+
+<script is:inline>
+(function() {
+  var cards = document.querySelectorAll('.situation-card');
+  var panel = document.getElementById('detail-panel');
+  var defaultCta = document.getElementById('default-cta');
+  var detailTitle = document.getElementById('detail-title');
+  var detailDesc = document.getElementById('detail-description');
+  var detailIcon = document.getElementById('detail-icon');
+  var detailHeader = document.getElementById('detail-header');
+  var selected = null;
+  
+  var iconPaths = {
+    heart: '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>',
+    scale: '<path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>',
+    home: '<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>',
+    clock: '<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>',
+    briefcase: '<path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/>',
+    users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>'
+  };
+  
+  var situationIcons = {
+    separacion: 'heart',
+    herencia: 'scale',
+    cambio: 'home',
+    urgencia: 'clock',
+    inversion: 'briefcase',
+    jubilacion: 'users'
+  };
+  
+  cards.forEach(function(card) {
+    card.addEventListener('click', function() {
+      var id = card.dataset.situation;
+      
+      // Toggle selection
+      if (selected === id) {
+        // Deselect
+        card.classList.remove('selected');
+        panel.classList.add('hidden');
+        defaultCta.style.display = '';
+        selected = null;
+      } else {
+        // Remove previous selection
+        cards.forEach(function(c) { c.classList.remove('selected'); });
+        
+        // Select new
+        card.classList.add('selected');
+        selected = id;
+        
+        // Update panel
+        detailTitle.textContent = card.dataset.title;
+        detailDesc.textContent = card.dataset.description;
+        detailIcon.innerHTML = iconPaths[situationIcons[id]] || '';
+        
+        // Set colors
+        var iconColor = card.dataset.iconColor;
+        detailHeader.className = 'inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wider mb-4 ' + iconColor;
+        panel.className = 'rounded-xl p-8 md:p-12 border border-slate-100 mb-8 transition-all duration-300 bg-gradient-to-br ' + card.dataset.color;
+        
+        panel.classList.remove('hidden');
+        defaultCta.style.display = 'none';
+      }
+    });
+  });
+})();
+</script>

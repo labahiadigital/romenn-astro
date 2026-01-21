@@ -4,6 +4,7 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
 import purgecss from 'astro-purgecss';
+// astro-font integration removed - using local fonts via CSS instead
 
 // https://astro.build/config
 export default defineConfig({
@@ -45,6 +46,10 @@ export default defineConfig({
           /^data-/,
           /^animate-/,
           /^transition-/,
+          /^w-\[/,  // Clases de ancho arbitrario como w-[300px]
+          /^h-\[/,  // Clases de altura arbitraria
+          /^min-/,
+          /^max-/,
         ],
         greedy: [
           /astro/,  // View transitions de Astro

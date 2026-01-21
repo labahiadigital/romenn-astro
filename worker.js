@@ -13,10 +13,10 @@ function getCacheHeaders(pathname) {
     };
   }
   
-  // Imágenes y videos sin hash - caché de 1 semana
+  // Imágenes y videos - caché de 1 año
   if (pathname.match(/\.(webp|jpg|jpeg|png|gif|svg|mp4|webm)$/i)) {
     return {
-      'Cache-Control': 'public, max-age=604800, stale-while-revalidate=86400',
+      'Cache-Control': 'public, max-age=31536000, immutable',
     };
   }
   

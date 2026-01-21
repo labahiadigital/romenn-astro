@@ -1,0 +1,97 @@
+---
+// BuyerSection - Pure Astro component
+// No client-side JavaScript needed - purely presentational
+
+const buyerFeatures = [
+  {
+    icon: "search",
+    title: "Personal Shopper Inmobiliario",
+    description: "Buscamos por usted lo que no está en los portales. Acceso a propiedades Off-Market y preventa exclusiva.",
+    link: "/compradores"
+  },
+  {
+    icon: "calculator",
+    title: "Estudio Financiero Gratuito",
+    description: "Antes de buscar, sepa exactamente cuánto puede invertir. Analizamos su capacidad real sin compromiso.",
+    link: "/estudio-financiero"
+  },
+  {
+    icon: "file-check",
+    title: "Due Diligence Completa",
+    description: "Investigamos cada propiedad antes de que firme. Cargas, vicios ocultos, urbanismo... todo al descubierto.",
+    link: "/riesgos-ocultos"
+  }
+];
+
+const icons: Record<string, string> = {
+  search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+  calculator: '<rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/>',
+  "file-check": '<path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/>'
+};
+---
+
+<section id="compradores" class="py-24 md:py-32 bg-slate-900 text-white relative overflow-hidden">
+  <!-- Decorative elements -->
+  <div class="absolute top-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+  
+  <div class="max-w-7xl mx-auto px-6 relative z-10">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <span class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-sky-400 font-bold mb-6">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
+        </svg>
+        Para Compradores
+      </span>
+      <h2 class="text-4xl md:text-5xl font-serif mb-6 tracking-tight">
+        Encontramos el hogar que <span class="italic text-accent">merece</span>
+      </h2>
+      <p class="text-lg md:text-xl text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
+        No pierda el tiempo en portales. Cuéntenos qué busca y activaremos 
+        nuestra red para encontrar su hogar ideal.
+      </p>
+    </div>
+
+    <!-- Features Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12">
+      {buyerFeatures.map((feature) => (
+        <a href={feature.link} class="block h-full group">
+          <div class="h-full p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:bg-white/10 hover:border-accent/30 transition-all duration-500">
+            <div class="w-14 h-14 bg-accent/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-accent/30 transition-colors">
+              <svg class="w-7 h-7 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[feature.icon]} />
+            </div>
+            <h3 class="text-xl font-serif mb-3 group-hover:text-accent transition-colors">
+              {feature.title}
+            </h3>
+            <p class="text-white/50 font-light leading-relaxed mb-4">
+              {feature.description}
+            </p>
+            <span class="inline-flex items-center gap-2 text-sm text-sky-400 font-medium group-hover:gap-3 transition-all">
+              Saber más 
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+              </svg>
+            </span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- CTA -->
+    <div class="text-center">
+      <a href="/compradores" class="inline-flex items-center gap-2 bg-accent hover:bg-accent/90 text-white px-10 py-6 text-sm tracking-widest uppercase font-bold rounded-xl shadow-lg shadow-accent/20 transition-all group">
+        <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
+        </svg>
+        Activar Personal Shopper
+        <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+        </svg>
+      </a>
+      <p class="text-white/40 text-sm mt-4">
+        Servicio gratuito · Sin compromiso
+      </p>
+    </div>
+  </div>
+</section>
