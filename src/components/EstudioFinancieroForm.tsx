@@ -13,6 +13,9 @@ import {
 import { toast } from "sonner";
 import { ArrowRight, CheckCircle2, Home, Users } from "lucide-react";
 
+// API URL del CRM
+const CRM_API_URL = import.meta.env.PUBLIC_CRM_API_URL || "https://api.romenn.es/api/v1";
+
 const EstudioFinancieroForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isCompleted, setIsCompleted] = useState(false);
@@ -41,13 +44,42 @@ const EstudioFinancieroForm = () => {
 
     setIsSubmitting(true);
     
+    // Obtener UTM params de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    const leadData = {
+      nombre: formData.name,
+      email: formData.email,
+      telefono: formData.phone,
+      formulario: "estudio_financiero",
+      situacion_laboral: formData.situation,
+      ingresos: formData.income,
+      ahorros: formData.savings,
+      timeline: formData.timeline,
+      utm_source: urlParams.get("utm_source") || "",
+      utm_medium: urlParams.get("utm_medium") || "",
+      utm_campaign: urlParams.get("utm_campaign") || "",
+    };
+    
     try {
-      // TODO: Conectar con API del CRM
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      setIsCompleted(true);
-      toast.success("¡Solicitud enviada! Le contactaremos pronto.");
+      const response = await fetch(`${CRM_API_URL}/public/leads`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(leadData),
+      });
+      
+      if (response.ok) {
+        setIsCompleted(true);
+        toast.success("¡Solicitud enviada! Le contactaremos pronto.");
+      } else {
+        const errorData = await response.json().catch(() => ({}));
+        toast.error(errorData.detail || "Error al enviar. Por favor, inténtelo de nuevo.");
+      }
     } catch (error) {
-      toast.error("Error al enviar. Por favor, inténtelo de nuevo.");
+      console.error("Error submitting form:", error);
+      toast.error("Error de conexión. Por favor, inténtelo de nuevo más tarde.");
     } finally {
       setIsSubmitting(false);
     }

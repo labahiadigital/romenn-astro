@@ -23,6 +23,9 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
+// API URL del CRM
+const CRM_API_URL = import.meta.env.PUBLIC_CRM_API_URL || "https://api.romenn.es/api/v1";
+
 // Tipos de propiedad
 const propertyTypes = [
   { value: "piso", label: "Piso / Apartamento" },
@@ -107,12 +110,47 @@ const ValoracionForm = () => {
 
     setIsSubmitting(true);
     
+    // Obtener UTM params de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    const leadData = {
+      nombre: formData.name,
+      email: formData.email,
+      telefono: formData.phone,
+      formulario: "valoracion",
+      tipo_inmueble: formData.propertyType,
+      direccion: `${formData.address}, ${formData.city} ${formData.postalCode}`,
+      metros: parseFloat(formData.sqmBuilt) || null,
+      habitaciones: parseInt(formData.bedrooms) || null,
+      estado_inmueble: formData.propertyState,
+      motivo_venta: formData.sellReason,
+      precio_esperado: parseFloat(formData.expectedPrice) || null,
+      timeline: formData.timeline,
+      mensaje: formData.additionalInfo || null,
+      utm_source: urlParams.get("utm_source") || "",
+      utm_medium: urlParams.get("utm_medium") || "",
+      utm_campaign: urlParams.get("utm_campaign") || "",
+    };
+    
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setIsCompleted(true);
-      toast.success("¡Solicitud enviada! Le contactaremos pronto.");
+      const response = await fetch(`${CRM_API_URL}/public/leads`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(leadData),
+      });
+      
+      if (response.ok) {
+        setIsCompleted(true);
+        toast.success("¡Solicitud enviada! Le contactaremos pronto.");
+      } else {
+        const errorData = await response.json().catch(() => ({}));
+        toast.error(errorData.detail || "Error al enviar. Por favor, inténtelo de nuevo.");
+      }
     } catch (error) {
-      toast.error("Error al enviar. Por favor, inténtelo de nuevo.");
+      console.error("Error submitting form:", error);
+      toast.error("Error de conexión. Por favor, inténtelo de nuevo más tarde.");
     } finally {
       setIsSubmitting(false);
     }

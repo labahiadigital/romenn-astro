@@ -7,6 +7,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Send, Shield } from "lucide-react";
 import { toast } from "sonner";
 
+// API URL del CRM - usar variable de entorno en producción
+const CRM_API_URL = import.meta.env.PUBLIC_CRM_API_URL || "https://api.romenn.es/api/v1";
+
 const ContactForm = () => {
   const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -21,13 +24,46 @@ const ContactForm = () => {
 
     setIsSubmitting(true);
     
-    // Simular envío (conectar con backend/CRM)
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    const formData = new FormData(e.target as HTMLFormElement);
     
-    toast.success("Mensaje enviado correctamente. Le contactaremos pronto.");
-    setIsSubmitting(false);
-    (e.target as HTMLFormElement).reset();
-    setAcceptedPrivacy(false);
+    // Obtener UTM params de la URL
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    const leadData = {
+      nombre: formData.get("name") as string,
+      email: formData.get("email") as string,
+      telefono: formData.get("phone") as string,
+      asunto: formData.get("subject") as string,
+      mensaje: formData.get("message") as string,
+      formulario: "contacto",
+      utm_source: urlParams.get("utm_source") || "",
+      utm_medium: urlParams.get("utm_medium") || "",
+      utm_campaign: urlParams.get("utm_campaign") || "",
+    };
+    
+    try {
+      const response = await fetch(`${CRM_API_URL}/public/leads`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(leadData),
+      });
+      
+      if (response.ok) {
+        toast.success("Mensaje enviado correctamente. Le contactaremos pronto.");
+        (e.target as HTMLFormElement).reset();
+        setAcceptedPrivacy(false);
+      } else {
+        const errorData = await response.json().catch(() => ({}));
+        toast.error(errorData.detail || "Error al enviar el mensaje. Por favor, inténtelo de nuevo.");
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      toast.error("Error de conexión. Por favor, inténtelo de nuevo más tarde.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
