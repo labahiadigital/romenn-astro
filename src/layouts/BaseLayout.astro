@@ -93,8 +93,32 @@ const imageURL = new URL(image, Astro.site);
     
     <!-- View Transitions -->
     <meta name="view-transition" content="same-origin" />
+    
+    <!-- Google Tag Manager - Optimized: Deferred loading on user interaction or 3.5s timeout -->
+    <!-- This prevents GTM from blocking initial render and impacting Core Web Vitals -->
+    <script is:inline>
+    (function(w,d,id,delay,l){
+      let a=false;
+      function g(){
+        if(a)return;a=true;
+        const s=d.createElement("script");
+        s.async=1;
+        s.src="https://www.googletagmanager.com/gtm.js?id="+id;
+        s.onload=()=>{w[l]=w[l]||[];w[l].push({event:"gtm.js","gtm.start":Date.now(),"gtm.uniqueEventId":0});};
+        d.head.appendChild(s);
+      }
+      function o(e){g();e.currentTarget.removeEventListener(e.type,o);}
+      d.addEventListener("DOMContentLoaded",()=>setTimeout(g,delay));
+      ["scroll","pointerdown","keydown","touchstart","mousemove"].forEach(ev=>{
+        d.addEventListener(ev,o,{passive:!0});
+      });
+    })(window,document,"GTM-TJPFPVFH",3500,"dataLayer");
+    </script>
   </head>
   <body class="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <!-- Google Tag Manager (noscript) - Fallback for users without JavaScript -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJPFPVFH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    
     <HeaderStatic currentPath={currentPath} />
     
     <main>
