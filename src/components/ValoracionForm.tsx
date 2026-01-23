@@ -24,8 +24,9 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 
-// API URL del CRM
+// API URLs
 const CRM_API_URL = import.meta.env.PUBLIC_CRM_API_URL || "https://api.romenn.es/api/v1";
+const EMAIL_API_URL = "/api/send-email";
 
 // Tipos de propiedad
 const propertyTypes = [
@@ -134,26 +135,40 @@ const ValoracionForm = () => {
     };
     
     try {
-      const response = await fetch(`${CRM_API_URL}/public/leads`, {
+      // Enviar al CRM
+      const crmPromise = fetch(`${CRM_API_URL}/public/leads`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(leadData),
-      });
+      }).catch(err => console.log("CRM error:", err));
+
+      // Enviar emails via Brevo (worker)
+      const emailData = {
+        formType: "valoracion",
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        propertyType: formData.propertyType,
+        address: `${formData.address}, ${formData.city} ${formData.postalCode}`,
+        sqmBuilt: formData.sqmBuilt,
+        sellReason: formData.sellReason,
+        timeline: formData.timeline,
+        additionalInfo: formData.additionalInfo,
+      };
+
+      const emailPromise = fetch(EMAIL_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(emailData),
+      }).catch(err => console.log("Email error:", err));
+
+      await Promise.all([crmPromise, emailPromise]);
       
-      if (response.ok) {
-        setIsCompleted(true);
-        toast.success("¡Solicitud enviada! Le contactaremos pronto.");
-      } else {
-        const errorData = await response.json().catch(() => ({}));
-        toast.error(errorData.detail || "Error al enviar. Por favor, inténtelo de nuevo.");
-      }
+      setIsCompleted(true);
+      toast.success("¡Solicitud enviada! Le contactaremos pronto.");
     } catch (error) {
       console.error("Error submitting form:", error);
-      // Si falla el CRM, mostramos éxito de todas formas
-      setIsCompleted(true);
-      toast.success("¡Solicitud recibida! Le contactaremos pronto.");
+      toast.error("Error al enviar. Por favor, inténtelo de nuevo.");
     } finally {
       setIsSubmitting(false);
     }
