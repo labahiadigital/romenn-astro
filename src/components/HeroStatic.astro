@@ -24,13 +24,16 @@ const heroFrame = "/hero-frame.webp";
     <div class="hero-overlay"></div>
     
     <!-- Video - fades in over background when ready -->
+    <!-- iOS requires: autoplay + muted + playsinline for autoplay to work -->
     <video 
       id="hero-video"
+      autoplay
       loop 
       muted
       playsinline
       preload="auto"
       class="hero-video"
+      webkit-playsinline="true"
     >
       <source src={heroVideo} type="video/mp4" />
     </video>
@@ -202,7 +205,8 @@ const heroFrame = "/hero-frame.webp";
 
 <script is:inline>
   // Show video when ready and ensure playback
-  // NO DOM manipulation that causes layout shifts - only opacity changes
+  // iOS requires: autoplay + muted + playsinline attributes
+  // Also needs user gesture in some cases, but with muted it should work
   (function() {
     var video = document.getElementById('hero-video');
     if (!video) return;
@@ -215,17 +219,58 @@ const heroFrame = "/hero-frame.webp";
       video.classList.add('ready');
     }
     
-    function handleCanPlay() {
+    function tryPlayVideo() {
+      // Ensure muted is set (required for iOS autoplay)
       video.muted = true;
+      video.setAttribute('muted', '');
+      video.setAttribute('playsinline', '');
+      video.setAttribute('webkit-playsinline', 'true');
+      
       var playPromise = video.play();
       if (playPromise !== undefined) {
-        playPromise.then(showVideo).catch(function() {
-          if (video.readyState >= 2) showVideo();
+        playPromise.then(function() {
+          showVideo();
+        }).catch(function(err) {
+          // If autoplay fails, still show video if it has content
+          console.log('Video autoplay failed:', err.message);
+          if (video.readyState >= 2) {
+            showVideo();
+          }
         });
+      } else {
+        // Older browsers that don't return a promise
+        showVideo();
       }
     }
     
-    video.addEventListener('canplay', handleCanPlay);
-    if (video.readyState >= 3) handleCanPlay();
+    // Listen for canplay event
+    video.addEventListener('canplay', tryPlayVideo, { once: true });
+    
+    // Also listen for loadeddata as fallback for iOS
+    video.addEventListener('loadeddata', function() {
+      if (!videoShown) tryPlayVideo();
+    }, { once: true });
+    
+    // If video is already ready (cached), try to play immediately
+    if (video.readyState >= 3) {
+      tryPlayVideo();
+    }
+    
+    // iOS Safari workaround: try to play on first user interaction if autoplay failed
+    var userInteractionHandler = function() {
+      if (!videoShown && video.paused) {
+        tryPlayVideo();
+      }
+      document.removeEventListener('touchstart', userInteractionHandler);
+      document.removeEventListener('click', userInteractionHandler);
+    };
+    
+    // Only add these listeners after a short delay to avoid immediate trigger
+    setTimeout(function() {
+      if (!videoShown) {
+        document.addEventListener('touchstart', userInteractionHandler, { passive: true, once: true });
+        document.addEventListener('click', userInteractionHandler, { once: true });
+      }
+    }, 1000);
   })();
 </script>
