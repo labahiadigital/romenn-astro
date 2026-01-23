@@ -150,7 +150,7 @@ const Header = ({ currentPath = "/" }: HeaderProps) => {
                       Ciencia de datos aplicada a la venta.
                     </ListItem>
                     <ListItem href="/extranjeria" title="Extranjería">
-                      Golden Visa, NIE y permisos de residencia.
+                      NIE, TIE y permisos de residencia.
                     </ListItem>
                   </ul>
                 </NavigationMenuContent>
