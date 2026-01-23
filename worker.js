@@ -38,7 +38,8 @@ function getBusinessEmailTemplate(data) {
     contacto: "Formulario de Contacto",
     estudio_financiero: "Estudio Financiero",
     valoracion: "Solicitud de Valoración",
-    resenas: "Feedback de Cliente"
+    resenas: "Feedback de Cliente",
+    "trabaja-con-nosotros": "Candidatura - Trabaja con nosotros"
   };
 
   const formLabel = formTypeLabels[data.formType] || "Formulario Web";
@@ -52,6 +53,14 @@ function getBusinessEmailTemplate(data) {
       <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>Teléfono:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${data.phone || "-"}</td></tr>
       <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>Asunto:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${data.subject || "-"}</td></tr>
       <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>Mensaje:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${data.message || "-"}</td></tr>
+    `;
+  } else if (data.formType === "trabaja-con-nosotros") {
+    detailsHtml = `
+      <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>Nombre:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${data.name || "-"}</td></tr>
+      <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>Email:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${data.email || "-"}</td></tr>
+      <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>Teléfono:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${data.phone || "-"}</td></tr>
+      <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>Mensaje / Carta de presentación:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${data.message || "-"}</td></tr>
+      <tr><td style="padding: 10px; border-bottom: 1px solid #eee;"><strong>CV adjunto:</strong></td><td style="padding: 10px; border-bottom: 1px solid #eee;">${data.attachment ? data.attachment.name : "No adjuntado"}</td></tr>
     `;
   } else if (data.formType === "estudio_financiero") {
     detailsHtml = `
@@ -139,6 +148,10 @@ function getClientConfirmationTemplate(data) {
     resenas: {
       title: "Gracias por tu feedback",
       message: "Agradecemos que hayas compartido tu experiencia con nosotros. Tu opinión nos ayuda a mejorar nuestros servicios."
+    },
+    "trabaja-con-nosotros": {
+      title: "Hemos recibido tu candidatura",
+      message: "Gracias por tu interés en formar parte del equipo Römenn. Hemos recibido tu solicitud y CV, y nuestro equipo lo revisará con atención. Si tu perfil encaja con lo que buscamos, nos pondremos en contacto contigo."
     }
   };
 
@@ -194,7 +207,7 @@ function getClientConfirmationTemplate(data) {
 }
 
 // Función para enviar email mediante Brevo API REST
-async function sendEmailWithBrevo(apiKey, to, subject, htmlContent, replyTo = null) {
+async function sendEmailWithBrevo(apiKey, to, subject, htmlContent, replyTo = null, attachment = null) {
   const payload = {
     sender: EMAIL_CONFIG.sender,
     to: [{ email: to }],
@@ -206,9 +219,18 @@ async function sendEmailWithBrevo(apiKey, to, subject, htmlContent, replyTo = nu
     payload.replyTo = { email: replyTo };
   }
 
+  // Si hay archivo adjunto, añadirlo al payload
+  if (attachment && attachment.content && attachment.name) {
+    payload.attachment = [{
+      content: attachment.content,
+      name: attachment.name
+    }];
+  }
+
   console.log("Sending email to Brevo API...");
   console.log("To:", to);
   console.log("Subject:", subject);
+  console.log("Has attachment:", !!attachment);
 
   const response = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
@@ -272,12 +294,13 @@ async function handleSendEmail(request, env) {
       contacto: "Nuevo mensaje de contacto",
       estudio_financiero: "Nueva solicitud de estudio financiero",
       valoracion: "Nueva solicitud de valoración",
-      resenas: "Nuevo feedback de cliente"
+      resenas: "Nuevo feedback de cliente",
+      "trabaja-con-nosotros": "Nueva candidatura - Trabaja con nosotros"
     };
 
     const subject = formTypeSubjects[data.formType] || "Nuevo mensaje desde la web";
 
-    // 1. Enviar email al negocio
+    // 1. Enviar email al negocio (con adjunto si existe)
     console.log("Sending business email...");
     const businessEmailHtml = getBusinessEmailTemplate(data);
     const businessResult = await sendEmailWithBrevo(
@@ -285,7 +308,8 @@ async function handleSendEmail(request, env) {
       EMAIL_CONFIG.businessEmail,
       `[Römenn Web] ${subject}`,
       businessEmailHtml,
-      data.email
+      data.email,
+      data.attachment || null
     );
     console.log("Business email sent:", businessResult);
 
@@ -296,7 +320,8 @@ async function handleSendEmail(request, env) {
       contacto: "Hemos recibido tu mensaje - Römenn Inmobiliaria",
       estudio_financiero: "Tu solicitud de estudio financiero - Römenn Inmobiliaria",
       valoracion: "Tu solicitud de valoración - Römenn Inmobiliaria",
-      resenas: "Gracias por tu feedback - Römenn Inmobiliaria"
+      resenas: "Gracias por tu feedback - Römenn Inmobiliaria",
+      "trabaja-con-nosotros": "Hemos recibido tu candidatura - Römenn Inmobiliaria"
     };
     
     const clientResult = await sendEmailWithBrevo(

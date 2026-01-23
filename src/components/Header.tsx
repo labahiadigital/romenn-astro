@@ -202,6 +202,9 @@ const Header = ({ currentPath = "/" }: HeaderProps) => {
                     <ListItem href="/blog" title="Journal">
                       Tendencias y noticias del sector.
                     </ListItem>
+                    <ListItem href="/trabaja-con-nosotros" title="Trabaja con nosotros">
+                      Únete al equipo Römenn.
+                    </ListItem>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -302,6 +305,7 @@ const Header = ({ currentPath = "/" }: HeaderProps) => {
                                 <SheetClose asChild><a href="/resenas" className="text-sm font-serif text-muted-foreground hover:text-primary transition-colors py-3 block min-h-[48px]">Experiencias</a></SheetClose>
                                 <SheetClose asChild><a href="/casos-reales" className="text-sm font-serif text-muted-foreground hover:text-primary transition-colors py-3 block min-h-[48px]">Historias Reales</a></SheetClose>
                                 <SheetClose asChild><a href="/blog" className="text-sm font-serif text-muted-foreground hover:text-primary transition-colors py-3 block min-h-[48px]">Journal</a></SheetClose>
+                                <SheetClose asChild><a href="/trabaja-con-nosotros" className="text-sm font-serif text-muted-foreground hover:text-primary transition-colors py-3 block min-h-[48px]">Trabaja con nosotros</a></SheetClose>
                             </div>
                         </AccordionContent>
                     </AccordionItem>
