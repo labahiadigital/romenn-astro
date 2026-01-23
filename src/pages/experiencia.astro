@@ -299,7 +299,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
             Lo que dicen nuestros clientes
           </span>
           <h2 class="text-3xl md:text-4xl font-serif mb-4">
-            Reseñas verificadas
+            Reseñas verificadas de Google
           </h2>
           <div class="flex items-center justify-center gap-2 text-sm text-muted-foreground">
             <div class="flex">
@@ -314,18 +314,18 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- Review 1 -->
+          <!-- Review 1 - José María Martínez Romero -->
           <div class="bg-white rounded-xl p-8 shadow-sm">
             <div class="flex items-start gap-4 mb-6">
               <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                <span class="text-primary font-serif text-lg">M</span>
+                <span class="text-primary font-serif text-lg">J</span>
               </div>
               <div>
                 <div class="flex items-center gap-2">
-                  <h4 class="font-medium">María García</h4>
+                  <h4 class="font-medium">José María Martínez Romero</h4>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 </div>
-                <p class="text-sm text-muted-foreground">Rivas Futura</p>
+                <p class="text-sm text-muted-foreground">Local Guide · 52 reseñas</p>
               </div>
             </div>
             
@@ -340,25 +340,25 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
             <div class="relative">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-100 absolute -top-2 -left-2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
               <p class="text-foreground/80 font-light leading-relaxed relative z-10 pl-4">
-                Vendí mi piso en un momento muy difícil de mi vida. El equipo de Römenn me acompañó en todo el proceso con una sensibilidad que no esperaba de una inmobiliaria. Profesionales de verdad.
+                Todo perfecto. Rubén me ayudó a vender mi piso, y estoy encantado con su trabajo, su honestidad y su saber hacer. 100% recomendable.
               </p>
             </div>
             
-            <p class="text-xs text-muted-foreground mt-6">Noviembre 2024</p>
+            <p class="text-xs text-muted-foreground mt-6">Hace 5 meses</p>
           </div>
 
-          <!-- Review 2 -->
+          <!-- Review 2 - Alfonso Iglesias -->
           <div class="bg-white rounded-xl p-8 shadow-sm">
             <div class="flex items-start gap-4 mb-6">
               <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                <span class="text-primary font-serif text-lg">C</span>
+                <span class="text-primary font-serif text-lg">A</span>
               </div>
               <div>
                 <div class="flex items-center gap-2">
-                  <h4 class="font-medium">Carlos y Ana</h4>
+                  <h4 class="font-medium">Alfonso Iglesias</h4>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 </div>
-                <p class="text-sm text-muted-foreground">Covibar</p>
+                <p class="text-sm text-muted-foreground">Local Guide · 13 reseñas</p>
               </div>
             </div>
             
@@ -373,14 +373,47 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
             <div class="relative">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-100 absolute -top-2 -left-2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
               <p class="text-foreground/80 font-light leading-relaxed relative z-10 pl-4">
-                Nos ayudaron a vender el piso de mis padres tras su fallecimiento. Gestionaron todo: vaciado, reforma menor, venta... Nosotros solo firmamos. Impecables.
+                Excelente experiencia vendiendo mi casa. Quiero agradecer especialmente a Eva por su profesionalismo, cercanía y dedicación durante todo el proceso. Desde el primer momento nos asesoró con claridad.
               </p>
             </div>
             
-            <p class="text-xs text-muted-foreground mt-6">Octubre 2024</p>
+            <p class="text-xs text-muted-foreground mt-6">Hace 6 meses</p>
           </div>
 
-          <!-- Review 3 -->
+          <!-- Review 3 - David Ruiz -->
+          <div class="bg-white rounded-xl p-8 shadow-sm">
+            <div class="flex items-start gap-4 mb-6">
+              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                <span class="text-primary font-serif text-lg">D</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-2">
+                  <h4 class="font-medium">David Ruiz</h4>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                </div>
+                <p class="text-sm text-muted-foreground">2 reseñas</p>
+              </div>
+            </div>
+            
+            <div class="flex gap-1 mb-4">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            </div>
+            
+            <div class="relative">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-100 absolute -top-2 -left-2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
+              <p class="text-foreground/80 font-light leading-relaxed relative z-10 pl-4">
+                Todo genial con ellos. Desde el primer momento solucionaron mis dudas y me plantearon las opciones más realistas y adaptadas a nuestro perfil y presupuesto. Mención especial para José Rubén y en general para todo el equipo. Gracias.
+              </p>
+            </div>
+            
+            <p class="text-xs text-muted-foreground mt-6">Hace 4 meses</p>
+          </div>
+
+          <!-- Review 4 - Rosa María -->
           <div class="bg-white rounded-xl p-8 shadow-sm">
             <div class="flex items-start gap-4 mb-6">
               <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
@@ -388,10 +421,10 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
               </div>
               <div>
                 <div class="flex items-center gap-2">
-                  <h4 class="font-medium">Roberto Martínez</h4>
+                  <h4 class="font-medium">Rosa María</h4>
                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
                 </div>
-                <p class="text-sm text-muted-foreground">Centro Rivas</p>
+                <p class="text-sm text-muted-foreground">8 reseñas</p>
               </div>
             </div>
             
@@ -406,44 +439,11 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
             <div class="relative">
               <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-100 absolute -top-2 -left-2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
               <p class="text-foreground/80 font-light leading-relaxed relative z-10 pl-4">
-                Después de 6 meses con otra inmobiliaria sin resultados, contacté con Römenn. En 40 días vendido y por encima del precio que me habían prometido los otros. La diferencia está en la metodología.
+                He vendido mi piso y he quedado muy contenta. David ha sido el encargado de todos los trámites con mucha profesionalidad. Lo hizo en muy poquito tiempo y siempre ha estado dispuesto a solventar mis dudas fuese la hora que fuese. Gracias.
               </p>
             </div>
             
-            <p class="text-xs text-muted-foreground mt-6">Septiembre 2024</p>
-          </div>
-
-          <!-- Review 4 -->
-          <div class="bg-white rounded-xl p-8 shadow-sm">
-            <div class="flex items-start gap-4 mb-6">
-              <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
-                <span class="text-primary font-serif text-lg">E</span>
-              </div>
-              <div>
-                <div class="flex items-center gap-2">
-                  <h4 class="font-medium">Elena Ruiz</h4>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                </div>
-                <p class="text-sm text-muted-foreground">La Luna</p>
-              </div>
-            </div>
-            
-            <div class="flex gap-1 mb-4">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </div>
-            
-            <div class="relative">
-              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-slate-100 absolute -top-2 -left-2"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V21c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
-              <p class="text-foreground/80 font-light leading-relaxed relative z-10 pl-4">
-                El estudio financiero gratuito me ayudó a entender exactamente cuánto podía invertir. Encontraron mi casa en 3 semanas. Servicio excepcional.
-              </p>
-            </div>
-            
-            <p class="text-xs text-muted-foreground mt-6">Agosto 2024</p>
+            <p class="text-xs text-muted-foreground mt-6">Hace 3 meses</p>
           </div>
         </div>
 

@@ -1,21 +1,221 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import SmartReviews from "@/components/SmartReviews";
+
+// Reseñas reales de Google (5 estrellas)
+const reviews = [
+  {
+    name: "José María Martínez Romero",
+    initial: "J",
+    badge: "Local Guide · 52 reseñas",
+    text: "Todo perfecto. Rubén me ayudó a vender mi piso, y estoy encantado con su trabajo, su honestidad y su saber hacer. 100% recomendable.",
+    date: "Hace 5 meses"
+  },
+  {
+    name: "Alfonso Iglesias",
+    initial: "A",
+    badge: "Local Guide · 13 reseñas",
+    text: "Excelente experiencia vendiendo mi casa. Quiero agradecer especialmente a Eva por su profesionalismo, cercanía y dedicación durante todo el proceso. Desde el primer momento nos asesoró con claridad.",
+    date: "Hace 6 meses"
+  },
+  {
+    name: "David Ruiz",
+    initial: "D",
+    badge: "2 reseñas",
+    text: "Todo genial con ellos. Desde el primer momento solucionaron mis dudas y me plantearon las opciones más realistas y adaptadas a nuestro perfil y presupuesto. Mención especial para José Rubén y en general para todo el equipo. Gracias.",
+    date: "Hace 4 meses"
+  },
+  {
+    name: "Rosa María",
+    initial: "R",
+    badge: "8 reseñas",
+    text: "He vendido mi piso y he quedado muy contenta. David ha sido el encargado de todos los trámites con mucha profesionalidad. Lo hizo en muy poquito tiempo y siempre ha estado dispuesto a solventar mis dudas fuese la hora que fuese.",
+    date: "Hace 3 meses"
+  },
+  {
+    name: "Javier Garcia Munilla",
+    initial: "J",
+    badge: "3 reseñas",
+    text: "Solo decir que Eva, que nos atendió de una manera muy profesional. Atenta, agradable y muy resolutiva. Nos ha ido diciendo continuamente lo que teníamos que hacer. Muy buena.",
+    date: "Hace 3 meses"
+  },
+  {
+    name: "Gregorio Peinado",
+    initial: "G",
+    badge: "1 reseña",
+    text: "Decididos a vender nuestra propiedad contactamos con ellos por cercanía a la misma. Nos atendió David Peña que fue informándonos en visitas sucesivas del proceso, tasación y documentación necesaria. Quedamos muy satisfechos con el resultado.",
+    date: "Hace 2 meses"
+  },
+  {
+    name: "Ruben Castro",
+    initial: "R",
+    badge: "Local Guide · 16 reseñas",
+    text: "Se escuchan muchas cosas de varias inmobiliarias y la verdad que uno se queda con la duda. Fuimos a esta en concreto por recomendación y todo lo contrario. Nos encontramos con un comercial (David) muy bien preparado que nos transmitió confianza.",
+    date: "Hace 4 meses"
+  },
+  {
+    name: "DIANELY FATTAL",
+    initial: "D",
+    badge: "10 reseñas",
+    text: "La venta de la casa la ha gestionado Eva en todo momento, siempre dispuesta a ayudar, estuvo disponible en todo momento, nos explicó todo el proceso claramente, muy amable. De verdad todo genial.. además vendió la casa en tiempo récord. 9 días. GRACIAS EVA.",
+    date: "Hace un año"
+  },
+  {
+    name: "Eduardo Martínez",
+    initial: "E",
+    badge: "8 reseñas",
+    text: "Da gusto poder confiar en personas tan profesionales como el equipo. Les he confiado la venta de mi piso y han sabido gestionarla a la perfección, han estado al pie del cañón en todo momento hasta en horas muy fuera de su horario.",
+    date: "Hace un año"
+  },
+  {
+    name: "Lissette Ochoa",
+    initial: "L",
+    badge: "13 reseñas",
+    text: "Venta ultra rápida. En eso no hay quien les gane. Aunque fue Eva la que me llevó en el proceso trabajan en equipo y van arrasando. Gracias también a Rubén y resto de chicos. Si quieren vender rápido esta es la solución seguro. Menos de un mes.",
+    date: "Hace un año"
+  },
+  {
+    name: "Juan Damas Montes",
+    initial: "J",
+    badge: "6 reseñas",
+    text: "Perfecto, rápido y sin problemas! Un placer.",
+    date: "Hace 2 meses"
+  },
+  {
+    name: "Julián González Díaz",
+    initial: "J",
+    badge: "Local Guide · 54 reseñas",
+    text: "He vendido mi piso, gracias Eva. Muy profesional, siempre disponible para facilitar la transacción. Con conocimiento y preparación sobre todo, tanto tributos como trámites. Aconsejando y facilitando todo el proceso.",
+    date: "Hace un año"
+  },
+  {
+    name: "Fernando Gramaje López",
+    initial: "F",
+    badge: "Local Guide · 17 reseñas",
+    text: "En mi caso, yo he vendido mi casa y he comprado una nueva. A mi me ha llevado el proceso Eva y a parte de venderme la casa en menos de un mes, ha estado disponible para todo tipo de consultas tanto en el teléfono como por WhatsApp.",
+    date: "Hace 2 años"
+  },
+  {
+    name: "Sara Martín",
+    initial: "S",
+    badge: "13 reseñas",
+    text: "Tengo casa gracias a Eva. Y justo cómo y dónde yo la quería! Cuando otras inmobiliarias daban mi búsqueda por pérdida (presupuesto bajo en una zona más cara), ella apostó por mi. Y nos consiguió la casa que mis hijos y yo necesitábamos!",
+    date: "Hace un año"
+  },
+  {
+    name: "Victor De Mingo",
+    initial: "V",
+    badge: "Local Guide · 13 reseñas",
+    text: "Completamente profesionales. Te acompañan de principio a fin, y Rubén y Eva grandes personas que me consiguieron el piso que quería al mejor precio y respetando los tiempos que necesitábamos!",
+    date: "Hace un año"
+  },
+  {
+    name: "Esther P",
+    initial: "E",
+    badge: "Local Guide · 363 reseñas",
+    text: "Muy profesionales Rubén y su equipo. Compramos un piso y todo fue perfecto desde el principio hasta el final. Rubén siempre pendiente de todo y lo más destacado su calidad humana. Muy recomendable.",
+    date: "Hace un año"
+  }
+];
 ---
 
-<BaseLayout title="Experiencia Cliente">
-  <main class="flex-grow py-20 px-6 flex items-center justify-center bg-muted/30">
-    <div class="w-full max-w-4xl">
-      <div class="text-center mb-12">
-        <span class="text-xs font-bold uppercase tracking-widest text-accent mb-4 block">Excelencia</span>
-        <h1 class="text-4xl md:text-5xl font-serif mb-6">Experiencia Cliente</h1>
-        <p class="text-xl text-muted-foreground font-sans font-light max-w-2xl mx-auto">
-          La transparencia es nuestro mayor activo. <br/>
-          Escuchamos para seguir liderando.
+<BaseLayout title="Reseñas de Clientes">
+  <main class="flex-grow">
+    <!-- Hero -->
+    <section class="pt-32 pb-16 bg-gradient-to-b from-slate-50 to-white">
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <span class="text-xs uppercase tracking-[0.25em] text-accent font-bold mb-4 block">
+          La voz de nuestros clientes
+        </span>
+        <h1 class="text-4xl md:text-6xl font-serif mb-6">Reseñas Verificadas</h1>
+        <p class="text-xl text-muted-foreground font-light max-w-2xl mx-auto mb-8">
+          Más de 60 familias han confiado en nosotros. Estas son sus experiencias reales.
         </p>
+        
+        <div class="flex items-center justify-center gap-4">
+          <div class="flex">
+            {[1,2,3,4,5].map(() => (
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            ))}
+          </div>
+          <span class="text-lg font-medium">4.9 en Google</span>
+          <span class="text-muted-foreground">|</span>
+          <span class="text-muted-foreground">+60 reseñas</span>
+        </div>
       </div>
+    </section>
 
-      <SmartReviews client:visible />
-    </div>
+    <!-- Reviews Grid -->
+    <section class="py-16 md:py-24 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {reviews.map((review) => (
+            <div class="bg-white rounded-xl p-6 shadow-sm border border-slate-100 hover:shadow-lg transition-shadow">
+              <div class="flex items-start gap-4 mb-4">
+                <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0">
+                  <span class="text-primary font-serif text-lg">{review.initial}</span>
+                </div>
+                <div>
+                  <div class="flex items-center gap-2">
+                    <h4 class="font-medium text-sm">{review.name}</h4>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-green-500"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                  </div>
+                  <p class="text-xs text-muted-foreground">{review.badge}</p>
+                </div>
+              </div>
+              
+              <div class="flex gap-0.5 mb-3">
+                {[1,2,3,4,5].map(() => (
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+                ))}
+              </div>
+              
+              <p class="text-foreground/80 font-light text-sm leading-relaxed mb-4">
+                "{review.text}"
+              </p>
+              
+              <p class="text-xs text-muted-foreground">{review.date}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Dejar tu reseña -->
+    <section class="py-16 md:py-24 px-6 bg-slate-50">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="text-xs uppercase tracking-[0.25em] text-accent font-bold mb-4 block">
+            Tu opinión importa
+          </span>
+          <h2 class="text-3xl md:text-4xl font-serif mb-4">¿Has trabajado con nosotros?</h2>
+          <p class="text-muted-foreground font-light max-w-xl mx-auto">
+            Tu experiencia nos ayuda a mejorar y a que otras personas puedan confiar en nosotros.
+          </p>
+        </div>
+
+        <SmartReviews client:visible />
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 md:py-24 px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="text-3xl md:text-4xl font-serif mb-6">
+          ¿Listo para tu propia experiencia?
+        </h2>
+        <p class="text-lg text-muted-foreground font-light mb-10 max-w-xl mx-auto">
+          Únete a las familias que han confiado en nosotros para vender o comprar su hogar.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/valoracion" class="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-md text-base inline-block">
+            Solicitar valoración gratuita
+          </a>
+          <a href="/contacto" class="border border-slate-200 px-8 py-4 rounded-md text-base inline-block hover:border-primary transition-colors">
+            Contactar
+          </a>
+        </div>
+      </div>
+    </section>
   </main>
 </BaseLayout>

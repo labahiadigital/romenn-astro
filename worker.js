@@ -113,8 +113,8 @@ function getBusinessEmailTemplate(data) {
   <div style="background: #f8f9fa; padding: 20px; text-align: center; border-radius: 0 0 10px 10px; border: 1px solid #eee; border-top: none;">
     <p style="color: #666; font-size: 12px; margin: 0;">
       © ${new Date().getFullYear()} Römenn Inmobiliaria<br>
-      Plaza León Felipe 6, posterior, local 2<br>
-      28522 Rivas-Vaciamadrid, Madrid
+      Pl. León Felipe, 7, local 3<br>
+      28523 Rivas-Vaciamadrid, Madrid
     </p>
   </div>
 </body>
@@ -182,8 +182,8 @@ function getClientConfirmationTemplate(data) {
     </p>
     <p style="color: #666; font-size: 12px; margin: 0;">
       © ${new Date().getFullYear()} Römenn Inmobiliaria<br>
-      Plaza León Felipe 6, posterior, local 2<br>
-      28522 Rivas-Vaciamadrid, Madrid
+      Pl. León Felipe, 7, local 3<br>
+      28523 Rivas-Vaciamadrid, Madrid
     </p>
     <p style="color: #999; font-size: 10px; margin: 15px 0 0 0;">
       Este email ha sido enviado automáticamente. Por favor, no respondas a este correo.
