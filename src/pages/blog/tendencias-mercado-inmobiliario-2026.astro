@@ -1,0 +1,122 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const article = {
+  title: "Tendencias del Mercado Inmobiliario en 2026",
+  category: "Tendencias",
+  image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200&h=600&fit=crop",
+  date: "15 Enero 2026",
+  readTime: "5 min lectura",
+  author: "Equipo Römenn"
+};
+---
+
+<BaseLayout title={article.title}>
+  <main class="flex-grow">
+    <!-- Hero -->
+    <section class="pt-32 pb-8 px-6">
+      <div class="max-w-4xl mx-auto">
+        <a href="/blog" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          Volver al Journal
+        </a>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-xs font-sans text-accent font-bold uppercase tracking-widest">{article.category}</span>
+          <span class="text-xs text-muted-foreground">•</span>
+          <span class="text-xs text-muted-foreground">{article.readTime}</span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-serif mb-6">{article.title}</h1>
+        <div class="flex items-center gap-4 text-sm text-muted-foreground">
+          <span>Por {article.author}</span>
+          <span>•</span>
+          <span>{article.date}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Image -->
+    <section class="pb-12 px-6">
+      <div class="max-w-4xl mx-auto">
+        <img 
+          src={article.image} 
+          alt={article.title}
+          class="w-full h-auto rounded-2xl shadow-lg"
+        />
+      </div>
+    </section>
+
+    <!-- Content -->
+    <article class="py-12 px-6">
+      <div class="max-w-3xl mx-auto prose prose-lg prose-slate">
+        <p class="lead text-xl text-muted-foreground font-light">
+          El mercado inmobiliario español continúa su evolución en 2026, con tendencias que están transformando 
+          la forma en que compramos, vendemos e invertimos en propiedades. En este artículo, analizamos los 
+          principales factores que están definiendo el sector este año.
+        </p>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">1. Sostenibilidad como Factor Decisivo</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          La eficiencia energética ya no es un lujo, sino una necesidad. Los compradores cada vez valoran más 
+          las viviendas con certificaciones energéticas A o B, paneles solares, sistemas de climatización 
+          eficientes y materiales sostenibles. Las propiedades con baja calificación energética están viendo 
+          una depreciación significativa en su valor de mercado.
+        </p>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">2. Digitalización del Proceso de Compra</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Los tours virtuales, las firmas digitales y la documentación en la nube se han convertido en estándar. 
+          Los compradores esperan poder realizar gran parte del proceso de forma remota, reservando las visitas 
+          presenciales para las propiedades que realmente les interesan.
+        </p>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">3. Nuevas Formas de Financiación</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Las hipotecas verdes con condiciones ventajosas para viviendas sostenibles, el crowdfunding inmobiliario 
+          y los modelos de compra compartida están ganando terreno. Los bancos ofrecen mejores condiciones a 
+          aquellos que adquieren propiedades eficientes energéticamente.
+        </p>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">4. Demanda de Espacios Flexibles</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          El teletrabajo ha consolidado la demanda de viviendas con espacios de trabajo en casa. Las propiedades 
+          con habitaciones polivalentes, buena iluminación natural y conectividad de alta velocidad son las más 
+          buscadas por los compradores jóvenes y profesionales.
+        </p>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">5. Rivas-Vaciamadrid: Un Mercado en Crecimiento</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Nuestra zona de especialización continúa siendo uno de los mercados más dinámicos de la Comunidad de Madrid. 
+          Con excelentes conexiones de transporte, servicios de calidad y una oferta residencial diversa, Rivas 
+          atrae cada vez más a familias que buscan calidad de vida a precios más accesibles que en la capital.
+        </p>
+
+        <div class="bg-slate-50 p-8 rounded-xl mt-12">
+          <h3 class="text-xl font-serif mb-4">¿Está pensando en comprar o vender?</h3>
+          <p class="text-muted-foreground mb-6">
+            En Römenn le ayudamos a navegar estas tendencias y tomar las mejores decisiones para su situación particular.
+          </p>
+          <a href="/contacto" class="btn-premium inline-flex items-center gap-2">
+            Contactar con un experto
+          </a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Related Articles -->
+    <section class="py-16 px-6 bg-slate-50">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl font-serif mb-8 text-center">Artículos Relacionados</h2>
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <a href="/blog/guia-compra-primera-vivienda" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-xs text-accent font-bold uppercase tracking-widest">Guías</span>
+            <h3 class="text-lg font-serif mt-2 hover:text-primary transition-colors">Guía Completa para la Compra de tu Primera Vivienda</h3>
+          </a>
+          <a href="/blog/rivas-vaciamadrid-mejor-zona-para-vivir" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-xs text-accent font-bold uppercase tracking-widest">Local</span>
+            <h3 class="text-lg font-serif mt-2 hover:text-primary transition-colors">¿Por qué Rivas-Vaciamadrid es una de las Mejores Zonas para Vivir?</h3>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

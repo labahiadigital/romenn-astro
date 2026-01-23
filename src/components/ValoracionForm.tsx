@@ -19,12 +19,14 @@ import {
   ArrowRight,
   ArrowLeft,
   Sparkles,
-  Phone
+  Phone,
+  Shield
 } from "lucide-react";
 import { toast } from "sonner";
 
-// API URL del CRM
+// API URLs
 const CRM_API_URL = import.meta.env.PUBLIC_CRM_API_URL || "https://api.romenn.es/api/v1";
+const EMAIL_API_URL = "/api/send-email";
 
 // Tipos de propiedad
 const propertyTypes = [
@@ -133,21 +135,37 @@ const ValoracionForm = () => {
     };
     
     try {
-      const response = await fetch(`${CRM_API_URL}/public/leads`, {
+      // Send to CRM
+      const crmPromise = fetch(`${CRM_API_URL}/public/leads`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(leadData),
-      });
+      }).catch(err => console.log("CRM error:", err));
+
+      // Send emails via Brevo
+      const emailData = {
+        formType: "valoracion",
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        propertyType: formData.propertyType,
+        address: `${formData.address}, ${formData.city} ${formData.postalCode}`,
+        sqmBuilt: formData.sqmBuilt,
+        sellReason: formData.sellReason,
+        timeline: formData.timeline,
+        additionalInfo: formData.additionalInfo,
+      };
+
+      const emailPromise = fetch(EMAIL_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(emailData),
+      }).catch(err => console.log("Email error:", err));
+
+      await Promise.all([crmPromise, emailPromise]);
       
-      if (response.ok) {
-        setIsCompleted(true);
-        toast.success("¡Solicitud enviada! Le contactaremos pronto.");
-      } else {
-        const errorData = await response.json().catch(() => ({}));
-        toast.error(errorData.detail || "Error al enviar. Por favor, inténtelo de nuevo.");
-      }
+      setIsCompleted(true);
+      toast.success("¡Solicitud enviada! Le contactaremos pronto.");
     } catch (error) {
       console.error("Error submitting form:", error);
       toast.error("Error de conexión. Por favor, inténtelo de nuevo más tarde.");
@@ -471,7 +489,7 @@ const ValoracionForm = () => {
                           type="tel"
                           value={formData.phone}
                           onChange={(e) => updateFormData("phone", e.target.value)}
-                          placeholder="600 000 000" 
+                          placeholder="747 488 562" 
                           className="mt-2" 
                         />
                       </div>
@@ -513,6 +531,20 @@ const ValoracionForm = () => {
                         He leído y acepto la <a href="/privacidad" className="text-primary underline">política de privacidad</a>. 
                         Consiento el tratamiento de mis datos para recibir la valoración y contacto comercial relacionado.
                       </Label>
+                    </div>
+
+                    {/* Legal Info */}
+                    <div className="mt-4 pt-4 border-t border-slate-100">
+                      <div className="flex items-start gap-3 text-xs text-muted-foreground">
+                        <Shield className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                        <div className="space-y-1">
+                          <p><strong>Responsable:</strong> CONSULTING INMOBILIARIO RIVAS VACIAMADRID SLU</p>
+                          <p><strong>Finalidad:</strong> Gestionar su solicitud de valoración y enviarle información comercial.</p>
+                          <p><strong>Legitimación:</strong> Consentimiento del interesado.</p>
+                          <p><strong>Destinatarios:</strong> No se cederán datos a terceros, salvo obligación legal.</p>
+                          <p><strong>Derechos:</strong> Acceso, rectificación, supresión, oposición y portabilidad.</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

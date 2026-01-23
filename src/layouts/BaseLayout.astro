@@ -1,5 +1,6 @@
 ---
 import "@/styles/globals.css";
+import { Font } from "astro:assets";
 import HeaderStatic from "@/components/HeaderStatic.astro";
 import Footer from "@/components/Footer.astro";
 import WhatsAppButton from "@/components/WhatsAppButton.astro";
@@ -34,20 +35,9 @@ const imageURL = new URL(image, Astro.site);
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     
-    <!-- 
-      Preload critical above-the-fold fonts to eliminate chain latency
-      Hero: Manrope 300 (subtitle), Playfair 400 normal + italic (h1)
-      Header: Manrope 500 (nav links), 700 (font-bold)
-      Dropdown: Playfair 500 (titles), 700 (fallback)
-    -->
-    <link rel="preload" href="/fonts/manrope-latin-300-normal.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/manrope-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/manrope-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/manrope-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/playfair-display-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/playfair-display-latin-400-italic.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/playfair-display-latin-500-normal.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/playfair-display-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- Fuentes optimizadas con Astro experimental fonts API (preload automático + fallbacks calculados) -->
+    <Font cssVariable="--font-manrope" preload />
+    <Font cssVariable="--font-playfair" preload />
     
     <!-- Preload hero image for faster LCP - responsive based on viewport -->
     <link rel="preload" href="/hero-frame-mobile.webp" as="image" type="image/webp" media="(max-width: 800px)" />

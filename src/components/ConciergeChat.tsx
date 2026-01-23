@@ -9,7 +9,7 @@ const ConciergeChat = () => {
 
   const openWhatsApp = () => {
     // Número de WhatsApp de Römenn (actualizar con el número real)
-    window.open("https://wa.me/34600000000?text=Hola,%20me%20gustaría%20información%20sobre%20vuestros%20servicios.", "_blank");
+    window.open("https://wa.me/34747488562?text=Hola,%20me%20gustaría%20información%20sobre%20vuestros%20servicios.", "_blank");
   };
 
   return (

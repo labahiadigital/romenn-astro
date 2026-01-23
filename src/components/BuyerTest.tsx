@@ -331,7 +331,7 @@ const BuyerTest = () => {
                       value={contactData.phone}
                       onChange={(e) => setContactData({...contactData, phone: e.target.value})}
                       className="mt-2" 
-                      placeholder="600 000 000"
+                      placeholder="747 488 562"
                     />
                   </div>
                   <div>

@@ -1,21 +1,95 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
+
+// Artículos del blog
+const articles = [
+  {
+    id: "tendencias-mercado-inmobiliario-2026",
+    title: "Tendencias del Mercado Inmobiliario en 2026",
+    excerpt: "Descubra las principales tendencias que están definiendo el sector inmobiliario este año: desde la sostenibilidad hasta las nuevas formas de financiación.",
+    category: "Tendencias",
+    image: "https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=450&fit=crop",
+    date: "15 Enero 2026",
+    readTime: "5 min lectura"
+  },
+  {
+    id: "guia-compra-primera-vivienda",
+    title: "Guía Completa para la Compra de tu Primera Vivienda",
+    excerpt: "Todo lo que necesitas saber antes de dar el paso más importante: desde la búsqueda hasta la firma en notaría.",
+    category: "Guías",
+    image: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&h=450&fit=crop",
+    date: "10 Enero 2026",
+    readTime: "8 min lectura"
+  },
+  {
+    id: "rivas-vaciamadrid-mejor-zona-para-vivir",
+    title: "¿Por qué Rivas-Vaciamadrid es una de las Mejores Zonas para Vivir en Madrid?",
+    excerpt: "Analizamos las ventajas de vivir en Rivas: calidad de vida, servicios, conexiones y proyección de futuro.",
+    category: "Local",
+    image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=450&fit=crop",
+    date: "5 Enero 2026",
+    readTime: "6 min lectura"
+  }
+];
 ---
 
 <BaseLayout title="Römenn Journal">
-  <main class="flex-grow section-padding container mx-auto px-6 py-32">
-    <h1 class="text-4xl md:text-5xl font-serif mb-12 text-center">Römenn Journal</h1>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      {[1, 2, 3].map((i) => (
-        <article class="group cursor-pointer">
-          <div class="aspect-video bg-muted mb-4 overflow-hidden">
-            <div class="w-full h-full bg-gray-200 transition-transform duration-700 group-hover:scale-105"></div>
-          </div>
-          <span class="text-xs font-sans text-accent font-bold uppercase tracking-widest">Tendencias</span>
-          <h3 class="text-xl font-serif mt-2 mb-2 group-hover:text-primary transition-colors">El futuro del mercado inmobiliario en Rivas</h3>
-          <p class="text-muted-foreground font-sans text-sm line-clamp-3">Análisis profundo sobre la evolución de precios y demanda en el sector premium...</p>
-        </article>
-      ))}
-    </div>
+  <main class="flex-grow">
+    <!-- Hero -->
+    <section class="pt-32 pb-16 px-6 bg-gradient-to-b from-slate-50 to-white">
+      <div class="max-w-6xl mx-auto text-center">
+        <span class="text-xs uppercase tracking-[0.25em] text-accent font-bold mb-4 block">
+          Römenn Journal
+        </span>
+        <h1 class="text-4xl md:text-5xl font-serif mb-6">Noticias y Tendencias</h1>
+        <p class="text-muted-foreground font-light max-w-xl mx-auto">
+          Información actualizada sobre el mercado inmobiliario, consejos y guías para compradores y vendedores.
+        </p>
+      </div>
+    </section>
+
+    <!-- Articles Grid -->
+    <section class="py-16 px-6">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {articles.map((article) => (
+            <article class="group">
+              <a href={`/blog/${article.id}`} class="block">
+                <div class="aspect-video bg-muted mb-4 overflow-hidden rounded-xl">
+                  <img 
+                    src={article.image} 
+                    alt={article.title}
+                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="flex items-center gap-3 mb-3">
+                  <span class="text-xs font-sans text-accent font-bold uppercase tracking-widest">{article.category}</span>
+                  <span class="text-xs text-muted-foreground">•</span>
+                  <span class="text-xs text-muted-foreground">{article.readTime}</span>
+                </div>
+                <h3 class="text-xl font-serif mb-2 group-hover:text-primary transition-colors">{article.title}</h3>
+                <p class="text-muted-foreground font-sans text-sm line-clamp-3 mb-3">{article.excerpt}</p>
+                <span class="text-xs text-muted-foreground">{article.date}</span>
+              </a>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Newsletter -->
+    <section class="py-16 px-6 bg-slate-50">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-2xl font-serif mb-4">¿Quiere estar al día?</h2>
+        <p class="text-muted-foreground mb-8">
+          Contacte con nosotros para recibir las últimas novedades del mercado inmobiliario.
+        </p>
+        <a href="/contacto" class="btn-premium inline-flex items-center gap-2">
+          Contactar
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+      </div>
+    </section>
   </main>
 </BaseLayout>

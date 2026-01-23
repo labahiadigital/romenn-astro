@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 
+const EMAIL_API_URL = "/api/send-email";
+
 const SmartReviews = () => {
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
@@ -16,11 +18,30 @@ const SmartReviews = () => {
     setRating(score);
   };
 
-  const handleSubmitInternal = (e: React.FormEvent) => {
+  const handleSubmitInternal = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, this would send data to backend
-    setIsSubmitted(true);
-    toast.success("Gracias por su feedback. Nos pondremos en contacto con usted.");
+    
+    try {
+      const emailData = {
+        formType: "resenas",
+        name,
+        email,
+        rating: rating.toString(),
+        feedback,
+      };
+
+      await fetch(EMAIL_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(emailData),
+      });
+      
+      setIsSubmitted(true);
+      toast.success("Gracias por su feedback. Nos pondremos en contacto con usted.");
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
+      toast.error("Error al enviar. Por favor, inténtelo de nuevo.");
+    }
   };
 
   const openGoogleReviews = () => {
@@ -60,14 +81,14 @@ const SmartReviews = () => {
             ))}
           </div>
 
-          {rating > 0 && rating < 5 && (
+          {rating > 0 && rating <= 3 && (
             <form
               onSubmit={handleSubmitInternal}
               className="space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-300"
             >
               <div className="bg-muted/30 p-6 rounded-sm border border-border">
                 <p className="text-sm text-foreground font-medium mb-4">
-                  Lamentamos no haber alcanzado la excelencia (5 estrellas). <br/>
+                  Lamentamos no haber cumplido todas sus expectativas. <br/>
                   ¿Qué podemos mejorar?
                 </p>
                 <div className="space-y-4">
@@ -101,7 +122,7 @@ const SmartReviews = () => {
             </form>
           )}
 
-          {rating === 5 && (
+          {(rating === 4 || rating === 5) && (
             <div className="text-center animate-in fade-in slide-in-from-bottom-4 duration-300">
               <div className="bg-green-50 border border-green-100 p-6 rounded-sm mb-6">
                 <p className="text-green-800 font-medium mb-2">¡Nos alegra inmensamente!</p>

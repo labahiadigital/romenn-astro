@@ -1,0 +1,193 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const article = {
+  title: "¿Por qué Rivas-Vaciamadrid es una de las Mejores Zonas para Vivir en Madrid?",
+  category: "Local",
+  image: "https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=1200&h=600&fit=crop",
+  date: "5 Enero 2026",
+  readTime: "6 min lectura",
+  author: "Equipo Römenn"
+};
+---
+
+<BaseLayout title={article.title}>
+  <main class="flex-grow">
+    <!-- Hero -->
+    <section class="pt-32 pb-8 px-6">
+      <div class="max-w-4xl mx-auto">
+        <a href="/blog" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          Volver al Journal
+        </a>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-xs font-sans text-accent font-bold uppercase tracking-widest">{article.category}</span>
+          <span class="text-xs text-muted-foreground">•</span>
+          <span class="text-xs text-muted-foreground">{article.readTime}</span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-serif mb-6">{article.title}</h1>
+        <div class="flex items-center gap-4 text-sm text-muted-foreground">
+          <span>Por {article.author}</span>
+          <span>•</span>
+          <span>{article.date}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Image -->
+    <section class="pb-12 px-6">
+      <div class="max-w-4xl mx-auto">
+        <img 
+          src={article.image} 
+          alt={article.title}
+          class="w-full h-auto rounded-2xl shadow-lg"
+        />
+      </div>
+    </section>
+
+    <!-- Content -->
+    <article class="py-12 px-6">
+      <div class="max-w-3xl mx-auto prose prose-lg prose-slate">
+        <p class="lead text-xl text-muted-foreground font-light">
+          Rivas-Vaciamadrid se ha consolidado como uno de los municipios más atractivos del área metropolitana 
+          de Madrid. Con más de 90.000 habitantes, ofrece una combinación única de calidad de vida, servicios 
+          de primer nivel y excelente conectividad con la capital.
+        </p>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">Conectividad: A 20 Minutos de Madrid</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Una de las grandes ventajas de Rivas es su excelente conexión con Madrid:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li><strong>Metro (Línea 9):</strong> Cuatro estaciones que conectan directamente con el centro en 20-25 minutos</li>
+          <li><strong>Autobuses interurbanos:</strong> Conexiones frecuentes con Atocha, Conde de Casal y otras zonas</li>
+          <li><strong>Acceso por carretera:</strong> A-3, M-50 y M-45 permiten llegar al centro en 15-20 minutos</li>
+          <li><strong>Cercanías:</strong> Estación de Rivas Futura con conexión a Atocha</li>
+        </ul>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">Calidad de Vida y Espacios Verdes</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Rivas destaca por su compromiso con el medio ambiente y la sostenibilidad:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li><strong>Parque Regional del Sureste:</strong> Más de 31.000 hectáreas de naturaleza protegida</li>
+          <li><strong>Carril bici:</strong> Red de más de 40 km de vías ciclistas</li>
+          <li><strong>Zonas verdes:</strong> Numerosos parques urbanos y áreas de recreo</li>
+          <li><strong>Ciudad sostenible:</strong> Premio European Green Capital por sus políticas medioambientales</li>
+        </ul>
+
+        <div class="bg-emerald-50 border border-emerald-200 p-6 rounded-xl my-8">
+          <p class="text-emerald-800 font-medium mb-2">🌿 Dato curioso</p>
+          <p class="text-emerald-700 text-sm">
+            Rivas es el municipio con mayor porcentaje de zonas verdes per cápita de la Comunidad de Madrid, 
+            con más de 25 m² de zona verde por habitante.
+          </p>
+        </div>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">Servicios de Primera Categoría</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          El municipio cuenta con infraestructuras y servicios propios de ciudades mucho más grandes:
+        </p>
+
+        <h3 class="text-xl font-serif mt-8 mb-4">Educación</h3>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li>Más de 20 colegios públicos y concertados</li>
+          <li>Institutos de secundaria con excelentes resultados académicos</li>
+          <li>Escuelas infantiles municipales de calidad</li>
+          <li>Centro universitario adscrito a la Universidad Complutense</li>
+        </ul>
+
+        <h3 class="text-xl font-serif mt-8 mb-4">Sanidad</h3>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li>Hospital Universitario Infanta Leonor (a 10 minutos)</li>
+          <li>Centro de salud en cada barrio</li>
+          <li>Servicios de urgencias 24 horas</li>
+        </ul>
+
+        <h3 class="text-xl font-serif mt-8 mb-4">Ocio y Cultura</h3>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li>Centro comercial H2Ocio con cines, bolera y restaurantes</li>
+          <li>Teatro Pilar Bardem</li>
+          <li>Polideportivos municipales con piscinas, gimnasios y pistas</li>
+          <li>Biblioteca municipal y centros culturales</li>
+        </ul>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">El Mercado Inmobiliario en Rivas</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          El mercado inmobiliario de Rivas presenta características atractivas para diferentes perfiles:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li><strong>Precio medio:</strong> 2.500-3.000€/m² (significativamente inferior a Madrid capital)</li>
+          <li><strong>Tipología variada:</strong> Desde pisos de 2 habitaciones hasta chalets de lujo</li>
+          <li><strong>Obra nueva:</strong> Desarrollos modernos con altas calificaciones energéticas</li>
+          <li><strong>Revalorización:</strong> Tendencia alcista sostenida en los últimos años</li>
+        </ul>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">Barrios Destacados</h2>
+        
+        <h3 class="text-xl font-serif mt-8 mb-4">Rivas Futura</h3>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          La zona más moderna del municipio, con viviendas de reciente construcción, amplias zonas 
+          peatonales y la estación de Cercanías. Ideal para familias jóvenes.
+        </p>
+
+        <h3 class="text-xl font-serif mt-8 mb-4">Casco Antiguo</h3>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          El corazón histórico de Rivas, con ambiente de pueblo, comercio local y una comunidad 
+          muy arraigada. Propiedades con más carácter a precios más ajustados.
+        </p>
+
+        <h3 class="text-xl font-serif mt-8 mb-4">Santa Mónica y Covibar</h3>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Zonas residenciales consolidadas con chalets y adosados, perfectas para quienes 
+          buscan más espacio y tranquilidad.
+        </p>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">Conclusión: ¿Es Rivas para Ti?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Rivas-Vaciamadrid es ideal si buscas:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li>Calidad de vida sin renunciar a la cercanía a Madrid</li>
+          <li>Espacios verdes y actividades al aire libre</li>
+          <li>Servicios de primer nivel para familias</li>
+          <li>Buena relación calidad-precio en vivienda</li>
+          <li>Una comunidad activa y comprometida</li>
+        </ul>
+
+        <div class="bg-slate-50 p-8 rounded-xl mt-12">
+          <h3 class="text-xl font-serif mb-4">¿Te Gustaría Vivir en Rivas?</h3>
+          <p class="text-muted-foreground mb-6">
+            Somos especialistas en el mercado inmobiliario de Rivas-Vaciamadrid. 
+            Conocemos cada barrio, cada calle y cada oportunidad.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="/compradores" class="btn-premium inline-flex items-center justify-center gap-2">
+              Activar Personal Shopper
+            </a>
+            <a href="/contacto" class="inline-flex items-center justify-center gap-2 border-2 border-primary text-primary px-6 py-3 text-sm font-bold rounded-xl hover:bg-primary hover:text-white transition-colors">
+              Consulta Sin Compromiso
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Related Articles -->
+    <section class="py-16 px-6 bg-slate-50">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl font-serif mb-8 text-center">Artículos Relacionados</h2>
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <a href="/blog/tendencias-mercado-inmobiliario-2026" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-xs text-accent font-bold uppercase tracking-widest">Tendencias</span>
+            <h3 class="text-lg font-serif mt-2 hover:text-primary transition-colors">Tendencias del Mercado Inmobiliario en 2026</h3>
+          </a>
+          <a href="/blog/guia-compra-primera-vivienda" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-xs text-accent font-bold uppercase tracking-widest">Guías</span>
+            <h3 class="text-lg font-serif mt-2 hover:text-primary transition-colors">Guía Completa para la Compra de tu Primera Vivienda</h3>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

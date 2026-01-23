@@ -149,6 +149,9 @@ const Header = ({ currentPath = "/" }: HeaderProps) => {
                     <ListItem href="/metodologia" title="Metodología">
                       Ciencia de datos aplicada a la venta.
                     </ListItem>
+                    <ListItem href="/extranjeria" title="Extranjería">
+                      Golden Visa, NIE y permisos de residencia.
+                    </ListItem>
                   </ul>
                 </NavigationMenuContent>
               </NavigationMenuItem>
@@ -206,12 +209,12 @@ const Header = ({ currentPath = "/" }: HeaderProps) => {
           </NavigationMenu>
 
           <div className="hidden lg:flex items-center gap-6">
-            <a href="tel:+34600000000" className={cn(
+            <a href="tel:+34747488562" className={cn(
               "flex items-center gap-2 text-xs tracking-widest transition-colors font-bold",
               isTransparent ? "text-white hover:text-white/80" : "text-primary hover:text-accent"
             )}>
               <Phone className="w-3 h-3" />
-              <span>600 000 000</span>
+              <span>747 488 562</span>
             </a>
             {/* Button changed from Private Area to Contact */}
             <Button className={cn(
@@ -274,6 +277,7 @@ const Header = ({ currentPath = "/" }: HeaderProps) => {
                                 <SheetClose asChild><a href="/cronogramas" className="text-sm font-serif text-muted-foreground hover:text-primary transition-colors py-3 block min-h-[48px]">Blueprints</a></SheetClose>
                                 <SheetClose asChild><a href="/riesgos-ocultos" className="text-sm font-serif text-muted-foreground hover:text-primary transition-colors py-3 block min-h-[48px]">Riesgos Ocultos</a></SheetClose>
                                 <SheetClose asChild><a href="/metodologia" className="text-sm font-serif text-muted-foreground hover:text-primary transition-colors py-3 block min-h-[48px]">Metodología</a></SheetClose>
+                                <SheetClose asChild><a href="/extranjeria" className="text-sm font-serif text-muted-foreground hover:text-primary transition-colors py-3 block min-h-[48px]">Extranjería</a></SheetClose>
                             </div>
                         </AccordionContent>
                     </AccordionItem>
@@ -304,11 +308,11 @@ const Header = ({ currentPath = "/" }: HeaderProps) => {
                 </Accordion>
 
                 <div className="mt-8 space-y-6">
-                    <a href="tel:+34600000000" className="flex items-center gap-3 text-xs tracking-widest hover:text-accent transition-colors font-bold text-primary">
+                    <a href="tel:+34747488562" className="flex items-center gap-3 text-xs tracking-widest hover:text-accent transition-colors font-bold text-primary">
                         <div className="w-8 h-8 rounded-full border border-primary/20 flex items-center justify-center">
                             <Phone className="w-4 h-4" />
                         </div>
-                        <span>600 000 000</span>
+                        <span>747 488 562</span>
                     </a>
                     <SheetClose asChild>
                         <Button className="btn-premium w-full h-14 text-xs" asChild>

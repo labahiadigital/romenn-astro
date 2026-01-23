@@ -1,7 +1,9 @@
 name = "romenn"
-main = "worker.js"
 compatibility_date = "2024-01-01"
 account_id = "8f4ac9229274ea7ba2e8d8ca79d03c1e"
 
-[site]
-bucket = "./dist"
+# Pages deployment - Astro hybrid mode
+pages_build_output_dir = "./dist"
+
+[vars]
+# BREVO_API_KEY will be set as a secret via wrangler secret put BREVO_API_KEY

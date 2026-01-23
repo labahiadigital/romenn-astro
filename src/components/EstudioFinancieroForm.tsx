@@ -11,10 +11,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { toast } from "sonner";
-import { ArrowRight, CheckCircle2, Home, Users } from "lucide-react";
+import { ArrowRight, CheckCircle2, Home, Users, Shield } from "lucide-react";
 
-// API URL del CRM
+// API URLs
 const CRM_API_URL = import.meta.env.PUBLIC_CRM_API_URL || "https://api.romenn.es/api/v1";
+const EMAIL_API_URL = "/api/send-email";
 
 const EstudioFinancieroForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -27,6 +28,7 @@ const EstudioFinancieroForm = () => {
     situation: "",
     income: "",
     savings: "",
+    monthlyLoans: "",
     timeline: ""
   });
 
@@ -55,6 +57,7 @@ const EstudioFinancieroForm = () => {
       situacion_laboral: formData.situation,
       ingresos: formData.income,
       ahorros: formData.savings,
+      gastos_prestamos_mensuales: formData.monthlyLoans,
       timeline: formData.timeline,
       utm_source: urlParams.get("utm_source") || "",
       utm_medium: urlParams.get("utm_medium") || "",
@@ -62,21 +65,36 @@ const EstudioFinancieroForm = () => {
     };
     
     try {
-      const response = await fetch(`${CRM_API_URL}/public/leads`, {
+      // Send to CRM
+      const crmPromise = fetch(`${CRM_API_URL}/public/leads`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(leadData),
-      });
+      }).catch(err => console.log("CRM error:", err));
+
+      // Send emails via Brevo
+      const emailData = {
+        formType: "estudio_financiero",
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        situation: formData.situation,
+        income: formData.income,
+        savings: formData.savings,
+        monthlyLoans: formData.monthlyLoans,
+        timeline: formData.timeline,
+      };
+
+      const emailPromise = fetch(EMAIL_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(emailData),
+      }).catch(err => console.log("Email error:", err));
+
+      await Promise.all([crmPromise, emailPromise]);
       
-      if (response.ok) {
-        setIsCompleted(true);
-        toast.success("¡Solicitud enviada! Le contactaremos pronto.");
-      } else {
-        const errorData = await response.json().catch(() => ({}));
-        toast.error(errorData.detail || "Error al enviar. Por favor, inténtelo de nuevo.");
-      }
+      setIsCompleted(true);
+      toast.success("¡Solicitud enviada! Le contactaremos pronto.");
     } catch (error) {
       console.error("Error submitting form:", error);
       toast.error("Error de conexión. Por favor, inténtelo de nuevo más tarde.");
@@ -142,7 +160,7 @@ const EstudioFinancieroForm = () => {
               value={formData.phone}
               onChange={(e) => updateFormData("phone", e.target.value)}
               className="mt-2"
-              placeholder="600 000 000"
+              placeholder="747 488 562"
             />
           </div>
         </div>
@@ -209,6 +227,23 @@ const EstudioFinancieroForm = () => {
         </div>
 
         <div>
+          <Label>¿Cuánto paga mensualmente en otros préstamos? (coche, personales, tarjetas...)</Label>
+          <Select value={formData.monthlyLoans} onValueChange={(v) => updateFormData("monthlyLoans", v)}>
+            <SelectTrigger className="mt-2">
+              <SelectValue placeholder="Seleccione rango" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="sin_prestamos">No tengo otros préstamos</SelectItem>
+              <SelectItem value="hasta_200">Hasta 200 €/mes</SelectItem>
+              <SelectItem value="200_400">200 - 400 €/mes</SelectItem>
+              <SelectItem value="400_600">400 - 600 €/mes</SelectItem>
+              <SelectItem value="600_1000">600 - 1.000 €/mes</SelectItem>
+              <SelectItem value="mas_1000">Más de 1.000 €/mes</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        <div>
           <Label>¿Cuándo le gustaría comprar?</Label>
           <Select value={formData.timeline} onValueChange={(v) => updateFormData("timeline", v)}>
             <SelectTrigger className="mt-2">
@@ -254,6 +289,21 @@ const EstudioFinancieroForm = () => {
             </span>
           )}
         </Button>
+
+        {/* Legal Info */}
+        <div className="mt-6 pt-6 border-t border-slate-100">
+          <div className="flex items-start gap-3 text-xs text-muted-foreground">
+            <Shield className="w-4 h-4 mt-0.5 flex-shrink-0" />
+            <div className="space-y-2">
+              <p><strong>Responsable:</strong> CONSULTING INMOBILIARIO RIVAS VACIAMADRID SLU</p>
+              <p><strong>Finalidad:</strong> Gestionar su solicitud de estudio financiero y enviarle información comercial sobre nuestros servicios.</p>
+              <p><strong>Legitimación:</strong> Consentimiento del interesado.</p>
+              <p><strong>Destinatarios:</strong> No se cederán datos a terceros, salvo obligación legal.</p>
+              <p><strong>Derechos:</strong> Acceso, rectificación, supresión, oposición y portabilidad de los datos.</p>
+              <p><strong>Info adicional:</strong> Puede consultar información adicional en nuestra <a href="/privacidad" className="text-primary underline">Política de Privacidad</a>.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </form>
   );

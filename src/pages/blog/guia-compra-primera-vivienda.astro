@@ -1,0 +1,199 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const article = {
+  title: "Guía Completa para la Compra de tu Primera Vivienda",
+  category: "Guías",
+  image: "https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=1200&h=600&fit=crop",
+  date: "10 Enero 2026",
+  readTime: "8 min lectura",
+  author: "Equipo Römenn"
+};
+---
+
+<BaseLayout title={article.title}>
+  <main class="flex-grow">
+    <!-- Hero -->
+    <section class="pt-32 pb-8 px-6">
+      <div class="max-w-4xl mx-auto">
+        <a href="/blog" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          Volver al Journal
+        </a>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-xs font-sans text-accent font-bold uppercase tracking-widest">{article.category}</span>
+          <span class="text-xs text-muted-foreground">•</span>
+          <span class="text-xs text-muted-foreground">{article.readTime}</span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-serif mb-6">{article.title}</h1>
+        <div class="flex items-center gap-4 text-sm text-muted-foreground">
+          <span>Por {article.author}</span>
+          <span>•</span>
+          <span>{article.date}</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Image -->
+    <section class="pb-12 px-6">
+      <div class="max-w-4xl mx-auto">
+        <img 
+          src={article.image} 
+          alt={article.title}
+          class="w-full h-auto rounded-2xl shadow-lg"
+        />
+      </div>
+    </section>
+
+    <!-- Content -->
+    <article class="py-12 px-6">
+      <div class="max-w-3xl mx-auto prose prose-lg prose-slate">
+        <p class="lead text-xl text-muted-foreground font-light">
+          Comprar tu primera vivienda es una de las decisiones más importantes de tu vida. En esta guía 
+          completa te acompañamos paso a paso por todo el proceso, desde la búsqueda inicial hasta la 
+          firma en notaría.
+        </p>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">Paso 1: Evalúa tu Situación Financiera</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Antes de empezar a buscar, es fundamental conocer tu capacidad real de inversión. Esto incluye:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li><strong>Ahorros disponibles:</strong> Necesitarás al menos el 20% del valor de la vivienda para la entrada, más un 10-12% adicional para gastos.</li>
+          <li><strong>Capacidad de endeudamiento:</strong> La cuota hipotecaria no debería superar el 30-35% de tus ingresos netos mensuales.</li>
+          <li><strong>Estabilidad laboral:</strong> Los bancos valoran contratos indefinidos con antigüedad mínima de 1-2 años.</li>
+        </ul>
+
+        <div class="bg-emerald-50 border border-emerald-200 p-6 rounded-xl my-8">
+          <p class="text-emerald-800 font-medium mb-2">💡 Consejo Römenn</p>
+          <p class="text-emerald-700 text-sm">
+            Solicita un estudio financiero gratuito antes de empezar a buscar. Así sabrás exactamente 
+            cuánto puedes invertir y evitarás enamorarte de propiedades fuera de tu alcance.
+          </p>
+        </div>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">Paso 2: Define tus Necesidades y Prioridades</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Haz una lista de lo que realmente necesitas vs. lo que te gustaría tener. Considera:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li>Ubicación: proximidad al trabajo, colegios, transporte público</li>
+          <li>Tamaño: habitaciones necesarias ahora y a medio plazo</li>
+          <li>Características: ascensor, garaje, terraza, trastero</li>
+          <li>Estado: a reformar vs. para entrar a vivir</li>
+        </ul>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">Paso 3: Busca con Criterio</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          La búsqueda puede ser abrumadora. Algunos consejos para optimizar tu tiempo:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li>Filtra bien en los portales antes de solicitar visitas</li>
+          <li>Visita las zonas que te interesan a diferentes horas del día</li>
+          <li>No descartes propiedades que necesiten reforma si el precio compensa</li>
+          <li>Considera trabajar con un Personal Shopper inmobiliario</li>
+        </ul>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">Paso 4: La Visita y la Negociación</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Cuando encuentres una propiedad que te interese:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li>Haz varias visitas en diferentes momentos</li>
+          <li>Verifica la orientación, el ruido, la comunidad de vecinos</li>
+          <li>Solicita la nota simple del Registro de la Propiedad</li>
+          <li>Comprueba que no existan cargas ni deudas pendientes</li>
+          <li>Negocia el precio con argumentos sólidos basados en mercado</li>
+        </ul>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">Paso 5: El Contrato de Arras</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          El contrato de arras es el documento que formaliza el compromiso de compraventa. Incluye:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li>Identificación de comprador, vendedor y propiedad</li>
+          <li>Precio pactado y forma de pago</li>
+          <li>Cantidad entregada como señal (habitualmente 10%)</li>
+          <li>Plazo para la firma de escrituras</li>
+          <li>Condiciones de penalización por desistimiento</li>
+        </ul>
+
+        <div class="bg-red-50 border border-red-200 p-6 rounded-xl my-8">
+          <p class="text-red-800 font-medium mb-2">⚠️ Importante</p>
+          <p class="text-red-700 text-sm">
+            Nunca firmes arras sin haber verificado antes la situación jurídica de la propiedad. 
+            En Römenn realizamos una Due Diligence completa antes de cualquier firma.
+          </p>
+        </div>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">Paso 6: La Hipoteca</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Si necesitas financiación, compara ofertas de varios bancos. Aspectos clave:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li>Tipo de interés: fijo, variable o mixto</li>
+          <li>Comisiones: apertura, amortización anticipada</li>
+          <li>Productos vinculados: seguros, domiciliaciones</li>
+          <li>TAE vs. TIN: la TAE refleja el coste real</li>
+        </ul>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">Paso 7: La Firma en Notaría</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          El gran día. En la notaría se firma:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li>La escritura de compraventa</li>
+          <li>La escritura de hipoteca (si procede)</li>
+          <li>Se realizan los pagos correspondientes</li>
+          <li>Recibes las llaves de tu nueva casa</li>
+        </ul>
+
+        <h2 class="text-2xl font-serif mt-12 mb-6">Gastos a Tener en Cuenta</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Además del precio de la vivienda, deberás prever:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li><strong>ITP (vivienda usada):</strong> 6-10% según comunidad autónoma</li>
+          <li><strong>IVA (obra nueva):</strong> 10%</li>
+          <li><strong>Notaría:</strong> 0,3-0,5% del precio</li>
+          <li><strong>Registro:</strong> 0,1-0,25% del precio</li>
+          <li><strong>Gestoría:</strong> 300-500€</li>
+          <li><strong>Tasación:</strong> 300-500€</li>
+        </ul>
+
+        <div class="bg-slate-50 p-8 rounded-xl mt-12">
+          <h3 class="text-xl font-serif mb-4">¿Necesitas Ayuda?</h3>
+          <p class="text-muted-foreground mb-6">
+            En Römenn te acompañamos en todo el proceso de compra de tu primera vivienda. 
+            Desde el estudio financiero hasta las llaves.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a href="/estudio-financiero" class="btn-premium inline-flex items-center justify-center gap-2">
+              Estudio Financiero Gratuito
+            </a>
+            <a href="/contacto" class="inline-flex items-center justify-center gap-2 border-2 border-primary text-primary px-6 py-3 text-sm font-bold rounded-xl hover:bg-primary hover:text-white transition-colors">
+              Hablar con un Asesor
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Related Articles -->
+    <section class="py-16 px-6 bg-slate-50">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl font-serif mb-8 text-center">Artículos Relacionados</h2>
+        <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <a href="/blog/tendencias-mercado-inmobiliario-2026" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-xs text-accent font-bold uppercase tracking-widest">Tendencias</span>
+            <h3 class="text-lg font-serif mt-2 hover:text-primary transition-colors">Tendencias del Mercado Inmobiliario en 2026</h3>
+          </a>
+          <a href="/blog/rivas-vaciamadrid-mejor-zona-para-vivir" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-xs text-accent font-bold uppercase tracking-widest">Local</span>
+            <h3 class="text-lg font-serif mt-2 hover:text-primary transition-colors">¿Por qué Rivas-Vaciamadrid es una de las Mejores Zonas para Vivir?</h3>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>

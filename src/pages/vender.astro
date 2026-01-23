@@ -46,59 +46,21 @@ import ComparisonTable from "@/components/ComparisonTable";
     </div>
   </section>
 
-  <!-- Form Section -->
+  <!-- CTA Section -->
   <section class="py-24 bg-primary text-white">
     <div class="max-w-4xl mx-auto px-6 text-center">
       <h2 class="text-3xl md:text-4xl font-serif mb-8">Comencemos con una conversación.</h2>
-      <div class="bg-white text-foreground p-8 md:p-12 rounded-sm shadow-2xl max-w-2xl mx-auto">
-        <form class="space-y-6 text-left" id="vender-form">
-          <div class="grid md:grid-cols-2 gap-6">
-            <div class="space-y-2">
-              <label class="text-xs uppercase tracking-widest text-muted-foreground">Nombre</label>
-              <input 
-                type="text"
-                name="name"
-                class="w-full px-4 py-3 bg-muted/20 border border-border focus:border-accent focus:outline-none transition-colors" 
-                placeholder="Su nombre completo" 
-              />
-            </div>
-            <div class="space-y-2">
-              <label class="text-xs uppercase tracking-widest text-muted-foreground">Teléfono</label>
-              <input 
-                type="tel"
-                name="phone"
-                class="w-full px-4 py-3 bg-muted/20 border border-border focus:border-accent focus:outline-none transition-colors" 
-                placeholder="+34 600 000 000" 
-              />
-            </div>
-          </div>
-          <div class="space-y-2">
-            <label class="text-xs uppercase tracking-widest text-muted-foreground">Dirección del Inmueble</label>
-            <input 
-              type="text"
-              name="address"
-              class="w-full px-4 py-3 bg-muted/20 border border-border focus:border-accent focus:outline-none transition-colors" 
-              placeholder="Calle, Número, Ciudad" 
-            />
-          </div>
-          <Button className="w-full btn-premium py-6" client:load type="submit">
-            Enviar Solicitud Privada
-          </Button>
-        </form>
+      <p class="text-white/80 mb-12 max-w-xl mx-auto font-light">
+        Descubra el verdadero valor de su propiedad con una valoración gratuita y sin compromiso.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-6 justify-center">
+        <a href="/valoracion" class="inline-flex items-center justify-center bg-white text-primary px-10 py-4 text-sm tracking-widest uppercase font-bold rounded-xl shadow-lg hover:bg-white/90 transition-colors">
+          Solicitar Valoración Gratuita
+        </a>
+        <a href="/contacto" class="inline-flex items-center justify-center border-2 border-white text-white px-10 py-4 text-sm tracking-widest uppercase font-bold bg-transparent rounded-xl hover:bg-white/10 transition-colors">
+          Contactar
+        </a>
       </div>
     </div>
   </section>
 </BaseLayout>
-
-<script>
-  const form = document.getElementById('vender-form');
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(e.target as HTMLFormElement);
-    const data = Object.fromEntries(formData.entries());
-    console.log('Form data:', data);
-    // TODO: Conectar con API/CRM
-    alert('Solicitud enviada. Le contactaremos pronto.');
-    (e.target as HTMLFormElement).reset();
-  });
-</script>

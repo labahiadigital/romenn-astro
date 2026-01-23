@@ -4,11 +4,15 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
 import purgecss from 'astro-purgecss';
-// astro-font integration removed - using local fonts via CSS instead
+import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://romenn.es',
+  site: 'https://romenninmobiliaria.es',
+  adapter: cloudflare({
+    mode: 'directory',
+    functionPerRoute: true,
+  }),
   integrations: [
     react(),
     tailwind({
@@ -32,9 +36,8 @@ export default defineConfig({
       ],
     }),
     purgecss({
-      keyframes: false, // Mantener keyframes para animaciones
+      keyframes: false,
       safelist: {
-        // Mantener clases usadas dinámicamente
         standard: [
           'dark',
           /^bg-/,
@@ -46,21 +49,49 @@ export default defineConfig({
           /^data-/,
           /^animate-/,
           /^transition-/,
-          /^w-\[/,  // Clases de ancho arbitrario como w-[300px]
-          /^h-\[/,  // Clases de altura arbitraria
+          /^w-\[/,
+          /^h-\[/,
           /^min-/,
           /^max-/,
         ],
         greedy: [
-          /astro/,  // View transitions de Astro
-          /radix/,  // Componentes Radix UI
-          /sonner/, // Toaster
+          /astro/,
+          /radix/,
+          /sonner/,
         ],
       },
     }),
-    // Inline CSS crítico - debe ir al final
-    (await import('@playform/inline')).default(),
   ],
+  experimental: {
+    fonts: [
+      {
+        provider: "local",
+        name: "Manrope",
+        cssVariable: "--font-manrope",
+        fallbacks: ["system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+        variants: [
+          { weight: 300, style: "normal", src: ["./src/assets/fonts/manrope-latin-300-normal.woff2"] },
+          { weight: 400, style: "normal", src: ["./src/assets/fonts/manrope-latin-400-normal.woff2"] },
+          { weight: 500, style: "normal", src: ["./src/assets/fonts/manrope-latin-500-normal.woff2"] },
+          { weight: 600, style: "normal", src: ["./src/assets/fonts/manrope-latin-600-normal.woff2"] },
+          { weight: 700, style: "normal", src: ["./src/assets/fonts/manrope-latin-700-normal.woff2"] },
+        ],
+      },
+      {
+        provider: "local",
+        name: "Playfair Display",
+        cssVariable: "--font-playfair",
+        fallbacks: ["Georgia", "Times New Roman", "serif"],
+        variants: [
+          { weight: 400, style: "normal", src: ["./src/assets/fonts/playfair-display-latin-400-normal.woff2"] },
+          { weight: 400, style: "italic", src: ["./src/assets/fonts/playfair-display-latin-400-italic.woff2"] },
+          { weight: 500, style: "normal", src: ["./src/assets/fonts/playfair-display-latin-500-normal.woff2"] },
+          { weight: 600, style: "normal", src: ["./src/assets/fonts/playfair-display-latin-600-normal.woff2"] },
+          { weight: 700, style: "normal", src: ["./src/assets/fonts/playfair-display-latin-700-normal.woff2"] },
+        ],
+      },
+    ],
+  },
   vite: {
     resolve: {
       alias: {
@@ -78,7 +109,7 @@ export default defineConfig({
   },
   output: 'static',
   build: {
-    // Necesario para que purgecss funcione correctamente
-    inlineStylesheets: 'never',
+    // CSS inline para mejor rendimiento - PurgeCSS lo optimiza primero
+    inlineStylesheets: 'always',
   },
 });

@@ -7,8 +7,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Send, Shield } from "lucide-react";
 import { toast } from "sonner";
 
-// API URL del CRM - usar variable de entorno en producción
+// API URLs
 const CRM_API_URL = import.meta.env.PUBLIC_CRM_API_URL || "https://api.romenn.es/api/v1";
+const EMAIL_API_URL = "/api/send-email";
 
 const ContactForm = () => {
   const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
@@ -42,22 +43,34 @@ const ContactForm = () => {
     };
     
     try {
-      const response = await fetch(`${CRM_API_URL}/public/leads`, {
+      // Send to CRM
+      const crmPromise = fetch(`${CRM_API_URL}/public/leads`, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(leadData),
-      });
+      }).catch(err => console.log("CRM error:", err));
+
+      // Send emails via Brevo
+      const emailData = {
+        formType: "contacto",
+        name: leadData.nombre,
+        email: leadData.email,
+        phone: leadData.telefono,
+        subject: leadData.asunto,
+        message: leadData.mensaje,
+      };
+
+      const emailPromise = fetch(EMAIL_API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(emailData),
+      }).catch(err => console.log("Email error:", err));
+
+      await Promise.all([crmPromise, emailPromise]);
       
-      if (response.ok) {
-        toast.success("Mensaje enviado correctamente. Le contactaremos pronto.");
-        (e.target as HTMLFormElement).reset();
-        setAcceptedPrivacy(false);
-      } else {
-        const errorData = await response.json().catch(() => ({}));
-        toast.error(errorData.detail || "Error al enviar el mensaje. Por favor, inténtelo de nuevo.");
-      }
+      toast.success("Mensaje enviado correctamente. Le contactaremos pronto.");
+      (e.target as HTMLFormElement).reset();
+      setAcceptedPrivacy(false);
     } catch (error) {
       console.error("Error submitting form:", error);
       toast.error("Error de conexión. Por favor, inténtelo de nuevo más tarde.");
@@ -91,7 +104,7 @@ const ContactForm = () => {
               id="phone" 
               name="phone"
               type="tel" 
-              placeholder="600 000 000" 
+              placeholder="747 488 562" 
               className="mt-2" 
               required 
             />
@@ -167,7 +180,7 @@ const ContactForm = () => {
         <div className="flex items-start gap-3 text-xs text-muted-foreground">
           <Shield className="w-4 h-4 mt-0.5 flex-shrink-0" />
           <div className="space-y-2">
-            <p><strong>Responsable:</strong> Römenn Inmobiliaria S.L.</p>
+            <p><strong>Responsable:</strong> CONSULTING INMOBILIARIO RIVAS VACIAMADRID SLU</p>
             <p><strong>Finalidad:</strong> Gestionar su consulta y enviarle información comercial sobre nuestros servicios.</p>
             <p><strong>Legitimación:</strong> Consentimiento del interesado.</p>
             <p><strong>Destinatarios:</strong> No se cederán datos a terceros, salvo obligación legal.</p>
