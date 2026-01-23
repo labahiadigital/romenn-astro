@@ -6,26 +6,98 @@ import Footer from "@/components/Footer.astro";
 import WhatsAppButton from "@/components/WhatsAppButton.astro";
 import { Toaster } from "@/components/ui/sonner";
 import { SEO } from "astro-seo";
+import { Schema } from "astro-seo-schema";
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
   noindex?: boolean;
-  hasForm?: boolean; // Only load Toaster on pages with forms
+  hasForm?: boolean;
+  // Schema.org type
+  schemaType?: 'WebPage' | 'AboutPage' | 'ContactPage' | 'FAQPage' | 'Article';
+  // Article specific (for blog posts)
+  articlePublishedTime?: string;
+  articleModifiedTime?: string;
+  articleAuthor?: string;
 }
 
 const { 
   title, 
   description = "Römenn - Inmobiliaria Boutique Internacional. Redefiniendo el lujo inmobiliario en Rivas-Vaciamadrid.",
-  image = "/hero-frame.webp",
+  image,
   noindex = false,
-  hasForm = false
+  hasForm = false,
+  schemaType = 'WebPage',
+  articlePublishedTime,
+  articleModifiedTime,
+  articleAuthor = 'Römenn Inmobiliaria',
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
 const canonicalURL = new URL(currentPath, Astro.site);
-const imageURL = new URL(image, Astro.site);
+
+// Generar ruta de imagen OG dinámica basada en la página actual
+const getOgImagePath = () => {
+  // Remover barras al inicio y final
+  let route = currentPath.replace(/^\/|\/$/g, '');
+  // Si es la home, usar 'index'
+  if (route === '') route = 'index';
+  return `/og/${route}.png`;
+};
+
+// Usar imagen personalizada si se proporciona, sino usar la generada dinámicamente
+const ogImagePath = image || getOgImagePath();
+const imageURL = new URL(ogImagePath, Astro.site);
+
+// Datos de la organización para Schema.org
+const organizationData = {
+  "@type": "RealEstateAgent" as const,
+  name: "Römenn Inmobiliaria",
+  alternateName: "Römenn",
+  url: "https://romenninmobiliaria.es",
+  logo: "https://romenninmobiliaria.es/romenn-logo.png",
+  image: "https://romenninmobiliaria.es/romenn-logo.png",
+  description: "Inmobiliaria Boutique Internacional en Rivas-Vaciamadrid, Madrid. Servicios personalizados de compra, venta y alquiler de propiedades.",
+  telephone: "+34747488562",
+  email: "romenn.inmo@gmail.com",
+  address: {
+    "@type": "PostalAddress" as const,
+    streetAddress: "Pl. León Felipe, 7, local 3",
+    addressLocality: "Rivas-Vaciamadrid",
+    addressRegion: "Madrid",
+    postalCode: "28523",
+    addressCountry: "ES"
+  },
+  geo: {
+    "@type": "GeoCoordinates" as const,
+    latitude: "40.3558",
+    longitude: "-3.5193"
+  },
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification" as const,
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "09:00",
+      closes: "20:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification" as const,
+      dayOfWeek: "Saturday",
+      opens: "10:00",
+      closes: "14:00"
+    }
+  ],
+  sameAs: [
+    "https://www.instagram.com/romenn_inmobiliaria/",
+    "https://www.linkedin.com/company/romenn-inmobiliaria/"
+  ],
+  priceRange: "€€€",
+  areaServed: {
+    "@type": "City" as const,
+    name: "Rivas-Vaciamadrid"
+  }
+};
 ---
 
 <!doctype html>
@@ -52,42 +124,102 @@ const imageURL = new URL(image, Astro.site);
       canonical={canonicalURL.href}
       noindex={noindex}
       nofollow={noindex}
+      languageAlternates={[
+        { href: canonicalURL.href, hrefLang: "es" },
+      ]}
       openGraph={{
         basic: {
-          title: title,
-          type: "website",
+          title: `${title} | Römenn Inmobiliaria`,
+          type: schemaType === 'Article' ? "article" : "website",
           image: imageURL.href,
           url: canonicalURL.href,
         },
         optional: {
           description: description,
           locale: "es_ES",
-          siteName: "Römenn",
+          siteName: "Römenn Inmobiliaria",
         },
         image: {
-          alt: title,
+          url: imageURL.href,
+          secureUrl: imageURL.href,
+          type: "image/png",
           width: 1200,
           height: 630,
+          alt: `${title} - Römenn Inmobiliaria`,
         },
+        ...(schemaType === 'Article' && articlePublishedTime ? {
+          article: {
+            publishedTime: articlePublishedTime,
+            modifiedTime: articleModifiedTime || articlePublishedTime,
+            authors: [articleAuthor],
+            section: "Inmobiliaria",
+            tags: ["inmobiliaria", "rivas-vaciamadrid", "madrid", "comprar casa", "vender casa"],
+          },
+        } : {}),
       }}
       twitter={{
         card: "summary_large_image",
-        site: "@romenn_es",
-        creator: "@romenn_es",
-        title: title,
-        description: description,
+        site: "@romenn_inmo",
+        creator: "@romenn_inmo",
+        title: `${title} | Römenn`,
         image: imageURL.href,
-        imageAlt: title,
+        imageAlt: `${title} - Römenn Inmobiliaria`,
+        description: description,
       }}
       extend={{
         link: [
           { rel: "icon", href: "/romenn-logo.svg", type: "image/svg+xml" },
+          { rel: "apple-touch-icon", href: "/romenn-logo.png" },
           { rel: "sitemap", href: "/sitemap-index.xml" },
         ],
         meta: [
           { name: "theme-color", content: "#1a365d" },
           { name: "msapplication-TileColor", content: "#1a365d" },
+          { name: "author", content: "Römenn Inmobiliaria" },
+          { name: "robots", content: noindex ? "noindex, nofollow" : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" },
+          { name: "googlebot", content: "index, follow" },
+          { name: "geo.region", content: "ES-M" },
+          { name: "geo.placename", content: "Rivas-Vaciamadrid" },
+          { name: "geo.position", content: "40.3558;-3.5193" },
+          { name: "ICBM", content: "40.3558, -3.5193" },
         ],
+      }}
+    />
+    
+    <!-- Schema.org JSON-LD -->
+    <Schema
+      item={{
+        "@context": "https://schema.org",
+        "@type": schemaType,
+        name: title,
+        description: description,
+        url: canonicalURL.href,
+        image: imageURL.href,
+        inLanguage: "es",
+        isPartOf: {
+          "@type": "WebSite",
+          name: "Römenn Inmobiliaria",
+          url: "https://romenninmobiliaria.es",
+          description: "Inmobiliaria Boutique Internacional en Rivas-Vaciamadrid",
+          publisher: organizationData,
+        },
+        ...(schemaType === 'Article' && articlePublishedTime ? {
+          datePublished: articlePublishedTime,
+          dateModified: articleModifiedTime || articlePublishedTime,
+          author: {
+            "@type": "Organization",
+            name: articleAuthor,
+          },
+          publisher: organizationData,
+        } : {}),
+      }}
+    />
+    
+    <!-- Organization Schema -->
+    <Schema
+      item={{
+        "@context": "https://schema.org",
+        ...organizationData,
       }}
     />
     
