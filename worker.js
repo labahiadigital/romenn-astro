@@ -1,44 +1,10 @@
+// Worker en formato ES Modules para Cloudflare Workers
+// Soporta secrets via env binding
+
 import { getAssetFromKV } from '@cloudflare/kv-asset-handler';
+import manifestJSON from '__STATIC_CONTENT_MANIFEST';
 
-addEventListener('fetch', (event) => {
-  event.respondWith(handleRequest(event));
-});
-
-// Función para obtener headers de caché según el tipo de archivo
-function getCacheHeaders(pathname) {
-  // Assets en /assets/ o /_astro/ - todos tienen hash, caché de 1 año
-  if (pathname.startsWith('/assets/') || pathname.startsWith('/_astro/')) {
-    return {
-      'Cache-Control': 'public, max-age=31536000, immutable',
-    };
-  }
-  
-  // Imágenes y videos - caché de 1 año
-  if (pathname.match(/\.(webp|jpg|jpeg|png|gif|svg|mp4|webm)$/i)) {
-    return {
-      'Cache-Control': 'public, max-age=31536000, immutable',
-    };
-  }
-  
-  // Fuentes - caché de 1 año
-  if (pathname.match(/\.(woff|woff2|ttf|otf|eot)$/i)) {
-    return {
-      'Cache-Control': 'public, max-age=31536000, immutable',
-    };
-  }
-  
-  // HTML - sin caché para páginas estáticas (permiten updates rápidos)
-  if (pathname.match(/\.html$/) || pathname === '/' || !pathname.match(/\.[a-zA-Z0-9]+$/)) {
-    return {
-      'Cache-Control': 'public, max-age=0, must-revalidate',
-    };
-  }
-  
-  // Por defecto - caché de 1 hora
-  return {
-    'Cache-Control': 'public, max-age=3600',
-  };
-}
+const manifest = JSON.parse(manifestJSON);
 
 // Configuración de email
 const EMAIL_CONFIG = {
@@ -48,6 +14,23 @@ const EMAIL_CONFIG = {
   },
   businessEmail: "romenn.inmo@gmail.com"
 };
+
+// Función para obtener headers de caché según el tipo de archivo
+function getCacheHeaders(pathname) {
+  if (pathname.startsWith('/assets/') || pathname.startsWith('/_astro/')) {
+    return { 'Cache-Control': 'public, max-age=31536000, immutable' };
+  }
+  if (pathname.match(/\.(webp|jpg|jpeg|png|gif|svg|mp4|webm)$/i)) {
+    return { 'Cache-Control': 'public, max-age=31536000, immutable' };
+  }
+  if (pathname.match(/\.(woff|woff2|ttf|otf|eot)$/i)) {
+    return { 'Cache-Control': 'public, max-age=31536000, immutable' };
+  }
+  if (pathname.match(/\.html$/) || pathname === '/' || !pathname.match(/\.[a-zA-Z0-9]+$/)) {
+    return { 'Cache-Control': 'public, max-age=0, must-revalidate' };
+  }
+  return { 'Cache-Control': 'public, max-age=3600' };
+}
 
 // Plantilla HTML para email al negocio
 function getBusinessEmailTemplate(data) {
@@ -102,8 +85,7 @@ function getBusinessEmailTemplate(data) {
     `;
   }
 
-  return `
-<!DOCTYPE html>
+  return `<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -124,7 +106,7 @@ function getBusinessEmailTemplate(data) {
     </table>
     
     <p style="color: #666; font-size: 12px; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee;">
-      Fecha: ${new Date().toLocaleString('es-ES', { timeZone: 'Europe/Madrid' })}
+      Fecha: ${new Date().toISOString()}
     </p>
   </div>
   
@@ -136,8 +118,7 @@ function getBusinessEmailTemplate(data) {
     </p>
   </div>
 </body>
-</html>
-  `;
+</html>`;
 }
 
 // Plantilla HTML para email de confirmación al cliente
@@ -163,8 +144,7 @@ function getClientConfirmationTemplate(data) {
 
   const content = formTypeMessages[data.formType] || formTypeMessages.contacto;
 
-  return `
-<!DOCTYPE html>
+  return `<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
@@ -210,11 +190,10 @@ function getClientConfirmationTemplate(data) {
     </p>
   </div>
 </body>
-</html>
-  `;
+</html>`;
 }
 
-// Función para enviar email mediante Brevo API
+// Función para enviar email mediante Brevo API REST
 async function sendEmailWithBrevo(apiKey, to, subject, htmlContent, replyTo = null) {
   const payload = {
     sender: EMAIL_CONFIG.sender,
@@ -227,6 +206,10 @@ async function sendEmailWithBrevo(apiKey, to, subject, htmlContent, replyTo = nu
     payload.replyTo = { email: replyTo };
   }
 
+  console.log("Sending email to Brevo API...");
+  console.log("To:", to);
+  console.log("Subject:", subject);
+
   const response = await fetch("https://api.brevo.com/v3/smtp/email", {
     method: "POST",
     headers: {
@@ -237,12 +220,15 @@ async function sendEmailWithBrevo(apiKey, to, subject, htmlContent, replyTo = nu
     body: JSON.stringify(payload)
   });
 
+  const responseText = await response.text();
+  console.log("Brevo API response status:", response.status);
+  console.log("Brevo API response:", responseText);
+
   if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`Brevo API error: ${response.status} - ${errorText}`);
+    throw new Error(`Brevo API error: ${response.status} - ${responseText}`);
   }
 
-  return response.json();
+  return JSON.parse(responseText);
 }
 
 // Manejador de la API de envío de emails
@@ -257,9 +243,14 @@ async function handleSendEmail(request, env) {
 
   // Verificar que existe la API key
   const brevoApiKey = env.BREVO_API_KEY;
+  console.log("BREVO_API_KEY exists:", !!brevoApiKey);
+  
   if (!brevoApiKey) {
-    console.error("BREVO_API_KEY not configured");
-    return new Response(JSON.stringify({ error: "Email service not configured" }), {
+    console.error("BREVO_API_KEY not configured in environment");
+    return new Response(JSON.stringify({ 
+      error: "Email service not configured",
+      details: "BREVO_API_KEY secret is not set. Please run: npx wrangler secret put BREVO_API_KEY"
+    }), {
       status: 500,
       headers: { "Content-Type": "application/json" }
     });
@@ -267,6 +258,7 @@ async function handleSendEmail(request, env) {
 
   try {
     const data = await request.json();
+    console.log("Received form data:", JSON.stringify(data));
     
     // Validar datos mínimos
     if (!data.formType || !data.email) {
@@ -286,16 +278,19 @@ async function handleSendEmail(request, env) {
     const subject = formTypeSubjects[data.formType] || "Nuevo mensaje desde la web";
 
     // 1. Enviar email al negocio
+    console.log("Sending business email...");
     const businessEmailHtml = getBusinessEmailTemplate(data);
-    await sendEmailWithBrevo(
+    const businessResult = await sendEmailWithBrevo(
       brevoApiKey,
       EMAIL_CONFIG.businessEmail,
       `[Römenn Web] ${subject}`,
       businessEmailHtml,
-      data.email // Reply-To del cliente
+      data.email
     );
+    console.log("Business email sent:", businessResult);
 
     // 2. Enviar email de confirmación al cliente
+    console.log("Sending client confirmation email...");
     const clientEmailHtml = getClientConfirmationTemplate(data);
     const clientSubjects = {
       contacto: "Hemos recibido tu mensaje - Römenn Inmobiliaria",
@@ -304,16 +299,19 @@ async function handleSendEmail(request, env) {
       resenas: "Gracias por tu feedback - Römenn Inmobiliaria"
     };
     
-    await sendEmailWithBrevo(
+    const clientResult = await sendEmailWithBrevo(
       brevoApiKey,
       data.email,
       clientSubjects[data.formType] || "Confirmación - Römenn Inmobiliaria",
       clientEmailHtml
     );
+    console.log("Client email sent:", clientResult);
 
     return new Response(JSON.stringify({ 
       success: true, 
-      message: "Emails enviados correctamente" 
+      message: "Emails enviados correctamente",
+      businessMessageId: businessResult.messageId,
+      clientMessageId: clientResult.messageId
     }), {
       status: 200,
       headers: { "Content-Type": "application/json" }
@@ -332,7 +330,7 @@ async function handleSendEmail(request, env) {
 }
 
 // Manejador de CORS preflight
-function handleOptions(request) {
+function handleOptions() {
   return new Response(null, {
     status: 204,
     headers: {
@@ -346,78 +344,98 @@ function handleOptions(request) {
 
 // Añadir headers CORS a response
 function addCorsHeaders(response) {
-  const newResponse = new Response(response.body, response);
-  newResponse.headers.set("Access-Control-Allow-Origin", "*");
-  newResponse.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  newResponse.headers.set("Access-Control-Allow-Headers", "Content-Type");
-  return newResponse;
+  const newHeaders = new Headers(response.headers);
+  newHeaders.set("Access-Control-Allow-Origin", "*");
+  newHeaders.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  newHeaders.set("Access-Control-Allow-Headers", "Content-Type");
+  
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers: newHeaders
+  });
 }
 
-async function handleRequest(event) {
-  const request = event.request;
-  const url = new URL(request.url);
-  
-  // Handle CORS preflight
-  if (request.method === "OPTIONS") {
-    return handleOptions(request);
-  }
-  
-  // API endpoint para enviar emails
-  if (url.pathname === "/api/send-email") {
-    const response = await handleSendEmail(request, event);
-    return addCorsHeaders(response);
-  }
+// Export default handler (ES Modules format)
+export default {
+  async fetch(request, env, ctx) {
+    const url = new URL(request.url);
+    
+    // Handle CORS preflight
+    if (request.method === "OPTIONS") {
+      return handleOptions();
+    }
+    
+    // API endpoint para enviar emails
+    if (url.pathname === "/api/send-email") {
+      const response = await handleSendEmail(request, env);
+      return addCorsHeaders(response);
+    }
 
-  try {
-    // Intentar servir el asset estático
-    const response = await getAssetFromKV(event, {
-      mapRequestToAsset: (request) => {
-        const url = new URL(request.url);
-        
-        // Si es un archivo con extensión, servirlo directamente
-        if (url.pathname.match(/\.[a-zA-Z0-9]+$/)) {
-          return request;
-        }
-        
-        // Para rutas sin extensión, buscar el archivo .html correspondiente
-        // Astro genera archivos como /nosotros/index.html para /nosotros
-        let pathname = url.pathname;
-        if (pathname.endsWith('/')) {
-          pathname += 'index.html';
-        } else {
-          pathname += '/index.html';
-        }
-        
-        return new Request(`${url.origin}${pathname}`, request);
-      },
-    });
-    
-    // Añadir headers de caché
-    const cacheHeaders = getCacheHeaders(url.pathname);
-    
-    const newResponse = new Response(response.body, response);
-    Object.entries(cacheHeaders).forEach(([key, value]) => {
-      newResponse.headers.set(key, value);
-    });
-    
-    return newResponse;
-  } catch (e) {
-    // Si no se encuentra el asset, intentar servir 404.html
+    // Servir assets estáticos
     try {
-      const url = new URL(event.request.url);
-      const response = await getAssetFromKV(event, {
-        mapRequestToAsset: () => new Request(`${url.origin}/404.html`, event.request),
+      const response = await getAssetFromKV(
+        {
+          request,
+          waitUntil: ctx.waitUntil.bind(ctx),
+        },
+        {
+          ASSET_NAMESPACE: env.__STATIC_CONTENT,
+          ASSET_MANIFEST: manifest,
+          mapRequestToAsset: (req) => {
+            const url = new URL(req.url);
+            
+            // Si es un archivo con extensión, servirlo directamente
+            if (url.pathname.match(/\.[a-zA-Z0-9]+$/)) {
+              return req;
+            }
+            
+            // Para rutas sin extensión, buscar el archivo .html correspondiente
+            let pathname = url.pathname;
+            if (pathname.endsWith('/')) {
+              pathname += 'index.html';
+            } else {
+              pathname += '/index.html';
+            }
+            
+            return new Request(`${url.origin}${pathname}`, req);
+          },
+        }
+      );
+      
+      // Añadir headers de caché
+      const cacheHeaders = getCacheHeaders(url.pathname);
+      const newHeaders = new Headers(response.headers);
+      Object.entries(cacheHeaders).forEach(([key, value]) => {
+        newHeaders.set(key, value);
       });
       
-      const newResponse = new Response(response.body, {
-        ...response,
-        status: 404,
+      return new Response(response.body, {
+        status: response.status,
+        statusText: response.statusText,
+        headers: newHeaders
       });
-      newResponse.headers.set('Cache-Control', 'no-cache, no-store, must-revalidate');
-      
-      return newResponse;
     } catch (e) {
-      return new Response('Not Found', { status: 404 });
+      // Si no se encuentra el asset, servir 404.html
+      try {
+        const notFoundResponse = await getAssetFromKV(
+          {
+            request: new Request(`${url.origin}/404.html`, request),
+            waitUntil: ctx.waitUntil.bind(ctx),
+          },
+          {
+            ASSET_NAMESPACE: env.__STATIC_CONTENT,
+            ASSET_MANIFEST: manifest,
+          }
+        );
+        
+        return new Response(notFoundResponse.body, {
+          status: 404,
+          headers: notFoundResponse.headers
+        });
+      } catch (e) {
+        return new Response('Not Found', { status: 404 });
+      }
     }
   }
-}
+};
