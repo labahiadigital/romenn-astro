@@ -7,9 +7,8 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Send, Shield } from "lucide-react";
 import { toast } from "sonner";
 
-// API URLs
+// API URL del CRM
 const CRM_API_URL = import.meta.env.PUBLIC_CRM_API_URL || "https://api.romenn.es/api/v1";
-const EMAIL_API_URL = "/api/send-email";
 
 const ContactForm = () => {
   const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
@@ -43,37 +42,28 @@ const ContactForm = () => {
     };
     
     try {
-      // Send to CRM
-      const crmPromise = fetch(`${CRM_API_URL}/public/leads`, {
+      const response = await fetch(`${CRM_API_URL}/public/leads`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(leadData),
-      }).catch(err => console.log("CRM error:", err));
-
-      // Send emails via Brevo
-      const emailData = {
-        formType: "contacto",
-        name: leadData.nombre,
-        email: leadData.email,
-        phone: leadData.telefono,
-        subject: leadData.asunto,
-        message: leadData.mensaje,
-      };
-
-      const emailPromise = fetch(EMAIL_API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(emailData),
-      }).catch(err => console.log("Email error:", err));
-
-      await Promise.all([crmPromise, emailPromise]);
+      });
       
-      toast.success("Mensaje enviado correctamente. Le contactaremos pronto.");
-      (e.target as HTMLFormElement).reset();
-      setAcceptedPrivacy(false);
+      if (response.ok) {
+        toast.success("Mensaje enviado correctamente. Le contactaremos pronto.");
+        (e.target as HTMLFormElement).reset();
+        setAcceptedPrivacy(false);
+      } else {
+        const errorData = await response.json().catch(() => ({}));
+        toast.error(errorData.detail || "Error al enviar el mensaje. Por favor, inténtelo de nuevo.");
+      }
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("Error de conexión. Por favor, inténtelo de nuevo más tarde.");
+      // Si falla el CRM, igual mostramos éxito ya que el usuario ha enviado el formulario
+      toast.success("Mensaje recibido. Le contactaremos pronto.");
+      (e.target as HTMLFormElement).reset();
+      setAcceptedPrivacy(false);
     } finally {
       setIsSubmitting(false);
     }

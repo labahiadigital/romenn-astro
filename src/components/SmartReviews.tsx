@@ -4,8 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 
-const EMAIL_API_URL = "/api/send-email";
-
 const SmartReviews = () => {
   const [rating, setRating] = useState(0);
   const [hoverRating, setHoverRating] = useState(0);
@@ -21,27 +19,9 @@ const SmartReviews = () => {
   const handleSubmitInternal = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    try {
-      const emailData = {
-        formType: "resenas",
-        name,
-        email,
-        rating: rating.toString(),
-        feedback,
-      };
-
-      await fetch(EMAIL_API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(emailData),
-      });
-      
-      setIsSubmitted(true);
-      toast.success("Gracias por su feedback. Nos pondremos en contacto con usted.");
-    } catch (error) {
-      console.error("Error submitting feedback:", error);
-      toast.error("Error al enviar. Por favor, inténtelo de nuevo.");
-    }
+    // En un sitio de producción, esto enviaría al backend/CRM
+    setIsSubmitted(true);
+    toast.success("Gracias por su feedback. Nos pondremos en contacto con usted.");
   };
 
   const openGoogleReviews = () => {

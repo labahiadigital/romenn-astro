@@ -4,15 +4,9 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
 import purgecss from 'astro-purgecss';
-import cloudflare from '@astrojs/cloudflare';
-
 // https://astro.build/config
 export default defineConfig({
   site: 'https://romenninmobiliaria.es',
-  adapter: cloudflare({
-    mode: 'directory',
-    functionPerRoute: true,
-  }),
   integrations: [
     react(),
     tailwind({

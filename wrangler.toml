@@ -1,8 +1,7 @@
 name = "romenn"
 compatibility_date = "2024-01-01"
-account_id = "8f4ac9229274ea7ba2e8d8ca79d03c1e"
 
-# Pages deployment - Astro hybrid mode
+# Pages deployment - Astro with Cloudflare adapter
 pages_build_output_dir = "./dist"
 
 [vars]
