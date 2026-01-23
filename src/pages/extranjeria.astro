@@ -1,178 +1,219 @@
 ---
-import PageLayout from "@/layouts/PageLayout.astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Button } from "@/components/ui/button";
+
+const services = [
+  {
+    id: "nie",
+    title: "NIE / TIE",
+    subtitle: "Tramitación ágil",
+    description: "Obtención y renovación del Número de Identidad de Extranjero, imprescindible para cualquier operación inmobiliaria en España.",
+    icon: '<path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/>'
+  },
+  {
+    id: "residencia",
+    title: "Residencia No Lucrativa",
+    subtitle: "Sin actividad laboral",
+    description: "Para quienes desean residir en España sin realizar actividad laboral. Ideal para jubilados y personas con rentas propias.",
+    icon: '<path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>'
+  },
+  {
+    id: "reagrupacion",
+    title: "Reagrupación Familiar",
+    subtitle: "Familia reunida",
+    description: "Gestión del proceso para traer a sus familiares directos una vez obtenida su residencia en España.",
+    icon: '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>'
+  },
+  {
+    id: "larga-duracion",
+    title: "Residencia de Larga Duración",
+    subtitle: "Residencia permanente",
+    description: "Tras 5 años de residencia legal, le ayudamos a obtener el permiso permanente en España.",
+    icon: '<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/>'
+  },
+  {
+    id: "nacionalidad",
+    title: "Nacionalidad Española",
+    subtitle: "Ciudadanía plena",
+    description: "Asesoramiento en el proceso de adquisición de la nacionalidad por residencia, matrimonio u origen sefardí.",
+    icon: '<circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/>'
+  }
+];
+
+const advantages = [
+  {
+    title: "Servicio Integral",
+    description: "Combinamos la compra de su propiedad con todos los trámites de extranjería en un solo proceso coordinado."
+  },
+  {
+    title: "Abogados Especializados",
+    description: "Colaboramos con despachos especializados en derecho de extranjería con amplia experiencia."
+  },
+  {
+    title: "Atención Multilingüe",
+    description: "Comunicación en español, inglés, francés y árabe para su comodidad."
+  },
+  {
+    title: "Seguimiento Continuo",
+    description: "Le mantenemos informado del estado de sus trámites en tiempo real."
+  }
+];
 ---
 
-<PageLayout title="Extranjería" subtitle="Permisos de Residencia y Documentación">
-  <!-- Introducción -->
-  <section class="py-20 bg-background">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <p class="text-lg text-muted-foreground font-light leading-relaxed">
-        En Römenn entendemos que adquirir una propiedad en España siendo extranjero implica 
-        navegar por un complejo entramado de trámites y requisitos legales. Por eso, ofrecemos 
-        un <strong class="text-primary">servicio integral de asesoría en extranjería</strong> que le acompaña 
-        en cada paso del proceso.
-      </p>
-    </div>
-  </section>
+<BaseLayout title="Extranjería">
+  <main class="flex-grow">
+    
+    <!-- Hero -->
+    <section class="py-32 px-6 text-center bg-muted/30 pt-44">
+      <div class="max-w-4xl mx-auto">
+        <span class="text-accent uppercase tracking-widest text-xs font-bold mb-4 block">Documentación Internacional</span>
+        <h1 class="text-4xl md:text-6xl font-serif mb-8">
+          Permisos de Residencia <br class="hidden md:block" />
+          <span class="italic">y Documentación</span>
+        </h1>
+        <p class="text-xl text-muted-foreground font-light leading-relaxed max-w-2xl mx-auto">
+          En Römenn entendemos que adquirir una propiedad en España siendo extranjero implica 
+          navegar por un complejo entramado de trámites y requisitos legales. Le acompañamos 
+          en cada paso del proceso.
+        </p>
+      </div>
+    </section>
 
-  <!-- Servicios principales -->
-  <section class="py-32 bg-muted/30">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <span class="text-xs uppercase tracking-widest text-accent font-bold">Nuestros Servicios</span>
-        <h2 class="text-4xl md:text-5xl font-serif mt-4">Trámites de Extranjería</h2>
-      </div>
-      
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="bg-white p-10 hover:shadow-xl transition-all duration-500 group">
-          <div class="w-16 h-16 bg-primary rounded-sm flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/><rect width="20" height="14" x="2" y="6" rx="2"/></svg>
-          </div>
-          <h3 class="text-2xl font-serif mb-4">NIE / TIE</h3>
-          <p class="text-muted-foreground font-light leading-relaxed mb-6">
-            Obtención y renovación del Número de Identidad de Extranjero, 
-            imprescindible para cualquier operación inmobiliaria en España.
-          </p>
-          <span class="text-xs uppercase tracking-widest font-bold text-accent">Tramitación ágil →</span>
+    <!-- Services Grid -->
+    <section class="py-24 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-accent uppercase tracking-widest text-xs font-bold mb-4 block">Nuestros Servicios</span>
+          <h2 class="text-3xl md:text-5xl font-serif">Trámites de Extranjería</h2>
         </div>
         
-        <div class="bg-white p-10 hover:shadow-xl transition-all duration-500 group">
-          <div class="w-16 h-16 bg-primary rounded-sm flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          </div>
-          <h3 class="text-2xl font-serif mb-4">Residencia No Lucrativa</h3>
-          <p class="text-muted-foreground font-light leading-relaxed mb-6">
-            Para quienes desean residir en España sin realizar actividad laboral. 
-            Ideal para jubilados y personas con rentas propias.
-          </p>
-          <span class="text-xs uppercase tracking-widest font-bold text-accent">Sin actividad laboral →</span>
-        </div>
-        
-        <div class="bg-white p-10 hover:shadow-xl transition-all duration-500 group">
-          <div class="w-16 h-16 bg-primary rounded-sm flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3 class="text-2xl font-serif mb-4">Reagrupación Familiar</h3>
-          <p class="text-muted-foreground font-light leading-relaxed mb-6">
-            Gestión del proceso para traer a sus familiares directos 
-            una vez obtenida su residencia en España.
-          </p>
-          <span class="text-xs uppercase tracking-widest font-bold text-accent">Familia reunida →</span>
-        </div>
-        
-        <div class="bg-white p-10 hover:shadow-xl transition-all duration-500 group">
-          <div class="w-16 h-16 bg-primary rounded-sm flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
-          </div>
-          <h3 class="text-2xl font-serif mb-4">Residencia de Larga Duración</h3>
-          <p class="text-muted-foreground font-light leading-relaxed mb-6">
-            Tras 5 años de residencia legal, le ayudamos a obtener 
-            el permiso permanente en España.
-          </p>
-          <span class="text-xs uppercase tracking-widest font-bold text-accent">Residencia permanente →</span>
-        </div>
-        
-        <div class="bg-white p-10 hover:shadow-xl transition-all duration-500 group">
-          <div class="w-16 h-16 bg-primary rounded-sm flex items-center justify-center mb-8 group-hover:bg-accent transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-          </div>
-          <h3 class="text-2xl font-serif mb-4">Nacionalidad Española</h3>
-          <p class="text-muted-foreground font-light leading-relaxed mb-6">
-            Asesoramiento en el proceso de adquisición de la nacionalidad 
-            por residencia, matrimonio u origen sefardí.
-          </p>
-          <span class="text-xs uppercase tracking-widest font-bold text-accent">Ciudadanía plena →</span>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-16">
+          {services.map((service) => (
+            <div class="group">
+              <div class="w-14 h-14 bg-primary/5 rounded-full flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-500">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={service.icon} />
+              </div>
+              <h3 class="text-2xl font-serif mb-2 group-hover:text-primary transition-colors">{service.title}</h3>
+              <span class="text-xs uppercase tracking-widest text-accent font-bold mb-4 block">{service.subtitle}</span>
+              <p class="text-muted-foreground font-light leading-relaxed">
+                {service.description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Por qué elegirnos -->
-  <section class="py-32 bg-background">
-    <div class="max-w-7xl mx-auto px-6">
-      <div class="grid lg:grid-cols-2 gap-16 items-center">
-        <div>
-          <span class="text-xs uppercase tracking-widest text-accent font-bold">¿Por qué Römenn?</span>
-          <h2 class="text-4xl md:text-5xl font-serif mt-4 mb-8">Ventajas de Nuestro Servicio</h2>
-          <div class="space-y-6">
-            <div class="flex gap-4">
-              <div class="w-8 h-8 bg-accent/10 rounded-sm flex items-center justify-center flex-shrink-0 mt-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M20 6 9 17l-5-5"/></svg>
-              </div>
-              <div>
-                <h4 class="font-serif text-lg mb-1">Servicio Integral</h4>
-                <p class="text-muted-foreground font-light">Combinamos la compra de su propiedad con todos los trámites de extranjería en un solo proceso coordinado.</p>
-              </div>
-            </div>
-            <div class="flex gap-4">
-              <div class="w-8 h-8 bg-accent/10 rounded-sm flex items-center justify-center flex-shrink-0 mt-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M20 6 9 17l-5-5"/></svg>
-              </div>
-              <div>
-                <h4 class="font-serif text-lg mb-1">Abogados Especializados</h4>
-                <p class="text-muted-foreground font-light">Colaboramos con despachos especializados en derecho de extranjería con amplia experiencia.</p>
-              </div>
-            </div>
-            <div class="flex gap-4">
-              <div class="w-8 h-8 bg-accent/10 rounded-sm flex items-center justify-center flex-shrink-0 mt-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M20 6 9 17l-5-5"/></svg>
-              </div>
-              <div>
-                <h4 class="font-serif text-lg mb-1">Atención Multilingüe</h4>
-                <p class="text-muted-foreground font-light">Comunicación en español, inglés, francés y árabe para su comodidad.</p>
-              </div>
-            </div>
-            <div class="flex gap-4">
-              <div class="w-8 h-8 bg-accent/10 rounded-sm flex items-center justify-center flex-shrink-0 mt-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M20 6 9 17l-5-5"/></svg>
-              </div>
-              <div>
-                <h4 class="font-serif text-lg mb-1">Seguimiento Continuo</h4>
-                <p class="text-muted-foreground font-light">Le mantenemos informado del estado de sus trámites en tiempo real.</p>
-              </div>
+    <!-- Why Us Section -->
+    <section class="py-24 bg-muted/30">
+      <div class="max-w-7xl mx-auto px-6">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          <div>
+            <span class="text-accent uppercase tracking-widest text-xs font-bold mb-4 block">¿Por qué Römenn?</span>
+            <h2 class="text-3xl md:text-5xl font-serif mb-8">Ventajas de <br class="hidden md:block" />Nuestro Servicio</h2>
+            <div class="space-y-8">
+              {advantages.map((adv) => (
+                <div class="flex gap-4">
+                  <div class="w-10 h-10 bg-accent/10 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-accent">
+                      <path d="M20 6 9 17l-5-5"/>
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 class="font-serif text-xl mb-2">{adv.title}</h4>
+                    <p class="text-muted-foreground font-light">{adv.description}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-        <div class="bg-muted/50 p-12">
-          <div class="space-y-8">
-            <div>
-              <div class="text-5xl font-serif text-accent mb-2">+50</div>
-              <p class="text-sm uppercase tracking-widest text-muted-foreground">Clientes internacionales asesorados</p>
-            </div>
-            <div class="h-px bg-border"></div>
-            <div>
-              <div class="text-5xl font-serif text-accent mb-2">98%</div>
-              <p class="text-sm uppercase tracking-widest text-muted-foreground">Tasa de éxito en tramitaciones</p>
-            </div>
-            <div class="h-px bg-border"></div>
-            <div>
-              <div class="text-5xl font-serif text-accent mb-2">+30</div>
-              <p class="text-sm uppercase tracking-widest text-muted-foreground">Nacionalidades atendidas</p>
+          
+          <!-- Stats Card -->
+          <div class="bg-white p-10 md:p-14 shadow-sm">
+            <div class="space-y-10">
+              <div>
+                <div class="text-6xl md:text-7xl font-serif text-primary mb-3">+50</div>
+                <p class="text-sm uppercase tracking-widest text-muted-foreground">Clientes internacionales asesorados</p>
+              </div>
+              <div class="h-px bg-border"></div>
+              <div>
+                <div class="text-6xl md:text-7xl font-serif text-primary mb-3">98%</div>
+                <p class="text-sm uppercase tracking-widest text-muted-foreground">Tasa de éxito en tramitaciones</p>
+              </div>
+              <div class="h-px bg-border"></div>
+              <div>
+                <div class="text-6xl md:text-7xl font-serif text-primary mb-3">+30</div>
+                <p class="text-sm uppercase tracking-widest text-muted-foreground">Nacionalidades atendidas</p>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CTA Final -->
-  <section class="py-32 bg-primary text-white">
-    <div class="max-w-4xl mx-auto px-6 text-center">
-      <span class="text-xs uppercase tracking-widest text-white/60 font-bold">Próximo Paso</span>
-      <h2 class="text-4xl md:text-5xl font-serif mt-4 mb-6">¿Planea Invertir en España?</h2>
-      <p class="text-lg text-white/80 font-light mb-10 max-w-2xl mx-auto">
-        Agende una consulta gratuita para analizar su situación y encontrar la mejor vía 
-        para obtener su residencia mientras adquiere la propiedad de sus sueños.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button className="bg-white text-primary hover:bg-white/90 rounded-none h-14 px-8 text-xs uppercase tracking-widest font-bold" asChild>
-          <a href="/contacto">Solicitar Consulta</a>
-        </Button>
-        <Button variant="outline" className="border-white text-white hover:bg-white/10 rounded-none h-14 px-8 text-xs uppercase tracking-widest font-bold" asChild>
-          <a href="tel:+34747488562">Llamar Ahora</a>
-        </Button>
+    <!-- Process Section -->
+    <section class="py-24 px-6">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+          <span class="text-accent uppercase tracking-widest text-xs font-bold mb-4 block">El Proceso</span>
+          <h2 class="text-3xl md:text-5xl font-serif mb-4">¿Cómo funciona?</h2>
+          <p class="text-muted-foreground font-light max-w-xl mx-auto">
+            Un proceso sencillo y transparente en 4 pasos.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <div class="text-center">
+            <div class="text-6xl font-serif text-primary/20 mb-4">01</div>
+            <h3 class="text-lg font-serif mb-2">Consulta Inicial</h3>
+            <p class="text-muted-foreground font-light text-sm">
+              Analizamos su situación personal y le indicamos la mejor vía.
+            </p>
+          </div>
+          <div class="text-center">
+            <div class="text-6xl font-serif text-primary/20 mb-4">02</div>
+            <h3 class="text-lg font-serif mb-2">Documentación</h3>
+            <p class="text-muted-foreground font-light text-sm">
+              Le indicamos exactamente qué documentos necesita y le ayudamos a obtenerlos.
+            </p>
+          </div>
+          <div class="text-center">
+            <div class="text-6xl font-serif text-primary/20 mb-4">03</div>
+            <h3 class="text-lg font-serif mb-2">Tramitación</h3>
+            <p class="text-muted-foreground font-light text-sm">
+              Gestionamos todo el proceso ante las autoridades competentes.
+            </p>
+          </div>
+          <div class="text-center">
+            <div class="text-6xl font-serif text-primary/20 mb-4">04</div>
+            <h3 class="text-lg font-serif mb-2">Resolución</h3>
+            <p class="text-muted-foreground font-light text-sm">
+              Le entregamos su documentación y le asesoramos sobre próximos pasos.
+            </p>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
-</PageLayout>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="py-24 bg-primary text-white">
+      <div class="max-w-4xl mx-auto px-6 text-center">
+        <span class="text-white/60 uppercase tracking-widest text-xs font-bold mb-4 block">Próximo Paso</span>
+        <h2 class="text-3xl md:text-5xl font-serif mb-6">¿Planea Invertir en España?</h2>
+        <p class="text-lg text-white/80 font-light mb-10 max-w-2xl mx-auto leading-relaxed">
+          Agende una consulta gratuita para analizar su situación y encontrar la mejor vía 
+          para obtener su residencia mientras adquiere la propiedad de sus sueños.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contacto" class="inline-flex items-center justify-center bg-white text-primary hover:bg-white/90 h-14 px-8 text-xs uppercase tracking-widest font-bold transition-colors">
+            Solicitar Consulta
+          </a>
+          <a href="tel:+34747488562" class="inline-flex items-center justify-center border border-white text-white hover:bg-white/10 h-14 px-8 text-xs uppercase tracking-widest font-bold transition-colors">
+            Llamar Ahora
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</BaseLayout>
