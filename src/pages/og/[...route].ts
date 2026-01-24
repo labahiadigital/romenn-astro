@@ -24,7 +24,7 @@ const pages: Record<string, { title: string; description: string }> = {
   },
   'propiedades': {
     title: 'Portfolio Exclusivo',
-    description: 'Selección curada de hogares con alma',
+    description: 'Selección curada de propiedades con alma',
   },
   'valoracion': {
     title: 'Valoración Inteligente',

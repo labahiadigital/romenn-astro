@@ -122,7 +122,7 @@ function getBusinessEmailTemplate(data) {
   <div style="background: #f8f9fa; padding: 20px; text-align: center; border-radius: 0 0 10px 10px; border: 1px solid #eee; border-top: none;">
     <p style="color: #666; font-size: 12px; margin: 0;">
       © ${new Date().getFullYear()} Römenn Inmobiliaria<br>
-      Pl. León Felipe, 7, local 3<br>
+      Pl. León Felipe, 6 posterior, local 2<br>
       28523 Rivas-Vaciamadrid, Madrid
     </p>
   </div>
@@ -195,7 +195,7 @@ function getClientConfirmationTemplate(data) {
     </p>
     <p style="color: #666; font-size: 12px; margin: 0;">
       © ${new Date().getFullYear()} Römenn Inmobiliaria<br>
-      Pl. León Felipe, 7, local 3<br>
+      Pl. León Felipe, 6 posterior, local 2<br>
       28523 Rivas-Vaciamadrid, Madrid
     </p>
     <p style="color: #999; font-size: 10px; margin: 15px 0 0 0;">

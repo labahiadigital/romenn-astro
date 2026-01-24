@@ -166,7 +166,7 @@ const Header = ({ currentPath = "/" }: HeaderProps) => {
                 <NavigationMenuContent>
                   <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
                     <ListItem href="/propiedades" title="Portfolio Exclusivo">
-                      Selección curada de hogares con alma.
+                      Selección curada de propiedades con alma.
                     </ListItem>
                     <ListItem href="/vender" title="Vende con nosotros">
                       Maximice el valor de su patrimonio.
@@ -246,7 +246,7 @@ const Header = ({ currentPath = "/" }: HeaderProps) => {
             <SheetContent side="right" className="w-[300px] sm:w-[400px] overflow-y-auto bg-white/95 backdrop-blur-xl border-l border-border/50">
               <SheetHeader className="mb-8 text-left border-b border-border/50 pb-6">
                 <SheetTitle className="text-left">
-                    <img src="/romenn-logo.svg" alt="Römenn" className="h-16 w-auto object-contain" />
+                    <img src="/romenn-logo.svg" alt="Römenn" className="h-16 w-auto object-contain brightness-0" />
                 </SheetTitle>
                 <SheetDescription className="text-left font-light text-xs tracking-widest uppercase text-muted-foreground mt-4">
                     Inmobiliaria Boutique Internacional

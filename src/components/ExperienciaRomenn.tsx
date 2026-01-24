@@ -59,7 +59,7 @@ const ExperienciaRomenn = () => {
 
           <FadeIn className="space-y-8 text-center">
             <p className="text-2xl md:text-3xl lg:text-4xl font-serif text-foreground leading-relaxed">
-              Un proyecto construido con respeto, con cuidado y con la voluntad de hacer las cosas bien hechas, <span className="italic text-primary">sin ruido innecesario.</span>
+              Un proyecto construido con respeto, cuidado y con la voluntad de hacer las cosas bien hechas, <span className="italic text-primary">sin ruido innecesario.</span>
             </p>
             
             <div className="flex items-center justify-center gap-2 text-muted-foreground">
