@@ -20,6 +20,118 @@ import property4 from "@/assets/property-4.jpg";
   <!-- 2. VENDEDORES - Static Astro with minimal JS -->
   <SellerSituationsStatic />
 
+  <!-- 2.5 SERVICIOS PREMIUM - Venta y Alquiler -->
+  <section class="py-24 md:py-32 bg-gradient-to-b from-white to-slate-50">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <span class="text-xs uppercase tracking-[0.25em] text-accent font-bold mb-6 block">
+          Servicios Premium
+        </span>
+        <h2 class="text-3xl md:text-5xl font-serif mb-4">
+          Venta y Alquiler con Garantías
+        </h2>
+        <p class="text-muted-foreground font-light max-w-2xl mx-auto">
+          Dos servicios especializados con garantías exclusivas. 
+          No somos una agencia más. Somos la referencia en confianza, calidad y resultados.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <!-- Venta Premium Card -->
+        <div class="group relative bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary to-primary/50"></div>
+          <div class="p-8 md:p-10">
+            <div class="flex items-start justify-between mb-6">
+              <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              </div>
+              <span class="bg-accent text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full">
+                Premium
+              </span>
+            </div>
+            <h3 class="text-2xl font-serif mb-3 text-primary">Venta Premium</h3>
+            <p class="text-muted-foreground font-light mb-6 leading-relaxed">
+              Marketing de alto impacto con tours virtuales 3D, fotografía con drones y acceso a nuestra red de +500 compradores VIP validados económicamente.
+            </p>
+            
+            <div class="grid grid-cols-3 gap-4 mb-8 py-6 border-y border-slate-100">
+              <div class="text-center">
+                <div class="text-2xl font-serif text-primary">+500</div>
+                <p class="text-[10px] text-muted-foreground uppercase tracking-wide">Compradores VIP</p>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-serif text-primary">900+</div>
+                <p class="text-[10px] text-muted-foreground uppercase tracking-wide">Oficinas España</p>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-serif text-primary">90d</div>
+                <p class="text-[10px] text-muted-foreground uppercase tracking-wide">Garantía venta</p>
+              </div>
+            </div>
+
+            <div class="bg-primary/5 rounded-xl p-4 mb-6">
+              <p class="text-sm text-primary font-medium flex items-center gap-2">
+                <svg class="w-5 h-5 text-accent shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+                Si no vendemos en 90 días, reducimos honorarios
+              </p>
+            </div>
+
+            <a href="/vender" class="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl text-sm font-bold uppercase tracking-widest hover:bg-primary/90 transition-colors group">
+              Vender mi propiedad
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Alquiler Premium Card -->
+        <div class="group relative bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-2xl hover:shadow-accent/10 transition-all duration-500">
+          <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-accent to-accent/50"></div>
+          <div class="p-8 md:p-10">
+            <div class="flex items-start justify-between mb-6">
+              <div class="w-14 h-14 bg-accent/10 rounded-xl flex items-center justify-center text-accent group-hover:bg-accent group-hover:text-white transition-colors">
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6"/><path d="m15.5 7.5 3 3L22 7l-3-3"/></svg>
+              </div>
+              <span class="bg-primary text-white text-[10px] font-bold uppercase tracking-wider px-3 py-1.5 rounded-full">
+                Premium
+              </span>
+            </div>
+            <h3 class="text-2xl font-serif mb-3 text-primary">Alquiler Premium</h3>
+            <p class="text-muted-foreground font-light mb-6 leading-relaxed">
+              Selección exhaustiva de inquilinos con estudio financiero completo, contratos blindados y seguimiento mensual durante todo el primer año.
+            </p>
+            
+            <div class="grid grid-cols-3 gap-4 mb-8 py-6 border-y border-slate-100">
+              <div class="text-center">
+                <div class="text-2xl font-serif text-primary">100%</div>
+                <p class="text-[10px] text-muted-foreground uppercase tracking-wide">Verificados</p>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-serif text-primary">15d</div>
+                <p class="text-[10px] text-muted-foreground uppercase tracking-wide">Alquiler medio</p>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-serif text-primary">1 año</div>
+                <p class="text-[10px] text-muted-foreground uppercase tracking-wide">Seguimiento</p>
+              </div>
+            </div>
+
+            <div class="bg-accent/5 rounded-xl p-4 mb-6">
+              <p class="text-sm text-primary font-medium flex items-center gap-2">
+                <svg class="w-5 h-5 text-accent shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
+                Si abandona antes del año, realquilamos gratis
+              </p>
+            </div>
+
+            <a href="/alquiler" class="inline-flex items-center gap-2 bg-accent text-white px-6 py-3 rounded-xl text-sm font-bold uppercase tracking-widest hover:bg-accent/90 transition-colors group">
+              Alquilar mi propiedad
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- 3. EXPERIENCIA RÖMENN - Static Astro component -->
   <ExperienciaRomennStatic />
 

@@ -1,35 +1,34 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { Button } from "@/components/ui/button";
-import ComparisonTable from "@/components/ComparisonTable";
 ---
 
-<BaseLayout title="Vender con Römenn">
-  <!-- Hero Section - Rediseñado sin imagen -->
+<BaseLayout title="Alquiler Premium | Römenn">
+  <!-- Hero Section -->
   <section class="relative py-24 md:py-32 px-6 pt-44 bg-gradient-to-b from-muted/30 to-background">
     <div class="max-w-4xl mx-auto text-center space-y-8">
-      <span class="text-accent uppercase tracking-widest text-xs font-bold">Servicio de Venta Premium</span>
+      <span class="text-accent uppercase tracking-widest text-xs font-bold">Servicio de Alquiler Premium</span>
       <h1 class="text-4xl md:text-6xl font-serif leading-tight">
-        El arte de vender <br/>
-        <span class="italic text-muted-foreground">su propiedad.</span>
+        Alquile con garantías.<br/>
+        <span class="italic text-muted-foreground">Tranquilidad total.</span>
       </h1>
       <p class="text-lg md:text-xl font-light text-muted-foreground max-w-2xl mx-auto">
-        No solo vendemos casas. Creamos una narrativa irresistible que maximiza el valor de su patrimonio con marketing de alto impacto y una red global de compradores.
+        Seleccionamos inquilinos solventes, gestionamos todo el proceso y le acompañamos durante todo el contrato.
       </p>
       
       <!-- Stats Row -->
       <div class="grid grid-cols-3 gap-4 md:gap-8 py-8 max-w-2xl mx-auto">
         <div class="text-center">
-          <div class="text-3xl md:text-4xl font-serif text-primary mb-1">+500</div>
-          <p class="text-xs text-muted-foreground uppercase tracking-wide">Compradores VIP validados</p>
+          <div class="text-3xl md:text-4xl font-serif text-primary mb-1">100%</div>
+          <p class="text-xs text-muted-foreground uppercase tracking-wide">Inquilinos verificados</p>
         </div>
         <div class="text-center">
-          <div class="text-3xl md:text-4xl font-serif text-primary mb-1">900+</div>
-          <p class="text-xs text-muted-foreground uppercase tracking-wide">Oficinas en España</p>
+          <div class="text-3xl md:text-4xl font-serif text-primary mb-1">15</div>
+          <p class="text-xs text-muted-foreground uppercase tracking-wide">Días de alquiler medio</p>
         </div>
         <div class="text-center">
-          <div class="text-3xl md:text-4xl font-serif text-primary mb-1">90</div>
-          <p class="text-xs text-muted-foreground uppercase tracking-wide">Días garantía venta</p>
+          <div class="text-3xl md:text-4xl font-serif text-primary mb-1">1 año</div>
+          <p class="text-xs text-muted-foreground uppercase tracking-wide">Seguimiento incluido</p>
         </div>
       </div>
       
@@ -39,136 +38,140 @@ import ComparisonTable from "@/components/ComparisonTable";
     </div>
   </section>
 
-  <!-- Servicios Premium de Venta -->
+  <!-- Servicios de Alquiler Premium -->
   <section class="py-24 bg-white">
     <div class="max-w-6xl mx-auto px-6">
       <div class="text-center mb-16">
         <span class="text-xs uppercase tracking-[0.25em] text-accent font-bold mb-6 block">
-          Servicios Premium
+          Servicios Incluidos
         </span>
         <h2 class="text-3xl md:text-5xl font-serif mb-4">
-          Marketing y Venta de Alto Impacto
+          Alquiler Premium Römenn
         </h2>
         <p class="text-muted-foreground font-light max-w-2xl mx-auto">
-          Una estrategia integral diseñada para maximizar el valor de su propiedad y encontrar al comprador ideal.
+          Un servicio integral que protege su inversión y garantiza tranquilidad absoluta.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Marketing de Alto Impacto -->
-        <div class="group p-8 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
-          <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/></svg>
-          </div>
-          <h3 class="text-xl font-serif mb-4 text-primary">Marketing de Alto Impacto</h3>
-          <ul class="space-y-3 text-muted-foreground font-light">
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              +10.000 octavillas personalizadas semanales
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Red global con 3.900 oficinas en 9 países
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Campañas en transporte público y centros comerciales
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Tours virtuales 3D y fotografía con drones
-            </li>
-          </ul>
-        </div>
-
-        <!-- Red de Clientes VIP -->
-        <div class="group p-8 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
-          <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <h3 class="text-xl font-serif mb-4 text-primary">Red Exclusiva de Clientes VIP</h3>
-          <ul class="space-y-3 text-muted-foreground font-light">
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              +500 compradores validados económicamente
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Conexión personalizada inmueble-comprador
-            </li>
-            <li class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Informes semanales detallados del proceso
-            </li>
-          </ul>
-        </div>
-
-        <!-- Posicionamiento Digital -->
+        <!-- Visibilidad Máxima -->
         <div class="group p-8 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
           <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
             <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
           </div>
-          <h3 class="text-xl font-serif mb-4 text-primary">Posicionamiento Digital Exclusivo</h3>
+          <h3 class="text-xl font-serif mb-4 text-primary">Visibilidad Máxima</h3>
           <ul class="space-y-3 text-muted-foreground font-light">
             <li class="flex items-start gap-2">
               <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Publicación destacada en Idealista, Fotocasa, Habitaclia
+              Publicación destacada en Idealista, Fotocasa, Milanuncios
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Reportajes con mínimo 30 imágenes profesionales
+              Fotografía profesional para destacar frente a la competencia
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Visitas virtuales interactivas en alta definición
+              Cartelería en escaparate y zona residencial
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Difusión en Facebook e Instagram
             </li>
           </ul>
         </div>
 
-        <!-- Servicio Integral -->
+        <!-- Selección de Inquilino -->
         <div class="group p-8 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
           <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="m9 15 2 2 4-4"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
           </div>
-          <h3 class="text-xl font-serif mb-4 text-primary">Servicio Integral Profesional</h3>
+          <h3 class="text-xl font-serif mb-4 text-primary">Selección con Garantías</h3>
           <ul class="space-y-3 text-muted-foreground font-light">
             <li class="flex items-start gap-2">
               <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Gestión completa: Ayuntamiento, Registro, Notaría
+              Estudio financiero y documental completo
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Departamento jurídico interno sin coste adicional
+              Solo perfiles solventes, responsables y estables
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Plan gratuito de pintura y decoración básica
+              Entrevistas personales con cada candidato
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Servicio postventa con asesoría en mudanza
+              Contraste con empresas y ficheros oficiales
             </li>
           </ul>
         </div>
 
-        <!-- Asesoramiento Financiero Kiron -->
+        <!-- Gestión Rápida -->
         <div class="group p-8 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
           <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
-            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2"/><line x1="8" x2="16" y1="6" y2="6"/><line x1="16" x2="16" y1="14" y2="18"/><path d="M16 10h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M12 14h.01"/><path d="M8 14h.01"/><path d="M12 18h.01"/><path d="M8 18h.01"/></svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 3 14h9l-1 8 10-12h-9l1-8z"/></svg>
           </div>
-          <h3 class="text-xl font-serif mb-4 text-primary">Asesoramiento Financiero Élite</h3>
+          <h3 class="text-xl font-serif mb-4 text-primary">Gestión Rápida y Eficiente</h3>
           <ul class="space-y-3 text-muted-foreground font-light">
             <li class="flex items-start gap-2">
               <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Hipotecas personalizadas con convenios exclusivos
+              Redacción del contrato profesional
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Maximización del precio final
+              Firma digital sin desplazamientos
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Patrocinios estratégicos para mayor visibilidad
+              Coordinación de visitas y entrega de llaves
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Gestión integral hasta la entrada
+            </li>
+          </ul>
+        </div>
+
+        <!-- Asesoramiento Legal -->
+        <div class="group p-8 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
+          <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m16 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="m2 16 3-8 3 8c-.87.65-1.92 1-3 1s-2.13-.35-3-1Z"/><path d="M7 21h10"/><path d="M12 3v18"/><path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/></svg>
+          </div>
+          <h3 class="text-xl font-serif mb-4 text-primary">Asesoramiento Legal y Fiscal</h3>
+          <ul class="space-y-3 text-muted-foreground font-light">
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Departamento jurídico especializado en alquileres
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Cláusulas específicas según su perfil
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Asesoramiento fiscal para optimizar rentabilidad
+            </li>
+          </ul>
+        </div>
+
+        <!-- Servicio Postalquiler -->
+        <div class="group p-8 bg-slate-50 rounded-xl border border-slate-100 hover:shadow-lg hover:border-primary/20 transition-all duration-300">
+          <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary group-hover:text-white transition-colors">
+            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <h3 class="text-xl font-serif mb-4 text-primary">Servicio Postalquiler</h3>
+          <ul class="space-y-3 text-muted-foreground font-light">
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Seguimiento mensual del inquilino durante el primer año
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Asistencia en resolución de incidencias
+            </li>
+            <li class="flex items-start gap-2">
+              <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Mediación en conflictos si fuera necesario
             </li>
           </ul>
         </div>
@@ -182,7 +185,7 @@ import ComparisonTable from "@/components/ComparisonTable";
           <ul class="space-y-3 text-muted-foreground font-light">
             <li class="flex items-start gap-2">
               <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Recompensa económica por recomendaciones exitosas
+              Recompensa económica por cada propietario que recomiende
             </li>
             <li class="flex items-start gap-2">
               <svg class="w-5 h-5 text-accent mt-0.5 shrink-0" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
@@ -194,44 +197,30 @@ import ComparisonTable from "@/components/ComparisonTable";
     </div>
   </section>
 
-  <!-- Garantía Premium -->
+  <!-- Garantía Destacada -->
   <section class="py-24 bg-primary text-white">
     <div class="max-w-4xl mx-auto px-6 text-center">
       <div class="w-20 h-20 bg-white/10 rounded-full flex items-center justify-center mx-auto mb-8">
         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-accent"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/></svg>
       </div>
-      <span class="text-accent uppercase tracking-widest text-xs font-bold mb-4 block">Garantía Premium</span>
-      <h2 class="text-3xl md:text-4xl font-serif mb-6">Compromiso de Venta</h2>
+      <span class="text-accent uppercase tracking-widest text-xs font-bold mb-4 block">Compromiso Römenn</span>
+      <h2 class="text-3xl md:text-4xl font-serif mb-6">Garantía de Alquiler</h2>
       <p class="text-xl text-white/90 font-light mb-8 max-w-2xl mx-auto">
-        Si no vendemos su vivienda en <strong class="text-accent">90 días</strong>, reducimos nuestros honorarios.
+        Si el inquilino abandona antes del primer año, <strong class="text-accent">le volvemos a alquilar su vivienda sin coste adicional</strong>.
       </p>
       <p class="text-white/70 font-light max-w-xl mx-auto">
-        No somos una agencia más. Somos la referencia en confianza, calidad y resultados. 
-        Por eso nuestros clientes no solo nos eligen... nos recomiendan.
+        Nuestra selección es tan rigurosa que podemos permitirnos esta garantía. 
+        No somos una agencia más. Somos la referencia en confianza, calidad y resultados.
       </p>
-    </div>
-  </section>
-
-  <!-- Comparison Section -->
-  <section class="py-24 bg-muted/30">
-    <div class="max-w-5xl mx-auto px-6">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-5xl font-serif mb-6">¿Por qué Römenn?</h2>
-        <p class="text-muted-foreground font-light max-w-2xl mx-auto">
-          En un mercado saturado, la distinción es la clave del éxito. 
-          Compare usted mismo el estándar de la industria frente a la excelencia boutique.
-        </p>
-      </div>
-      <ComparisonTable client:visible />
     </div>
   </section>
 
   <!-- CTA Section -->
-  <section class="py-24 bg-white">
+  <section class="py-24 bg-muted/30">
     <div class="max-w-4xl mx-auto px-6 text-center">
-      <h2 class="text-3xl md:text-4xl font-serif mb-8">Comencemos con una conversación.</h2>
+      <h2 class="text-3xl md:text-4xl font-serif mb-8">¿Tiene una vivienda para alquilar?</h2>
       <p class="text-muted-foreground mb-12 max-w-xl mx-auto font-light">
-        Descubra el verdadero valor de su propiedad con una valoración gratuita y sin compromiso.
+        Solicite una valoración gratuita y descubra cómo podemos maximizar la rentabilidad de su inversión con total tranquilidad.
       </p>
       <div class="flex flex-col sm:flex-row gap-6 justify-center">
         <a href="/valoracion" class="inline-flex items-center justify-center bg-primary text-white px-10 py-4 text-sm tracking-widest uppercase font-bold rounded-xl shadow-lg hover:bg-primary/90 transition-colors">

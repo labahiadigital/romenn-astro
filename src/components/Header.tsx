@@ -168,8 +168,11 @@ const Header = ({ currentPath = "/" }: HeaderProps) => {
                     <ListItem href="/propiedades" title="Portfolio Exclusivo">
                       Selección curada de propiedades con alma.
                     </ListItem>
-                    <ListItem href="/vender" title="Vende con nosotros">
+                    <ListItem href="/vender" title="Venta Premium">
                       Maximice el valor de su patrimonio.
+                    </ListItem>
+                    <ListItem href="/alquiler" title="Alquiler Premium">
+                      Inquilinos verificados y garantías exclusivas.
                     </ListItem>
                     <ListItem href="/compradores" title="Personal Shopper">
                       Encontramos lo que no está en portales.
@@ -290,7 +293,8 @@ const Header = ({ currentPath = "/" }: HeaderProps) => {
                         <AccordionContent>
                             <div className="flex flex-col gap-1 pl-4 pb-4">
                                 <SheetClose asChild><a href="/propiedades" className="text-sm font-serif text-muted-foreground hover:text-primary transition-colors py-3 block min-h-[48px]">Portfolio Exclusivo</a></SheetClose>
-                                <SheetClose asChild><a href="/vender" className="text-sm font-serif text-muted-foreground hover:text-primary transition-colors py-3 block min-h-[48px]">Vende con nosotros</a></SheetClose>
+                                <SheetClose asChild><a href="/vender" className="text-sm font-serif text-muted-foreground hover:text-primary transition-colors py-3 block min-h-[48px]">Venta Premium</a></SheetClose>
+                                <SheetClose asChild><a href="/alquiler" className="text-sm font-serif text-muted-foreground hover:text-primary transition-colors py-3 block min-h-[48px]">Alquiler Premium</a></SheetClose>
                                 <SheetClose asChild><a href="/compradores" className="text-sm font-serif text-muted-foreground hover:text-primary transition-colors py-3 block min-h-[48px]">Personal Shopper</a></SheetClose>
                                 <SheetClose asChild><a href="/valoracion" className="text-sm font-serif text-muted-foreground hover:text-primary transition-colors py-3 block min-h-[48px]">Valoración</a></SheetClose>
                             </div>
