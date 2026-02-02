@@ -1,0 +1,14 @@
+name = "romenn-staging"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# KV namespace para assets estáticos (se crea automáticamente con wrangler publish)
+# kv_namespaces = [
+#   { binding = "__STATIC_CONTENT", id = "xxx" }
+# ]
+
+# Variables de entorno
+# BREVO_API_KEY se configura como secret: wrangler secret put BREVO_API_KEY
+
+[site]
+bucket = "./dist"
