@@ -252,7 +252,7 @@ const Header = ({ currentPath = "/" }: HeaderProps) => {
                     <img src="/romenn-logo.svg" alt="Römenn" className="h-16 w-auto object-contain brightness-0" />
                 </SheetTitle>
                 <SheetDescription className="text-left font-light text-xs tracking-widest uppercase text-muted-foreground mt-4">
-                    Inmobiliaria Boutique Internacional
+                    Inmobiliaria Boutique
                 </SheetDescription>
               </SheetHeader>
               

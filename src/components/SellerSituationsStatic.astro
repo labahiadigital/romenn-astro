@@ -4,17 +4,8 @@
 
 const sellerSituations = [
   {
-    id: "separacion",
-    title: "Separación",
-    subtitle: "Un cambio que no se ha buscado",
-    description: "No todas las ventas se viven igual. Cuando una separación obliga a vender, el proceso necesita discreción, coordinación entre partes y, sobre todo, respeto por el momento.",
-    icon: "heart",
-    colorClass: "from-rose-500/10 to-rose-600/5",
-    iconColor: "text-rose-600",
-  },
-  {
     id: "herencia",
-    title: "Herencia",
+    title: "Gestión de Herencia",
     subtitle: "El cierre de una etapa",
     description: "Vender una vivienda heredada implica gestionar emociones además de trámites. Nos ocupamos de todo el proceso legal y fiscal para que usted pueda centrarse en lo importante.",
     icon: "scale",
@@ -22,40 +13,40 @@ const sellerSituations = [
     iconColor: "text-amber-600",
   },
   {
-    id: "cambio",
-    title: "Cambio de etapa",
-    subtitle: "Una decisión elegida",
-    description: "A veces llega el momento de cambiar. Una nueva ciudad, más espacio, menos metros. Coordinamos la venta y la compra para que la transición sea fluida.",
+    id: "separacion",
+    title: "Separación o Divorcio",
+    subtitle: "Un cambio que no se ha buscado",
+    description: "No todas las ventas se viven igual. Cuando una separación obliga a vender, el proceso necesita discreción, coordinación entre partes y, sobre todo, respeto por el momento.",
+    icon: "heart",
+    colorClass: "from-rose-500/10 to-rose-600/5",
+    iconColor: "text-rose-600",
+  },
+  {
+    id: "jubilacion",
+    title: "Planificación de Jubilación",
+    subtitle: "Un nuevo horizonte",
+    description: "Acompañamos este proceso con calma, claridad y respeto. Cada paso se explica, cada decisión se toma sin prisa y con la familia.",
+    icon: "users",
+    colorClass: "from-teal-500/10 to-teal-600/5",
+    iconColor: "text-teal-600",
+  },
+  {
+    id: "mejora",
+    title: "Mejora de Vivienda",
+    subtitle: "El salto a algo mejor",
+    description: "A veces llega el momento de dar el salto a una propiedad superior. Coordinamos la venta y la compra para que la transición sea fluida.",
     icon: "home",
     colorClass: "from-emerald-500/10 to-emerald-600/5",
     iconColor: "text-emerald-600",
   },
   {
-    id: "urgencia",
-    title: "Necesidad de liquidez",
-    subtitle: "Cuando el tiempo apremia",
-    description: "Hay procesos que necesitan rapidez. Activamos nuestra red de compradores cualificados para cerrar en el menor tiempo posible, sin malvender.",
-    icon: "clock",
-    colorClass: "from-blue-500/10 to-blue-600/5",
-    iconColor: "text-blue-600",
-  },
-  {
     id: "inversion",
-    title: "Desinversión",
+    title: "Inversión y Rentabilidad",
     subtitle: "Optimizar el patrimonio",
     description: "Vender una propiedad de inversión requiere planificación fiscal y timing. Le asesoramos para maximizar el resultado dentro de la legalidad.",
     icon: "briefcase",
     colorClass: "from-violet-500/10 to-violet-600/5",
     iconColor: "text-violet-600",
-  },
-  {
-    id: "jubilacion",
-    title: "Jubilación",
-    subtitle: "Con calma y cuidado",
-    description: "Acompañamos este proceso con calma, claridad y respeto. Cada paso se explica, cada decisión se toma sin prisa y con la familia.",
-    icon: "users",
-    colorClass: "from-teal-500/10 to-teal-600/5",
-    iconColor: "text-teal-600",
   }
 ];
 
@@ -79,59 +70,27 @@ const icons: Record<string, string> = {
       </span>
       
       <p class="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-serif text-foreground leading-[1.15] tracking-tight text-center mb-20">
-        Vender una vivienda no siempre<br class="hidden sm:block" /> 
-        llega en un momento cómodo.
+        No todas las ventas nacen<br class="hidden sm:block" /> 
+        de la misma circunstancia.
       </p>
 
       <div class="max-w-2xl mx-auto text-center mb-20">
         <p class="text-base md:text-lg text-foreground/70 font-light leading-relaxed">
-          A veces es una decisión elegida.
-        </p>
-        <p class="text-base md:text-lg text-foreground/70 font-light leading-relaxed mt-2">
-          Otras, una consecuencia de un cambio que no se ha buscado:<br class="hidden md:block" />
-          una separación, una herencia, el cierre de una etapa.
+          Entendemos que cada proceso tiene su propio pulso: desde la ilusión de un nuevo proyecto, hasta la delicadeza de una herencia o una separación.
         </p>
       </div>
 
-      <div class="text-center space-y-3 mb-20">
-        <p class="text-2xl md:text-3xl lg:text-4xl font-serif text-foreground/90 tracking-tight">
-          No todas las ventas se viven igual.
+      <div class="max-w-2xl mx-auto text-center space-y-8 mb-20">
+        <p class="text-base md:text-lg text-foreground/60 font-light leading-relaxed">
+          En <span class="font-medium text-foreground/80">RÖMENN</span>, adaptamos nuestro ritmo al suyo. Hay momentos que exigen la máxima agilidad y otros que requieren la pausa del respeto.
         </p>
-        <p class="text-2xl md:text-3xl lg:text-4xl font-serif text-foreground/90 tracking-tight">
-          Ni deberían tratarse igual.
-        </p>
-      </div>
-
-      <div class="max-w-xl mx-auto text-center mb-24">
-        <p class="text-lg md:text-xl text-foreground/60 font-light leading-loose tracking-wide">
-          Hay procesos que necesitan rapidez.
-        </p>
-        <p class="text-lg md:text-xl text-foreground/60 font-light leading-loose tracking-wide mt-4">
-          Y otros que necesitan pausa.
+        <p class="text-base md:text-lg text-foreground/60 font-light leading-relaxed">
+          Sea cual sea su situación, nuestro compromiso es el mismo: blindar su tranquilidad y maximizar el rendimiento del sacrificio de toda una vida.
         </p>
       </div>
 
       <div class="flex justify-center mb-20">
         <div class="w-12 h-px bg-slate-200"></div>
-      </div>
-
-      <div class="max-w-2xl mx-auto text-center space-y-8">
-        <p class="text-base md:text-lg text-foreground/60 font-light leading-relaxed">
-          En <span class="font-medium text-foreground/80">RÖMENN</span> no intervenimos desde la prisa ni desde la presión.
-          <br class="hidden md:block" />
-          Leemos el contexto, entendemos el momento y actuamos en consecuencia.
-        </p>
-        <p class="text-base md:text-lg text-foreground/60 font-light leading-relaxed">
-          No trabajamos para forzar decisiones.
-          <br class="hidden md:block" />
-          Trabajamos para que cada paso tenga sentido dentro de la situación real de cada persona.
-        </p>
-      </div>
-
-      <div class="mt-24 text-center">
-        <p class="text-xl md:text-2xl lg:text-3xl font-serif text-primary italic tracking-wide">
-          Aquí el tiempo importa.
-        </p>
       </div>
     </div>
 
@@ -153,7 +112,7 @@ const icons: Record<string, string> = {
     </div>
 
     <!-- Situations Grid -->
-    <div id="situations-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-8">
+    <div id="situations-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 mb-8 [&>:last-child:nth-child(odd)]:sm:col-span-2 [&>:last-child:nth-child(odd)]:lg:col-span-1 [&>:last-child:nth-child(odd)]:sm:max-w-md [&>:last-child:nth-child(odd)]:sm:mx-auto [&>:last-child:nth-child(odd)]:lg:max-w-none">
       {sellerSituations.map((situation) => (
         <button 
           type="button"
@@ -292,12 +251,11 @@ const icons: Record<string, string> = {
   };
   
   var situationIcons = {
-    separacion: 'heart',
     herencia: 'scale',
-    cambio: 'home',
-    urgencia: 'clock',
-    inversion: 'briefcase',
-    jubilacion: 'users'
+    separacion: 'heart',
+    jubilacion: 'users',
+    mejora: 'home',
+    inversion: 'briefcase'
   };
   
   cards.forEach(function(card) {

@@ -4,7 +4,7 @@ import { OGImageRoute } from 'astro-og-canvas';
 const pages: Record<string, { title: string; description: string }> = {
   'index': {
     title: 'Römenn Inmobiliaria',
-    description: 'Inmobiliaria Boutique Internacional en Rivas-Vaciamadrid',
+    description: 'Inmobiliaria Boutique en Rivas-Vaciamadrid',
   },
   'nosotros': {
     title: 'Quiénes Somos',

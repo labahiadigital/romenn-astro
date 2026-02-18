@@ -52,12 +52,11 @@ const propertyStates = [
 
 // Motivos de venta
 const sellReasons = [
-  { value: "cambio", label: "Cambio de vivienda" },
-  { value: "inversion", label: "Desinversión" },
-  { value: "herencia", label: "Herencia" },
-  { value: "divorcio", label: "Separación / Divorcio" },
-  { value: "urgencia", label: "Necesidad de liquidez" },
-  { value: "jubilacion", label: "Jubilación" },
+  { value: "herencia", label: "Gestión de Herencia" },
+  { value: "divorcio", label: "Separación o Divorcio" },
+  { value: "jubilacion", label: "Planificación de Jubilación" },
+  { value: "mejora", label: "Mejora de Vivienda" },
+  { value: "inversion", label: "Inversión y Rentabilidad" },
   { value: "otro", label: "Otro motivo" }
 ];
 

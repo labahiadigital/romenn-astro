@@ -3,18 +3,112 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 ---
 
 <BaseLayout title="Historias Reales">
-  <main class="flex-grow section-padding container mx-auto px-6 py-32">
-    <h1 class="text-4xl md:text-5xl font-serif mb-12 text-center">Historias Reales</h1>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-      <div class="bg-muted p-8">
-        <span class="text-xs font-bold tracking-widest text-accent mb-2 block">DOCUMENTAL</span>
-        <h3 class="text-2xl font-serif mb-4">La Familia García & El Chalet de los Sueños</h3>
-        <p class="font-sans font-light text-muted-foreground">Una historia sobre cambio, esperanza y nuevos comienzos en Rivas.</p>
+  <main class="flex-grow pt-32 pb-24">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-16">
+        <span class="text-xs uppercase tracking-[0.25em] text-accent font-bold mb-4 block">Historias Reales</span>
+        <h1 class="text-4xl md:text-5xl font-serif mb-4">Cada familia tiene su historia</h1>
+        <p class="text-muted-foreground font-light max-w-xl mx-auto">
+          Situaciones reales que hemos acompañado con dedicación y resultados.
+        </p>
       </div>
-      <div class="bg-muted p-8">
-        <span class="text-xs font-bold tracking-widest text-accent mb-2 block">CASO DE ÉXITO</span>
-        <h3 class="text-2xl font-serif mb-4">Venta en Record: 14 Días</h3>
-        <p class="font-sans font-light text-muted-foreground">Cómo la estrategia de Home Staging transformó una propiedad estancada.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Caso 1 -->
+        <div class="bg-white border border-slate-100 rounded-xl p-8 hover:shadow-lg transition-shadow">
+          <div class="flex items-center gap-3 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            <h3 class="font-medium text-lg">Herencia en Rivas Centro</h3>
+          </div>
+          <p class="text-muted-foreground font-light text-sm mb-6 leading-relaxed">
+            Tres hermanos heredaron un piso y necesitaban vender rápido para repartir. Situación delicada con diferentes opiniones.
+          </p>
+          <div class="flex items-center gap-2 text-primary text-sm font-medium mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Vendido en 45 días al precio acordado
+          </div>
+          <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+            <span class="text-xs text-muted-foreground bg-slate-50 px-3 py-1 rounded-full">Coordinación entre 3 herederos</span>
+            <span class="text-xs text-muted-foreground flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              45 días
+            </span>
+          </div>
+        </div>
+
+        <!-- Caso 2 -->
+        <div class="bg-white border border-slate-100 rounded-xl p-8 hover:shadow-lg transition-shadow">
+          <div class="flex items-center gap-3 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            <h3 class="font-medium text-lg">Divorcio en Santa Mónica</h3>
+          </div>
+          <p class="text-muted-foreground font-light text-sm mb-6 leading-relaxed">
+            Pareja en proceso de separación necesitaba vender la vivienda familiar. Comunicación difícil entre ambas partes.
+          </p>
+          <div class="flex items-center gap-2 text-primary text-sm font-medium mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Gestionamos toda la comunicación y vendimos en 60 días
+          </div>
+          <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+            <span class="text-xs text-muted-foreground bg-slate-50 px-3 py-1 rounded-full">Mediación profesional</span>
+            <span class="text-xs text-muted-foreground flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              60 días
+            </span>
+          </div>
+        </div>
+
+        <!-- Caso 3 -->
+        <div class="bg-white border border-slate-100 rounded-xl p-8 hover:shadow-lg transition-shadow">
+          <div class="flex items-center gap-3 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            <h3 class="font-medium text-lg">Cambio de ciudad</h3>
+          </div>
+          <p class="text-muted-foreground font-light text-sm mb-6 leading-relaxed">
+            Familia trasladada a Barcelona por trabajo. Necesitaban vender sin poder estar presentes.
+          </p>
+          <div class="flex items-center gap-2 text-primary text-sm font-medium mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Gestionamos todo de forma remota, desde fotos hasta firma
+          </div>
+          <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+            <span class="text-xs text-muted-foreground bg-slate-50 px-3 py-1 rounded-full">Gestión 100% remota</span>
+            <span class="text-xs text-muted-foreground flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              52 días
+            </span>
+          </div>
+        </div>
+
+        <!-- Caso 4 -->
+        <div class="bg-white border border-slate-100 rounded-xl p-8 hover:shadow-lg transition-shadow">
+          <div class="flex items-center gap-3 mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary"><circle cx="12" cy="8" r="6"/><path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11"/></svg>
+            <h3 class="font-medium text-lg">Inversión para jubilación</h3>
+          </div>
+          <p class="text-muted-foreground font-light text-sm mb-6 leading-relaxed">
+            Propietario mayor quería vender para complementar su pensión. Preocupación por el proceso.
+          </p>
+          <div class="flex items-center gap-2 text-primary text-sm font-medium mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            Acompañamiento personalizado en cada paso
+          </div>
+          <div class="flex items-center justify-between pt-4 border-t border-slate-100">
+            <span class="text-xs text-muted-foreground bg-slate-50 px-3 py-1 rounded-full">Atención especial seniors</span>
+            <span class="text-xs text-muted-foreground flex items-center gap-1">
+              <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              38 días
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="text-center mt-16">
+        <a href="/contacto" class="btn-premium inline-flex items-center gap-2 group">
+          ¿Tiene una situación similar?
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
       </div>
     </div>
   </main>

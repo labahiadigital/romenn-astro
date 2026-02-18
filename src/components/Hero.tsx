@@ -83,7 +83,7 @@ const Hero = () => {
       {/* Content - Todo visible desde el inicio para evitar CLS */}
       <div className="relative z-20 h-full flex flex-col items-center justify-center text-center text-white px-4">
         <span className="uppercase tracking-[0.3em] text-xs md:text-sm font-light mb-6 text-gray-300">
-          Inmobiliaria Boutique Internacional
+          Inmobiliaria Boutique
         </span>
         
         {/* H1 es el elemento LCP */}
