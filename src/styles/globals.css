@@ -194,4 +194,12 @@ All colors MUST be HSL.
   .card-hover:hover::after {
     opacity: 1;
   }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }

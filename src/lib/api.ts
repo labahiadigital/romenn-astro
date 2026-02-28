@@ -1,5 +1,19 @@
 const API_URL = import.meta.env.PUBLIC_API_URL || "https://api.romenninmobiliaria.es";
 
+const CACHE_TTL = 5 * 60 * 1000; // 5 min
+const cache = new Map<string, { data: unknown; ts: number }>();
+
+function getCached<T>(key: string): T | null {
+  const entry = cache.get(key);
+  if (entry && Date.now() - entry.ts < CACHE_TTL) return entry.data as T;
+  cache.delete(key);
+  return null;
+}
+
+function setCache(key: string, data: unknown) {
+  cache.set(key, { data, ts: Date.now() });
+}
+
 export interface PublicProperty {
   reference: string;
   title: string | null;
@@ -97,15 +111,27 @@ export async function fetchProperties(params?: {
   if (params?.page_size) url.searchParams.set("page_size", String(params.page_size));
   if (params?.search) url.searchParams.set("search", params.search);
 
+  const cacheKey = `list:${url.toString()}`;
+  const cached = getCached<PaginatedResponse<PublicPropertyListItem>>(cacheKey);
+  if (cached) return cached;
+
   const res = await fetch(url.toString());
   if (!res.ok) throw new Error(`API error: ${res.status}`);
-  return res.json();
+  const data: PaginatedResponse<PublicPropertyListItem> = await res.json();
+  setCache(cacheKey, data);
+  return data;
 }
 
 export async function fetchProperty(reference: string): Promise<PublicProperty> {
+  const cacheKey = `detail:${reference}`;
+  const cached = getCached<PublicProperty>(cacheKey);
+  if (cached) return cached;
+
   const res = await fetch(`${API_URL}/api/v1/public/properties/${reference}`);
   if (!res.ok) throw new Error(`API error: ${res.status}`);
-  return res.json();
+  const data: PublicProperty = await res.json();
+  setCache(cacheKey, data);
+  return data;
 }
 
 export function formatPrice(price: number | null): string {
