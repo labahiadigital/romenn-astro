@@ -105,6 +105,7 @@ export default defineConfig({
     resolve: {
       alias: {
         '@': '/src',
+        'react-dom/server': 'react-dom/server.edge',
       },
     },
     ssr: {
