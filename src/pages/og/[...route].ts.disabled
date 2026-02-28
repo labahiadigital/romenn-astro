@@ -8,7 +8,7 @@ const pages: Record<string, { title: string; description: string }> = {
   },
   'nosotros': {
     title: 'Quiénes Somos',
-    description: 'Más de 10 años cuidando de tus nuevos comienzos',
+    description: 'Más de 10 años cuidando de sus nuevos comienzos',
   },
   'servicios': {
     title: 'Servicios 360°',
@@ -19,12 +19,12 @@ const pages: Record<string, { title: string; description: string }> = {
     description: 'El arte de vender su propiedad al mejor precio',
   },
   'compradores': {
-    title: 'Personal Shopper Inmobiliario',
+    title: 'Búsqueda a medida',
     description: 'Encontramos lo que no está en los portales',
   },
-  'propiedades': {
-    title: 'Portfolio Exclusivo',
-    description: 'Selección curada de propiedades con alma',
+  'inmuebles': {
+    title: 'Inmuebles en Exclusiva',
+    description: 'Selección curada de propiedades verificadas',
   },
   'valoracion': {
     title: 'Valoración Inteligente',
@@ -88,7 +88,7 @@ const pages: Record<string, { title: string; description: string }> = {
   },
   'financiacion': {
     title: 'Financiación',
-    description: 'Soluciones financieras para tu hogar',
+    description: 'Soluciones financieras para su hogar',
   },
   'privacidad': {
     title: 'Política de Privacidad',
@@ -100,12 +100,12 @@ const pages: Record<string, { title: string; description: string }> = {
   },
   // Blog posts
   'blog/guia-compra-primera-vivienda': {
-    title: 'Guía para Comprar tu Primera Vivienda',
-    description: 'Todo lo que necesitas saber antes de comprar',
+    title: 'Guía para Comprar su Primera Vivienda',
+    description: 'Todo lo que necesita saber antes de comprar',
   },
   'blog/rivas-vaciamadrid-mejor-zona-para-vivir': {
     title: 'Rivas-Vaciamadrid: La Mejor Zona para Vivir',
-    description: 'Descubre por qué Rivas es el lugar ideal',
+    description: 'Descubra por qué Rivas es el lugar ideal',
   },
   'blog/tendencias-mercado-inmobiliario-2026': {
     title: 'Tendencias del Mercado Inmobiliario 2026',

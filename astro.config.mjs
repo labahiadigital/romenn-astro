@@ -4,9 +4,12 @@ import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
 import purgecss from 'astro-purgecss';
+import cloudflare from '@astrojs/cloudflare';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://romenninmobiliaria.es',
+  output: 'static',
+  adapter: cloudflare(),
   integrations: [
     react(),
     tailwind({
@@ -52,6 +55,18 @@ export default defineConfig({
           /astro/,
           /radix/,
           /sonner/,
+          /line-clamp/,
+          /aspect-/,
+          /grid-cols/,
+          /col-span/,
+          /row-span/,
+          /gap-/,
+          /rounded-/,
+          /shadow-/,
+          /overflow-/,
+          /sticky/,
+          /top-/,
+          /whitespace-/,
         ],
       },
     }),
@@ -98,10 +113,9 @@ export default defineConfig({
   },
   image: {
     service: {
-      entrypoint: 'astro/assets/services/sharp',
+      entrypoint: 'astro/assets/services/compile',
     },
   },
-  output: 'static',
   build: {
     // CSS inline para mejor rendimiento - PurgeCSS lo optimiza primero
     inlineStylesheets: 'always',
