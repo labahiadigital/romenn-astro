@@ -45,6 +45,7 @@ export interface PublicProperty {
   is_duplex: boolean | null;
   is_studio: boolean | null;
   is_top_floor: boolean | null;
+  is_sold: boolean;
   virtual_tour_url: string | null;
   video_url: string | null;
   location: {
@@ -82,6 +83,7 @@ export interface PublicPropertyListItem {
   is_penthouse: boolean | null;
   is_duplex: boolean | null;
   is_studio: boolean | null;
+  is_sold: boolean;
   location: {
     city: string | null;
     district: string | null;

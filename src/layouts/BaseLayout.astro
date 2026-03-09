@@ -4,6 +4,7 @@ import { Font } from "astro:assets";
 import HeaderStatic from "@/components/HeaderStatic.astro";
 import Footer from "@/components/Footer.astro";
 import WhatsAppButton from "@/components/WhatsAppButton.astro";
+import MusicPlayer from "@/components/MusicPlayer.astro";
 import { Toaster } from "@/components/ui/sonner";
 import { SEO } from "astro-seo";
 import { Schema } from "astro-seo-schema";
@@ -258,6 +259,7 @@ const organizationData = {
     </main>
     
     <Footer />
+    <MusicPlayer />
     <WhatsAppButton />
     {hasForm && <Toaster client:load />}
   </body>

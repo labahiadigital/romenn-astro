@@ -1,0 +1,92 @@
+---
+---
+
+<div id="music-player" class="fixed bottom-24 left-6 z-40 group">
+  <button
+    id="music-toggle"
+    aria-label="Reproducir música ambiente"
+    class="w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm border border-slate-200 shadow-lg flex items-center justify-center text-primary hover:bg-white hover:shadow-xl transition-all duration-300 hover:scale-105"
+  >
+    <svg id="icon-play" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+      <path d="M9.525 18.025q-.5.325-1.013.038T8 17.175V6.825q0-.6.513-.888t1.012.038l8.15 5.175q.45.3.45.85t-.45.85l-8.15 5.175Z"/>
+    </svg>
+    <svg id="icon-pause" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="hidden">
+      <path d="M14 19V5h4v14h-4Zm-8 0V5h4v14H6Z"/>
+    </svg>
+    <svg id="icon-bars" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="hidden">
+      <rect x="4" y="14" width="3" height="6" rx="1" class="music-bar bar-1"/>
+      <rect x="9" y="10" width="3" height="10" rx="1" class="music-bar bar-2"/>
+      <rect x="14" y="6" width="3" height="14" rx="1" class="music-bar bar-3"/>
+      <rect x="19" y="12" width="3" height="8" rx="1" class="music-bar bar-4"/>
+    </svg>
+  </button>
+  <div id="music-tooltip" class="absolute left-14 bottom-1/2 translate-y-1/2 bg-primary text-white text-xs font-medium px-3 py-1.5 rounded-lg whitespace-nowrap opacity-0 pointer-events-none group-hover:opacity-100 transition-opacity duration-200 shadow-md">
+    Piano ambient
+  </div>
+</div>
+
+<style>
+  @keyframes barBounce1 { 0%, 100% { height: 6px; y: 14px; } 50% { height: 14px; y: 6px; } }
+  @keyframes barBounce2 { 0%, 100% { height: 10px; y: 10px; } 50% { height: 16px; y: 4px; } }
+  @keyframes barBounce3 { 0%, 100% { height: 14px; y: 6px; } 50% { height: 8px; y: 12px; } }
+  @keyframes barBounce4 { 0%, 100% { height: 8px; y: 12px; } 50% { height: 14px; y: 6px; } }
+
+  .music-bar { transform-origin: bottom; }
+  .playing .bar-1 { animation: barBounce1 0.8s ease-in-out infinite; }
+  .playing .bar-2 { animation: barBounce2 0.6s ease-in-out infinite; }
+  .playing .bar-3 { animation: barBounce3 0.7s ease-in-out infinite; }
+  .playing .bar-4 { animation: barBounce4 0.9s ease-in-out infinite; }
+</style>
+
+<script is:inline>
+(function() {
+  let audio = null;
+  let isPlaying = false;
+  const btn = document.getElementById('music-toggle');
+  const iconPlay = document.getElementById('icon-play');
+  const iconPause = document.getElementById('icon-pause');
+  const iconBars = document.getElementById('icon-bars');
+  const player = document.getElementById('music-player');
+
+  function showIcon(which) {
+    iconPlay.classList.add('hidden');
+    iconPause.classList.add('hidden');
+    iconBars.classList.add('hidden');
+    which.classList.remove('hidden');
+  }
+
+  btn.addEventListener('click', function() {
+    if (!audio) {
+      audio = new Audio('/piano-ambient.mp3');
+      audio.loop = true;
+      audio.volume = 0.25;
+      audio.addEventListener('ended', function() {
+        audio.currentTime = 0;
+        audio.play();
+      });
+    }
+
+    if (isPlaying) {
+      audio.pause();
+      isPlaying = false;
+      showIcon(iconPlay);
+      player.classList.remove('playing');
+      btn.setAttribute('aria-label', 'Reproducir música ambiente');
+    } else {
+      audio.play().then(function() {
+        isPlaying = true;
+        showIcon(iconBars);
+        player.classList.add('playing');
+        btn.setAttribute('aria-label', 'Pausar música ambiente');
+      }).catch(function() {});
+    }
+  });
+
+  btn.addEventListener('mouseenter', function() {
+    if (isPlaying) showIcon(iconPause);
+  });
+  btn.addEventListener('mouseleave', function() {
+    if (isPlaying) showIcon(iconBars);
+  });
+})();
+</script>
