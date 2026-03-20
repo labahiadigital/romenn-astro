@@ -302,9 +302,16 @@ function buildClientConfirmationEmail(data: FormPayload): { subject: string; htm
 
 export const POST: APIRoute = async (context) => {
   const { request } = context;
-  const runtimeEnv = (context.locals as any)?.runtime?.env || {};
+
+  let cfEnv: Record<string, string> = {};
+  try {
+    const { env } = await import("cloudflare:workers");
+    cfEnv = env as unknown as Record<string, string>;
+  } catch {
+    // Fallback for non-Cloudflare environments (dev without workerd)
+  }
   const getEnv = (key: string): string =>
-    runtimeEnv[key] || (import.meta.env?.[key] as string) || "";
+    cfEnv[key] || (import.meta.env?.[key] as string) || "";
 
   const BREVO_API_KEY = getEnv("BREVO_API_KEY");
   const SENDER_EMAIL = getEnv("BREVO_SENDER_EMAIL") || "noreply@romenn.es";

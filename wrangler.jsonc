@@ -1,0 +1,9 @@
+{
+  "name": "romenn",
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "compatibility_date": "2025-05-21",
+  "compatibility_flags": ["nodejs_compat"],
+  "vars": {
+    "PUBLIC_API_URL": "https://api.romenninmobiliaria.es"
+  }
+}

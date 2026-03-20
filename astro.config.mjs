@@ -1,20 +1,17 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, fontProviders } from 'astro/config';
 import react from '@astrojs/react';
-import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 import robotsTxt from 'astro-robots-txt';
 import purgecss from 'astro-purgecss';
 import cloudflare from '@astrojs/cloudflare';
-// https://astro.build/config
+
 export default defineConfig({
   site: 'https://romenninmobiliaria.es',
-  output: 'static',
-  adapter: cloudflare(),
+  adapter: cloudflare({
+    imageService: 'compile',
+  }),
   integrations: [
     react(),
-    tailwind({
-      applyBaseStyles: false,
-    }),
     sitemap({
       changefreq: 'weekly',
       priority: 0.7,
@@ -83,13 +80,13 @@ export default defineConfig({
       },
     }),
   ],
-  experimental: {
-    fonts: [
-      {
-        provider: "local",
-        name: "Manrope",
-        cssVariable: "--font-manrope",
-        fallbacks: ["system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+  fonts: [
+    {
+      provider: fontProviders.local(),
+      name: "Manrope",
+      cssVariable: "--font-manrope",
+      fallbacks: ["system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "sans-serif"],
+      options: {
         variants: [
           { weight: 300, style: "normal", src: ["./src/assets/fonts/manrope-latin-300-normal.woff2"] },
           { weight: 400, style: "normal", src: ["./src/assets/fonts/manrope-latin-400-normal.woff2"] },
@@ -98,11 +95,13 @@ export default defineConfig({
           { weight: 700, style: "normal", src: ["./src/assets/fonts/manrope-latin-700-normal.woff2"] },
         ],
       },
-      {
-        provider: "local",
-        name: "Playfair Display",
-        cssVariable: "--font-playfair",
-        fallbacks: ["Georgia", "Times New Roman", "serif"],
+    },
+    {
+      provider: fontProviders.local(),
+      name: "Playfair Display",
+      cssVariable: "--font-playfair",
+      fallbacks: ["Georgia", "Times New Roman", "serif"],
+      options: {
         variants: [
           { weight: 400, style: "normal", src: ["./src/assets/fonts/playfair-display-latin-400-normal.woff2"] },
           { weight: 400, style: "italic", src: ["./src/assets/fonts/playfair-display-latin-400-italic.woff2"] },
@@ -111,8 +110,8 @@ export default defineConfig({
           { weight: 700, style: "normal", src: ["./src/assets/fonts/playfair-display-latin-700-normal.woff2"] },
         ],
       },
-    ],
-  },
+    },
+  ],
   vite: {
     resolve: {
       alias: {
@@ -130,7 +129,6 @@ export default defineConfig({
     },
   },
   build: {
-    // CSS inline para mejor rendimiento - PurgeCSS lo optimiza primero
     inlineStylesheets: 'always',
   },
 });
