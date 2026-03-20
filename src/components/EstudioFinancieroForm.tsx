@@ -46,52 +46,52 @@ const EstudioFinancieroForm = () => {
 
     setIsSubmitting(true);
     
-    // Obtener UTM params de la URL
     const urlParams = new URLSearchParams(window.location.search);
     
-    const leadData = {
-      nombre: formData.name,
-      email: formData.email,
-      telefono: formData.phone,
-      formulario: "estudio_financiero",
-      situacion_laboral: formData.situation,
-      ingresos: formData.income,
-      ahorros: formData.savings,
-      gastos_prestamos_mensuales: formData.monthlyLoans,
-      timeline: formData.timeline,
-      utm_source: urlParams.get("utm_source") || "",
-      utm_medium: urlParams.get("utm_medium") || "",
-      utm_campaign: urlParams.get("utm_campaign") || "",
-    };
-    
     try {
-      // Enviar al CRM
-      const crmPromise = fetch(`${CRM_API_URL}/public/leads`, {
+      // Step 1: Send emails via Brevo and get HMAC token
+      const emailRes = await fetch(EMAIL_API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(leadData),
-      }).catch(err => console.log("CRM error:", err));
+        body: JSON.stringify({
+          formType: "estudio_financiero",
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone,
+          situation: formData.situation,
+          income: formData.income,
+          savings: formData.savings,
+          monthlyLoans: formData.monthlyLoans,
+          timeline: formData.timeline,
+        }),
+      });
+      const emailResult = await emailRes.json().catch(() => ({ success: false }));
 
-      // Enviar emails via Brevo (worker)
-      const emailData = {
-        formType: "estudio_financiero",
-        name: formData.name,
-        email: formData.email,
-        phone: formData.phone,
-        situation: formData.situation,
-        income: formData.income,
-        savings: formData.savings,
-        monthlyLoans: formData.monthlyLoans,
-        timeline: formData.timeline,
-      };
+      // Step 2: Create lead in CRM with HMAC token
+      const crmHeaders: Record<string, string> = { "Content-Type": "application/json" };
+      if (emailResult.hmacToken) {
+        crmHeaders["X-Form-Token"] = emailResult.hmacToken;
+        crmHeaders["X-Form-Timestamp"] = emailResult.hmacTimestamp;
+      }
 
-      const emailPromise = fetch(EMAIL_API_URL, {
+      await fetch(`${CRM_API_URL}/public/leads`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(emailData),
-      }).catch(err => console.log("Email error:", err));
-
-      await Promise.all([crmPromise, emailPromise]);
+        headers: crmHeaders,
+        body: JSON.stringify({
+          nombre: formData.name,
+          email: formData.email,
+          telefono: formData.phone,
+          formulario: "estudio_financiero",
+          situacion_laboral: formData.situation,
+          ingresos: formData.income,
+          ahorros: formData.savings,
+          gastos_prestamos_mensuales: formData.monthlyLoans,
+          timeline: formData.timeline,
+          utm_source: urlParams.get("utm_source") || "",
+          utm_medium: urlParams.get("utm_medium") || "",
+          utm_campaign: urlParams.get("utm_campaign") || "",
+        }),
+      }).catch((err) => console.warn("CRM lead creation failed:", err));
       
       setIsCompleted(true);
       toast.success("¡Solicitud enviada! Le contactaremos pronto.");
