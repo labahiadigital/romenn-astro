@@ -252,9 +252,14 @@ const organizationData = {
     <!-- Google Tag Manager (noscript) - Fallback for users without JavaScript -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJPFPVFH" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     
+    <!-- Skip to content link for keyboard/screen reader users -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-primary focus:text-white focus:px-6 focus:py-3 focus:rounded-lg focus:text-sm focus:font-medium focus:shadow-lg focus:outline-none">
+      Saltar al contenido principal
+    </a>
+
     <HeaderStatic currentPath={currentPath} />
     
-    <main>
+    <main id="main-content" role="main" tabindex="-1">
       <slot />
     </main>
     

@@ -203,3 +203,62 @@ All colors MUST be HSL.
     display: none;
   }
 }
+
+/* ===== ACCESSIBILITY ===== */
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High-contrast focus indicators */
+:focus-visible {
+  outline: 3px solid hsl(var(--romenn-cobalt));
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Minimum tap target size (WCAG 2.5.8) */
+@layer base {
+  a,
+  button,
+  [role="button"],
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Allow inline links to be smaller but keep padding */
+  p a,
+  li a,
+  span a {
+    min-height: auto;
+    min-width: auto;
+    padding-block: 2px;
+  }
+}
+
+/* Text scaling: relative units for user font-size preferences */
+@layer base {
+  html {
+    font-size: 100%;
+  }
+}
+
+/* High contrast mode support */
+@media (forced-colors: active) {
+  .btn-premium,
+  a,
+  button {
+    border: 1px solid ButtonText;
+  }
+}

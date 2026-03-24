@@ -17,9 +17,10 @@ const FadeIn = ({ children, className = "" }: { children: React.ReactNode; class
 
 // Firmas de éxito - datos de ejemplo (conectar con CRM)
 const successStats = [
-  { number: "150+", label: "Familias acompañadas" },
+  { number: "25.625", label: "Familias acompañadas", subtitle: "En nuestros primeros 5 años" },
   { number: "98%", label: "Clientes satisfechos" },
   { number: "45", label: "Días de venta media" },
+  { number: "103%", label: "Del precio objetivo alcanzado" },
 ];
 
 // Reseñas destacadas (conectar con Google Reviews API)
