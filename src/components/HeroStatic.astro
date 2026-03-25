@@ -23,15 +23,15 @@ const heroFrame = "/hero-frame.webp";
     <!-- Dark overlay -->
     <div class="hero-overlay"></div>
     
-    <!-- Video - fades in over background when ready -->
-    <!-- iOS requires: autoplay + muted + playsinline for autoplay to work -->
+    <!-- Video - deferred loading, fades in over background when ready -->
+    <!-- preload="none" avoids wasting bandwidth until user is on page -->
     <video 
       id="hero-video"
       autoplay
       loop 
       muted
       playsinline
-      preload="auto"
+      preload="none"
       class="hero-video"
       webkit-playsinline="true"
     >
@@ -204,9 +204,6 @@ const heroFrame = "/hero-frame.webp";
 </style>
 
 <script is:inline>
-  // Show video when ready and ensure playback
-  // iOS requires: autoplay + muted + playsinline attributes
-  // Also needs user gesture in some cases, but with muted it should work
   (function() {
     var video = document.getElementById('hero-video');
     if (!video) return;
@@ -220,7 +217,6 @@ const heroFrame = "/hero-frame.webp";
     }
     
     function tryPlayVideo() {
-      // Ensure muted is set (required for iOS autoplay)
       video.muted = true;
       video.setAttribute('muted', '');
       video.setAttribute('playsinline', '');
@@ -228,48 +224,41 @@ const heroFrame = "/hero-frame.webp";
       
       var playPromise = video.play();
       if (playPromise !== undefined) {
-        playPromise.then(function() {
-          showVideo();
-        }).catch(function(err) {
-          // If autoplay fails, still show video if it has content
-          console.log('Video autoplay failed:', err.message);
-          if (video.readyState >= 2) {
-            showVideo();
-          }
+        playPromise.then(showVideo).catch(function() {
+          if (video.readyState >= 2) showVideo();
         });
       } else {
-        // Older browsers that don't return a promise
         showVideo();
       }
     }
-    
-    // Listen for canplay event
-    video.addEventListener('canplay', tryPlayVideo, { once: true });
-    
-    // Also listen for loadeddata as fallback for iOS
-    video.addEventListener('loadeddata', function() {
-      if (!videoShown) tryPlayVideo();
-    }, { once: true });
-    
-    // If video is already ready (cached), try to play immediately
-    if (video.readyState >= 3) {
-      tryPlayVideo();
+
+    function startVideoLoad() {
+      video.preload = 'auto';
+      video.load();
+      video.addEventListener('canplay', tryPlayVideo, { once: true });
+      video.addEventListener('loadeddata', function() {
+        if (!videoShown) tryPlayVideo();
+      }, { once: true });
+      if (video.readyState >= 3) tryPlayVideo();
     }
     
-    // iOS Safari workaround: try to play on first user interaction if autoplay failed
-    var userInteractionHandler = function() {
-      if (!videoShown && video.paused) {
-        tryPlayVideo();
-      }
-      document.removeEventListener('touchstart', userInteractionHandler);
-      document.removeEventListener('click', userInteractionHandler);
-    };
+    // Defer video loading until after LCP (poster image) is painted
+    if ('requestIdleCallback' in window) {
+      requestIdleCallback(startVideoLoad, { timeout: 2500 });
+    } else {
+      setTimeout(startVideoLoad, 1500);
+    }
     
-    // Only add these listeners after a short delay to avoid immediate trigger
+    // iOS Safari: try to play on first user interaction
     setTimeout(function() {
       if (!videoShown) {
-        document.addEventListener('touchstart', userInteractionHandler, { passive: true, once: true });
-        document.addEventListener('click', userInteractionHandler, { once: true });
+        var handler = function() {
+          if (!videoShown && video.paused) { startVideoLoad(); tryPlayVideo(); }
+          document.removeEventListener('touchstart', handler);
+          document.removeEventListener('click', handler);
+        };
+        document.addEventListener('touchstart', handler, { passive: true, once: true });
+        document.addEventListener('click', handler, { once: true });
       }
     }, 1000);
   })();

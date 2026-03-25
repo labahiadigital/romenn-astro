@@ -376,18 +376,16 @@ const navItems = [
 </style>
 
 <script is:inline>
-  // Minimal script for scroll behavior and mobile menu
   (function() {
     var header = document.getElementById('main-header');
     var isHome = header && header.dataset.home === 'true';
     
     if (isHome && header) {
       var ticking = false;
-      var handleScroll = function() {
+      window.addEventListener('scroll', function() {
         if (!ticking) {
           requestAnimationFrame(function() {
-            var scrolled = window.scrollY > 50;
-            if (scrolled) {
+            if (window.scrollY > 50) {
               header.classList.remove('header-transparent');
               header.classList.add('header-solid');
             } else {
@@ -398,40 +396,74 @@ const navItems = [
           });
           ticking = true;
         }
-      };
-      window.addEventListener('scroll', handleScroll, { passive: true });
+      }, { passive: true });
     }
 
-    // Mobile menu
+    // Keyboard navigation for dropdown triggers
+    document.querySelectorAll('.nav-trigger').forEach(function(trigger) {
+      trigger.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          var container = trigger.closest('.nav-dropdown-container');
+          var dropdown = container && container.querySelector('.nav-dropdown');
+          if (dropdown) {
+            var isOpen = dropdown.style.visibility === 'visible';
+            dropdown.style.opacity = isOpen ? '' : '1';
+            dropdown.style.visibility = isOpen ? '' : 'visible';
+            dropdown.style.transform = isOpen ? '' : 'translateX(-50%) scale(1)';
+            trigger.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+            if (!isOpen) {
+              var first = dropdown.querySelector('a');
+              if (first) first.focus();
+            }
+          }
+        }
+        if (e.key === 'Escape') {
+          var container = trigger.closest('.nav-dropdown-container');
+          var dropdown = container && container.querySelector('.nav-dropdown');
+          if (dropdown) {
+            dropdown.style.opacity = '';
+            dropdown.style.visibility = '';
+            dropdown.style.transform = '';
+            trigger.setAttribute('aria-expanded', 'false');
+            trigger.focus();
+          }
+        }
+      });
+    });
+
+    // Mobile menu with focus trap
     var mobileMenuBtn = document.getElementById('mobile-menu-btn');
     var mobileMenu = document.getElementById('mobile-menu');
     var mobileMenuClose = document.getElementById('mobile-menu-close');
 
-    if (mobileMenuBtn) {
-      mobileMenuBtn.addEventListener('click', function() {
-        if (mobileMenu) {
-          mobileMenu.classList.add('open');
-          mobileMenu.setAttribute('aria-hidden', 'false');
-          document.body.style.overflow = 'hidden';
-        }
-      });
+    function openMenu() {
+      if (!mobileMenu) return;
+      mobileMenu.classList.add('open');
+      mobileMenu.setAttribute('aria-hidden', 'false');
+      mobileMenuBtn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      if (mobileMenuClose) mobileMenuClose.focus();
     }
 
-    var closeMenu = function() {
-      if (mobileMenu) {
-        mobileMenu.classList.remove('open');
-        mobileMenu.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-      }
-    };
-
-    if (mobileMenuClose) {
-      mobileMenuClose.addEventListener('click', closeMenu);
+    function closeMenu() {
+      if (!mobileMenu) return;
+      mobileMenu.classList.remove('open');
+      mobileMenu.setAttribute('aria-hidden', 'true');
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      mobileMenuBtn.focus();
     }
+
+    if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', openMenu);
+    if (mobileMenuClose) mobileMenuClose.addEventListener('click', closeMenu);
     
     if (mobileMenu) {
       mobileMenu.addEventListener('click', function(e) {
         if (e.target === mobileMenu) closeMenu();
+      });
+      mobileMenu.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeMenu();
       });
     }
   })();

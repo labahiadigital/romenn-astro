@@ -108,6 +108,11 @@ const organizationData = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
     
+    <!-- DNS Prefetch & Preconnect for external resources -->
+    <link rel="dns-prefetch" href="https://api.romenninmobiliaria.es" />
+    <link rel="preconnect" href="https://api.romenninmobiliaria.es" crossorigin />
+    <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+    
     <!-- Fuentes optimizadas con Astro experimental fonts API (preload automático + fallbacks calculados) -->
     <Font cssVariable="--font-manrope" preload />
     <Font cssVariable="--font-playfair" preload />
