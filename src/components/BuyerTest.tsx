@@ -7,6 +7,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
+import { trackFormSubmit } from "@/lib/gtm";
 
 const questions = [
   {
@@ -169,7 +170,8 @@ const BuyerTest = () => {
       // TODO: Conectar con API del CRM
       console.log("Lead data:", leadData);
       await new Promise(resolve => setTimeout(resolve, 1500));
-      
+
+      trackFormSubmit("personal_shopper");
       setIsCompleted(true);
       toast.success("Perfil de comprador creado. Su Personal Shopper le contactará pronto.");
     } catch (error) {

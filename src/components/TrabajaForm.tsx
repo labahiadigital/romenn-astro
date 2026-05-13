@@ -6,6 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Send, Shield, Upload, FileText, X } from "lucide-react";
 import { toast } from "sonner";
+import { trackFormSubmit } from "@/lib/gtm";
 
 // API URL
 const EMAIL_API_URL = "/api/send-email";
@@ -96,7 +97,8 @@ const TrabajaForm = () => {
       if (!response.ok) {
         throw new Error("Error al enviar");
       }
-      
+
+      trackFormSubmit("trabaja_con_nosotros");
       toast.success("Solicitud enviada correctamente. Revisaremos tu CV y te contactaremos pronto.");
       (e.target as HTMLFormElement).reset();
       setAcceptedPrivacy(false);

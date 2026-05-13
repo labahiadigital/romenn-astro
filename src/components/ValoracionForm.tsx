@@ -23,6 +23,7 @@ import {
   Shield
 } from "lucide-react";
 import { toast } from "sonner";
+import { trackFormSubmit } from "@/lib/gtm";
 
 // API URLs
 const CRM_API_URL = import.meta.env.PUBLIC_CRM_API_URL || "https://api.romenn.es/api/v1";
@@ -132,6 +133,11 @@ const ValoracionForm = () => {
           additionalInfo: formData.additionalInfo,
         }),
       });
+
+      if (!emailRes.ok) {
+        throw new Error(`Email API respondió con status ${emailRes.status}`);
+      }
+
       const emailResult = await emailRes.json().catch(() => ({ success: false }));
 
       // Step 2: Create lead in CRM with HMAC token
@@ -163,7 +169,8 @@ const ValoracionForm = () => {
           utm_campaign: urlParams.get("utm_campaign") || "",
         }),
       }).catch((err) => console.warn("CRM lead creation failed:", err));
-      
+
+      trackFormSubmit("valoracion");
       setIsCompleted(true);
       toast.success("¡Solicitud enviada! Le contactaremos pronto.");
     } catch (error) {

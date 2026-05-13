@@ -3,6 +3,7 @@ import { Star, Send, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import { trackFormSubmit } from "@/lib/gtm";
 
 const EMAIL_API_URL = "/api/send-email";
 
@@ -30,12 +31,17 @@ const SmartReviews = () => {
         feedback,
       };
 
-      await fetch(EMAIL_API_URL, {
+      const res = await fetch(EMAIL_API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(emailData),
       });
-      
+
+      if (!res.ok) {
+        throw new Error(`Email API respondió con status ${res.status}`);
+      }
+
+      trackFormSubmit("resenas");
       setIsSubmitted(true);
       toast.success("Gracias por su feedback. Nos pondremos en contacto con usted.");
     } catch (error) {

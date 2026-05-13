@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import { ArrowRight, CheckCircle2, Home, Users, Shield } from "lucide-react";
+import { trackFormSubmit } from "@/lib/gtm";
 
 // API URLs
 const CRM_API_URL = import.meta.env.PUBLIC_CRM_API_URL || "https://api.romenn.es/api/v1";
@@ -65,6 +66,11 @@ const EstudioFinancieroForm = () => {
           timeline: formData.timeline,
         }),
       });
+
+      if (!emailRes.ok) {
+        throw new Error(`Email API respondió con status ${emailRes.status}`);
+      }
+
       const emailResult = await emailRes.json().catch(() => ({ success: false }));
 
       // Step 2: Create lead in CRM with HMAC token
@@ -92,7 +98,8 @@ const EstudioFinancieroForm = () => {
           utm_campaign: urlParams.get("utm_campaign") || "",
         }),
       }).catch((err) => console.warn("CRM lead creation failed:", err));
-      
+
+      trackFormSubmit("estudio_financiero");
       setIsCompleted(true);
       toast.success("¡Solicitud enviada! Le contactaremos pronto.");
     } catch (error) {
