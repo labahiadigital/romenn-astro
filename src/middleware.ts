@@ -112,5 +112,30 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
   response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
   response.headers.set("Permissions-Policy", "camera=(), microphone=(), geolocation=()");
 
+  // Content Security Policy — incluye dominios necesarios para Google Tag Manager,
+  // Google Analytics 4 (incluido el endpoint Consent Mode `google.com/ccm/collect`)
+  // y la API propia. Se aplica solo a documentos HTML para no romper assets.
+  const contentType = response.headers.get("Content-Type") || "";
+  if (contentType.includes("text/html")) {
+    const csp = [
+      "default-src 'self'",
+      // 'unsafe-inline' + 'unsafe-eval' los necesita GTM (loader inline y plantillas custom)
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com https://tagmanager.google.com",
+      "script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com https://tagmanager.google.com",
+      "style-src 'self' 'unsafe-inline' https://tagmanager.google.com https://fonts.googleapis.com",
+      "img-src 'self' data: blob: https:",
+      "font-src 'self' data: https://fonts.gstatic.com",
+      // connect-src: dominios solicitados por el cliente + GA4 + endpoint /ccm/collect + API propia
+      "connect-src 'self' https://www.google.com https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net https://www.googletagmanager.com https://*.googletagmanager.com https://api.romenninmobiliaria.es",
+      "frame-src 'self' https://www.googletagmanager.com https://www.google.com https://td.doubleclick.net",
+      "object-src 'none'",
+      "base-uri 'self'",
+      "form-action 'self'",
+      "frame-ancestors 'self'",
+      "upgrade-insecure-requests",
+    ].join("; ");
+    response.headers.set("Content-Security-Policy", csp);
+  }
+
   return response;
 };
