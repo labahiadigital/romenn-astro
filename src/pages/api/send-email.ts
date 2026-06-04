@@ -71,15 +71,6 @@ type FormPayload =
   | ResenasPayload
   | OffMarketPayload;
 
-const VALID_FORM_TYPES = new Set([
-  "contacto",
-  "valoracion",
-  "estudio_financiero",
-  "trabaja-con-nosotros",
-  "resenas",
-  "off_market",
-]);
-
 // ────────────────────────────────────────────
 // Helpers
 // ────────────────────────────────────────────
@@ -187,85 +178,167 @@ function buildNotificationRows(rows: Array<[string, string]>): string {
     .join("")}</table>`;
 }
 
+// ────────────────────────────────────────────
+// Registro por tipo de formulario
+// Todo lo que distingue a un formulario (etiqueta, título de la notificación
+// interna, filas que se muestran y email de confirmación al cliente) vive en
+// una sola entrada. Añadir un formulario = añadir su interface + una entrada aquí.
+// ────────────────────────────────────────────
+
+interface FormSpec {
+  // Prefijo del asunto en la notificación interna ([Web] <label>: <nombre>).
+  label: string;
+  // Título de la cabecera del email de notificación interno.
+  notificationTitle: string;
+  // Filas (clave/valor) que se listan en la notificación interna.
+  rows: (data: FormPayload) => Array<[string, string]>;
+  // Email de confirmación que recibe el cliente (omitido en formularios anónimos).
+  confirmation: { subject: string; body: (name: string) => string };
+}
+
+const FORM_SPECS: Record<string, FormSpec> = {
+  contacto: {
+    label: "Contacto",
+    notificationTitle: "Nuevo mensaje de contacto",
+    rows: (data) => {
+      const d = data as ContactPayload;
+      return [
+        ["Nombre", d.name],
+        ["Email", d.email],
+        ["Teléfono", d.phone],
+        ["Asunto", d.subject || ""],
+        ["Mensaje", truncate(d.message)],
+      ];
+    },
+    confirmation: {
+      subject: "Hemos recibido su consulta - Römenn Inmobiliaria",
+      body: (name) => `<p>Hola <strong>${name}</strong>,</p>
+        <p>Hemos recibido su mensaje correctamente. Nuestro equipo lo revisará y se pondrá en contacto con usted a la mayor brevedad posible.</p>
+        <p>Si su consulta es urgente, puede llamarnos al <strong>747 488 562</strong>.</p>`,
+    },
+  },
+  valoracion: {
+    label: "Valoración",
+    notificationTitle: "Solicitud de valoración",
+    rows: (data) => {
+      const d = data as ValoracionPayload;
+      return [
+        ["Nombre", d.name],
+        ["Email", d.email],
+        ["Teléfono", d.phone],
+        ["Tipo inmueble", d.propertyType || ""],
+        ["Dirección", d.address || ""],
+        ["Metros construidos", d.sqmBuilt || ""],
+        ["Motivo venta", d.sellReason || ""],
+        ["Plazo", d.timeline || ""],
+        ["Info adicional", truncate(d.additionalInfo)],
+      ];
+    },
+    confirmation: {
+      subject: "Solicitud de valoración recibida - Römenn Inmobiliaria",
+      body: (name) => `<p>Hola <strong>${name}</strong>,</p>
+        <p>Hemos recibido su solicitud de valoración de inmueble. Un asesor especializado en su zona analizará los datos y se pondrá en contacto con usted <strong>en menos de 24 horas</strong>.</p>
+        <p>Prepararemos un informe de valoración detallado basado en datos actuales de mercado, totalmente sin compromiso.</p>`,
+    },
+  },
+  estudio_financiero: {
+    label: "Estudio Financiero",
+    notificationTitle: "Solicitud de estudio financiero",
+    rows: (data) => {
+      const d = data as EstudioPayload;
+      return [
+        ["Nombre", d.name],
+        ["Email", d.email],
+        ["Teléfono", d.phone],
+        ["Situación", d.situation || ""],
+        ["Ingresos", d.income || ""],
+        ["Ahorros", d.savings || ""],
+        ["Préstamos mensuales", d.monthlyLoans || ""],
+        ["Plazo compra", d.timeline || ""],
+      ];
+    },
+    confirmation: {
+      subject: "Solicitud de estudio financiero recibida - Römenn Inmobiliaria",
+      body: (name) => `<p>Hola <strong>${name}</strong>,</p>
+        <p>Hemos recibido su solicitud de estudio financiero. Nuestro equipo analizará su situación y se pondrá en contacto con usted <strong>en las próximas 48 horas</strong> con las mejores opciones de financiación.</p>
+        <p>El estudio es completamente gratuito y sin compromiso.</p>`,
+    },
+  },
+  "trabaja-con-nosotros": {
+    label: "Candidatura",
+    notificationTitle: "Nueva candidatura (Trabaja con nosotros)",
+    rows: (data) => {
+      const d = data as TrabajaPayload;
+      const r: Array<[string, string]> = [
+        ["Nombre", d.name],
+        ["Email", d.email],
+        ["Teléfono", d.phone],
+        ["Mensaje", truncate(d.message)],
+      ];
+      if (d.attachment?.name) {
+        r.push(["CV adjunto", d.attachment.name]);
+      }
+      return r;
+    },
+    confirmation: {
+      subject: "Candidatura recibida - Römenn Inmobiliaria",
+      body: (name) => `<p>Hola <strong>${name}</strong>,</p>
+        <p>Hemos recibido su candidatura correctamente. Nuestro equipo de Recursos Humanos revisará su perfil y, si encaja con alguna de nuestras vacantes, nos pondremos en contacto con usted.</p>
+        <p>Agradecemos su interés en formar parte del equipo Römenn.</p>`,
+    },
+  },
+  resenas: {
+    label: "Reseña",
+    notificationTitle: "Nueva reseña web",
+    rows: (data) => {
+      const d = data as ResenasPayload;
+      return [
+        ["Nombre", d.name],
+        ["Email", d.email],
+        ["Valoración", `${d.rating}/5`],
+        ["Feedback", truncate(d.feedback)],
+      ];
+    },
+    confirmation: {
+      subject: "Gracias por su opinión - Römenn Inmobiliaria",
+      body: (name) => `<p>Hola <strong>${name}</strong>,</p>
+        <p>Gracias por tomarse el tiempo de dejarnos su opinión. Su feedback es muy valioso para nosotros y nos ayuda a mejorar continuamente.</p>`,
+    },
+  },
+  off_market: {
+    label: "Off-Market",
+    notificationTitle: "Nuevo inversor Off-Market",
+    rows: (data) => {
+      const d = data as OffMarketPayload;
+      return [
+        ["Nombre", d.name],
+        ["Email", d.email],
+        ["Teléfono", d.phone],
+        ["Tipo de oportunidad", d.opportunityTypes || ""],
+        ["Zona de interés", d.zone || ""],
+        ["Presupuesto", d.budget || ""],
+        ["Rentabilidad buscada", d.profitability || ""],
+        ["Horizonte inversión", d.horizon || ""],
+        ["Acepta inquilino", d.tenantAccepted || ""],
+        ["Comentarios", truncate(d.comments)],
+      ];
+    },
+    confirmation: {
+      subject: "Bienvenido al círculo Off-Market - Römenn Inmobiliaria",
+      body: (name) => `<p>Hola <strong>${name}</strong>,</p>
+        <p>Hemos recibido su perfil de inversor y ya forma parte de nuestro círculo Off-Market. Le tendremos presente: cuando llegue a nuestras manos una oportunidad que encaje con usted, se la presentaremos de forma personal y directa.</p>
+        <p>Sin escaparate y sin ruido.</p>`,
+    },
+  },
+};
+
+const VALID_FORM_TYPES = new Set(Object.keys(FORM_SPECS));
+
 function buildNotificationEmail(data: FormPayload, ip: string): string {
   const now = new Date().toLocaleString("es-ES", { timeZone: "Europe/Madrid" });
-  let rows: Array<[string, string]> = [];
-  let title = "Nuevo contacto web";
-
-  if (data.formType === "contacto") {
-    title = "Nuevo mensaje de contacto";
-    const d = data as ContactPayload;
-    rows = [
-      ["Nombre", d.name],
-      ["Email", d.email],
-      ["Teléfono", d.phone],
-      ["Asunto", d.subject || ""],
-      ["Mensaje", truncate(d.message)],
-    ];
-  } else if (data.formType === "valoracion") {
-    title = "Solicitud de valoración";
-    const d = data as ValoracionPayload;
-    rows = [
-      ["Nombre", d.name],
-      ["Email", d.email],
-      ["Teléfono", d.phone],
-      ["Tipo inmueble", d.propertyType || ""],
-      ["Dirección", d.address || ""],
-      ["Metros construidos", d.sqmBuilt || ""],
-      ["Motivo venta", d.sellReason || ""],
-      ["Plazo", d.timeline || ""],
-      ["Info adicional", truncate(d.additionalInfo)],
-    ];
-  } else if (data.formType === "estudio_financiero") {
-    title = "Solicitud de estudio financiero";
-    const d = data as EstudioPayload;
-    rows = [
-      ["Nombre", d.name],
-      ["Email", d.email],
-      ["Teléfono", d.phone],
-      ["Situación", d.situation || ""],
-      ["Ingresos", d.income || ""],
-      ["Ahorros", d.savings || ""],
-      ["Préstamos mensuales", d.monthlyLoans || ""],
-      ["Plazo compra", d.timeline || ""],
-    ];
-  } else if (data.formType === "trabaja-con-nosotros") {
-    title = "Nueva candidatura (Trabaja con nosotros)";
-    const d = data as TrabajaPayload;
-    rows = [
-      ["Nombre", d.name],
-      ["Email", d.email],
-      ["Teléfono", d.phone],
-      ["Mensaje", truncate(d.message)],
-    ];
-    if (d.attachment?.name) {
-      rows.push(["CV adjunto", d.attachment.name]);
-    }
-  } else if (data.formType === "resenas") {
-    title = "Nueva reseña web";
-    const d = data as ResenasPayload;
-    rows = [
-      ["Nombre", d.name],
-      ["Email", d.email],
-      ["Valoración", `${d.rating}/5`],
-      ["Feedback", truncate(d.feedback)],
-    ];
-  } else if (data.formType === "off_market") {
-    title = "Nuevo inversor Off-Market";
-    const d = data as OffMarketPayload;
-    rows = [
-      ["Nombre", d.name],
-      ["Email", d.email],
-      ["Teléfono", d.phone],
-      ["Tipo de oportunidad", d.opportunityTypes || ""],
-      ["Zona de interés", d.zone || ""],
-      ["Presupuesto", d.budget || ""],
-      ["Rentabilidad buscada", d.profitability || ""],
-      ["Horizonte inversión", d.horizon || ""],
-      ["Acepta inquilino", d.tenantAccepted || ""],
-      ["Comentarios", truncate(d.comments)],
-    ];
-  }
+  const spec = FORM_SPECS[data.formType];
+  const title = spec?.notificationTitle ?? "Nuevo contacto web";
+  const rows = spec ? spec.rows(data) : [];
 
   rows.push(["Fecha", now], ["IP", ip]);
 
@@ -277,49 +350,11 @@ function buildNotificationEmail(data: FormPayload, ip: string): string {
 
 function buildClientConfirmationEmail(data: FormPayload): { subject: string; html: string } {
   const name = escapeHtml("name" in data ? data.name : "");
+  const t = (FORM_SPECS[data.formType] ?? FORM_SPECS.contacto).confirmation;
 
-  const templates: Record<string, { subject: string; body: string }> = {
-    contacto: {
-      subject: "Hemos recibido su consulta - Römenn Inmobiliaria",
-      body: `<p>Hola <strong>${name}</strong>,</p>
-        <p>Hemos recibido su mensaje correctamente. Nuestro equipo lo revisará y se pondrá en contacto con usted a la mayor brevedad posible.</p>
-        <p>Si su consulta es urgente, puede llamarnos al <strong>747 488 562</strong>.</p>`,
-    },
-    valoracion: {
-      subject: "Solicitud de valoración recibida - Römenn Inmobiliaria",
-      body: `<p>Hola <strong>${name}</strong>,</p>
-        <p>Hemos recibido su solicitud de valoración de inmueble. Un asesor especializado en su zona analizará los datos y se pondrá en contacto con usted <strong>en menos de 24 horas</strong>.</p>
-        <p>Prepararemos un informe de valoración detallado basado en datos actuales de mercado, totalmente sin compromiso.</p>`,
-    },
-    estudio_financiero: {
-      subject: "Solicitud de estudio financiero recibida - Römenn Inmobiliaria",
-      body: `<p>Hola <strong>${name}</strong>,</p>
-        <p>Hemos recibido su solicitud de estudio financiero. Nuestro equipo analizará su situación y se pondrá en contacto con usted <strong>en las próximas 48 horas</strong> con las mejores opciones de financiación.</p>
-        <p>El estudio es completamente gratuito y sin compromiso.</p>`,
-    },
-    "trabaja-con-nosotros": {
-      subject: "Candidatura recibida - Römenn Inmobiliaria",
-      body: `<p>Hola <strong>${name}</strong>,</p>
-        <p>Hemos recibido su candidatura correctamente. Nuestro equipo de Recursos Humanos revisará su perfil y, si encaja con alguna de nuestras vacantes, nos pondremos en contacto con usted.</p>
-        <p>Agradecemos su interés en formar parte del equipo Römenn.</p>`,
-    },
-    resenas: {
-      subject: "Gracias por su opinión - Römenn Inmobiliaria",
-      body: `<p>Hola <strong>${name}</strong>,</p>
-        <p>Gracias por tomarse el tiempo de dejarnos su opinión. Su feedback es muy valioso para nosotros y nos ayuda a mejorar continuamente.</p>`,
-    },
-    off_market: {
-      subject: "Bienvenido al círculo Off-Market - Römenn Inmobiliaria",
-      body: `<p>Hola <strong>${name}</strong>,</p>
-        <p>Hemos recibido su perfil de inversor y ya forma parte de nuestro círculo Off-Market. Le tendremos presente: cuando llegue a nuestras manos una oportunidad que encaje con usted, se la presentaremos de forma personal y directa.</p>
-        <p>Sin escaparate y sin ruido.</p>`,
-    },
-  };
-
-  const t = templates[data.formType] || templates.contacto;
   const html = wrapTemplate(
     "Confirmación de recepción",
-    `${t.body}
+    `${t.body(name)}
     <hr style="border:none;border-top:1px solid #e2e8f0;margin:24px 0">
     <p style="font-size:13px;color:#64748b;">Este es un mensaje automático. Por favor, no responda a este correo.</p>
     <p style="font-size:13px;color:#64748b;"><strong>Römenn Inmobiliaria</strong><br>
@@ -402,15 +437,7 @@ export const POST: APIRoute = async (context) => {
 
   try {
     const notificationHtml = buildNotificationEmail(body, clientIp);
-    const formTypeLabel: Record<string, string> = {
-      contacto: "Contacto",
-      valoracion: "Valoración",
-      estudio_financiero: "Estudio Financiero",
-      "trabaja-con-nosotros": "Candidatura",
-      resenas: "Reseña",
-      off_market: "Off-Market",
-    };
-    const subjectPrefix = formTypeLabel[body.formType] || body.formType;
+    const subjectPrefix = FORM_SPECS[body.formType]?.label || body.formType;
 
     const attachments: Array<{ name: string; content: string }> | undefined =
       body.formType === "trabaja-con-nosotros" &&

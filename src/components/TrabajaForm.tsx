@@ -7,9 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Send, Shield, Upload, FileText, X } from "lucide-react";
 import { toast } from "sonner";
 import { trackFormSubmit } from "@/lib/gtm";
-
-// API URL
-const EMAIL_API_URL = "/api/send-email";
+import { submitLead } from "@/lib/submitLead";
 
 const TrabajaForm = () => {
   const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
@@ -88,15 +86,7 @@ const TrabajaForm = () => {
         };
       }
 
-      const response = await fetch(EMAIL_API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(emailData),
-      });
-
-      if (!response.ok) {
-        throw new Error("Error al enviar");
-      }
+      await submitLead({ email: emailData });
 
       trackFormSubmit("trabaja_con_nosotros");
       toast.success("Solicitud enviada correctamente. Revisaremos tu CV y te contactaremos pronto.");

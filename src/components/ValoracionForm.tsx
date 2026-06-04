@@ -24,10 +24,7 @@ import {
 } from "lucide-react";
 import { toast } from "sonner";
 import { trackFormSubmit } from "@/lib/gtm";
-
-// API URLs
-const CRM_API_URL = import.meta.env.PUBLIC_CRM_API_URL || "https://api.romenn.es/api/v1";
-const EMAIL_API_URL = "/api/send-email";
+import { submitLead } from "@/lib/submitLead";
 
 // Tipos de propiedad
 const propertyTypes = [
@@ -112,15 +109,11 @@ const ValoracionForm = () => {
 
     setIsSubmitting(true);
     
-    const urlParams = new URLSearchParams(window.location.search);
     const fullAddress = `${formData.address}, ${formData.city} ${formData.postalCode}`;
     
     try {
-      // Step 1: Send emails via Brevo and get HMAC token
-      const emailRes = await fetch(EMAIL_API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      await submitLead({
+        email: {
           formType: "valoracion",
           name: formData.name,
           email: formData.email,
@@ -131,26 +124,8 @@ const ValoracionForm = () => {
           sellReason: formData.sellReason,
           timeline: formData.timeline,
           additionalInfo: formData.additionalInfo,
-        }),
-      });
-
-      if (!emailRes.ok) {
-        throw new Error(`Email API respondió con status ${emailRes.status}`);
-      }
-
-      const emailResult = await emailRes.json().catch(() => ({ success: false }));
-
-      // Step 2: Create lead in CRM with HMAC token
-      const crmHeaders: Record<string, string> = { "Content-Type": "application/json" };
-      if (emailResult.hmacToken) {
-        crmHeaders["X-Form-Token"] = emailResult.hmacToken;
-        crmHeaders["X-Form-Timestamp"] = emailResult.hmacTimestamp;
-      }
-
-      await fetch(`${CRM_API_URL}/public/leads`, {
-        method: "POST",
-        headers: crmHeaders,
-        body: JSON.stringify({
+        },
+        crm: {
           nombre: formData.name,
           email: formData.email,
           telefono: formData.phone,
@@ -164,11 +139,8 @@ const ValoracionForm = () => {
           precio_esperado: parseFloat(formData.expectedPrice) || null,
           timeline: formData.timeline,
           mensaje: formData.additionalInfo || null,
-          utm_source: urlParams.get("utm_source") || "",
-          utm_medium: urlParams.get("utm_medium") || "",
-          utm_campaign: urlParams.get("utm_campaign") || "",
-        }),
-      }).catch((err) => console.warn("CRM lead creation failed:", err));
+        },
+      });
 
       trackFormSubmit("valoracion");
       setIsCompleted(true);

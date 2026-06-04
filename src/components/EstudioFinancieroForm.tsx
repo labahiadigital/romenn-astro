@@ -13,10 +13,7 @@ import {
 import { toast } from "sonner";
 import { ArrowRight, CheckCircle2, Home, Users, Shield } from "lucide-react";
 import { trackFormSubmit } from "@/lib/gtm";
-
-// API URLs
-const CRM_API_URL = import.meta.env.PUBLIC_CRM_API_URL || "https://api.romenn.es/api/v1";
-const EMAIL_API_URL = "/api/send-email";
+import { submitLead } from "@/lib/submitLead";
 
 const EstudioFinancieroForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -47,14 +44,9 @@ const EstudioFinancieroForm = () => {
 
     setIsSubmitting(true);
     
-    const urlParams = new URLSearchParams(window.location.search);
-    
     try {
-      // Step 1: Send emails via Brevo and get HMAC token
-      const emailRes = await fetch(EMAIL_API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      await submitLead({
+        email: {
           formType: "estudio_financiero",
           name: formData.name,
           email: formData.email,
@@ -64,26 +56,8 @@ const EstudioFinancieroForm = () => {
           savings: formData.savings,
           monthlyLoans: formData.monthlyLoans,
           timeline: formData.timeline,
-        }),
-      });
-
-      if (!emailRes.ok) {
-        throw new Error(`Email API respondió con status ${emailRes.status}`);
-      }
-
-      const emailResult = await emailRes.json().catch(() => ({ success: false }));
-
-      // Step 2: Create lead in CRM with HMAC token
-      const crmHeaders: Record<string, string> = { "Content-Type": "application/json" };
-      if (emailResult.hmacToken) {
-        crmHeaders["X-Form-Token"] = emailResult.hmacToken;
-        crmHeaders["X-Form-Timestamp"] = emailResult.hmacTimestamp;
-      }
-
-      await fetch(`${CRM_API_URL}/public/leads`, {
-        method: "POST",
-        headers: crmHeaders,
-        body: JSON.stringify({
+        },
+        crm: {
           nombre: formData.name,
           email: formData.email,
           telefono: formData.phone,
@@ -93,11 +67,8 @@ const EstudioFinancieroForm = () => {
           ahorros: formData.savings,
           gastos_prestamos_mensuales: formData.monthlyLoans,
           timeline: formData.timeline,
-          utm_source: urlParams.get("utm_source") || "",
-          utm_medium: urlParams.get("utm_medium") || "",
-          utm_campaign: urlParams.get("utm_campaign") || "",
-        }),
-      }).catch((err) => console.warn("CRM lead creation failed:", err));
+        },
+      });
 
       trackFormSubmit("estudio_financiero");
       setIsCompleted(true);

@@ -4,8 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { trackFormSubmit } from "@/lib/gtm";
-
-const EMAIL_API_URL = "/api/send-email";
+import { submitLead } from "@/lib/submitLead";
 
 const SmartReviews = () => {
   const [rating, setRating] = useState(0);
@@ -23,23 +22,15 @@ const SmartReviews = () => {
     e.preventDefault();
     
     try {
-      const emailData = {
-        formType: "resenas",
-        name,
-        email,
-        rating: rating.toString(),
-        feedback,
-      };
-
-      const res = await fetch(EMAIL_API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(emailData),
+      await submitLead({
+        email: {
+          formType: "resenas",
+          name,
+          email,
+          rating: rating.toString(),
+          feedback,
+        },
       });
-
-      if (!res.ok) {
-        throw new Error(`Email API respondió con status ${res.status}`);
-      }
 
       trackFormSubmit("resenas");
       setIsSubmitted(true);
@@ -51,8 +42,7 @@ const SmartReviews = () => {
   };
 
   const openGoogleReviews = () => {
-    // Replace with actual Google Review link
-    window.open("https://search.google.com/local/writereview?placeid=YOUR_PLACE_ID", "_blank");
+    window.open("https://search.google.com/local/writereview?placeid=ChIJV2YWpic7Qg0Rsbe0q9tk3bw", "_blank");
   };
 
   return (

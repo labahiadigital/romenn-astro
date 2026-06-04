@@ -7,10 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Send, Shield } from "lucide-react";
 import { toast } from "sonner";
 import { trackFormSubmit } from "@/lib/gtm";
-
-// API URLs
-const CRM_API_URL = import.meta.env.PUBLIC_CRM_API_URL || "https://api.romenn.es/api/v1";
-const EMAIL_API_URL = "/api/send-email";
+import { submitLead } from "@/lib/submitLead";
 
 const ContactForm = () => {
   const [acceptedPrivacy, setAcceptedPrivacy] = useState(false);
@@ -27,7 +24,6 @@ const ContactForm = () => {
     setIsSubmitting(true);
     
     const formData = new FormData(e.target as HTMLFormElement);
-    const urlParams = new URLSearchParams(window.location.search);
     
     const name = formData.get("name") as string;
     const email = formData.get("email") as string;
@@ -36,41 +32,17 @@ const ContactForm = () => {
     const message = formData.get("message") as string;
     
     try {
-      // Step 1: Send emails via Brevo and get HMAC token
-      const emailRes = await fetch(EMAIL_API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ formType: "contacto", name, email, phone, subject, message }),
-      });
-
-      if (!emailRes.ok) {
-        throw new Error(`Email API respondió con status ${emailRes.status}`);
-      }
-
-      const emailResult = await emailRes.json().catch(() => ({ success: false }));
-
-      // Step 2: Create lead in CRM with HMAC token
-      const crmHeaders: Record<string, string> = { "Content-Type": "application/json" };
-      if (emailResult.hmacToken) {
-        crmHeaders["X-Form-Token"] = emailResult.hmacToken;
-        crmHeaders["X-Form-Timestamp"] = emailResult.hmacTimestamp;
-      }
-
-      await fetch(`${CRM_API_URL}/public/leads`, {
-        method: "POST",
-        headers: crmHeaders,
-        body: JSON.stringify({
+      await submitLead({
+        email: { formType: "contacto", name, email, phone, subject, message },
+        crm: {
           nombre: name,
           email,
           telefono: phone,
           asunto: subject,
           mensaje: message,
           formulario: "contacto",
-          utm_source: urlParams.get("utm_source") || "",
-          utm_medium: urlParams.get("utm_medium") || "",
-          utm_campaign: urlParams.get("utm_campaign") || "",
-        }),
-      }).catch((err) => console.warn("CRM lead creation failed:", err));
+        },
+      });
 
       trackFormSubmit("contacto");
       toast.success("Mensaje enviado correctamente. Le contactaremos pronto.");
