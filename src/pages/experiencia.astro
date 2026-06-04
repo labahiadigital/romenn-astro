@@ -24,7 +24,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       <div class="max-w-3xl mx-auto">
         <div class="space-y-8 text-lg md:text-xl text-foreground/70 font-light leading-relaxed">
           <p>
-            Después de muchos años dentro del sector inmobiliario, llega un punto en el que ya no se trata de saber cómo funciona el mercado, sino de decidir <span class="text-foreground/90">desde dónde quieres estar en él.</span>
+            Después de muchos años dentro del sector inmobiliario, llega un punto en el que ya no se trata de saber cómo funciona el mercado, sino de decidir <span class="text-foreground/90">desde dónde quiere estar en él.</span>
           </p>
           
           <p class="text-foreground/90 font-normal text-2xl md:text-3xl font-serif italic">
@@ -132,72 +132,14 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
       </div>
     </section>
 
-    <!-- Estadísticas -->
-    <section class="py-20 px-6 bg-primary text-white">
-      <div class="max-w-6xl mx-auto">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8" id="stats-counter-exp">
-          <div class="text-center">
-            <div class="text-4xl md:text-5xl font-serif mb-2 tabular-nums" data-target="98" data-suffix="%">98%</div>
-            <div class="text-white/70 text-sm font-light">Clientes satisfechos</div>
-          </div>
-          <div class="text-center">
-            <div class="text-4xl md:text-5xl font-serif mb-2 tabular-nums" data-target="45">45</div>
-            <div class="text-white/70 text-sm font-light">Días de media para vender</div>
-          </div>
-          <div class="text-center">
-            <div class="text-4xl md:text-5xl font-serif mb-2 tabular-nums" data-target="103" data-suffix="%">103%</div>
-            <div class="text-white/70 text-sm font-light">Del precio objetivo alcanzado</div>
-          </div>
-          <div class="text-center">
-            <div class="text-4xl md:text-5xl font-serif mb-2 tabular-nums" data-target="250" data-suffix="+">250+</div>
-            <div class="text-white/70 text-sm font-light">Familias acompañadas</div>
-            <div class="text-white/40 text-xs mt-1 italic">En nuestros primeros 5 años</div>
-          </div>
-        </div>
+    <!-- Origen Römenn -->
+    <section class="py-20 md:py-24 px-6 bg-primary text-white">
+      <div class="max-w-4xl mx-auto text-center">
+        <p class="text-2xl md:text-3xl lg:text-[2.1rem] font-serif leading-relaxed">
+          Tras muchos años en el sector inmobiliario de Rivas-Vaciamadrid y más de 250 familias acompañadas, nace Römenn: <span class="italic text-[#EEE4D2]">la misma exigencia, ahora con nombre propio.</span>
+        </p>
       </div>
     </section>
-
-    <script>
-      function animateCountersExp() {
-        const container = document.getElementById('stats-counter-exp');
-        if (!container) return;
-        const counters = container.querySelectorAll('[data-target]');
-        let animated = false;
-
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting && !animated) {
-              animated = true;
-              counters.forEach((el) => {
-                const target = parseInt(el.getAttribute('data-target') || '0', 10);
-                const suffix = el.getAttribute('data-suffix') || '';
-                const useSep = el.getAttribute('data-use-separator') === 'true';
-                const duration = 2000;
-                const start = performance.now();
-
-                function update(now: number) {
-                  const elapsed = now - start;
-                  const progress = Math.min(elapsed / duration, 1);
-                  const eased = 1 - Math.pow(1 - progress, 3);
-                  const current = Math.round(eased * target);
-                  const formatted = useSep
-                    ? new Intl.NumberFormat('es-ES').format(current)
-                    : current.toString();
-                  (el as HTMLElement).textContent = formatted + suffix;
-                  if (progress < 1) requestAnimationFrame(update);
-                }
-                requestAnimationFrame(update);
-              });
-              observer.disconnect();
-            }
-          });
-        }, { threshold: 0.3 });
-
-        observer.observe(container);
-      }
-      animateCountersExp();
-      document.addEventListener('astro:page-load', animateCountersExp);
-    </script>
 
     <!-- Casos de Éxito -->
     <section class="py-24 px-6">
@@ -207,7 +149,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
             Historias Reales
           </span>
           <h2 class="text-3xl md:text-4xl font-serif mb-4">
-            Ratio de efectividad
+            Casos reales
           </h2>
           <p class="text-muted-foreground font-light max-w-xl mx-auto">
             Cada familia tiene su historia. Aquí compartimos algunas de las situaciones 
@@ -342,18 +284,8 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
             Lo que dicen nuestros clientes
           </span>
           <h2 class="text-3xl md:text-4xl font-serif mb-4">
-            Reseñas verificadas de Google
+            Reseñas de nuestros clientes
           </h2>
-          <div class="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-            <div class="flex">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#facc15" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
-            </div>
-            <span>5.0 en Google</span>
-          </div>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
@@ -515,7 +447,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
     </section>
 
     <!-- Manifiesto Section -->
-    <section class="py-24 px-6 bg-slate-900 text-white">
+    <section class="py-24 px-6 bg-primary text-white">
       <div class="max-w-3xl mx-auto text-center">
         <span class="text-xs uppercase tracking-[0.25em] text-white/50 font-bold mb-6 block">
           Manifiesto

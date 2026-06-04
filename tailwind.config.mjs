@@ -50,12 +50,16 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        // Römenn Custom Palette
+        // Römenn Custom Palette (rebrand topo/crema)
         romenn: {
-          night: "hsl(224, 35%, 11%)",
-          cobalt: "hsl(217, 91%, 60%)",
+          night: "#816649",
+          cobalt: "#816649",
           white: "hsl(0, 0%, 100%)",
-          silver: "hsl(210, 20%, 96%)"
+          silver: "#EEE4D2"
+        },
+        // Remap del gris azulado claro (slate-50) a crema en toda la web
+        slate: {
+          50: "#EEE4D2",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",

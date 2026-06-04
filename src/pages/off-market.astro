@@ -1,0 +1,146 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import OffMarketForm from "@/components/OffMarketForm.tsx";
+
+const opportunities = [
+  {
+    title: "Vivienda para reformar",
+    desc: "Inmuebles con recorrido para revalorizar mediante una reforma estratégica.",
+    icon: '<path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/>'
+  },
+  {
+    title: "Local o nave",
+    desc: "Espacios comerciales e industriales con potencial de explotación o reposicionamiento.",
+    icon: '<path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M2 7h20"/>'
+  },
+  {
+    title: "Cambio de uso (de local a vivienda)",
+    desc: "Locales con viabilidad para transformarse en vivienda y multiplicar su valor.",
+    icon: '<path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>'
+  },
+  {
+    title: "Negocio en traspaso",
+    desc: "Negocios en funcionamiento que cambian de manos con oportunidad real.",
+    icon: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/>'
+  },
+  {
+    title: "Edificio completo",
+    desc: "Edificios íntegros para inversores que buscan operaciones de mayor escala.",
+    icon: '<rect width="16" height="20" x="4" y="2" rx="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M8 10h.01"/><path d="M16 10h.01"/>'
+  },
+  {
+    title: "Suelo o terreno",
+    desc: "Suelo urbano o urbanizable con recorrido para promover o reservar.",
+    icon: '<path d="M2 22 12 2l10 20Z"/><path d="M2 22h20"/>'
+  },
+  {
+    title: "Vivienda alquilada u ocupada",
+    desc: "Inmuebles con inquilino o en situación de ocupación, con análisis del caso.",
+    icon: '<rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>'
+  },
+  {
+    title: "Otras oportunidades",
+    desc: "Operaciones singulares que no encajan en una categoría convencional.",
+    icon: '<path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>'
+  }
+];
+---
+
+<BaseLayout
+  title="Off-Market Römenn"
+  description="Lo que no llega a los portales, llega a quienes saben buscarlo. Locales, naves, negocios en traspaso, suelo, edificios y viviendas para reformar."
+  hasForm={true}
+>
+  <main class="flex-grow">
+
+    <!-- 1. PORTADA -->
+    <section class="relative pt-44 pb-24 px-6 bg-primary text-white overflow-hidden">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent/5 rounded-full blur-3xl"></div>
+      <div class="max-w-4xl mx-auto text-center relative z-10">
+        <span class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.3em] text-[#EEE4D2] font-bold mb-6">
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+          Círculo reservado
+        </span>
+        <h1 class="text-4xl md:text-6xl font-serif mb-8 leading-tight">
+          Off-Market Römenn
+        </h1>
+        <p class="text-lg md:text-xl text-white/70 font-light max-w-2xl mx-auto leading-relaxed mb-12">
+          Lo que no llega a los portales, llega a quienes saben buscarlo. Locales, naves, negocios en traspaso, suelo, edificios y viviendas para reformar.
+        </p>
+        <a href="#formulario" class="inline-flex items-center gap-2 bg-[#EEE4D2] text-primary px-10 py-5 text-sm tracking-widest uppercase font-bold rounded-xl shadow-lg shadow-black/20 hover:bg-white transition-colors group">
+          Acceder al círculo
+          <svg class="w-4 h-4 group-hover:translate-y-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="m19 12-7 7-7-7"/></svg>
+        </a>
+      </div>
+    </section>
+
+    <!-- 2. EL CONCEPTO -->
+    <section class="py-24 md:py-32 px-6 bg-white">
+      <div class="max-w-3xl mx-auto text-center">
+        <span class="text-xs uppercase tracking-[0.3em] text-accent font-bold mb-6 block">El concepto</span>
+        <h2 class="text-3xl md:text-4xl font-serif mb-8 leading-snug">
+          No todas las oportunidades se anuncian.
+        </h2>
+        <p class="text-lg text-muted-foreground font-light leading-relaxed">
+          Hay operaciones que nunca llegan a un portal inmobiliario. Un local con potencial, una nave, un negocio que cambia de manos, un edificio, suelo, o una vivienda que pide una reforma. En Römenn trabajamos con un círculo reducido de inversores y profesionales a quienes presentamos este tipo de operaciones de forma personal y directa. Sin escaparate y sin ruido. Cuando aparece algo que encaja con su perfil, lo sabe usted.
+        </p>
+      </div>
+    </section>
+
+    <!-- 3. QUÉ BUSCAMOS -->
+    <section class="py-24 md:py-32 px-6 bg-slate-50">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16 max-w-2xl mx-auto">
+          <span class="text-xs uppercase tracking-[0.3em] text-accent font-bold mb-6 block">Qué buscamos para usted</span>
+          <h2 class="text-3xl md:text-4xl font-serif leading-snug">
+            Un perfil distinto al del comprador de vivienda.
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {opportunities.map((item) => (
+            <div class="group p-8 bg-white border border-slate-100 rounded-xl hover:shadow-lg transition-shadow">
+              <div class="w-12 h-12 bg-primary/5 rounded-xl flex items-center justify-center mb-6 text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={item.icon} />
+              </div>
+              <h3 class="text-lg font-serif mb-3">{item.title}</h3>
+              <p class="text-sm text-muted-foreground font-light leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. FORMULARIO -->
+    <section id="formulario" class="py-24 md:py-32 px-6 bg-white">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-12">
+          <span class="text-xs uppercase tracking-[0.3em] text-accent font-bold mb-6 block">El círculo</span>
+          <h2 class="text-3xl md:text-4xl font-serif mb-6 leading-snug">
+            Si su perfil es el de la inversión, cuéntenos qué busca.
+          </h2>
+          <p class="text-lg text-muted-foreground font-light leading-relaxed">
+            Le tendremos presente. Cuando llegue a nuestras manos una oportunidad que encaje con usted, se la presentaremos de forma personal.
+          </p>
+        </div>
+
+        <OffMarketForm client:visible />
+      </div>
+    </section>
+
+    <!-- 5. CIERRE -->
+    <section class="py-24 px-6 bg-primary text-white">
+      <div class="max-w-3xl mx-auto text-center">
+        <div class="flex items-center justify-center gap-2 text-sm text-white/50 mb-6">
+          <div class="w-8 h-px bg-white/30"></div>
+          <span class="uppercase tracking-widest">Römenn</span>
+          <div class="w-8 h-px bg-white/30"></div>
+        </div>
+        <p class="text-3xl md:text-4xl font-serif italic">
+          Con nombre propio.
+        </p>
+      </div>
+    </section>
+
+  </main>
+</BaseLayout>

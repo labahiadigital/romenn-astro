@@ -109,7 +109,13 @@ const BuyerTest = () => {
 
   const handleOptionClick = (value: string) => {
     const question = questions[step];
-    
+
+    // El perfil inversor tiene su propio espacio Off-Market
+    if (question.id === "type" && value === "inversion") {
+      window.location.href = "/off-market";
+      return;
+    }
+
     if (question.multiple) {
       const currentAnswers = (answers[question.id] as string[]) || [];
       if (currentAnswers.includes(value)) {
@@ -197,7 +203,7 @@ const BuyerTest = () => {
       {/* Header */}
       <div className="bg-gradient-to-r from-primary to-primary/90 p-6 text-white">
         <div className="flex items-center gap-3 mb-2">
-          <Sparkles className="w-5 h-5 text-accent" />
+          <Sparkles className="w-5 h-5 text-[#EEE4D2]" />
           <h3 className="text-xl font-serif">Personal Shopper Inmobiliario</h3>
         </div>
         <p className="text-white/70 text-sm">
@@ -210,7 +216,7 @@ const BuyerTest = () => {
         {!isCompleted && (
           <div className="mt-4 h-1 bg-white/20 rounded-full overflow-hidden">
             <div 
-              className="h-full bg-accent transition-all duration-500"
+              className="h-full bg-[#EEE4D2] transition-all duration-500"
               style={{ width: `${((step + 1) / totalSteps) * 100}%` }}
             />
           </div>

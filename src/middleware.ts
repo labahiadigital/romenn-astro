@@ -120,14 +120,14 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
     const csp = [
       "default-src 'self'",
       // 'unsafe-inline' + 'unsafe-eval' los necesita GTM (loader inline y plantillas custom)
-      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com https://tagmanager.google.com",
-      "script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com https://tagmanager.google.com",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com https://tagmanager.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://*.g.doubleclick.net",
+      "script-src-elem 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://*.google-analytics.com https://*.googletagmanager.com https://tagmanager.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://*.g.doubleclick.net",
       "style-src 'self' 'unsafe-inline' https://tagmanager.google.com https://fonts.googleapis.com",
       "img-src 'self' data: blob: https:",
       "font-src 'self' data: https://fonts.gstatic.com",
-      // connect-src: dominios solicitados por el cliente + GA4 + endpoint /ccm/collect + API propia
-      "connect-src 'self' https://www.google.com https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net https://www.googletagmanager.com https://*.googletagmanager.com https://api.romenninmobiliaria.es",
-      "frame-src 'self' https://www.googletagmanager.com https://www.google.com https://td.doubleclick.net",
+      // connect-src: dominios solicitados por el cliente + GA4 + Google Ads/Conversions + API propia
+      "connect-src 'self' https://www.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net https://*.g.doubleclick.net https://www.googletagmanager.com https://*.googletagmanager.com https://api.romenninmobiliaria.es",
+      "frame-src 'self' https://www.googletagmanager.com https://www.google.com https://td.doubleclick.net https://bid.g.doubleclick.net",
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self'",

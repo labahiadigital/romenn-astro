@@ -2,31 +2,24 @@
 // ExperienciaRomenn - Pure Astro component
 // No client-side JavaScript needed - purely presentational
 
-const successStats = [
-  { number: "250+", label: "Familias acompañadas", subtitle: "En nuestros primeros 5 años", target: 250, suffix: "+" },
-  { number: "98%", label: "Clientes satisfechos", target: 98, suffix: "%" },
-  { number: "45", label: "Días de venta media", target: 45 },
-  { number: "103%", label: "Del precio objetivo alcanzado", target: 103, suffix: "%" },
-];
-
 const featuredReviews = [
   {
-    name: "María G.",
-    context: "Venta por separación",
+    name: "José María Martínez Romero",
+    context: "Venta de vivienda",
     rating: 5,
-    text: "Nos ayudaron en un momento muy difícil. Gestionaron todo con discreción y profesionalidad. Vendimos en el tiempo que necesitábamos.",
+    text: "Todo perfecto. Rubén me ayudó a vender mi piso, y estoy encantado con su trabajo, su honestidad y su saber hacer. 100% recomendable.",
   },
   {
-    name: "Carlos y Ana",
-    context: "Compra de primera vivienda",
+    name: "David Ruiz",
+    context: "Compra de vivienda",
     rating: 5,
-    text: "Nos encontraron una casa que no estaba en ningún portal. El proceso fue transparente y nos sentimos acompañados en todo momento.",
+    text: "Todo genial con ellos. Desde el primer momento solucionaron mis dudas y me plantearon las opciones más realistas y adaptadas a nuestro perfil y presupuesto.",
   },
   {
-    name: "Roberto F.",
-    context: "Herencia",
+    name: "Sara Martín",
+    context: "Compra de vivienda",
     rating: 5,
-    text: "Gestionaron toda la herencia de mi madre con una sensibilidad increíble. Me quitaron un peso enorme de encima.",
+    text: "Tengo casa gracias a Eva. Y justo cómo y dónde yo la quería. Cuando otras inmobiliarias daban mi búsqueda por perdida, ella apostó por mí.",
   }
 ];
 ---
@@ -67,78 +60,14 @@ const featuredReviews = [
     </div>
   </div>
 
-  <!-- Part 2: Cifras -->
-  <div class="py-16 bg-primary text-white">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-center" id="stats-counter-home">
-        {successStats.map((stat) => (
-          <div class="py-4">
-            <div
-              class:list={[
-                "font-serif mb-2 tabular-nums",
-                stat.target > 999 ? "text-3xl md:text-4xl lg:text-5xl tracking-tight" : "text-4xl md:text-5xl"
-              ]}
-              data-target={stat.target}
-              data-suffix={stat.suffix || ""}
-              data-use-separator={stat.target > 999 ? "true" : "false"}
-            >
-              {stat.number}
-            </div>
-            <div class="text-white/60 text-sm uppercase tracking-wider">
-              {stat.label}
-            </div>
-            {stat.subtitle && (
-              <div class="text-white/40 text-xs mt-1 italic">
-                {stat.subtitle}
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
+  <!-- Part 2: Origen Römenn -->
+  <div class="py-20 md:py-24 bg-primary text-white">
+    <div class="max-w-4xl mx-auto px-6 text-center">
+      <p class="text-2xl md:text-3xl lg:text-[2.1rem] font-serif leading-relaxed">
+        Tras muchos años en el sector inmobiliario de Rivas-Vaciamadrid y más de 250 familias acompañadas, nace Römenn: <span class="italic text-[#EEE4D2]">la misma exigencia, ahora con nombre propio.</span>
+      </p>
     </div>
   </div>
-
-  <script>
-    function animateCounters() {
-      const container = document.getElementById('stats-counter-home');
-      if (!container) return;
-      const counters = container.querySelectorAll('[data-target]');
-      let animated = false;
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && !animated) {
-            animated = true;
-            counters.forEach((el) => {
-              const target = parseInt(el.getAttribute('data-target') || '0', 10);
-              const suffix = el.getAttribute('data-suffix') || '';
-              const useSep = el.getAttribute('data-use-separator') === 'true';
-              const duration = 2000;
-              const start = performance.now();
-
-              function update(now: number) {
-                const elapsed = now - start;
-                const progress = Math.min(elapsed / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 3);
-                const current = Math.round(eased * target);
-                const formatted = useSep
-                  ? new Intl.NumberFormat('es-ES').format(current)
-                  : current.toString();
-                (el as HTMLElement).textContent = formatted + suffix;
-                if (progress < 1) requestAnimationFrame(update);
-              }
-              requestAnimationFrame(update);
-            });
-            observer.disconnect();
-          }
-        });
-      }, { threshold: 0.3 });
-
-      observer.observe(container);
-    }
-    animateCounters();
-    document.addEventListener('astro:page-load', animateCounters);
-  </script>
 
   <!-- Part 3: Reseñas de Clientes -->
   <div class="py-24 md:py-32 bg-white">
@@ -150,9 +79,6 @@ const featuredReviews = [
         <h2 class="text-3xl md:text-4xl font-serif mb-4">
           Lo que dicen quienes han trabajado con nosotros
         </h2>
-        <p class="text-muted-foreground font-light text-sm">
-          Reseñas verificadas de Google
-        </p>
       </div>
 
       <!-- Reviews Grid -->

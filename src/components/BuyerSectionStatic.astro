@@ -30,22 +30,22 @@ const icons: Record<string, string> = {
 };
 ---
 
-<section id="compradores" class="py-24 md:py-32 bg-slate-900 text-white relative overflow-hidden">
+<section id="compradores" class="py-24 md:py-32 bg-primary text-white relative overflow-hidden">
   <!-- Decorative elements -->
-  <div class="absolute top-0 left-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-  <div class="absolute bottom-0 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+  <div class="absolute top-0 left-0 w-96 h-96 bg-white/5 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+  <div class="absolute bottom-0 right-0 w-96 h-96 bg-white/5 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
   
   <div class="max-w-7xl mx-auto px-6 relative z-10">
     <!-- Header -->
     <div class="text-center mb-16">
-      <span class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-sky-400 font-bold mb-6">
+      <span class="inline-flex items-center gap-2 text-xs uppercase tracking-[0.25em] text-[#EEE4D2] font-bold mb-6">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/>
         </svg>
         Para Compradores
       </span>
       <h2 class="text-4xl md:text-5xl font-serif mb-6 tracking-tight">
-        Encontramos el hogar que <span class="italic text-accent">merece</span>
+        Encontramos el hogar que <span class="italic text-[#EEE4D2]">merece</span>
       </h2>
       <p class="text-lg md:text-xl text-white/60 font-light max-w-2xl mx-auto leading-relaxed">
         No pierda el tiempo en portales. Cuéntenos qué busca y activaremos 
@@ -57,17 +57,17 @@ const icons: Record<string, string> = {
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12">
       {buyerFeatures.map((feature) => (
         <a href={feature.link} class="block h-full group">
-          <div class="h-full p-8 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl hover:bg-white/10 hover:border-white/20 transition-colors duration-300">
-            <div class="w-14 h-14 bg-accent/20 rounded-xl flex items-center justify-center mb-6">
-              <svg class="w-7 h-7 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[feature.icon]} />
+          <div class="h-full p-8 bg-[#EEE4D2] border border-black/5 rounded-xl hover:bg-[#E6D9C2] transition-colors duration-300">
+            <div class="w-14 h-14 bg-primary rounded-xl flex items-center justify-center mb-6">
+              <svg class="w-7 h-7 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" set:html={icons[feature.icon]} />
             </div>
-            <h3 class="text-xl font-serif mb-3">
+            <h3 class="text-xl font-serif mb-3 text-foreground">
               {feature.title}
             </h3>
-            <p class="text-white/50 font-light leading-relaxed mb-4">
+            <p class="text-black/70 font-light leading-relaxed mb-4">
               {feature.description}
             </p>
-            <span class="inline-flex items-center gap-2 text-sm text-sky-400 font-medium">
+            <span class="inline-flex items-center gap-2 text-sm text-primary font-medium">
               Saber más 
               <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
@@ -80,7 +80,7 @@ const icons: Record<string, string> = {
 
     <!-- CTA -->
     <div class="text-center">
-      <a href="/compradores" class="buyer-cta inline-flex items-center gap-2 bg-accent text-white px-10 py-6 text-sm tracking-widest uppercase font-bold rounded-xl shadow-lg shadow-accent/20 group">
+      <a href="/compradores" class="buyer-cta inline-flex items-center gap-2 bg-[#EEE4D2] text-primary px-10 py-6 text-sm tracking-widest uppercase font-bold rounded-xl shadow-lg shadow-black/20 group">
         <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
           <path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/>
         </svg>

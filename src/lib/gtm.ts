@@ -31,11 +31,11 @@ export function pushDataLayer(payload: DataLayerEvent): void {
  *
  * Llamar SOLO tras una respuesta OK del backend.
  *
- * @param formName Identificador opcional del formulario (contacto, valoracion, etc.)
+ * @param formId Identificador opcional del formulario (contacto, valoracion, etc.)
  */
-export function trackFormSubmit(formName?: string): void {
+export function trackFormSubmit(formId?: string): void {
   pushDataLayer({
     event: "formulario_enviado",
-    ...(formName ? { form_name: formName } : {}),
+    ...(formId ? { form_id: formId } : {}),
   });
 }

@@ -8,34 +8,36 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* RÖMENN PALETTE */
-    /* Azul Noche Profundo (Deep Night Blue) - Main Brand Color */
-    --romenn-night: 224 35% 11%; 
-    /* Cobalto Metálico (Metallic Cobalt) - Action/Accent - DARKENED FOR A11Y (Original: 217 91% 60%) */
-    --romenn-cobalt: 217 75% 45%;
+    /* RÖMENN PALETTE (rebrand topo/crema) */
+    /* Topo Oscuro (#816649) - Color de marca principal (antes azul noche) */
+    --romenn-night: 31 28% 40%; 
+    /* Topo como acento (antes cobalto). El azul claro pasa a topo/crema/blanco según el caso */
+    --romenn-cobalt: 31 28% 40%;
     /* Blanco Puro */
     --romenn-white: 0 0% 100%;
-    /* Plata Elegante (Elegant Silver) */
-    --romenn-silver: 210 20% 96%;
+    /* Crema (#EEE4D2) - antes "plata"/gris azulado claro */
+    --romenn-silver: 38 45% 88%;
+    /* Negro de texto */
+    --romenn-ink: 0 0% 12%;
     
     /* Semantic Mapping */
     --background: var(--romenn-white);
-    --foreground: var(--romenn-night);
+    --foreground: var(--romenn-ink);
 
     --card: var(--romenn-white);
-    --card-foreground: var(--romenn-night);
+    --card-foreground: var(--romenn-ink);
 
     --popover: var(--romenn-white);
-    --popover-foreground: var(--romenn-night);
+    --popover-foreground: var(--romenn-ink);
 
     --primary: var(--romenn-night);
     --primary-foreground: var(--romenn-white);
 
     --secondary: var(--romenn-silver);
-    --secondary-foreground: var(--romenn-night);
+    --secondary-foreground: var(--romenn-ink);
 
-    --muted: 224 20% 94%;
-    --muted-foreground: 224 10% 45%;
+    --muted: 38 40% 92%;
+    --muted-foreground: 0 0% 30%;
 
     --accent: var(--romenn-cobalt);
     --accent-foreground: var(--romenn-white);
@@ -43,8 +45,8 @@ All colors MUST be HSL.
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
+    --border: 36 22% 86%;
+    --input: 36 22% 86%;
     --ring: var(--romenn-night);
 
     --radius: 0rem; /* Minimalist sharp edges usually look more "luxury" unless specified otherwise */

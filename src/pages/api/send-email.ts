@@ -52,12 +52,24 @@ interface ResenasPayload {
   feedback: string;
 }
 
+interface OffMarketPayload extends BasePayload {
+  formType: "off_market";
+  opportunityTypes?: string;
+  zone?: string;
+  budget?: string;
+  profitability?: string;
+  horizon?: string;
+  tenantAccepted?: string;
+  comments?: string;
+}
+
 type FormPayload =
   | ContactPayload
   | ValoracionPayload
   | EstudioPayload
   | TrabajaPayload
-  | ResenasPayload;
+  | ResenasPayload
+  | OffMarketPayload;
 
 const VALID_FORM_TYPES = new Set([
   "contacto",
@@ -65,6 +77,7 @@ const VALID_FORM_TYPES = new Set([
   "estudio_financiero",
   "trabaja-con-nosotros",
   "resenas",
+  "off_market",
 ]);
 
 // ────────────────────────────────────────────
@@ -237,6 +250,21 @@ function buildNotificationEmail(data: FormPayload, ip: string): string {
       ["Valoración", `${d.rating}/5`],
       ["Feedback", truncate(d.feedback)],
     ];
+  } else if (data.formType === "off_market") {
+    title = "Nuevo inversor Off-Market";
+    const d = data as OffMarketPayload;
+    rows = [
+      ["Nombre", d.name],
+      ["Email", d.email],
+      ["Teléfono", d.phone],
+      ["Tipo de oportunidad", d.opportunityTypes || ""],
+      ["Zona de interés", d.zone || ""],
+      ["Presupuesto", d.budget || ""],
+      ["Rentabilidad buscada", d.profitability || ""],
+      ["Horizonte inversión", d.horizon || ""],
+      ["Acepta inquilino", d.tenantAccepted || ""],
+      ["Comentarios", truncate(d.comments)],
+    ];
   }
 
   rows.push(["Fecha", now], ["IP", ip]);
@@ -279,6 +307,12 @@ function buildClientConfirmationEmail(data: FormPayload): { subject: string; htm
       subject: "Gracias por su opinión - Römenn Inmobiliaria",
       body: `<p>Hola <strong>${name}</strong>,</p>
         <p>Gracias por tomarse el tiempo de dejarnos su opinión. Su feedback es muy valioso para nosotros y nos ayuda a mejorar continuamente.</p>`,
+    },
+    off_market: {
+      subject: "Bienvenido al círculo Off-Market - Römenn Inmobiliaria",
+      body: `<p>Hola <strong>${name}</strong>,</p>
+        <p>Hemos recibido su perfil de inversor y ya forma parte de nuestro círculo Off-Market. Le tendremos presente: cuando llegue a nuestras manos una oportunidad que encaje con usted, se la presentaremos de forma personal y directa.</p>
+        <p>Sin escaparate y sin ruido.</p>`,
     },
   };
 
@@ -374,6 +408,7 @@ export const POST: APIRoute = async (context) => {
       estudio_financiero: "Estudio Financiero",
       "trabaja-con-nosotros": "Candidatura",
       resenas: "Reseña",
+      off_market: "Off-Market",
     };
     const subjectPrefix = formTypeLabel[body.formType] || body.formType;
 
