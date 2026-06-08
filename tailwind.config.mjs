@@ -73,8 +73,11 @@ export default {
         },
       },
       fontFamily: {
-        serif: ["Playfair Display", "serif"],
-        sans: ["Manrope", "sans-serif"],
+        // Usar las variables CSS generadas por la API de fuentes de Astro
+        // (el @font-face real lleva un hash, p.ej. "Manrope-xxxx", así que el
+        // nombre literal no casa y caería al fallback del sistema).
+        serif: ["var(--font-playfair)"],
+        sans: ["var(--font-manrope)"],
       },
       borderRadius: {
         lg: "var(--radius)",
