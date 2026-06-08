@@ -103,7 +103,7 @@ const ValoracionForm = () => {
 
   const handleSubmit = async () => {
     if (!acceptedPrivacy) {
-      toast.error("Debe aceptar la política de privacidad para continuar.");
+      toast.error("Debes aceptar la política de privacidad para continuar.");
       return;
     }
 
@@ -144,10 +144,10 @@ const ValoracionForm = () => {
 
       trackFormSubmit("valoracion");
       setIsCompleted(true);
-      toast.success("¡Solicitud enviada! Le contactaremos pronto.");
+      toast.success("¡Solicitud enviada! Te contactaremos pronto.");
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("Error al enviar. Por favor, inténtelo de nuevo.");
+      toast.error("Error al enviar. Por favor, inténtalo de nuevo.");
     } finally {
       setIsSubmitting(false);
     }
@@ -218,7 +218,7 @@ const ValoracionForm = () => {
                     </div>
                     <div>
                       <h2 className="text-2xl font-serif">Datos del Inmueble</h2>
-                      <p className="text-muted-foreground text-sm">Cuéntenos sobre su propiedad</p>
+                      <p className="text-muted-foreground text-sm">Cuéntanos sobre tu propiedad</p>
                     </div>
                   </div>
 
@@ -227,7 +227,7 @@ const ValoracionForm = () => {
                       <Label>Tipo de propiedad *</Label>
                       <Select value={formData.propertyType} onValueChange={(v) => updateFormData("propertyType", v)}>
                         <SelectTrigger className="mt-2">
-                          <SelectValue placeholder="Seleccione tipo" />
+                          <SelectValue placeholder="Selecciona tipo" />
                         </SelectTrigger>
                         <SelectContent>
                           {propertyTypes.map(type => (
@@ -315,7 +315,7 @@ const ValoracionForm = () => {
                       <Label>Estado del inmueble</Label>
                       <Select value={formData.propertyState} onValueChange={(v) => updateFormData("propertyState", v)}>
                         <SelectTrigger className="mt-2">
-                          <SelectValue placeholder="Seleccione estado" />
+                          <SelectValue placeholder="Selecciona estado" />
                         </SelectTrigger>
                         <SelectContent>
                           {propertyStates.map(state => (
@@ -368,8 +368,8 @@ const ValoracionForm = () => {
                       <Calendar className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h2 className="text-2xl font-serif">Su Situación</h2>
-                      <p className="text-muted-foreground text-sm">Para ofrecerle la mejor estrategia</p>
+                      <h2 className="text-2xl font-serif">Tu Situación</h2>
+                      <p className="text-muted-foreground text-sm">Para ofrecerte la mejor estrategia</p>
                     </div>
                   </div>
 
@@ -378,7 +378,7 @@ const ValoracionForm = () => {
                       <Label>Motivo de la venta *</Label>
                       <Select value={formData.sellReason} onValueChange={(v) => updateFormData("sellReason", v)}>
                         <SelectTrigger className="mt-2">
-                          <SelectValue placeholder="Seleccione motivo" />
+                          <SelectValue placeholder="Selecciona motivo" />
                         </SelectTrigger>
                         <SelectContent>
                           {sellReasons.map(reason => (
@@ -389,10 +389,10 @@ const ValoracionForm = () => {
                     </div>
 
                     <div>
-                      <Label>¿Cuándo le gustaría vender? *</Label>
+                      <Label>¿Cuándo te gustaría vender? *</Label>
                       <Select value={formData.timeline} onValueChange={(v) => updateFormData("timeline", v)}>
                         <SelectTrigger className="mt-2">
-                          <SelectValue placeholder="Seleccione plazo" />
+                          <SelectValue placeholder="Selecciona plazo" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="urgente">Lo antes posible</SelectItem>
@@ -405,7 +405,7 @@ const ValoracionForm = () => {
                     </div>
 
                     <div>
-                      <Label>¿Tiene hipoteca pendiente?</Label>
+                      <Label>¿Tienes hipoteca pendiente?</Label>
                       <Input 
                         value={formData.currentMortgage}
                         onChange={(e) => updateFormData("currentMortgage", e.target.value)}
@@ -415,7 +415,7 @@ const ValoracionForm = () => {
                     </div>
 
                     <div>
-                      <Label>¿Tiene una expectativa de precio?</Label>
+                      <Label>¿Tienes una expectativa de precio?</Label>
                       <Input 
                         value={formData.expectedPrice}
                         onChange={(e) => updateFormData("expectedPrice", e.target.value)}
@@ -429,7 +429,7 @@ const ValoracionForm = () => {
                       <Textarea 
                         value={formData.additionalInfo}
                         onChange={(e) => updateFormData("additionalInfo", e.target.value)}
-                        placeholder="Cuéntenos cualquier detalle relevante sobre su propiedad o situación..."
+                        placeholder="Cuéntanos cualquier detalle relevante sobre tu propiedad o situación..."
                         className="mt-2 min-h-[120px]" 
                       />
                     </div>
@@ -445,8 +445,8 @@ const ValoracionForm = () => {
                       <Phone className="w-6 h-6 text-primary" />
                     </div>
                     <div>
-                      <h2 className="text-2xl font-serif">Sus Datos de Contacto</h2>
-                      <p className="text-muted-foreground text-sm">Para enviarle la valoración</p>
+                      <h2 className="text-2xl font-serif">Tus Datos de Contacto</h2>
+                      <p className="text-muted-foreground text-sm">Para enviarte la valoración</p>
                     </div>
                   </div>
 
@@ -456,7 +456,7 @@ const ValoracionForm = () => {
                       <Input 
                         value={formData.name}
                         onChange={(e) => updateFormData("name", e.target.value)}
-                        placeholder="Su nombre" 
+                        placeholder="Tu nombre" 
                         className="mt-2" 
                       />
                     </div>
@@ -479,17 +479,17 @@ const ValoracionForm = () => {
                           type="email"
                           value={formData.email}
                           onChange={(e) => updateFormData("email", e.target.value)}
-                          placeholder="su@email.com" 
+                          placeholder="tu@email.com" 
                           className="mt-2" 
                         />
                       </div>
                     </div>
 
                     <div>
-                      <Label>¿Cuándo prefiere que le contactemos?</Label>
+                      <Label>¿Cuándo prefieres que te contactemos?</Label>
                       <Select value={formData.bestTime} onValueChange={(v) => updateFormData("bestTime", v)}>
                         <SelectTrigger className="mt-2">
-                          <SelectValue placeholder="Seleccione horario" />
+                          <SelectValue placeholder="Selecciona horario" />
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="manana">Por la mañana (9:00 - 14:00)</SelectItem>
@@ -518,7 +518,7 @@ const ValoracionForm = () => {
                         <Shield className="w-4 h-4 mt-0.5 flex-shrink-0" />
                         <div className="space-y-1">
                           <p><strong>Responsable:</strong> CONSULTING INMOBILIARIO RIVAS VACIAMADRID SLU</p>
-                          <p><strong>Finalidad:</strong> Gestionar su solicitud de valoración y enviarle información comercial.</p>
+                          <p><strong>Finalidad:</strong> Gestionar tu solicitud de valoración y enviarte información comercial.</p>
                           <p><strong>Legitimación:</strong> Consentimiento del interesado.</p>
                           <p><strong>Destinatarios:</strong> No se cederán datos a terceros, salvo obligación legal.</p>
                           <p><strong>Derechos:</strong> Acceso, rectificación, supresión, oposición y portabilidad.</p>
@@ -579,23 +579,23 @@ const ValoracionForm = () => {
               </div>
               <h2 className="text-3xl font-serif mb-4">¡Solicitud Recibida!</h2>
               <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-                Hemos recibido su solicitud de valoración. Un asesor especializado 
-                en su zona le contactará en menos de 24 horas.
+                Hemos recibido tu solicitud de valoración. Un asesor especializado 
+                en tu zona te contactará en menos de 24 horas.
               </p>
               <div className="bg-slate-50 rounded-xl p-6 max-w-md mx-auto">
                 <p className="text-sm text-muted-foreground mb-2">¿Qué ocurrirá ahora?</p>
                 <ul className="text-left space-y-3 text-sm">
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Analizaremos su propiedad con datos de mercado actualizados</span>
+                    <span>Analizaremos tu propiedad con datos de mercado actualizados</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Le llamaremos para concretar una visita si lo desea</span>
+                    <span>Te llamaremos para concretar una visita si lo deseas</span>
                   </li>
                   <li className="flex items-start gap-3">
                     <CheckCircle2 className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span>Recibirá un informe detallado sin compromiso</span>
+                    <span>Recibirás un informe detallado sin compromiso</span>
                   </li>
                 </ul>
               </div>

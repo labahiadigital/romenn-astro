@@ -8,12 +8,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
 import { trackFormSubmit } from "@/lib/gtm";
+import { submitLead } from "@/lib/submitLead";
 
 const questions = [
   {
     id: "type",
-    question: "¿Qué tipo de propiedad busca?",
-    subtitle: "Puede seleccionar varias opciones",
+    question: "¿Qué tipo de propiedad buscas?",
+    subtitle: "Puedes seleccionar varias opciones",
     options: [
       { label: "Chalet Independiente", value: "chalet_independiente" },
       { label: "Chalet Adosado", value: "chalet_adosado" },
@@ -26,8 +27,8 @@ const questions = [
   },
   {
     id: "zones",
-    question: "¿En qué zonas le gustaría vivir?",
-    subtitle: "Seleccione todas las que le interesen",
+    question: "¿En qué zonas te gustaría vivir?",
+    subtitle: "Selecciona todas las que te interesen",
     options: [
       { label: "Rivas Futura", value: "rivas_futura" },
       { label: "Covibar", value: "covibar" },
@@ -40,7 +41,7 @@ const questions = [
   },
   {
     id: "budget",
-    question: "¿Cuál es su presupuesto máximo?",
+    question: "¿Cuál es tu presupuesto máximo?",
     subtitle: "Incluyendo gastos de compra",
     options: [
       { label: "Hasta 200.000 €", value: "hasta_200k" },
@@ -53,7 +54,7 @@ const questions = [
   },
   {
     id: "bedrooms",
-    question: "¿Cuántas habitaciones necesita?",
+    question: "¿Cuántas habitaciones necesitas?",
     subtitle: "Mínimo requerido",
     options: [
       { label: "1 habitación", value: "1" },
@@ -66,7 +67,7 @@ const questions = [
   },
   {
     id: "timeline",
-    question: "¿Cuándo le gustaría mudarse?",
+    question: "¿Cuándo te gustaría mudarte?",
     subtitle: "Tiempo estimado",
     options: [
       { label: "Lo antes posible", value: "urgente" },
@@ -79,7 +80,7 @@ const questions = [
   },
   {
     id: "financing",
-    question: "¿Cómo financiará la compra?",
+    question: "¿Cómo financiarás la compra?",
     subtitle: "Esto nos ayuda a buscar mejor",
     options: [
       { label: "100% hipoteca", value: "100_hipoteca" },
@@ -90,6 +91,16 @@ const questions = [
     multiple: false
   }
 ];
+
+const OPTION_LABELS: Record<string, string> = Object.fromEntries(
+  questions.flatMap((q) => q.options.map((o) => [o.value, o.label])),
+);
+
+const labelFor = (value: string | string[] | undefined): string => {
+  if (!value) return "";
+  const values = Array.isArray(value) ? value : [value];
+  return values.map((v) => OPTION_LABELS[v] || v).join(", ");
+};
 
 const BuyerTest = () => {
   const [step, setStep] = useState(0);
@@ -158,30 +169,57 @@ const BuyerTest = () => {
     e.preventDefault();
     
     if (!acceptedPrivacy) {
-      toast.error("Debe aceptar la política de privacidad para continuar.");
+      toast.error("Debes aceptar la política de privacidad para continuar.");
       return;
     }
 
     setIsSubmitting(true);
-    
-    // Preparar datos para el CRM
-    const leadData = {
-      ...contactData,
-      preferences: answers,
-      origen: "web_personal_shopper",
-      tipo: "comprador"
-    };
+
+    const propertyType = labelFor(answers.type);
+    const zones = labelFor(answers.zones);
+    const budget = labelFor(answers.budget);
+    const bedrooms = labelFor(answers.bedrooms);
+    const timeline = labelFor(answers.timeline);
+    const financing = labelFor(answers.financing);
 
     try {
-      // TODO: Conectar con API del CRM
-      console.log("Lead data:", leadData);
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await submitLead({
+        email: {
+          formType: "personal_shopper",
+          name: contactData.name,
+          email: contactData.email,
+          phone: contactData.phone,
+          propertyType,
+          zones,
+          budget,
+          bedrooms,
+          timeline,
+          financing,
+          notes: contactData.notes,
+        },
+        crm: {
+          nombre: contactData.name,
+          email: contactData.email,
+          telefono: contactData.phone,
+          mensaje: contactData.notes,
+          formulario: "personal_shopper",
+          tipo: "comprador",
+          origen: "web_personal_shopper",
+          tipo_propiedad: propertyType,
+          zonas: zones,
+          presupuesto: budget,
+          habitaciones: bedrooms,
+          timeline,
+          financiacion: financing,
+        },
+      });
 
       trackFormSubmit("personal_shopper");
       setIsCompleted(true);
-      toast.success("Perfil de comprador creado. Su Personal Shopper le contactará pronto.");
+      toast.success("Perfil de comprador creado. Tu Personal Shopper te contactará pronto.");
     } catch (error) {
-      toast.error("Error al enviar. Por favor, inténtelo de nuevo.");
+      console.error("Error submitting form:", error);
+      toast.error("Error al enviar. Por favor, inténtalo de nuevo.");
     } finally {
       setIsSubmitting(false);
     }
@@ -315,7 +353,7 @@ const BuyerTest = () => {
                 </div>
                 <h4 className="text-2xl font-serif mb-2">Último paso</h4>
                 <p className="text-muted-foreground text-sm">
-                  Para enviarle las propiedades que encajan con su búsqueda
+                  Para enviarte las propiedades que encajan con tu búsqueda
                 </p>
               </div>
               
@@ -327,7 +365,7 @@ const BuyerTest = () => {
                     value={contactData.name}
                     onChange={(e) => setContactData({...contactData, name: e.target.value})}
                     className="mt-2" 
-                    placeholder="Su nombre"
+                    placeholder="Tu nombre"
                   />
                 </div>
                 <div className="grid md:grid-cols-2 gap-4">
@@ -350,7 +388,7 @@ const BuyerTest = () => {
                       value={contactData.email}
                       onChange={(e) => setContactData({...contactData, email: e.target.value})}
                       className="mt-2" 
-                      placeholder="su@email.com"
+                      placeholder="tu@email.com"
                     />
                   </div>
                 </div>
@@ -415,8 +453,8 @@ const BuyerTest = () => {
               </div>
               <h4 className="text-3xl font-serif">¡Perfil Completado!</h4>
               <p className="text-muted-foreground max-w-md mx-auto">
-                Hemos activado su búsqueda personalizada. Nuestro algoritmo ya está 
-                rastreando propiedades que encajan con sus criterios, incluyendo 
+                Hemos activado tu búsqueda personalizada. Nuestro algoritmo ya está 
+                rastreando propiedades que encajan con tus criterios, incluyendo 
                 oportunidades Off-Market.
               </p>
               <div className="bg-primary/5 border border-primary/20 rounded-xl p-6 max-w-md mx-auto">
@@ -424,8 +462,8 @@ const BuyerTest = () => {
                   Próximos pasos
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  Un Personal Shopper especializado le contactará en menos de 2 horas 
-                  para afinar su búsqueda y mostrarle las primeras opciones.
+                  Un Personal Shopper especializado te contactará en menos de 2 horas 
+                  para afinar tu búsqueda y mostrarte las primeras opciones.
                 </p>
               </div>
             </motion.div>

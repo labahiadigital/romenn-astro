@@ -58,7 +58,7 @@ const TrabajaForm = () => {
     e.preventDefault();
     
     if (!acceptedPrivacy) {
-      toast.error("Debe aceptar la política de privacidad para continuar.");
+      toast.error("Debes aceptar la política de privacidad para continuar.");
       return;
     }
 
@@ -95,7 +95,7 @@ const TrabajaForm = () => {
       setSelectedFile(null);
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("Error al enviar la solicitud. Por favor, inténtelo de nuevo.");
+      toast.error("Error al enviar la solicitud. Por favor, inténtalo de nuevo.");
     } finally {
       setIsSubmitting(false);
     }

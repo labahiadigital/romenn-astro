@@ -63,13 +63,25 @@ interface OffMarketPayload extends BasePayload {
   comments?: string;
 }
 
+interface PersonalShopperPayload extends BasePayload {
+  formType: "personal_shopper";
+  propertyType?: string;
+  zones?: string;
+  budget?: string;
+  bedrooms?: string;
+  timeline?: string;
+  financing?: string;
+  notes?: string;
+}
+
 type FormPayload =
   | ContactPayload
   | ValoracionPayload
   | EstudioPayload
   | TrabajaPayload
   | ResenasPayload
-  | OffMarketPayload;
+  | OffMarketPayload
+  | PersonalShopperPayload;
 
 // ────────────────────────────────────────────
 // Helpers
@@ -211,10 +223,10 @@ const FORM_SPECS: Record<string, FormSpec> = {
       ];
     },
     confirmation: {
-      subject: "Hemos recibido su consulta - Römenn Inmobiliaria",
+      subject: "Hemos recibido tu consulta - Römenn Inmobiliaria",
       body: (name) => `<p>Hola <strong>${name}</strong>,</p>
-        <p>Hemos recibido su mensaje correctamente. Nuestro equipo lo revisará y se pondrá en contacto con usted a la mayor brevedad posible.</p>
-        <p>Si su consulta es urgente, puede llamarnos al <strong>747 488 562</strong>.</p>`,
+        <p>Hemos recibido tu mensaje correctamente. Nuestro equipo lo revisará y se pondrá en contacto contigo a la mayor brevedad posible.</p>
+        <p>Si tu consulta es urgente, puedes llamarnos al <strong>747 488 562</strong>.</p>`,
     },
   },
   valoracion: {
@@ -237,7 +249,7 @@ const FORM_SPECS: Record<string, FormSpec> = {
     confirmation: {
       subject: "Solicitud de valoración recibida - Römenn Inmobiliaria",
       body: (name) => `<p>Hola <strong>${name}</strong>,</p>
-        <p>Hemos recibido su solicitud de valoración de inmueble. Un asesor especializado en su zona analizará los datos y se pondrá en contacto con usted <strong>en menos de 24 horas</strong>.</p>
+        <p>Hemos recibido tu solicitud de valoración de inmueble. Un asesor especializado en tu zona analizará los datos y se pondrá en contacto contigo <strong>en menos de 24 horas</strong>.</p>
         <p>Prepararemos un informe de valoración detallado basado en datos actuales de mercado, totalmente sin compromiso.</p>`,
     },
   },
@@ -260,7 +272,7 @@ const FORM_SPECS: Record<string, FormSpec> = {
     confirmation: {
       subject: "Solicitud de estudio financiero recibida - Römenn Inmobiliaria",
       body: (name) => `<p>Hola <strong>${name}</strong>,</p>
-        <p>Hemos recibido su solicitud de estudio financiero. Nuestro equipo analizará su situación y se pondrá en contacto con usted <strong>en las próximas 48 horas</strong> con las mejores opciones de financiación.</p>
+        <p>Hemos recibido tu solicitud de estudio financiero. Nuestro equipo analizará tu situación y se pondrá en contacto contigo <strong>en las próximas 48 horas</strong> con las mejores opciones de financiación.</p>
         <p>El estudio es completamente gratuito y sin compromiso.</p>`,
     },
   },
@@ -283,8 +295,8 @@ const FORM_SPECS: Record<string, FormSpec> = {
     confirmation: {
       subject: "Candidatura recibida - Römenn Inmobiliaria",
       body: (name) => `<p>Hola <strong>${name}</strong>,</p>
-        <p>Hemos recibido su candidatura correctamente. Nuestro equipo de Recursos Humanos revisará su perfil y, si encaja con alguna de nuestras vacantes, nos pondremos en contacto con usted.</p>
-        <p>Agradecemos su interés en formar parte del equipo Römenn.</p>`,
+        <p>Hemos recibido tu candidatura correctamente. Nuestro equipo de Recursos Humanos revisará tu perfil y, si encaja con alguna de nuestras vacantes, nos pondremos en contacto contigo.</p>
+        <p>Agradecemos tu interés en formar parte del equipo Römenn.</p>`,
     },
   },
   resenas: {
@@ -300,9 +312,9 @@ const FORM_SPECS: Record<string, FormSpec> = {
       ];
     },
     confirmation: {
-      subject: "Gracias por su opinión - Römenn Inmobiliaria",
+      subject: "Gracias por tu opinión - Römenn Inmobiliaria",
       body: (name) => `<p>Hola <strong>${name}</strong>,</p>
-        <p>Gracias por tomarse el tiempo de dejarnos su opinión. Su feedback es muy valioso para nosotros y nos ayuda a mejorar continuamente.</p>`,
+        <p>Gracias por tomarte el tiempo de dejarnos tu opinión. Tu feedback es muy valioso para nosotros y nos ayuda a mejorar continuamente.</p>`,
     },
   },
   off_market: {
@@ -326,8 +338,33 @@ const FORM_SPECS: Record<string, FormSpec> = {
     confirmation: {
       subject: "Bienvenido al círculo Off-Market - Römenn Inmobiliaria",
       body: (name) => `<p>Hola <strong>${name}</strong>,</p>
-        <p>Hemos recibido su perfil de inversor y ya forma parte de nuestro círculo Off-Market. Le tendremos presente: cuando llegue a nuestras manos una oportunidad que encaje con usted, se la presentaremos de forma personal y directa.</p>
+        <p>Hemos recibido tu perfil de inversor y ya formas parte de nuestro círculo Off-Market. Te tendremos presente: cuando llegue a nuestras manos una oportunidad que encaje contigo, te la presentaremos de forma personal y directa.</p>
         <p>Sin escaparate y sin ruido.</p>`,
+    },
+  },
+  personal_shopper: {
+    label: "Personal Shopper",
+    notificationTitle: "Nuevo perfil de comprador (Personal Shopper)",
+    rows: (data) => {
+      const d = data as PersonalShopperPayload;
+      return [
+        ["Nombre", d.name],
+        ["Email", d.email],
+        ["Teléfono", d.phone],
+        ["Tipo de propiedad", d.propertyType || ""],
+        ["Zonas", d.zones || ""],
+        ["Presupuesto", d.budget || ""],
+        ["Habitaciones", d.bedrooms || ""],
+        ["Plazo mudanza", d.timeline || ""],
+        ["Financiación", d.financing || ""],
+        ["Notas", truncate(d.notes)],
+      ];
+    },
+    confirmation: {
+      subject: "Tu Personal Shopper está en marcha - Römenn Inmobiliaria",
+      body: (name) => `<p>Hola <strong>${name}</strong>,</p>
+        <p>Hemos activado tu búsqueda personalizada. Nuestro algoritmo ya está rastreando propiedades que encajan con tus criterios, incluyendo oportunidades Off-Market.</p>
+        <p>Un Personal Shopper especializado se pondrá en contacto contigo muy pronto para afinar la búsqueda y mostrarte las primeras opciones.</p>`,
     },
   },
 };
@@ -356,7 +393,7 @@ function buildClientConfirmationEmail(data: FormPayload): { subject: string; htm
     "Confirmación de recepción",
     `${t.body(name)}
     <hr style="border:none;border-top:1px solid #e2e8f0;margin:24px 0">
-    <p style="font-size:13px;color:#64748b;">Este es un mensaje automático. Por favor, no responda a este correo.</p>
+    <p style="font-size:13px;color:#64748b;">Este es un mensaje automático. Por favor, no respondas a este correo.</p>
     <p style="font-size:13px;color:#64748b;"><strong>Römenn Inmobiliaria</strong><br>
     Tel: 747 488 562<br>
     <a href="https://romenninmobiliaria.es" style="color:#10b981;">romenninmobiliaria.es</a></p>`,

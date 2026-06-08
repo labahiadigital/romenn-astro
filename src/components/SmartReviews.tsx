@@ -34,10 +34,10 @@ const SmartReviews = () => {
 
       trackFormSubmit("resenas");
       setIsSubmitted(true);
-      toast.success("Gracias por su feedback. Nos pondremos en contacto con usted.");
+      toast.success("Gracias por tu feedback. Nos pondremos en contacto contigo.");
     } catch (error) {
       console.error("Error submitting feedback:", error);
-      toast.error("Error al enviar. Por favor, inténtelo de nuevo.");
+      toast.error("Error al enviar. Por favor, inténtalo de nuevo.");
     }
   };
 
@@ -48,9 +48,9 @@ const SmartReviews = () => {
   return (
     <div className="w-full max-w-2xl mx-auto bg-white border border-border p-8 md:p-12 shadow-lg rounded-sm">
       <div className="text-center mb-8">
-        <h3 className="text-2xl font-serif mb-3">Su opinión es vital</h3>
+        <h3 className="text-2xl font-serif mb-3">Tu opinión es vital</h3>
         <p className="text-muted-foreground font-light text-sm">
-          Ayúdenos a mantener la excelencia. Valore su experiencia con Römenn.
+          Ayúdanos a mantener la excelencia. Valora tu experiencia con Römenn.
         </p>
       </div>
 
@@ -84,19 +84,19 @@ const SmartReviews = () => {
             >
               <div className="bg-muted/30 p-6 rounded-sm border border-border">
                 <p className="text-sm text-foreground font-medium mb-4">
-                  Lamentamos no haber cumplido todas sus expectativas. <br/>
+                  Lamentamos no haber cumplido todas tus expectativas. <br/>
                   ¿Qué podemos mejorar?
                 </p>
                 <div className="space-y-4">
                   <Input 
-                    placeholder="Su nombre" 
+                    placeholder="Tu nombre" 
                     className="bg-white border-border" 
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required 
                   />
                   <Input 
-                    placeholder="Su email" 
+                    placeholder="Tu email" 
                     type="email" 
                     className="bg-white border-border"
                     value={email}
@@ -104,7 +104,7 @@ const SmartReviews = () => {
                     required 
                   />
                   <textarea 
-                    placeholder="Cuéntenos su experiencia..." 
+                    placeholder="Cuéntanos tu experiencia..." 
                     className="w-full bg-white border border-border rounded-md p-3 min-h-[100px] text-sm"
                     value={feedback}
                     onChange={(e) => setFeedback(e.target.value)}
@@ -123,7 +123,7 @@ const SmartReviews = () => {
               <div className="bg-green-50 border border-green-100 p-6 rounded-sm mb-6">
                 <p className="text-green-800 font-medium mb-2">¡Nos alegra inmensamente!</p>
                 <p className="text-green-700 text-sm">
-                  Sería un honor si pudiera compartir su experiencia públicamente en Google.
+                  Sería un honor si pudieras compartir tu experiencia públicamente en Google.
                 </p>
               </div>
               <Button 
@@ -141,7 +141,7 @@ const SmartReviews = () => {
             <CheckCircle2 className="w-8 h-8" />
           </div>
           <h4 className="text-xl font-serif mb-2">Gracias por ayudarnos a mejorar</h4>
-          <p className="text-muted-foreground text-sm">Su mensaje ha sido enviado directamente a la dirección.</p>
+          <p className="text-muted-foreground text-sm">Tu mensaje ha sido enviado directamente a la dirección.</p>
         </div>
       )}
     </div>

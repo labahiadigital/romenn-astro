@@ -38,7 +38,7 @@ const EstudioFinancieroForm = () => {
     e.preventDefault();
     
     if (!acceptedPrivacy) {
-      toast.error("Debe aceptar la política de privacidad para continuar.");
+      toast.error("Debes aceptar la política de privacidad para continuar.");
       return;
     }
 
@@ -72,10 +72,10 @@ const EstudioFinancieroForm = () => {
 
       trackFormSubmit("estudio_financiero");
       setIsCompleted(true);
-      toast.success("¡Solicitud enviada! Le contactaremos pronto.");
+      toast.success("¡Solicitud enviada! Te contactaremos pronto.");
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("Error al enviar. Por favor, inténtelo de nuevo.");
+      toast.error("Error al enviar. Por favor, inténtalo de nuevo.");
     } finally {
       setIsSubmitting(false);
     }
@@ -89,11 +89,11 @@ const EstudioFinancieroForm = () => {
         </div>
         <h3 className="text-2xl font-serif mb-4">¡Solicitud recibida!</h3>
         <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-          Hemos recibido su solicitud de estudio financiero. 
-          Un asesor especializado le contactará en menos de 48 horas.
+          Hemos recibido tu solicitud de estudio financiero. 
+          Un asesor especializado te contactará en menos de 48 horas.
         </p>
         <div className="bg-slate-50 rounded-xl p-6 max-w-md mx-auto">
-          <p className="text-sm text-muted-foreground mb-4">Mientras tanto, puede:</p>
+          <p className="text-sm text-muted-foreground mb-4">Mientras tanto, puedes:</p>
           <div className="flex flex-col gap-3">
             <a href="/propiedades">
               <Button variant="outline" className="w-full gap-2">
@@ -127,7 +127,7 @@ const EstudioFinancieroForm = () => {
               value={formData.name}
               onChange={(e) => updateFormData("name", e.target.value)}
               className="mt-2"
-              placeholder="Su nombre"
+              placeholder="Tu nombre"
             />
           </div>
           <div>
@@ -151,15 +151,15 @@ const EstudioFinancieroForm = () => {
             value={formData.email}
             onChange={(e) => updateFormData("email", e.target.value)}
             className="mt-2"
-            placeholder="su@email.com"
+            placeholder="tu@email.com"
           />
         </div>
 
         <div>
-          <Label>¿Cuál es su situación? *</Label>
+          <Label>¿Cuál es tu situación? *</Label>
           <Select value={formData.situation} onValueChange={(v) => updateFormData("situation", v)}>
             <SelectTrigger className="mt-2">
-              <SelectValue placeholder="Seleccione una opción" />
+              <SelectValue placeholder="Selecciona una opción" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="primera_vivienda">Primera vivienda</SelectItem>
@@ -176,7 +176,7 @@ const EstudioFinancieroForm = () => {
             <Label>Ingresos netos mensuales (aprox.)</Label>
             <Select value={formData.income} onValueChange={(v) => updateFormData("income", v)}>
               <SelectTrigger className="mt-2">
-                <SelectValue placeholder="Seleccione rango" />
+                <SelectValue placeholder="Selecciona rango" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="hasta_2000">Hasta 2.000 €</SelectItem>
@@ -191,7 +191,7 @@ const EstudioFinancieroForm = () => {
             <Label>Ahorros disponibles (aprox.)</Label>
             <Select value={formData.savings} onValueChange={(v) => updateFormData("savings", v)}>
               <SelectTrigger className="mt-2">
-                <SelectValue placeholder="Seleccione rango" />
+                <SelectValue placeholder="Selecciona rango" />
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="hasta_20000">Hasta 20.000 €</SelectItem>
@@ -208,7 +208,7 @@ const EstudioFinancieroForm = () => {
           <Label>¿Cuánto paga mensualmente en otros préstamos? (coche, personales, tarjetas...)</Label>
           <Select value={formData.monthlyLoans} onValueChange={(v) => updateFormData("monthlyLoans", v)}>
             <SelectTrigger className="mt-2">
-              <SelectValue placeholder="Seleccione rango" />
+              <SelectValue placeholder="Selecciona rango" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="sin_prestamos">No tengo otros préstamos</SelectItem>
@@ -222,10 +222,10 @@ const EstudioFinancieroForm = () => {
         </div>
 
         <div>
-          <Label>¿Cuándo le gustaría comprar?</Label>
+          <Label>¿Cuándo te gustaría comprar?</Label>
           <Select value={formData.timeline} onValueChange={(v) => updateFormData("timeline", v)}>
             <SelectTrigger className="mt-2">
-              <SelectValue placeholder="Seleccione plazo" />
+              <SelectValue placeholder="Selecciona plazo" />
             </SelectTrigger>
             <SelectContent>
               <SelectItem value="inmediato">Lo antes posible</SelectItem>
@@ -274,11 +274,11 @@ const EstudioFinancieroForm = () => {
             <Shield className="w-4 h-4 mt-0.5 flex-shrink-0" />
             <div className="space-y-2">
               <p><strong>Responsable:</strong> CONSULTING INMOBILIARIO RIVAS VACIAMADRID SLU</p>
-              <p><strong>Finalidad:</strong> Gestionar su solicitud de estudio financiero y enviarle información comercial sobre nuestros servicios.</p>
+              <p><strong>Finalidad:</strong> Gestionar tu solicitud de estudio financiero y enviarte información comercial sobre nuestros servicios.</p>
               <p><strong>Legitimación:</strong> Consentimiento del interesado.</p>
               <p><strong>Destinatarios:</strong> No se cederán datos a terceros, salvo obligación legal.</p>
               <p><strong>Derechos:</strong> Acceso, rectificación, supresión, oposición y portabilidad de los datos.</p>
-              <p><strong>Info adicional:</strong> Puede consultar información adicional en nuestra <a href="/privacidad" className="text-primary underline">Política de Privacidad</a>.</p>
+              <p><strong>Info adicional:</strong> Puedes consultar información adicional en nuestra <a href="/privacidad" className="text-primary underline">Política de Privacidad</a>.</p>
             </div>
           </div>
         </div>

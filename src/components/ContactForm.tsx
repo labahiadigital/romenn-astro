@@ -17,7 +17,7 @@ const ContactForm = () => {
     e.preventDefault();
     
     if (!acceptedPrivacy) {
-      toast.error("Debe aceptar la política de privacidad para continuar.");
+      toast.error("Debes aceptar la política de privacidad para continuar.");
       return;
     }
 
@@ -45,12 +45,12 @@ const ContactForm = () => {
       });
 
       trackFormSubmit("contacto");
-      toast.success("Mensaje enviado correctamente. Le contactaremos pronto.");
+      toast.success("Mensaje enviado correctamente. Te contactaremos pronto.");
       (e.target as HTMLFormElement).reset();
       setAcceptedPrivacy(false);
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("Error al enviar el mensaje. Por favor, inténtelo de nuevo.");
+      toast.error("Error al enviar el mensaje. Por favor, inténtalo de nuevo.");
     } finally {
       setIsSubmitting(false);
     }
@@ -58,9 +58,9 @@ const ContactForm = () => {
 
   return (
     <div className="bg-white p-8 md:p-10 rounded-2xl shadow-xl border border-slate-100">
-      <h2 className="text-2xl font-serif mb-2">Envíenos un mensaje</h2>
+      <h2 className="text-2xl font-serif mb-2">Envíanos un mensaje</h2>
       <p className="text-muted-foreground text-sm mb-8">
-        Complete el formulario y le responderemos a la mayor brevedad.
+        Completa el formulario y te responderemos a la mayor brevedad.
       </p>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -70,7 +70,7 @@ const ContactForm = () => {
             <Input 
               id="name" 
               name="name"
-              placeholder="Su nombre" 
+              placeholder="Tu nombre" 
               className="mt-2" 
               required 
             />
@@ -94,7 +94,7 @@ const ContactForm = () => {
             id="email" 
             name="email"
             type="email" 
-            placeholder="su@email.com" 
+            placeholder="tu@email.com" 
             className="mt-2" 
             required 
           />
@@ -105,7 +105,7 @@ const ContactForm = () => {
           <Input 
             id="subject" 
             name="subject"
-            placeholder="¿En qué podemos ayudarle?" 
+            placeholder="¿En qué podemos ayudarte?" 
             className="mt-2" 
           />
         </div>
@@ -115,7 +115,7 @@ const ContactForm = () => {
           <Textarea
             id="message"
             name="message"
-            placeholder="Cuéntenos su situación..."
+            placeholder="Cuéntanos tu situación..."
             className="mt-2 min-h-[150px]"
             required
           />
@@ -158,11 +158,11 @@ const ContactForm = () => {
           <Shield className="w-4 h-4 mt-0.5 flex-shrink-0" />
           <div className="space-y-2">
             <p><strong>Responsable:</strong> CONSULTING INMOBILIARIO RIVAS VACIAMADRID SLU</p>
-            <p><strong>Finalidad:</strong> Gestionar su consulta y enviarle información comercial sobre nuestros servicios.</p>
+            <p><strong>Finalidad:</strong> Gestionar tu consulta y enviarte información comercial sobre nuestros servicios.</p>
             <p><strong>Legitimación:</strong> Consentimiento del interesado.</p>
             <p><strong>Destinatarios:</strong> No se cederán datos a terceros, salvo obligación legal.</p>
             <p><strong>Derechos:</strong> Acceso, rectificación, supresión, oposición y portabilidad de los datos.</p>
-            <p><strong>Info adicional:</strong> Puede consultar información adicional en nuestra <a href="/privacidad" className="text-primary underline">Política de Privacidad</a>.</p>
+            <p><strong>Info adicional:</strong> Puedes consultar información adicional en nuestra <a href="/privacidad" className="text-primary underline">Política de Privacidad</a>.</p>
           </div>
         </div>
       </div>

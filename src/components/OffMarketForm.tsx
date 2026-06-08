@@ -47,11 +47,11 @@ const OffMarketForm = () => {
     e.preventDefault();
 
     if (!acceptedPrivacy) {
-      toast.error("Debe aceptar la política de privacidad para continuar.");
+      toast.error("Debes aceptar la política de privacidad para continuar.");
       return;
     }
     if (selectedTypes.length === 0) {
-      toast.error("Indique al menos un tipo de oportunidad que busca.");
+      toast.error("Indica al menos un tipo de oportunidad que buscas.");
       return;
     }
 
@@ -104,7 +104,7 @@ const OffMarketForm = () => {
       });
 
       trackFormSubmit("off_market");
-      toast.success("Bienvenido al círculo Off-Market. Le tendremos presente.");
+      toast.success("Bienvenido al círculo Off-Market. Te tendremos presente.");
       (e.target as HTMLFormElement).reset();
       setSelectedTypes([]);
       setHorizon("");
@@ -112,7 +112,7 @@ const OffMarketForm = () => {
       setAcceptedPrivacy(false);
     } catch (error) {
       console.error("Error submitting form:", error);
-      toast.error("Error al enviar. Por favor, inténtelo de nuevo.");
+      toast.error("Error al enviar. Por favor, inténtalo de nuevo.");
     } finally {
       setIsSubmitting(false);
     }
@@ -126,8 +126,8 @@ const OffMarketForm = () => {
       <form onSubmit={handleSubmit} className="space-y-8">
         {/* Tipo de oportunidad */}
         <div>
-          <Label className="text-base">¿Qué tipo de oportunidad busca? *</Label>
-          <p className="text-sm text-muted-foreground mb-4">Puede seleccionar varias.</p>
+          <Label className="text-base">¿Qué tipo de oportunidad buscas? *</Label>
+          <p className="text-sm text-muted-foreground mb-4">Puedes seleccionar varias.</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {opportunityOptions.map((option) => {
               const isSelected = selectedTypes.includes(option.value);
@@ -166,7 +166,7 @@ const OffMarketForm = () => {
           <div>
             <Label htmlFor="budget">Presupuesto aproximado</Label>
             <select id="budget" name="budget" className={selectClass} defaultValue="">
-              <option value="" disabled>Seleccione un rango</option>
+              <option value="" disabled>Selecciona un rango</option>
               {budgetOptions.map((b) => (
                 <option key={b} value={b}>{b}</option>
               ))}
@@ -188,7 +188,7 @@ const OffMarketForm = () => {
               value={horizon}
               onChange={(e) => setHorizon(e.target.value)}
             >
-              <option value="" disabled>Seleccione</option>
+              <option value="" disabled>Selecciona</option>
               <option value="corto">Corto plazo</option>
               <option value="medio">Medio plazo</option>
               <option value="largo">Largo plazo</option>
@@ -197,7 +197,7 @@ const OffMarketForm = () => {
         </div>
 
         <div>
-          <Label htmlFor="tenant">¿Aceptaría un inmueble con inquilino dentro?</Label>
+          <Label htmlFor="tenant">¿Aceptarías un inmueble con inquilino dentro?</Label>
           <select
             id="tenant"
             name="tenant"
@@ -205,7 +205,7 @@ const OffMarketForm = () => {
             value={tenant}
             onChange={(e) => setTenant(e.target.value)}
           >
-            <option value="" disabled>Seleccione</option>
+            <option value="" disabled>Selecciona</option>
             <option value="si">Sí</option>
             <option value="no">No</option>
             <option value="segun_caso">Según el caso</option>
@@ -217,7 +217,7 @@ const OffMarketForm = () => {
         <div className="grid md:grid-cols-2 gap-6">
           <div>
             <Label htmlFor="name">Nombre *</Label>
-            <Input id="name" name="name" placeholder="Su nombre" className="mt-2" required />
+            <Input id="name" name="name" placeholder="Tu nombre" className="mt-2" required />
           </div>
           <div>
             <Label htmlFor="phone">Teléfono *</Label>
@@ -227,7 +227,7 @@ const OffMarketForm = () => {
 
         <div>
           <Label htmlFor="email">Correo electrónico *</Label>
-          <Input id="email" name="email" type="email" placeholder="su@email.com" className="mt-2" required />
+          <Input id="email" name="email" type="email" placeholder="tu@email.com" className="mt-2" required />
         </div>
 
         <div>
@@ -235,7 +235,7 @@ const OffMarketForm = () => {
           <Textarea
             id="comments"
             name="comments"
-            placeholder="Cuéntenos qué busca exactamente..."
+            placeholder="Cuéntanos qué buscas exactamente..."
             className="mt-2 min-h-[120px]"
           />
         </div>
@@ -280,11 +280,11 @@ const OffMarketForm = () => {
           <Shield className="w-4 h-4 mt-0.5 flex-shrink-0" />
           <div className="space-y-2">
             <p><strong>Responsable:</strong> CONSULTING INMOBILIARIO RIVAS VACIAMADRID SLU</p>
-            <p><strong>Finalidad:</strong> Gestionar su perfil de inversor y presentarle oportunidades Off-Market acordes a su perfil.</p>
+            <p><strong>Finalidad:</strong> Gestionar tu perfil de inversor y presentarte oportunidades Off-Market acordes a tu perfil.</p>
             <p><strong>Legitimación:</strong> Consentimiento del interesado.</p>
             <p><strong>Destinatarios:</strong> No se cederán datos a terceros, salvo obligación legal.</p>
             <p><strong>Derechos:</strong> Acceso, rectificación, supresión, oposición y portabilidad de los datos.</p>
-            <p><strong>Info adicional:</strong> Puede consultar información adicional en nuestra <a href="/privacidad" className="text-primary underline">Política de Privacidad</a>.</p>
+            <p><strong>Info adicional:</strong> Puedes consultar información adicional en nuestra <a href="/privacidad" className="text-primary underline">Política de Privacidad</a>.</p>
           </div>
         </div>
       </div>
