@@ -10,7 +10,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { CheckCircle2, Sparkles, ShieldCheck } from "lucide-react";
+import { CheckCircle2, Sparkles, Shield, ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
 import { trackFormSubmit } from "@/lib/gtm";
 import { submitLead } from "@/lib/submitLead";
@@ -174,9 +174,9 @@ const VenderLeadForm = () => {
           id="vl-privacy"
           checked={acceptedPrivacy}
           onCheckedChange={(c) => setAcceptedPrivacy(c as boolean)}
-          className="mt-0.5"
+          className="mt-0.5 h-5 w-5 min-h-0 min-w-0 flex-shrink-0"
         />
-        <span>
+        <span className="leading-snug">
           He leído y acepto la{" "}
           <a href="/privacidad" target="_blank" className="text-primary underline">
             política de privacidad
@@ -188,24 +188,38 @@ const VenderLeadForm = () => {
       <Button
         type="submit"
         disabled={!canSubmit || isSubmitting}
-        className="w-full bg-primary hover:bg-primary/90 text-base py-6 gap-2"
+        className="h-12 w-full bg-primary text-base hover:bg-primary/90"
       >
         {isSubmitting ? (
           <>
-            <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+            <div className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" />
             Enviando...
           </>
         ) : (
           <>
-            Quiero mi valoración gratis <Sparkles className="w-4 h-4" />
+            Quiero mi valoración gratis <Sparkles className="h-4 w-4" />
           </>
         )}
       </Button>
 
-      <p className="flex items-center justify-center gap-2 text-xs text-muted-foreground">
-        <ShieldCheck className="w-4 h-4" />
+      <p className="flex items-center justify-center gap-2 text-center text-xs text-muted-foreground">
+        <ShieldCheck className="h-4 w-4 flex-shrink-0" />
         Sin compromiso · Respuesta en menos de 2 horas laborables
       </p>
+
+      {/* Información básica de protección de datos (igual que /contacto) */}
+      <div className="border-t border-slate-100 pt-4">
+        <div className="flex items-start gap-3 text-xs text-muted-foreground">
+          <Shield className="mt-0.5 h-4 w-4 flex-shrink-0" />
+          <div className="space-y-1">
+            <p><strong>Responsable:</strong> CONSULTING INMOBILIARIO RIVAS VACIAMADRID SLU</p>
+            <p><strong>Finalidad:</strong> Gestionar tu solicitud de valoración y enviarte información comercial.</p>
+            <p><strong>Legitimación:</strong> Consentimiento del interesado.</p>
+            <p><strong>Destinatarios:</strong> No se cederán datos a terceros, salvo obligación legal.</p>
+            <p><strong>Derechos:</strong> Acceso, rectificación, supresión, oposición y portabilidad.</p>
+          </div>
+        </div>
+      </div>
     </form>
   );
 };
