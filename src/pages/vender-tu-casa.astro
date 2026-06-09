@@ -1,0 +1,296 @@
+---
+import LandingLayout from "@/layouts/LandingLayout.astro";
+import VenderLeadForm from "@/components/VenderLeadForm.tsx";
+
+const PHONE_TEL = "+34747488562";
+const WHATSAPP_URL = "https://wa.me/34747488562?text=Hola,%20quiero%20vender%20mi%20casa%20en%20Rivas";
+
+const situaciones = [
+  { titulo: "Gestión de herencia", desc: "El cierre de una etapa." },
+  { titulo: "Separación o divorcio", desc: "Un cambio que no se ha buscado." },
+  { titulo: "Vendo para comprar", desc: "El salto a algo mejor." },
+  { titulo: "Planificación de jubilación", desc: "Un nuevo horizonte." },
+  { titulo: "Inversión y rentabilidad", desc: "Optimizar el patrimonio." },
+];
+
+const valor = [
+  {
+    titulo: "Valoración real y gratuita",
+    desc: "Te decimos cuánto vale tu vivienda de verdad, con datos del mercado de Rivas. Sin humo y sin compromiso.",
+  },
+  {
+    titulo: "Nos adaptamos a tu situación",
+    desc: "Herencia, divorcio, jubilación o cambio de etapa: blindamos tu tranquilidad en todo el proceso.",
+  },
+  {
+    titulo: "Expertos locales, trato boutique",
+    desc: "Años en Rivas-Vaciamadrid y +250 familias acompañadas. Atención cercana, no un número más.",
+  },
+];
+
+const pasos = [
+  { n: "1", titulo: "Nos cuentas tu caso", desc: "Por formulario, WhatsApp o teléfono." },
+  { n: "2", titulo: "Valoramos tu vivienda gratis", desc: "Con datos reales del mercado de tu zona." },
+  { n: "3", titulo: "Vendemos al mejor precio", desc: "Acompañándote en cada paso, a tu ritmo." },
+];
+
+const testimonios = [
+  {
+    texto: "Rubén me ayudó a vender mi piso, y estoy encantado con su trabajo, su honestidad y su saber hacer. 100% recomendable.",
+    autor: "José María M.",
+  },
+  {
+    texto: "Desde el primer momento solucionaron mis dudas y me plantearon las opciones más realistas.",
+    autor: "David Ruiz",
+  },
+];
+---
+
+<LandingLayout
+  title="Vende tu casa en Rivas — Valoración gratis en 24 h"
+  description="Vende tu casa en Rivas-Vaciamadrid con quien conoce tu zona como nadie. Valoración gratuita y sin compromiso en menos de 24 h. +250 familias ya han confiado en Römenn."
+>
+  <!-- Sección 1 · Hero -->
+  <section class="bg-secondary/40">
+    <div class="mx-auto grid max-w-5xl items-center gap-10 px-4 py-12 sm:px-6 md:grid-cols-2 md:py-20">
+      <div>
+        <p class="mb-4 inline-block rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-primary">
+          Rivas-Vaciamadrid y alrededores
+        </p>
+        <h1 class="font-serif text-4xl leading-tight text-foreground sm:text-5xl">
+          Vende tu casa en Rivas con quien conoce tu zona como nadie
+        </h1>
+        <p class="mt-5 text-lg text-muted-foreground">
+          Valoración gratuita y sin compromiso en menos de 24 h. Más de 250
+          familias ya han confiado en nosotros.
+        </p>
+        <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+          <a
+            href="#formulario"
+            class="inline-flex items-center justify-center rounded-full bg-primary px-7 py-4 text-base font-semibold text-primary-foreground transition-colors hover:bg-accent"
+          >
+            Solicitar valoración gratuita
+          </a>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center justify-center gap-2 rounded-full border border-primary px-7 py-4 text-base font-semibold text-primary transition-colors hover:bg-primary hover:text-primary-foreground"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+            Escríbenos por WhatsApp
+          </a>
+        </div>
+        <p class="mt-4 text-sm text-muted-foreground">
+          Sin compromiso · Respuesta en menos de 2 horas laborables.
+        </p>
+      </div>
+
+      <div class="md:pl-4">
+        <div class="rounded-2xl border border-border bg-white p-7 shadow-xl">
+          <p class="font-serif text-2xl text-foreground">Lo que consigues</p>
+          <ul class="mt-5 space-y-4">
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </span>
+              <span class="text-muted-foreground">Valoración real con datos del mercado de Rivas.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </span>
+              <span class="text-muted-foreground">Respuesta en menos de 2 horas laborables.</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+              </span>
+              <span class="text-muted-foreground">Trato boutique, sin compromiso y sin presión.</span>
+            </li>
+          </ul>
+          <div class="mt-6 border-t border-border pt-5 text-center">
+            <p class="font-serif text-3xl text-primary">+250</p>
+            <p class="text-sm text-muted-foreground">familias acompañadas en Rivas-Vaciamadrid</p>
+          </div>
+          <a
+            href="#formulario"
+            class="mt-6 block rounded-full bg-primary px-6 py-3 text-center text-sm font-semibold text-primary-foreground transition-colors hover:bg-accent"
+          >
+            Pedir mi valoración gratis
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 2 · Marca humana -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 md:py-20">
+      <blockquote class="font-serif text-2xl italic text-primary sm:text-3xl">
+        “El verdadero lujo es sentirse en casa.”
+      </blockquote>
+      <p class="mt-6 text-lg leading-relaxed text-muted-foreground">
+        En Römenn no vendemos casas: acompañamos a personas. Detrás de cada venta
+        hay una historia —y a veces un momento delicado—, por eso adaptamos
+        nuestro ritmo al tuyo: agilidad cuando hace falta, calma y respeto cuando
+        toca. Nuestro compromiso es siempre el mismo: blindar tu tranquilidad y
+        cuidar el patrimonio de toda una vida. Porque la calidad no necesita
+        hacer ruido.
+      </p>
+    </div>
+  </section>
+
+  <!-- Sección 3 · ¿En qué situación estás? -->
+  <section class="bg-secondary/40">
+    <div class="mx-auto max-w-5xl px-4 py-14 sm:px-6 md:py-20">
+      <h2 class="font-serif text-3xl text-foreground sm:text-4xl">¿En qué situación estás?</h2>
+      <p class="mt-4 max-w-2xl text-muted-foreground">
+        No todas las ventas nacen de la misma circunstancia. Cada proceso tiene
+        su propio pulso. Selecciona la situación que más se acerca a la tuya — nos
+        adaptamos a ella.
+      </p>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {situaciones.map((s) => (
+          <div class="rounded-xl border border-border bg-white p-6 transition-shadow hover:shadow-md">
+            <h3 class="font-serif text-xl text-foreground">{s.titulo}</h3>
+            <p class="mt-2 text-sm text-muted-foreground">{s.desc}</p>
+          </div>
+        ))}
+      </div>
+      <div class="mt-8 rounded-xl border border-dashed border-primary/40 bg-white p-6 text-center">
+        <p class="text-muted-foreground">
+          ¿Tu situación no encaja en ninguna? No importa: cuéntanos tu caso y te
+          acompañamos igual.
+        </p>
+        <a
+          href="#formulario"
+          class="mt-4 inline-flex items-center justify-center rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-colors hover:bg-accent"
+        >
+          Cuéntanos tu situación
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 4 · Propuesta de valor -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-5xl px-4 py-14 sm:px-6 md:py-20">
+      <div class="grid gap-8 md:grid-cols-3">
+        {valor.map((v) => (
+          <div>
+            <div class="mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+            </div>
+            <h3 class="font-serif text-xl text-foreground">{v.titulo}</h3>
+            <p class="mt-2 text-muted-foreground">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 5 · Formulario (objetivo principal) -->
+  <section id="formulario" class="scroll-mt-20 bg-secondary/40">
+    <div class="mx-auto max-w-2xl px-4 py-14 sm:px-6 md:py-20">
+      <div class="mb-8 text-center">
+        <h2 class="font-serif text-3xl text-foreground sm:text-4xl">Pide tu valoración gratuita</h2>
+        <p class="mt-3 text-muted-foreground">
+          Cuéntanos lo justo. Te llamamos y te decimos cuánto vale tu vivienda,
+          sin compromiso.
+        </p>
+      </div>
+      <VenderLeadForm client:load />
+    </div>
+  </section>
+
+  <!-- Sección 6 · Prueba social -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-5xl px-4 py-14 sm:px-6 md:py-20">
+      <div class="grid gap-6 md:grid-cols-2">
+        {testimonios.map((t) => (
+          <figure class="rounded-2xl border border-border bg-secondary/30 p-6">
+            <div class="mb-3 flex gap-1 text-primary">
+              {[0, 1, 2, 3, 4].map(() => (
+                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 6.91-1.01L12 2z"/></svg>
+              ))}
+            </div>
+            <blockquote class="text-foreground">“{t.texto}”</blockquote>
+            <figcaption class="mt-4 text-sm font-semibold text-muted-foreground">— {t.autor}</figcaption>
+          </figure>
+        ))}
+      </div>
+      <div class="mt-10 flex flex-col items-center justify-center gap-3 text-center text-sm text-muted-foreground sm:flex-row sm:gap-8">
+        <span class="font-semibold text-primary">+250 familias acompañadas</span>
+        <span class="hidden sm:inline">·</span>
+        <span>Expertos en Rivas-Vaciamadrid</span>
+        <span class="hidden sm:inline">·</span>
+        <span>Valoración gratuita y sin compromiso</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 7 · Cómo funciona -->
+  <section class="bg-secondary/40">
+    <div class="mx-auto max-w-5xl px-4 py-14 sm:px-6 md:py-20">
+      <h2 class="text-center font-serif text-3xl text-foreground sm:text-4xl">Cómo funciona</h2>
+      <div class="mt-10 grid gap-8 md:grid-cols-3">
+        {pasos.map((p) => (
+          <div class="text-center">
+            <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary text-xl font-bold text-primary-foreground">
+              {p.n}
+            </div>
+            <h3 class="font-serif text-xl text-foreground">{p.titulo}</h3>
+            <p class="mt-2 text-muted-foreground">{p.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección 8 · Cierre -->
+  <section class="bg-primary text-primary-foreground">
+    <div class="mx-auto max-w-3xl px-4 py-14 text-center sm:px-6 md:py-20">
+      <h2 class="font-serif text-3xl sm:text-4xl">¿Prefieres que te llamemos?</h2>
+      <p class="mt-4 text-lg text-primary-foreground/80">
+        Déjanos tu teléfono y te contactamos en menos de 2 horas.
+      </p>
+      <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+        <a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-7 py-4 text-base font-semibold text-white transition-transform hover:scale-105"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
+          Contactar por WhatsApp
+        </a>
+        <a
+          href={`tel:${PHONE_TEL}`}
+          class="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-base font-semibold text-primary transition-transform hover:scale-105"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Llamar ahora
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pie minimalista -->
+  <footer class="bg-foreground text-white/80">
+    <div class="mx-auto max-w-5xl px-4 py-10 text-sm sm:px-6">
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p class="font-serif text-lg text-white">Römenn Inmobiliaria</p>
+          <p class="mt-1">Pl. León Felipe 6, posterior, local 2 · 28523 Rivas-Vaciamadrid</p>
+          <p class="mt-1">Lun–Vie 9:00–20:00 · Sáb 10:00–14:00</p>
+        </div>
+        <div class="flex flex-col gap-1 sm:text-right">
+          <a href={`tel:${PHONE_TEL}`} class="text-white hover:underline">747 488 562</a>
+          <a href="/privacidad" class="hover:underline">Política de privacidad</a>
+          <a href="/aviso-legal" class="hover:underline">Aviso legal</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</LandingLayout>

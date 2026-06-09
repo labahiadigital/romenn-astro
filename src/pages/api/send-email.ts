@@ -453,13 +453,16 @@ export const POST: APIRoute = async (context) => {
   const requiresContact = body.formType !== "resenas";
   if (requiresContact) {
     const b = body as BasePayload;
-    if (!b.name || !b.email || !b.phone) {
+    // El email es opcional (p. ej. la landing de captación /vender-tu-casa pide
+    // solo nombre + teléfono). El correo de confirmación al cliente y el replyTo
+    // ya están condicionados a que exista email más abajo.
+    if (!b.name || !b.phone) {
       return new Response(
         JSON.stringify({ success: false, error: "Missing required fields" }),
         { status: 400, headers: { "Content-Type": "application/json" } },
       );
     }
-    if (b.name.length > 255 || b.email.length > 255 || b.phone.length > 50) {
+    if (b.name.length > 255 || (b.email && b.email.length > 255) || b.phone.length > 50) {
       return new Response(
         JSON.stringify({ success: false, error: "Field too long" }),
         { status: 400, headers: { "Content-Type": "application/json" } },
