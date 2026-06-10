@@ -3,34 +3,17 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { CheckCircle2, Sparkles, Shield, ShieldCheck } from "lucide-react";
 import { toast } from "sonner";
 import { trackFormSubmit } from "@/lib/gtm";
 import { submitLead } from "@/lib/submitLead";
 
-// "¿Qué quieres vender?" — campo corto exigido por el informe de Google Ads.
-const propertyOptions = [
-  { value: "piso", label: "Piso / Apartamento" },
-  { value: "chalet", label: "Chalet / Adosado / Pareado" },
-  { value: "atico", label: "Ático" },
-  { value: "duplex", label: "Dúplex" },
-  { value: "estudio", label: "Estudio / Loft" },
-  { value: "local", label: "Local / Garaje / Otro" },
-];
-
 /**
  * Formulario de captación de la landing /vender-tu-casa.
  *
- * Máximo 4 campos (Nombre · Teléfono · ¿Qué quieres vender? · Email opcional)
- * + consentimiento RGPD, según el informe de campaña. Al enviarse con éxito
- * dispara `dataLayer.push({event:'formulario_enviado'})` vía `trackFormSubmit`
+ * Campos: Teléfono y Dirección completa (obligatorios) · Nombre y Email
+ * (opcionales) + consentimiento RGPD. Al enviarse con éxito dispara
+ * `dataLayer.push({event:'formulario_enviado'})` vía `trackFormSubmit`
  * para que Google Ads registre la conversión.
  */
 const VenderLeadForm = () => {
@@ -40,7 +23,7 @@ const VenderLeadForm = () => {
   const [data, setData] = useState({
     name: "",
     phone: "",
-    propertyType: "",
+    address: "",
     email: "",
   });
 
@@ -48,15 +31,14 @@ const VenderLeadForm = () => {
     setData((prev) => ({ ...prev, [field]: value }));
 
   const canSubmit =
-    data.name.trim() !== "" &&
     data.phone.trim() !== "" &&
-    data.propertyType !== "" &&
+    data.address.trim() !== "" &&
     acceptedPrivacy;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!canSubmit) {
-      toast.error("Completa nombre, teléfono, qué quieres vender y acepta la política.");
+      toast.error("Completa el teléfono, la dirección y acepta la política.");
       return;
     }
 
@@ -68,14 +50,14 @@ const VenderLeadForm = () => {
           name: data.name,
           email: data.email,
           phone: data.phone,
-          propertyType: data.propertyType,
+          address: data.address,
         },
         crm: {
-          nombre: data.name,
+          nombre: data.name || null,
           email: data.email || null,
           telefono: data.phone,
           formulario: "valoracion",
-          tipo_inmueble: data.propertyType,
+          direccion: data.address,
           origen: "landing_vender_tu_casa",
         },
       });
@@ -113,7 +95,7 @@ const VenderLeadForm = () => {
       className="bg-white rounded-2xl shadow-xl border border-slate-100 p-6 md:p-8 space-y-5"
     >
       <div>
-        <Label htmlFor="vl-name">Nombre *</Label>
+        <Label htmlFor="vl-name">Nombre (opcional)</Label>
         <Input
           id="vl-name"
           value={data.name}
@@ -121,7 +103,6 @@ const VenderLeadForm = () => {
           placeholder="Tu nombre"
           autoComplete="name"
           className="mt-2"
-          required
         />
       </div>
 
@@ -141,19 +122,16 @@ const VenderLeadForm = () => {
       </div>
 
       <div>
-        <Label>¿Qué quieres vender? *</Label>
-        <Select value={data.propertyType} onValueChange={(v) => update("propertyType", v)}>
-          <SelectTrigger className="mt-2">
-            <SelectValue placeholder="Selecciona el tipo de inmueble" />
-          </SelectTrigger>
-          <SelectContent>
-            {propertyOptions.map((o) => (
-              <SelectItem key={o.value} value={o.value}>
-                {o.label}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <Label htmlFor="vl-address">Dirección completa *</Label>
+        <Input
+          id="vl-address"
+          value={data.address}
+          onChange={(e) => update("address", e.target.value)}
+          placeholder="Calle, número, piso, municipio"
+          autoComplete="street-address"
+          className="mt-2"
+          required
+        />
       </div>
 
       <div>

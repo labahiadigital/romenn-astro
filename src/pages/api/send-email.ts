@@ -453,16 +453,18 @@ export const POST: APIRoute = async (context) => {
   const requiresContact = body.formType !== "resenas";
   if (requiresContact) {
     const b = body as BasePayload;
-    // El email es opcional (p. ej. la landing de captación /vender-tu-casa pide
-    // solo nombre + teléfono). El correo de confirmación al cliente y el replyTo
-    // ya están condicionados a que exista email más abajo.
-    if (!b.name || !b.phone) {
+    // El email es opcional, y en la landing de captación /vender-tu-casa
+    // ("valoracion") el nombre también: solo teléfono (+ dirección) son
+    // obligatorios. El correo de confirmación al cliente y el replyTo ya
+    // están condicionados a que exista email más abajo.
+    const nameRequired = body.formType !== "valoracion";
+    if (!b.phone || (nameRequired && !b.name)) {
       return new Response(
         JSON.stringify({ success: false, error: "Missing required fields" }),
         { status: 400, headers: { "Content-Type": "application/json" } },
       );
     }
-    if (b.name.length > 255 || (b.email && b.email.length > 255) || b.phone.length > 50) {
+    if ((b.name && b.name.length > 255) || (b.email && b.email.length > 255) || b.phone.length > 50) {
       return new Response(
         JSON.stringify({ success: false, error: "Field too long" }),
         { status: 400, headers: { "Content-Type": "application/json" } },
@@ -496,7 +498,7 @@ export const POST: APIRoute = async (context) => {
     const notifOk = await sendBrevoEmail(
       BREVO_API_KEY,
       NOTIFICATION_EMAIL,
-      `[Web] ${subjectPrefix}: ${"name" in body ? body.name : "Anónimo"}`,
+      `[Web] ${subjectPrefix}: ${("name" in body && body.name) || "Sin nombre"}`,
       notificationHtml,
       SENDER_EMAIL,
       SENDER_NAME,
