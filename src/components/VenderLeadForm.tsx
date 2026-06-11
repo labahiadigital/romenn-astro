@@ -147,21 +147,27 @@ const VenderLeadForm = () => {
         />
       </div>
 
-      <label className="flex items-start gap-3 text-sm text-muted-foreground cursor-pointer">
+      {/* OJO: el Checkbox NO puede ir envuelto en un <label>: el label reenvía
+          el click al control y lo des-marca al instante (doble toggle), dejando
+          el formulario imposible de enviar. Patrón correcto: hermanos + htmlFor. */}
+      <div className="flex items-start gap-3 text-sm text-muted-foreground">
         <Checkbox
           id="vl-privacy"
           checked={acceptedPrivacy}
           onCheckedChange={(c) => setAcceptedPrivacy(c as boolean)}
           className="mt-0.5 h-5 w-5 min-h-0 min-w-0 flex-shrink-0"
         />
-        <span className="leading-snug">
+        <Label
+          htmlFor="vl-privacy"
+          className="cursor-pointer text-sm font-normal leading-snug text-muted-foreground"
+        >
           He leído y acepto la{" "}
           <a href="/privacidad" target="_blank" className="text-primary underline">
             política de privacidad
           </a>
           .
-        </span>
-      </label>
+        </Label>
+      </div>
 
       <Button
         type="submit"

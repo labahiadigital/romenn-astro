@@ -347,13 +347,18 @@ const ValoracionForm = () => {
                         { key: "hasTerrace", label: "Terraza" },
                         { key: "hasPool", label: "Piscina" }
                       ].map(extra => (
-                        <label key={extra.key} className="flex items-center gap-3 p-4 bg-slate-50 rounded-lg cursor-pointer hover:bg-slate-100 transition-colors">
-                          <Checkbox 
+                        // No envolver el Checkbox en <label>: provoca doble toggle
+                        // y el check nunca queda marcado. Usar htmlFor en su lugar.
+                        <div key={extra.key} className="flex items-center gap-3 p-4 bg-slate-50 rounded-lg hover:bg-slate-100 transition-colors">
+                          <Checkbox
+                            id={`extra-${extra.key}`}
                             checked={formData[extra.key as keyof typeof formData] as boolean}
                             onCheckedChange={(checked) => updateFormData(extra.key, checked as boolean)}
                           />
-                          <span className="text-sm">{extra.label}</span>
-                        </label>
+                          <Label htmlFor={`extra-${extra.key}`} className="cursor-pointer text-sm font-normal">
+                            {extra.label}
+                          </Label>
+                        </div>
                       ))}
                     </div>
                   </div>

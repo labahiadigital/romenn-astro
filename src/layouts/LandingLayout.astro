@@ -77,9 +77,15 @@ const PHONE_DISPLAY = "747 488 562";
       }}
     />
 
-    <!-- Google Tag Manager - deferred (igual que el resto de la web) -->
+    <!-- Google Tag Manager - deferred (igual que el resto de la web).
+         IMPORTANTE: el dataLayer se inicializa y el evento gtm.start se empuja
+         ANTES de inyectar gtm.js (patrón oficial); solo se difiere la descarga
+         del script. Así los eventos encolados (p.ej. formulario_enviado) se
+         procesan correctamente y Tag Assistant funciona. -->
     <script is:inline>
       (function (w, d, id, delay, l) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
         let a = false;
         function g() {
           if (a) return;
@@ -87,10 +93,6 @@ const PHONE_DISPLAY = "747 488 562";
           const s = d.createElement("script");
           s.async = 1;
           s.src = "https://www.googletagmanager.com/gtm.js?id=" + id;
-          s.onload = () => {
-            w[l] = w[l] || [];
-            w[l].push({ event: "gtm.js", "gtm.start": Date.now(), "gtm.uniqueEventId": 0 });
-          };
           d.head.appendChild(s);
         }
         function o(e) {
