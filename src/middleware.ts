@@ -127,7 +127,7 @@ export const onRequest: MiddlewareHandler = async (context, next) => {
       "font-src 'self' data: https://fonts.gstatic.com",
       // connect-src: dominios solicitados por el cliente + GA4 + Google Ads/Conversions + API propia
       "connect-src 'self' https://www.google.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://www.google-analytics.com https://analytics.google.com https://region1.google-analytics.com https://*.google-analytics.com https://*.analytics.google.com https://stats.g.doubleclick.net https://*.g.doubleclick.net https://www.googletagmanager.com https://*.googletagmanager.com https://api.romenninmobiliaria.es",
-      "frame-src 'self' https://www.googletagmanager.com https://www.google.com https://td.doubleclick.net https://bid.g.doubleclick.net",
+      "frame-src 'self' https://www.googletagmanager.com https://www.google.com https://maps.google.com https://td.doubleclick.net https://bid.g.doubleclick.net",
       "object-src 'none'",
       "base-uri 'self'",
       "form-action 'self'",
