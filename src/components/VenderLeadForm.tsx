@@ -272,7 +272,7 @@ const VenderLeadForm = () => {
                   autoFocus
                   value={form.calle}
                   onChange={(e) => set("calle", e.target.value)}
-                  placeholder="Calle, número y localidad (ej: C/ Mayor 12, Rivas-Vaciamadrid)"
+                  placeholder="Calle, número y localidad (ej: C/ Mayor 12, Madrid)"
                   autoComplete="street-address"
                   className="h-12 text-base"
                 />
