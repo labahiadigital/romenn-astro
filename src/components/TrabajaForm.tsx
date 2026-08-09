@@ -208,7 +208,7 @@ const TrabajaForm = () => {
             onCheckedChange={(checked) => setAcceptedPrivacy(checked as boolean)}
           />
           <Label htmlFor="privacy" className="text-sm text-muted-foreground leading-relaxed cursor-pointer">
-            He leído y acepto la <a href="/privacidad" className="text-primary underline">política de privacidad</a> y 
+            He leído y acepto la <a href="/privacidad/" className="text-primary underline">política de privacidad</a> y 
             consiento el tratamiento de mis datos personales para procesos de selección.
           </Label>
         </div>

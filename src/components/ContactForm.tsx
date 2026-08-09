@@ -129,7 +129,7 @@ const ContactForm = () => {
             onCheckedChange={(checked) => setAcceptedPrivacy(checked as boolean)}
           />
           <Label htmlFor="privacy" className="text-sm text-muted-foreground leading-relaxed cursor-pointer">
-            He leído y acepto la <a href="/privacidad" className="text-primary underline">política de privacidad</a> y 
+            He leído y acepto la <a href="/privacidad/" className="text-primary underline">política de privacidad</a> y 
             consiento el tratamiento de mis datos personales.
           </Label>
         </div>
@@ -162,7 +162,7 @@ const ContactForm = () => {
             <p><strong>Legitimación:</strong> Consentimiento del interesado.</p>
             <p><strong>Destinatarios:</strong> No se cederán datos a terceros, salvo obligación legal.</p>
             <p><strong>Derechos:</strong> Acceso, rectificación, supresión, oposición y portabilidad de los datos.</p>
-            <p><strong>Info adicional:</strong> Puedes consultar información adicional en nuestra <a href="/privacidad" className="text-primary underline">Política de Privacidad</a>.</p>
+            <p><strong>Info adicional:</strong> Puedes consultar información adicional en nuestra <a href="/privacidad/" className="text-primary underline">Política de Privacidad</a>.</p>
           </div>
         </div>
       </div>

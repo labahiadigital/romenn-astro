@@ -7,6 +7,7 @@ import cloudflare from '@astrojs/cloudflare';
 
 export default defineConfig({
   site: 'https://romenninmobiliaria.es',
+  trailingSlash: 'always',
   adapter: cloudflare({
     imageService: 'compile',
   }),
@@ -14,9 +15,33 @@ export default defineConfig({
     react(),
     sitemap({
       changefreq: 'weekly',
-      priority: 0.7,
       lastmod: new Date(),
       filter: (page) => !page.includes('/404'),
+      serialize(item) {
+        const highPriority = ['/', '/inmuebles/', '/vender/', '/valoracion/', '/contacto/', '/compradores/'];
+        const medPriority = ['/alquiler/', '/off-market/', '/estudio-financiero/', '/financiacion/', '/servicios/', '/extranjeria/', '/blog/'];
+        const lowPriority = ['/privacidad/', '/aviso-legal/'];
+
+        const path = item.url.replace('https://romenninmobiliaria.es', '');
+
+        if (highPriority.includes(path)) {
+          item.priority = 1.0;
+          item.changefreq = 'daily';
+        } else if (medPriority.includes(path)) {
+          item.priority = 0.8;
+          item.changefreq = 'weekly';
+        } else if (lowPriority.includes(path)) {
+          item.priority = 0.3;
+          item.changefreq = 'monthly';
+        } else if (path.startsWith('/blog/')) {
+          item.priority = 0.7;
+          item.changefreq = 'monthly';
+        } else {
+          item.priority = 0.6;
+          item.changefreq = 'weekly';
+        }
+        return item;
+      },
     }),
     robotsTxt({
       sitemap: true,
@@ -25,7 +50,7 @@ export default defineConfig({
         {
           userAgent: '*',
           allow: '/',
-          disallow: ['/404'],
+          disallow: ['/404', '/api/', '/og/'],
         },
       ],
     }),

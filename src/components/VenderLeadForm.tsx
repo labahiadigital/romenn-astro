@@ -382,7 +382,7 @@ const VenderLeadForm = () => {
                 >
                   He leído y acepto la{" "}
                   <a
-                    href="/privacidad"
+                    href="/privacidad/"
                     target="_blank"
                     className="text-primary underline"
                     rel="noreferrer"

@@ -512,7 +512,7 @@ const ValoracionForm = () => {
                         onCheckedChange={(checked) => setAcceptedPrivacy(checked as boolean)}
                       />
                       <Label htmlFor="privacy" className="text-sm text-muted-foreground leading-relaxed cursor-pointer">
-                        He leído y acepto la <a href="/privacidad" className="text-primary underline">política de privacidad</a>. 
+                        He leído y acepto la <a href="/privacidad/" className="text-primary underline">política de privacidad</a>. 
                         Consiento el tratamiento de mis datos para recibir la valoración y contacto comercial relacionado.
                       </Label>
                     </div>

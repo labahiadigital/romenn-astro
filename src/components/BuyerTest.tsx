@@ -410,7 +410,7 @@ const BuyerTest = () => {
                     onCheckedChange={(checked) => setAcceptedPrivacy(checked as boolean)}
                   />
                   <Label htmlFor="privacy-buyer" className="text-xs text-muted-foreground leading-relaxed cursor-pointer">
-                    Acepto la <a href="/privacidad" className="text-primary underline">política de privacidad</a> y 
+                    Acepto la <a href="/privacidad/" className="text-primary underline">política de privacidad</a> y 
                     consiento que Römenn me contacte con propiedades que encajen con mi búsqueda.
                   </Label>
                 </div>

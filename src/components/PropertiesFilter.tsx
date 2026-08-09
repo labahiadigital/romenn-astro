@@ -288,7 +288,7 @@ const PropertiesFilter = ({ properties }: PropertiesFilterProps) => {
             Tenemos acceso a propiedades Off-Market que no aparecen en portales. 
             Active nuestro Personal Shopper y encontraremos su hogar ideal.
           </p>
-          <a href="/compradores" className="inline-block btn-premium px-8 py-4">
+          <a href="/compradores/" className="inline-block btn-premium px-8 py-4">
             Activar Personal Shopper
           </a>
         </div>

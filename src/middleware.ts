@@ -72,10 +72,23 @@ function checkRateLimit(ip: string): boolean {
 }
 
 export const onRequest: MiddlewareHandler = async (context, next) => {
-  const { pathname } = context.url;
+  const { pathname, search } = context.url;
 
   if (isBlockedPath(pathname)) {
     return new Response(null, { status: 404 });
+  }
+
+  if (
+    pathname !== "/" &&
+    !pathname.endsWith("/") &&
+    !pathname.includes(".") &&
+    !pathname.startsWith("/api/")
+  ) {
+    const target = new URL(`${pathname}/${search}`, context.url.origin);
+    return new Response(null, {
+      status: 301,
+      headers: { Location: target.href },
+    });
   }
 
   if (pathname.startsWith("/api/")) {
