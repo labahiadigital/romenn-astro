@@ -4,6 +4,15 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 // Artículos del blog
 const articles = [
   {
+    id: "vender-piso-rivas-vaciamadrid",
+    title: "Cómo Vender tu Piso en Rivas-Vaciamadrid en 2026: Guía Paso a Paso",
+    excerpt: "Guía completa para vender tu piso en Rivas-Vaciamadrid: precio medio de 2.500-3.000 €/m², documentación, impuestos, errores a evitar y proceso profesional.",
+    category: "Guías",
+    image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=800&h=450&fit=crop",
+    date: "10 Agosto 2026",
+    readTime: "8 min lectura"
+  },
+  {
     id: "tendencias-mercado-inmobiliario-2026",
     title: "Tendencias del Mercado Inmobiliario en 2026",
     excerpt: "Descubre las principales tendencias que están definiendo el sector inmobiliario este año: desde la sostenibilidad hasta las nuevas formas de financiación.",
@@ -54,7 +63,7 @@ const articles = [
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           {articles.map((article) => (
             <article class="group">
-              <a href={`/blog/${article.id}`} class="block">
+                <a href={`/blog/${article.id}/`} class="block">
                 <div class="aspect-video bg-muted mb-4 overflow-hidden rounded-xl">
                   <img 
                     src={article.image} 

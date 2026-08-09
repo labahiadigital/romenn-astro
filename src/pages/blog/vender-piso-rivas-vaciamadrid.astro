@@ -1,0 +1,353 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Schema } from "astro-seo-schema";
+
+const article = {
+  title: "Cómo Vender tu Piso en Rivas-Vaciamadrid en 2026: Guía Paso a Paso",
+  description: "Guía completa para vender tu piso en Rivas-Vaciamadrid en 2026. Precio medio de 2.500-3.000 €/m², documentación, impuestos, errores a evitar y proceso profesional paso a paso.",
+  category: "Guías",
+  image: "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&h=600&fit=crop",
+  readTime: "8 min lectura",
+  author: "Equipo Römenn",
+  datePublished: "2026-08-10",
+  dateModified: "2026-08-10",
+};
+
+const faqs = [
+  {
+    question: "¿Cuánto cuesta vender un piso con una inmobiliaria en Rivas?",
+    answer: "Los honorarios varían según el servicio. En un modelo boutique, la diferencia no está en el porcentaje sino en el precio final de venta y en la seguridad jurídica de la operación, que suele compensar con creces el coste."
+  },
+  {
+    question: "¿Es mejor vender por mi cuenta o con inmobiliaria?",
+    answer: "Vender por tu cuenta es posible, pero asumes la valoración, el marketing, los filtros de comprador y toda la responsabilidad jurídica. Un acompañamiento profesional reduce el riesgo y, normalmente, mejora el precio final."
+  },
+  {
+    question: "¿Cuándo es buen momento para vender en Rivas-Vaciamadrid?",
+    answer: "Rivas mantiene una tendencia de revalorización sostenida y alta demanda por su calidad de vida y conexión con Madrid. El mejor momento depende más de tu situación personal que del calendario."
+  },
+  {
+    question: "¿Qué pasa si mi vivienda tiene una hipoteca pendiente?",
+    answer: "Se puede vender igualmente. En la firma se cancela la hipoteca con parte del precio de venta y el resto queda para ti. Conviene pedir al banco el certificado de deuda pendiente con antelación."
+  },
+];
+
+const canonicalURL = new URL("/blog/vender-piso-rivas-vaciamadrid/", "https://romenninmobiliaria.es");
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.description}
+  schemaType="Article"
+  articlePublishedTime={article.datePublished}
+  articleModifiedTime={article.dateModified}
+  articleAuthor={article.author}
+>
+  <Schema
+    slot="head"
+    item={{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map(faq => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    }}
+  />
+  <Schema
+    slot="head"
+    item={{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: article.title,
+      description: article.description,
+      image: article.image,
+      datePublished: article.datePublished,
+      dateModified: article.dateModified,
+      author: {
+        "@type": "Organization",
+        name: "Römenn Inmobiliaria",
+        url: "https://romenninmobiliaria.es",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Römenn Inmobiliaria",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://romenninmobiliaria.es/romenn-logo.png",
+        },
+      },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": canonicalURL.href,
+      },
+      about: {
+        "@type": "Place",
+        name: "Rivas-Vaciamadrid",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Rivas-Vaciamadrid",
+          addressRegion: "Madrid",
+          addressCountry: "ES",
+        },
+      },
+      keywords: "vender piso Rivas-Vaciamadrid, vender vivienda Rivas, precio metro cuadrado Rivas 2026, inmobiliaria Rivas, guía vender piso Madrid",
+    }}
+  />
+
+  <main class="flex-grow">
+    <!-- Hero -->
+    <section class="pt-32 pb-8 px-6">
+      <div class="max-w-4xl mx-auto">
+        <a href="/blog/" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          Volver al Journal
+        </a>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-xs font-sans text-accent font-bold uppercase tracking-widest">{article.category}</span>
+          <span class="text-xs text-muted-foreground">•</span>
+          <span class="text-xs text-muted-foreground">{article.readTime}</span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-serif mb-6">{article.title}</h1>
+        <div class="flex items-center gap-4 text-sm text-muted-foreground">
+          <span>Por {article.author}</span>
+          <span>•</span>
+          <time datetime={article.datePublished}>10 Agosto 2026</time>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Image -->
+    <section class="pb-12 px-6">
+      <div class="max-w-4xl mx-auto">
+        <img
+          src={article.image}
+          alt="Vender piso en Rivas-Vaciamadrid - vista aérea de viviendas"
+          width="1200"
+          height="600"
+          class="w-full h-auto rounded-2xl shadow-lg"
+        />
+      </div>
+    </section>
+
+    <!-- Content -->
+    <article class="py-12 px-6">
+      <div class="max-w-3xl mx-auto prose prose-lg prose-slate">
+        <p class="lead text-xl text-muted-foreground font-light">
+          Vender un piso en Rivas-Vaciamadrid en 2026 lleva de media entre 2 y 4 meses, con un precio medio de mercado de 2.500 a 3.000&nbsp;€/m². El éxito de la operación depende de tres factores: fijar un precio realista basado en datos, preparar la documentación legal antes de publicar y presentar la vivienda de forma profesional. A continuación tienes la guía completa, paso a paso.
+        </p>
+
+        <!-- Tabla de contenido -->
+        <nav class="bg-slate-50 p-6 rounded-xl my-8 not-prose" aria-label="Índice del artículo">
+          <p class="text-sm font-bold uppercase tracking-widest text-primary mb-4">En este artículo</p>
+          <ol class="space-y-2 text-sm text-muted-foreground">
+            <li><a href="#cuanto-tarda" class="hover:text-primary transition-colors">1. ¿Cuánto tarda en venderse un piso en Rivas?</a></li>
+            <li><a href="#cuanto-vale" class="hover:text-primary transition-colors">2. ¿Cuánto vale mi piso en Rivas en 2026?</a></li>
+            <li><a href="#documentacion" class="hover:text-primary transition-colors">3. Documentación necesaria para vender</a></li>
+            <li><a href="#impuestos" class="hover:text-primary transition-colors">4. Impuestos y gastos del vendedor</a></li>
+            <li><a href="#errores" class="hover:text-primary transition-colors">5. Los 5 errores más comunes al vender</a></li>
+            <li><a href="#proceso-profesional" class="hover:text-primary transition-colors">6. Cómo se vende de forma profesional</a></li>
+            <li><a href="#preguntas-frecuentes" class="hover:text-primary transition-colors">7. Preguntas frecuentes</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="cuanto-tarda" class="text-2xl font-serif mt-12 mb-6">¿Cuánto tarda en venderse un piso en Rivas-Vaciamadrid?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Una vivienda bien valorada y correctamente presentada se vende en Rivas en un plazo medio de <strong>2 a 4 meses</strong>. Cuando el precio de salida está por encima del mercado, ese plazo se duplica y la vivienda pierde atractivo: los compradores asumen que algo no encaja.
+        </p>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          El precio inicial es la decisión más importante de todo el proceso.
+        </p>
+
+        <h2 id="cuanto-vale" class="text-2xl font-serif mt-12 mb-6">¿Cuánto vale mi piso en Rivas en 2026?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          El precio medio en Rivas-Vaciamadrid se sitúa en 2026 entre <strong>2.500 y 3.000&nbsp;€/m²</strong>, notablemente por debajo de Madrid capital. El valor concreto de tu vivienda depende de variables que una valoración seria debe cruzar:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li><strong>Zona:</strong> Rivas Futura, Casco Antiguo, Santa Mónica o Covibar tienen rangos de precio distintos.</li>
+          <li><strong>Estado y reforma:</strong> una cocina o un baño actualizados pueden mover el precio final un 5-10&nbsp;%.</li>
+          <li><strong>Planta y orientación:</strong> altura, ascensor, luz natural y exterior/interior.</li>
+          <li><strong>Calificación energética:</strong> las viviendas con buena etiqueta <a href="/blog/tendencias-mercado-inmobiliario-2026/" class="text-primary underline">se venden antes y mejor</a>.</li>
+          <li><strong>Cargas y situación jurídica:</strong> una nota simple limpia agiliza la firma.</li>
+        </ul>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Una valoración orientativa de portal no sustituye a un <a href="/valoracion/" class="text-primary underline">análisis profesional</a> que cruce datos de mercado en tiempo real con la realidad concreta de tu inmueble.
+        </p>
+
+        <h2 id="documentacion" class="text-2xl font-serif mt-12 mb-6">¿Qué documentación necesito para vender?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Tener la documentación lista antes de publicar evita que la operación se caiga en el último momento. Necesitarás:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li>Nota simple actualizada del Registro de la Propiedad</li>
+          <li>Certificado de eficiencia energética en vigor</li>
+          <li>Último recibo del IBI y certificado de estar al corriente de la comunidad</li>
+          <li>Certificado de deuda cero o saldo pendiente de la hipoteca (si aplica)</li>
+          <li>Cédula de habitabilidad o licencia de primera ocupación</li>
+          <li>Estatutos de la comunidad y actas con posibles derramas aprobadas</li>
+        </ul>
+
+        <div class="bg-emerald-50 border border-emerald-200 p-6 rounded-xl my-8">
+          <p class="text-emerald-800 font-medium mb-2">Consejo Römenn</p>
+          <p class="text-emerald-700 text-sm">
+            El error más caro al vender es firmar las arras sin haber revisado antes posibles cargas, derramas o vicios urbanísticos. Un informe de <a href="/riesgos-ocultos/" class="text-emerald-800 underline">Due Diligence</a> previo blinda la operación y evita reclamaciones posteriores.
+          </p>
+        </div>
+
+        <h2 id="impuestos" class="text-2xl font-serif mt-12 mb-6">¿Qué impuestos y gastos asume el vendedor?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Al vender una vivienda en Rivas-Vaciamadrid, como vendedor asumes principalmente:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li><strong>Plusvalía municipal:</strong> impuesto sobre el incremento del valor del terreno, que paga el ayuntamiento de Rivas.</li>
+          <li><strong>IRPF por la ganancia patrimonial:</strong> tributas por la diferencia entre el precio de compra y el de venta, salvo exenciones (reinversión en vivienda habitual, mayores de 65 años, etc.).</li>
+          <li><strong>Cancelación registral de hipoteca,</strong> si la vivienda tenía préstamo.</li>
+          <li><strong>Certificado energético</strong> y posibles gestiones notariales.</li>
+        </ul>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Conviene calcular estos costes antes de fijar el precio para conocer el beneficio neto real de la operación. En Römenn te ayudamos con un <a href="/estudio-financiero/" class="text-primary underline">estudio financiero gratuito</a>.
+        </p>
+
+        <h2 id="errores" class="text-2xl font-serif mt-12 mb-6">Los 5 errores más comunes al vender en Rivas</h2>
+        <div class="space-y-6 mb-8">
+          <div class="flex gap-4">
+            <span class="text-3xl font-serif text-primary/20 shrink-0">01</span>
+            <div>
+              <p class="text-muted-foreground leading-relaxed">
+                <strong>Sobrevalorar el precio de salida</strong> confiando en estimaciones de portales en lugar de datos de cierre reales.
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="text-3xl font-serif text-primary/20 shrink-0">02</span>
+            <div>
+              <p class="text-muted-foreground leading-relaxed">
+                <strong>Publicar sin preparar la vivienda:</strong> fotos de móvil, desorden y falta de home staging restan miles de euros.
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="text-3xl font-serif text-primary/20 shrink-0">03</span>
+            <div>
+              <p class="text-muted-foreground leading-relaxed">
+                <strong>No tener la documentación lista,</strong> lo que retrasa o tumba la firma.
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="text-3xl font-serif text-primary/20 shrink-0">04</span>
+            <div>
+              <p class="text-muted-foreground leading-relaxed">
+                <strong>Negociar sin estrategia,</strong> cediendo en precio por presión o prisa.
+              </p>
+            </div>
+          </div>
+          <div class="flex gap-4">
+            <span class="text-3xl font-serif text-primary/20 shrink-0">05</span>
+            <div>
+              <p class="text-muted-foreground leading-relaxed">
+                <strong>Olvidar la seguridad jurídica,</strong> firmando arras sin una revisión de <a href="/riesgos-ocultos/" class="text-primary underline">cargas y urbanismo</a>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <h2 id="proceso-profesional" class="text-2xl font-serif mt-12 mb-6">¿Cómo se vende un piso de forma profesional?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          El proceso boutique que aplicamos en Römenn combina datos y cuidado en cada fase:
+        </p>
+        <div class="space-y-6 mb-8">
+          <div class="flex gap-4 items-start">
+            <span class="bg-primary text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0">1</span>
+            <div>
+              <p class="font-medium text-primary mb-1">Valoración basada en datos</p>
+              <p class="text-muted-foreground text-sm">Cruzando mercado en tiempo real con el perfil del comprador ideal.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <span class="bg-primary text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0">2</span>
+            <div>
+              <p class="font-medium text-primary mb-1">Preparación y staging</p>
+              <p class="text-muted-foreground text-sm">De la vivienda para generar conexión desde la primera visita.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <span class="bg-primary text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0">3</span>
+            <div>
+              <p class="font-medium text-primary mb-1">Estrategia de difusión</p>
+              <p class="text-muted-foreground text-sm">Que incluye nuestra red privada y oportunidades <a href="/off-market/" class="text-primary underline">off-market</a>.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <span class="bg-primary text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0">4</span>
+            <div>
+              <p class="font-medium text-primary mb-1">Filtro de compradores</p>
+              <p class="text-muted-foreground text-sm">Con <a href="/estudio-financiero/" class="text-primary underline">estudio financiero</a> previo para no perder tiempo.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <span class="bg-primary text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0">5</span>
+            <div>
+              <p class="font-medium text-primary mb-1">Cierre blindado</p>
+              <p class="text-muted-foreground text-sm">Con Due Diligence completa para que la firma sea solo un trámite feliz.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <section id="preguntas-frecuentes" class="mt-16 not-prose">
+          <h2 class="text-2xl font-serif mb-8">Preguntas frecuentes</h2>
+          <div class="space-y-6">
+            {faqs.map((faq) => (
+              <div class="border border-slate-200 rounded-xl p-6">
+                <h3 class="text-lg font-serif mb-3 text-primary">{faq.question}</h3>
+                <p class="text-muted-foreground font-light leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="bg-primary text-white p-8 md:p-12 rounded-2xl mt-16 text-center not-prose">
+          <h3 class="text-2xl md:text-3xl font-serif mb-4">¿Quieres saber cuánto vale realmente tu piso en Rivas?</h3>
+          <p class="text-white/80 mb-8 max-w-2xl mx-auto font-light">
+            Somos especialistas en el mercado inmobiliario de Rivas-Vaciamadrid. Conocemos cada barrio, cada calle y cada oportunidad. Te ofrecemos una valoración profesional sin compromiso.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/valoracion/" class="inline-flex items-center justify-center bg-white text-primary px-8 py-4 text-sm tracking-widest uppercase font-bold rounded-xl shadow-lg hover:bg-slate-50 transition-colors">
+              Solicitar Valoración Gratuita
+            </a>
+            <a href="/contacto/" class="inline-flex items-center justify-center border-2 border-white/60 text-white px-8 py-4 text-sm tracking-widest uppercase font-bold bg-transparent rounded-xl hover:bg-white/10 hover:border-white transition-all duration-300">
+              Hablar con un Experto
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Related Articles -->
+    <section class="py-16 px-6 bg-slate-50">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl font-serif mb-8 text-center">Artículos Relacionados</h2>
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <a href="/blog/rivas-vaciamadrid-mejor-zona-para-vivir/" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-xs text-accent font-bold uppercase tracking-widest">Local</span>
+            <h3 class="text-lg font-serif mt-2 hover:text-primary transition-colors">¿Por qué Rivas-Vaciamadrid es una de las Mejores Zonas para Vivir?</h3>
+          </a>
+          <a href="/blog/guia-compra-primera-vivienda/" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-xs text-accent font-bold uppercase tracking-widest">Guías</span>
+            <h3 class="text-lg font-serif mt-2 hover:text-primary transition-colors">Guía Completa para la Compra de tu Primera Vivienda</h3>
+          </a>
+          <a href="/blog/tendencias-mercado-inmobiliario-2026/" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-xs text-accent font-bold uppercase tracking-widest">Tendencias</span>
+            <h3 class="text-lg font-serif mt-2 hover:text-primary transition-colors">Tendencias del Mercado Inmobiliario en 2026</h3>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
