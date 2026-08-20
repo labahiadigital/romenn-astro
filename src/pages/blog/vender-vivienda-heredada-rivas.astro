@@ -1,0 +1,303 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Schema } from "astro-seo-schema";
+
+const article = {
+  title: "Vender una Vivienda Heredada en Rivas-Vaciamadrid: Guía Legal y Fiscal 2026",
+  description: "Guía completa para vender una vivienda heredada en Rivas-Vaciamadrid en 2026. Impuesto de Sucesiones bonificado al 99% en Madrid, pasos legales, plusvalía, varios herederos y plazos.",
+  category: "Guías",
+  image: "https://images.unsplash.com/photo-1450101499163-c8848e968ab7?w=1200&h=600&fit=crop",
+  readTime: "7 min lectura",
+  author: "Equipo Römenn",
+  datePublished: "2026-08-20",
+  dateModified: "2026-08-20",
+};
+
+const faqs = [
+  {
+    question: "¿Puedo vender la casa antes de pagar el Impuesto de Sucesiones?",
+    answer: "No es recomendable ni habitualmente posible, porque la vivienda aún no está inscrita a tu nombre. Lo correcto es liquidar el impuesto e inscribir la titularidad antes de vender."
+  },
+  {
+    question: "¿Qué pasa si no hay testamento?",
+    answer: "Se tramita una declaración de herederos ante notario, que determina quién hereda según la ley. El proceso es algo más largo, pero perfectamente viable."
+  },
+  {
+    question: "¿Cómo se reparte el dinero entre los hermanos?",
+    answer: "Según la cuota que cada uno tenga en la herencia. Si la propiedad es a partes iguales, el precio neto de la venta se divide a partes iguales tras descontar gastos e impuestos."
+  },
+  {
+    question: "¿Conviene reformar la vivienda heredada antes de venderla?",
+    answer: "Depende. En algunos casos una reforma ligera o un home staging aumenta el precio final más de lo que cuesta. En otros, vender en su estado actual a un perfil inversor es más rentable. Una valoración profesional lo aclara."
+  },
+];
+
+const canonicalURL = new URL("/blog/vender-vivienda-heredada-rivas/", "https://romenninmobiliaria.es");
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.description}
+  schemaType="Article"
+  articlePublishedTime={article.datePublished}
+  articleModifiedTime={article.dateModified}
+  articleAuthor={article.author}
+>
+  <Schema
+    slot="head"
+    item={{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map(faq => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    }}
+  />
+  <Schema
+    slot="head"
+    item={{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: article.title,
+      description: article.description,
+      image: article.image,
+      datePublished: article.datePublished,
+      dateModified: article.dateModified,
+      author: {
+        "@type": "Organization",
+        name: "Römenn Inmobiliaria",
+        url: "https://romenninmobiliaria.es",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Römenn Inmobiliaria",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://romenninmobiliaria.es/romenn-logo.png",
+        },
+      },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": canonicalURL.href,
+      },
+      about: {
+        "@type": "Place",
+        name: "Rivas-Vaciamadrid",
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: "Rivas-Vaciamadrid",
+          addressRegion: "Madrid",
+          addressCountry: "ES",
+        },
+      },
+      keywords: "vender vivienda heredada Rivas, herencia piso Madrid, impuesto sucesiones Madrid, plusvalía herencia Rivas, vender casa heredada",
+    }}
+  />
+
+  <main class="flex-grow">
+    <!-- Hero -->
+    <section class="pt-32 pb-8 px-6">
+      <div class="max-w-4xl mx-auto">
+        <a href="/blog/" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          Volver al Journal
+        </a>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-xs font-sans text-accent font-bold uppercase tracking-widest">{article.category}</span>
+          <span class="text-xs text-muted-foreground">•</span>
+          <span class="text-xs text-muted-foreground">{article.readTime}</span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-serif mb-6">{article.title}</h1>
+        <div class="flex items-center gap-4 text-sm text-muted-foreground">
+          <span>Por {article.author}</span>
+          <span>•</span>
+          <time datetime={article.datePublished}>20 Agosto 2026</time>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Image -->
+    <section class="pb-12 px-6">
+      <div class="max-w-4xl mx-auto">
+        <img
+          src={article.image}
+          alt="Vender vivienda heredada en Rivas-Vaciamadrid - guía legal y fiscal"
+          width="1200"
+          height="600"
+          class="w-full h-auto rounded-2xl shadow-lg"
+        />
+      </div>
+    </section>
+
+    <!-- Content -->
+    <article class="py-12 px-6">
+      <div class="max-w-3xl mx-auto prose prose-lg prose-slate">
+        <p class="lead text-xl text-muted-foreground font-light">
+          Para vender una vivienda heredada en Rivas-Vaciamadrid primero hay que aceptar la herencia, liquidar el Impuesto de Sucesiones y la plusvalía municipal, e inscribir la propiedad a nombre de los herederos en el Registro. Solo después se puede vender. En la Comunidad de Madrid el Impuesto de Sucesiones está bonificado al 99&nbsp;% entre padres, hijos y cónyuges, lo que hace el proceso más asumible de lo que mucha gente teme. Esta es la guía completa.
+        </p>
+
+        <!-- Tabla de contenido -->
+        <nav class="bg-slate-50 p-6 rounded-xl my-8 not-prose" aria-label="Índice del artículo">
+          <p class="text-sm font-bold uppercase tracking-widest text-primary mb-4">En este artículo</p>
+          <ol class="space-y-2 text-sm text-muted-foreground">
+            <li><a href="#se-puede-vender" class="hover:text-primary transition-colors">1. ¿Se puede vender directamente una casa heredada?</a></li>
+            <li><a href="#pasos" class="hover:text-primary transition-colors">2. ¿Qué pasos hay que seguir, en orden?</a></li>
+            <li><a href="#impuesto-sucesiones" class="hover:text-primary transition-colors">3. ¿Cuánto se paga de Impuesto de Sucesiones en Madrid?</a></li>
+            <li><a href="#impuestos-venta" class="hover:text-primary transition-colors">4. Impuestos al vender la vivienda heredada</a></li>
+            <li><a href="#varios-herederos" class="hover:text-primary transition-colors">5. ¿Qué pasa si hay varios herederos?</a></li>
+            <li><a href="#plazos" class="hover:text-primary transition-colors">6. ¿Cuánto tarda todo el proceso?</a></li>
+            <li><a href="#preguntas-frecuentes" class="hover:text-primary transition-colors">7. Preguntas frecuentes</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="se-puede-vender" class="text-2xl font-serif mt-12 mb-6">¿Se puede vender directamente una casa heredada?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          No. Antes de vender, la vivienda debe estar inscrita en el Registro de la Propiedad a nombre de los herederos. Para ello hay que completar tres pasos: aceptar la herencia ante notario, pagar los impuestos correspondientes e inscribir el cambio de titularidad. Vender empieza a ser posible una vez la casa es legalmente tuya.
+        </p>
+
+        <h2 id="pasos" class="text-2xl font-serif mt-12 mb-6">¿Qué pasos hay que seguir, en orden?</h2>
+        <div class="space-y-6 mb-8">
+          <div class="flex gap-4 items-start">
+            <span class="bg-primary text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0">1</span>
+            <div>
+              <p class="font-medium text-primary mb-1">Obtener los documentos del fallecimiento</p>
+              <p class="text-muted-foreground text-sm">Certificado de defunción, certificado de últimas voluntades y copia del testamento (o declaración de herederos si no hay testamento).</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <span class="bg-primary text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0">2</span>
+            <div>
+              <p class="font-medium text-primary mb-1">Inventario y aceptación de la herencia</p>
+              <p class="text-muted-foreground text-sm">Ante notario, donde se reparten los bienes entre los herederos.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <span class="bg-primary text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0">3</span>
+            <div>
+              <p class="font-medium text-primary mb-1">Liquidar el Impuesto de Sucesiones</p>
+              <p class="text-muted-foreground text-sm">Plazo de 6 meses desde el fallecimiento, prorrogable.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <span class="bg-primary text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0">4</span>
+            <div>
+              <p class="font-medium text-primary mb-1">Pagar la plusvalía municipal</p>
+              <p class="text-muted-foreground text-sm">En el Ayuntamiento de Rivas por el incremento del valor del terreno.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <span class="bg-primary text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0">5</span>
+            <div>
+              <p class="font-medium text-primary mb-1">Inscribir la vivienda en el Registro</p>
+              <p class="text-muted-foreground text-sm">A nombre de los herederos.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <span class="bg-primary text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0">6</span>
+            <div>
+              <p class="font-medium text-primary mb-1">Poner la vivienda a la venta</p>
+              <p class="text-muted-foreground text-sm">Ya con titularidad clara y toda la <a href="/blog/vender-piso-rivas-vaciamadrid/" class="text-primary underline">documentación necesaria</a>.</p>
+            </div>
+          </div>
+        </div>
+
+        <h2 id="impuesto-sucesiones" class="text-2xl font-serif mt-12 mb-6">¿Cuánto se paga de Impuesto de Sucesiones en Madrid?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          La Comunidad de Madrid aplica una de las fiscalidades más favorables de España. Entre familiares directos (Grupos I y II: cónyuge, hijos, padres) existe una <strong>bonificación del 99&nbsp;%</strong> en la cuota del Impuesto de Sucesiones. En la práctica, heredar una vivienda de padres a hijos en Madrid tiene un coste fiscal por este impuesto muy reducido.
+        </p>
+
+        <div class="bg-amber-50 border border-amber-200 p-6 rounded-xl my-8">
+          <p class="text-amber-800 font-medium mb-2">Dato clave</p>
+          <p class="text-amber-700 text-sm">
+            La bonificación del 99&nbsp;% en Madrid aplica a herencias entre padres, hijos y cónyuges. Para hermanos, sobrinos u otros grados existen bonificaciones menores. Conviene revisar cada caso antes de calcular el coste real.
+          </p>
+        </div>
+
+        <h2 id="impuestos-venta" class="text-2xl font-serif mt-12 mb-6">¿Qué impuestos hay al vender la vivienda heredada?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Una vez es tuya y decides venderla, como vendedor asumes:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li><strong>Plusvalía municipal por la venta</strong> (distinta de la pagada al heredar).</li>
+          <li><strong>IRPF por la ganancia patrimonial:</strong> se calcula sobre la diferencia entre el valor declarado en la herencia y el precio de venta. Si vendes cerca del valor heredado, la ganancia tributable es pequeña.</li>
+        </ul>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Por eso es estratégico declarar correctamente el valor de la vivienda en la herencia: influye directamente en lo que pagarás al vender. Puedes consultar más detalle sobre los gastos del vendedor en nuestra <a href="/blog/vender-piso-rivas-vaciamadrid/" class="text-primary underline">guía de venta en Rivas</a>.
+        </p>
+
+        <h2 id="varios-herederos" class="text-2xl font-serif mt-12 mb-6">¿Qué pasa si hay varios herederos?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Cuando la vivienda se hereda entre varios hermanos o familiares, todos son copropietarios y la venta requiere el acuerdo de todos. Las situaciones más habituales son:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li><strong>Acuerdo de venta conjunta:</strong> todos firman y el precio se reparte según la cuota de cada uno.</li>
+          <li><strong>Que un heredero compre la parte de los demás</strong> (extinción de condominio).</li>
+          <li><strong>Desacuerdo entre herederos,</strong> que puede bloquear la operación y acabar en una división judicial.</li>
+        </ul>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          En herencias con varios implicados, contar con un intermediario neutral que coordine, informe y dé ritmo a la operación evita que las emociones bloqueen una decisión patrimonial importante.
+        </p>
+
+        <h2 id="plazos" class="text-2xl font-serif mt-12 mb-6">¿Cuánto tarda todo el proceso?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Desde el fallecimiento hasta poder vender suelen pasar entre <strong>3 y 8 meses</strong>, según la rapidez en reunir documentación y liquidar impuestos. La venta en sí, una vez la titularidad está inscrita, sigue los <a href="/blog/vender-piso-rivas-vaciamadrid/" class="text-primary underline">plazos normales del mercado de Rivas</a>: de 2 a 4 meses para una vivienda bien valorada.
+        </p>
+
+        <!-- FAQ Section -->
+        <section id="preguntas-frecuentes" class="mt-16 not-prose">
+          <h2 class="text-2xl font-serif mb-8">Preguntas frecuentes</h2>
+          <div class="space-y-6">
+            {faqs.map((faq) => (
+              <div class="border border-slate-200 rounded-xl p-6">
+                <h3 class="text-lg font-serif mb-3 text-primary">{faq.question}</h3>
+                <p class="text-muted-foreground font-light leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="bg-primary text-white p-8 md:p-12 rounded-2xl mt-16 text-center not-prose">
+          <h3 class="text-2xl md:text-3xl font-serif mb-4">¿Has heredado una vivienda en Rivas y no sabes por dónde empezar?</h3>
+          <p class="text-white/80 mb-8 max-w-2xl mx-auto font-light">
+            Entendemos que una herencia es el cierre de una etapa y merece respeto, no prisa. Te acompañamos en cada paso —legal, fiscal y emocional— para que la operación sea serena y maximices el valor del patrimonio familiar.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/contacto/" class="inline-flex items-center justify-center bg-white text-primary px-8 py-4 text-sm tracking-widest uppercase font-bold rounded-xl shadow-lg hover:bg-slate-50 transition-colors">
+              Cuéntanos tu caso
+            </a>
+            <a href="/valoracion/" class="inline-flex items-center justify-center border-2 border-white/60 text-white px-8 py-4 text-sm tracking-widest uppercase font-bold bg-transparent rounded-xl hover:bg-white/10 hover:border-white transition-all duration-300">
+              Solicitar Valoración
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Related Articles -->
+    <section class="py-16 px-6 bg-slate-50">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl font-serif mb-8 text-center">Artículos Relacionados</h2>
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <a href="/blog/vender-piso-rivas-vaciamadrid/" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-xs text-accent font-bold uppercase tracking-widest">Guías</span>
+            <h3 class="text-lg font-serif mt-2 hover:text-primary transition-colors">Cómo Vender tu Piso en Rivas-Vaciamadrid en 2026</h3>
+          </a>
+          <a href="/blog/guia-compra-primera-vivienda/" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-xs text-accent font-bold uppercase tracking-widest">Guías</span>
+            <h3 class="text-lg font-serif mt-2 hover:text-primary transition-colors">Guía Completa para la Compra de tu Primera Vivienda</h3>
+          </a>
+          <a href="/blog/rivas-vaciamadrid-mejor-zona-para-vivir/" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-xs text-accent font-bold uppercase tracking-widest">Local</span>
+            <h3 class="text-lg font-serif mt-2 hover:text-primary transition-colors">¿Por qué Rivas-Vaciamadrid es una de las Mejores Zonas para Vivir?</h3>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
