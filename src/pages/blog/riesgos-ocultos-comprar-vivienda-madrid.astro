@@ -1,0 +1,278 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Schema } from "astro-seo-schema";
+
+const article = {
+  title: "Riesgos Ocultos al Comprar una Vivienda en Madrid: Cargas, Vicios y Derramas",
+  description: "Los tres riesgos ocultos más graves al comprar vivienda en Madrid: cargas registrales, vicios urbanísticos y derramas ocultas. Qué revisar antes de firmar las arras y cómo protegerte con una Due Diligence.",
+  category: "Guías",
+  image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?w=1200&h=600&fit=crop",
+  readTime: "7 min lectura",
+  author: "Equipo Römenn",
+  datePublished: "2026-08-24",
+  dateModified: "2026-08-24",
+};
+
+const faqs = [
+  {
+    question: "¿La nota simple es suficiente para comprar seguro?",
+    answer: "No siempre. La nota simple es un buen punto de partida, pero no recoge derramas de la comunidad, vicios urbanísticos ni deudas en trámite. Por eso se complementa con una revisión más amplia."
+  },
+  {
+    question: "¿Quién paga las deudas anteriores de la vivienda?",
+    answer: "En muchos casos, las cargas y ciertas deudas viajan con el inmueble y las asume el comprador si no se detectan y resuelven antes de la firma. De ahí la importancia de revisarlas."
+  },
+  {
+    question: "¿Cuándo se hace la Due Diligence, antes o después de las arras?",
+    answer: "Siempre antes de firmar las arras. Es justo el momento en que aún puedes negociar, exigir subsanaciones o retirarte sin perder dinero."
+  },
+  {
+    question: "¿Comprar sobre plano o vivienda usada tiene los mismos riesgos?",
+    answer: "Son riesgos distintos. La obra nueva exige revisar avales, plazos y solvencia de la promotora; la vivienda usada exige revisar cargas, urbanismo y comunidad. En ambos casos conviene una revisión profesional."
+  },
+];
+
+const canonicalURL = new URL("/blog/riesgos-ocultos-comprar-vivienda-madrid/", "https://romenninmobiliaria.es");
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.description}
+  schemaType="Article"
+  articlePublishedTime={article.datePublished}
+  articleModifiedTime={article.dateModified}
+  articleAuthor={article.author}
+>
+  <Schema
+    slot="head"
+    item={{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map(faq => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    }}
+  />
+  <Schema
+    slot="head"
+    item={{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: article.title,
+      description: article.description,
+      image: article.image,
+      datePublished: article.datePublished,
+      dateModified: article.dateModified,
+      author: {
+        "@type": "Organization",
+        name: "Römenn Inmobiliaria",
+        url: "https://romenninmobiliaria.es",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Römenn Inmobiliaria",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://romenninmobiliaria.es/romenn-logo.png",
+        },
+      },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": canonicalURL.href,
+      },
+      about: {
+        "@type": "Place",
+        name: "Madrid",
+        address: {
+          "@type": "PostalAddress",
+          addressRegion: "Madrid",
+          addressCountry: "ES",
+        },
+      },
+      keywords: "riesgos comprar vivienda Madrid, cargas registrales, vicios urbanísticos, derramas ocultas, due diligence inmobiliaria, comprar piso seguro Madrid",
+    }}
+  />
+
+  <main class="flex-grow">
+    <!-- Hero -->
+    <section class="pt-32 pb-8 px-6">
+      <div class="max-w-4xl mx-auto">
+        <a href="/blog/" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          Volver al Journal
+        </a>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-xs font-sans text-accent font-bold uppercase tracking-widest">{article.category}</span>
+          <span class="text-xs text-muted-foreground">•</span>
+          <span class="text-xs text-muted-foreground">{article.readTime}</span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-serif mb-6">{article.title}</h1>
+        <div class="flex items-center gap-4 text-sm text-muted-foreground">
+          <span>Por {article.author}</span>
+          <span>•</span>
+          <time datetime={article.datePublished}>24 Agosto 2026</time>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Image -->
+    <section class="pb-12 px-6">
+      <div class="max-w-4xl mx-auto">
+        <img
+          src={article.image}
+          alt="Revisión de documentos inmobiliarios - riesgos ocultos al comprar vivienda"
+          width="1200"
+          height="600"
+          class="w-full h-auto rounded-2xl shadow-lg"
+        />
+      </div>
+    </section>
+
+    <!-- Content -->
+    <article class="py-12 px-6">
+      <div class="max-w-3xl mx-auto prose prose-lg prose-slate">
+        <p class="lead text-xl text-muted-foreground font-light">
+          Los tres riesgos ocultos más graves al comprar una vivienda en Madrid son las cargas registrales (embargos o deudas que viajan con el inmueble), los vicios urbanísticos (obras o divisiones ilegales que impiden financiar o vender) y las derramas ocultas (costes de obras aprobadas por la comunidad que hereda el comprador). Una nota simple básica no detecta todos estos problemas. La forma de protegerte es una <a href="/riesgos-ocultos/" class="text-primary underline">Due Diligence completa</a> antes de firmar las arras.
+        </p>
+
+        <!-- Tabla de contenido -->
+        <nav class="bg-slate-50 p-6 rounded-xl my-8 not-prose" aria-label="Índice del artículo">
+          <p class="text-sm font-bold uppercase tracking-widest text-primary mb-4">En este artículo</p>
+          <ol class="space-y-2 text-sm text-muted-foreground">
+            <li><a href="#cargas-registrales" class="hover:text-primary transition-colors">1. ¿Qué son las cargas registrales y por qué importan?</a></li>
+            <li><a href="#vicios-urbanisticos" class="hover:text-primary transition-colors">2. ¿Qué es un vicio urbanístico?</a></li>
+            <li><a href="#derramas-ocultas" class="hover:text-primary transition-colors">3. ¿Qué son las derramas ocultas?</a></li>
+            <li><a href="#que-revisar" class="hover:text-primary transition-colors">4. ¿Qué debo revisar antes de firmar las arras?</a></li>
+            <li><a href="#due-diligence" class="hover:text-primary transition-colors">5. ¿Qué es una Due Diligence inmobiliaria?</a></li>
+            <li><a href="#preguntas-frecuentes" class="hover:text-primary transition-colors">6. Preguntas frecuentes</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="cargas-registrales" class="text-2xl font-serif mt-12 mb-6">¿Qué son las cargas registrales y por qué importan?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Las cargas registrales son deudas o limitaciones que pesan sobre la vivienda y que, al comprar, pasan a ser tu responsabilidad. Las más habituales son:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li><strong>Hipotecas no canceladas registralmente,</strong> aunque estén pagadas.</li>
+          <li><strong>Embargos</strong> por impagos del vendedor (Hacienda, comunidad, terceros).</li>
+          <li><strong>Afecciones fiscales</strong> por impuestos pendientes.</li>
+          <li><strong>Servidumbres</strong> que limitan el uso de la propiedad (de paso, de luces, etc.).</li>
+        </ul>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Una nota simple básica muestra algunas, pero no siempre refleja la situación completa ni las deudas en trámite. Por eso conviene una revisión registral y fiscal a fondo.
+        </p>
+
+        <h2 id="vicios-urbanisticos" class="text-2xl font-serif mt-12 mb-6">¿Qué es un vicio urbanístico?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Un vicio urbanístico es una situación de la vivienda que no cumple la normativa urbanística y que puede impedir financiarla, asegurarla o revenderla. Ejemplos frecuentes en Madrid:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li>Cerramientos de terrazas o áticos sin licencia.</li>
+          <li>Divisiones de un piso en dos viviendas sin autorización.</li>
+          <li>Ampliaciones de superficie no registradas.</li>
+          <li>Locales transformados en vivienda sin cambio de uso.</li>
+        </ul>
+
+        <div class="bg-red-50 border border-red-200 p-6 rounded-xl my-8">
+          <p class="text-red-800 font-medium mb-2">Aviso Römenn</p>
+          <p class="text-red-700 text-sm">
+            Muchos bancos deniegan la hipoteca si detectan que la superficie real no coincide con la registral o si hay obras sin legalizar. Descubrirlo después de firmar las arras puede costarte la señal entregada.
+          </p>
+        </div>
+
+        <h2 id="derramas-ocultas" class="text-2xl font-serif mt-12 mb-6">¿Qué son las derramas ocultas?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Las derramas son pagos extraordinarios que aprueba la comunidad de propietarios para obras o reparaciones. El problema aparece cuando una derrama ya está aprobada pero aún no ejecutada o pagada: salvo pacto expreso, suele asumirla quien sea propietario en el momento del pago, es decir, el comprador. Las más costosas:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li>Rehabilitación de fachada o cubierta.</li>
+          <li>Instalación o reforma de ascensor.</li>
+          <li>Reparaciones estructurales tras una ITE desfavorable.</li>
+          <li>Mejoras de eficiencia energética del edificio.</li>
+        </ul>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Antes de comprar, hay que revisar las actas de la comunidad de los últimos años y pedir un certificado de la situación de deudas y derramas.
+        </p>
+
+        <h2 id="que-revisar" class="text-2xl font-serif mt-12 mb-6">¿Qué debo revisar antes de firmar las arras?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Una comprobación mínima seria incluye:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li>Nota simple actualizada y, si hay dudas, certificación registral.</li>
+          <li>Coincidencia entre superficie registral, catastral y real.</li>
+          <li>Situación urbanística del inmueble en el ayuntamiento correspondiente.</li>
+          <li>Actas y certificado de la comunidad sobre deudas y derramas.</li>
+          <li>Certificado de eficiencia energética y estado de las instalaciones (ITE si aplica).</li>
+          <li>Estado de pago del IBI y otros tributos asociados.</li>
+        </ul>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Si estás comprando tu primera vivienda, en nuestra <a href="/blog/guia-compra-primera-vivienda/" class="text-primary underline">guía completa de compra</a> repasamos todo el proceso paso a paso, incluida la documentación que necesitas.
+        </p>
+
+        <h2 id="due-diligence" class="text-2xl font-serif mt-12 mb-6">¿Qué es una Due Diligence inmobiliaria?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          La Due Diligence es una investigación completa de la vivienda antes de comprometerte, que reúne en un único informe la situación registral, fiscal, urbanística y de la comunidad. Su objetivo es que firmes sabiendo exactamente qué compras, sin sorpresas posteriores. En Römenn no permitimos que ningún cliente firme unas arras sin este informe: tu tranquilidad es nuestra firma.
+        </p>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Puedes conocer en detalle nuestro <a href="/riesgos-ocultos/" class="text-primary underline">servicio de análisis de riesgos ocultos</a> y cómo protegemos cada operación.
+        </p>
+
+        <!-- FAQ Section -->
+        <section id="preguntas-frecuentes" class="mt-16 not-prose">
+          <h2 class="text-2xl font-serif mb-8">Preguntas frecuentes</h2>
+          <div class="space-y-6">
+            {faqs.map((faq) => (
+              <div class="border border-slate-200 rounded-xl p-6">
+                <h3 class="text-lg font-serif mb-3 text-primary">{faq.question}</h3>
+                <p class="text-muted-foreground font-light leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="bg-primary text-white p-8 md:p-12 rounded-2xl mt-16 text-center not-prose">
+          <h3 class="text-2xl md:text-3xl font-serif mb-4">Antes de firmar, asegúrate de lo que compras</h3>
+          <p class="text-white/80 mb-8 max-w-2xl mx-auto font-light">
+            Investigamos cada propiedad antes de que firmes: cargas, vicios ocultos, urbanismo y derramas, todo al descubierto. Compra en Madrid con la tranquilidad de saber exactamente dónde te metes.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/riesgos-ocultos/" class="inline-flex items-center justify-center bg-white text-primary px-8 py-4 text-sm tracking-widest uppercase font-bold rounded-xl shadow-lg hover:bg-slate-50 transition-colors">
+              Conocer los Riesgos Ocultos
+            </a>
+            <a href="/contacto/" class="inline-flex items-center justify-center border-2 border-white/60 text-white px-8 py-4 text-sm tracking-widest uppercase font-bold bg-transparent rounded-xl hover:bg-white/10 hover:border-white transition-all duration-300">
+              Hablar con un Experto
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Related Articles -->
+    <section class="py-16 px-6 bg-slate-50">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl font-serif mb-8 text-center">Artículos Relacionados</h2>
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <a href="/blog/guia-compra-primera-vivienda/" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-xs text-accent font-bold uppercase tracking-widest">Guías</span>
+            <h3 class="text-lg font-serif mt-2 hover:text-primary transition-colors">Guía Completa para la Compra de tu Primera Vivienda</h3>
+          </a>
+          <a href="/blog/vender-piso-rivas-vaciamadrid/" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-xs text-accent font-bold uppercase tracking-widest">Guías</span>
+            <h3 class="text-lg font-serif mt-2 hover:text-primary transition-colors">Cómo Vender tu Piso en Rivas-Vaciamadrid en 2026</h3>
+          </a>
+          <a href="/blog/rivas-vaciamadrid-mejor-zona-para-vivir/" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-xs text-accent font-bold uppercase tracking-widest">Local</span>
+            <h3 class="text-lg font-serif mt-2 hover:text-primary transition-colors">¿Por qué Rivas-Vaciamadrid es una de las Mejores Zonas para Vivir?</h3>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
