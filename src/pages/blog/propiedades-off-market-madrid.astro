@@ -1,0 +1,275 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { Schema } from "astro-seo-schema";
+
+const article = {
+  title: "Qué es una Propiedad Off-Market y Cómo Acceder a las Mejores Oportunidades en Madrid",
+  description: "Una propiedad off-market se vende de forma privada, sin portales. En Madrid, las mejores oportunidades de inversión y vivienda de alto valor se cierran así. Aprende cómo acceder a través de una red profesional.",
+  category: "Tendencias",
+  image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=600&fit=crop",
+  readTime: "6 min lectura",
+  author: "Equipo Römenn",
+  datePublished: "2026-09-01",
+  dateModified: "2026-09-01",
+};
+
+const faqs = [
+  {
+    question: "¿Dónde puedo ver propiedades off-market?",
+    answer: "En ningún portal, porque no se publican. Solo accedes a ellas a través de una inmobiliaria o un Personal Shopper con red privada que te las presente directamente."
+  },
+  {
+    question: "¿Comprar off-market es más caro?",
+    answer: "No necesariamente. Al haber menos competencia y trato directo, muchas veces se negocia mejor que en una venta pública con varios interesados pujando."
+  },
+  {
+    question: "¿Cómo sé que una operación off-market es segura?",
+    answer: "La seguridad la da la revisión jurídica, no el canal. Toda operación, pública o privada, debe pasar por una Due Diligence que verifique cargas, urbanismo y situación de la vivienda antes de firmar."
+  },
+  {
+    question: "¿Puedo vender mi vivienda off-market?",
+    answer: "Sí. Si valoras la discreción o no quieres exposición en portales, puedes vender a través de una red privada que presente tu inmueble solo a compradores cualificados."
+  },
+];
+
+const canonicalURL = new URL("/blog/propiedades-off-market-madrid/", "https://romenninmobiliaria.es");
+---
+
+<BaseLayout
+  title={article.title}
+  description={article.description}
+  schemaType="Article"
+  articlePublishedTime={article.datePublished}
+  articleModifiedTime={article.dateModified}
+  articleAuthor={article.author}
+>
+  <Schema
+    slot="head"
+    item={{
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: faqs.map(faq => ({
+        "@type": "Question",
+        name: faq.question,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: faq.answer,
+        },
+      })),
+    }}
+  />
+  <Schema
+    slot="head"
+    item={{
+      "@context": "https://schema.org",
+      "@type": "Article",
+      headline: article.title,
+      description: article.description,
+      image: article.image,
+      datePublished: article.datePublished,
+      dateModified: article.dateModified,
+      author: {
+        "@type": "Organization",
+        name: "Römenn Inmobiliaria",
+        url: "https://romenninmobiliaria.es",
+      },
+      publisher: {
+        "@type": "Organization",
+        name: "Römenn Inmobiliaria",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://romenninmobiliaria.es/romenn-logo.png",
+        },
+      },
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": canonicalURL.href,
+      },
+      about: {
+        "@type": "Place",
+        name: "Madrid",
+        address: {
+          "@type": "PostalAddress",
+          addressRegion: "Madrid",
+          addressCountry: "ES",
+        },
+      },
+      keywords: "propiedad off-market Madrid, comprar off-market, inversión inmobiliaria Madrid, personal shopper inmobiliario, vivienda sin portales Madrid",
+    }}
+  />
+
+  <main class="flex-grow">
+    <!-- Hero -->
+    <section class="pt-32 pb-8 px-6">
+      <div class="max-w-4xl mx-auto">
+        <a href="/blog/" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+          Volver al Journal
+        </a>
+        <div class="flex items-center gap-3 mb-4">
+          <span class="text-xs font-sans text-accent font-bold uppercase tracking-widest">{article.category}</span>
+          <span class="text-xs text-muted-foreground">•</span>
+          <span class="text-xs text-muted-foreground">{article.readTime}</span>
+        </div>
+        <h1 class="text-3xl md:text-5xl font-serif mb-6">{article.title}</h1>
+        <div class="flex items-center gap-4 text-sm text-muted-foreground">
+          <span>Por {article.author}</span>
+          <span>•</span>
+          <time datetime={article.datePublished}>1 Septiembre 2026</time>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Image -->
+    <section class="pb-12 px-6">
+      <div class="max-w-4xl mx-auto">
+        <img
+          src={article.image}
+          alt="Propiedad exclusiva off-market en Madrid"
+          width="1200"
+          height="600"
+          class="w-full h-auto rounded-2xl shadow-lg"
+        />
+      </div>
+    </section>
+
+    <!-- Content -->
+    <article class="py-12 px-6">
+      <div class="max-w-3xl mx-auto prose prose-lg prose-slate">
+        <p class="lead text-xl text-muted-foreground font-light">
+          Una propiedad off-market es un inmueble que se vende de forma privada, sin publicarse en portales inmobiliarios ni anuncios públicos. Se mueven entre clientes de confianza por discreción, rapidez o exclusividad. En Madrid, muchas de las mejores oportunidades de inversión y vivienda de alto valor se cierran así, antes de llegar al mercado abierto. La única forma de acceder es a través de una red profesional con acceso a estas operaciones.
+        </p>
+
+        <!-- Tabla de contenido -->
+        <nav class="bg-slate-50 p-6 rounded-xl my-8 not-prose" aria-label="Índice del artículo">
+          <p class="text-sm font-bold uppercase tracking-widest text-primary mb-4">En este artículo</p>
+          <ol class="space-y-2 text-sm text-muted-foreground">
+            <li><a href="#por-que-no-se-publican" class="hover:text-primary transition-colors">1. ¿Por qué hay viviendas que no se publican?</a></li>
+            <li><a href="#ventajas" class="hover:text-primary transition-colors">2. ¿Qué ventajas tiene comprar off-market?</a></li>
+            <li><a href="#como-acceder" class="hover:text-primary transition-colors">3. ¿Cómo se accede a las propiedades off-market en Madrid?</a></li>
+            <li><a href="#personal-shopper" class="hover:text-primary transition-colors">4. ¿Qué es un Personal Shopper inmobiliario?</a></li>
+            <li><a href="#solo-grandes-patrimonios" class="hover:text-primary transition-colors">5. ¿Es el off-market solo para grandes patrimonios?</a></li>
+            <li><a href="#preguntas-frecuentes" class="hover:text-primary transition-colors">6. Preguntas frecuentes</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="por-que-no-se-publican" class="text-2xl font-serif mt-12 mb-6">¿Por qué hay viviendas que no se publican?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          No todo el que vende quiere un cartel ni cientos de visitas. Las razones más habituales para vender off-market son:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li><strong>Discreción:</strong> divorcios, herencias o patrimonios elevados donde el propietario no quiere exposición pública.</li>
+          <li><strong>Rapidez:</strong> vendedores que prefieren una operación cerrada y limpia con un comprador ya cualificado.</li>
+          <li><strong>Exclusividad:</strong> propiedades singulares cuyo valor se protege evitando la sobreexposición en portales.</li>
+          <li><strong>Inversión:</strong> operaciones con rentabilidad analizada que se ofrecen primero a inversores de confianza.</li>
+        </ul>
+
+        <h2 id="ventajas" class="text-2xl font-serif mt-12 mb-6">¿Qué ventajas tiene comprar off-market?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Acceder a una propiedad antes de que salga al mercado tiene ventajas concretas:
+        </p>
+        <ul class="text-muted-foreground space-y-2 mb-6">
+          <li><strong>Menos competencia:</strong> negocias sin guerra de pujas con decenas de interesados.</li>
+          <li><strong>Mejor posición de negociación:</strong> trato directo y discreto entre dos partes serias.</li>
+          <li><strong>Acceso a inmuebles únicos</strong> que nunca verás en un portal.</li>
+          <li><strong>Operaciones de inversión</strong> con la rentabilidad ya estudiada.</li>
+        </ul>
+
+        <div class="bg-emerald-50 border border-emerald-200 p-6 rounded-xl my-8">
+          <p class="text-emerald-800 font-medium mb-2">Acceso privado</p>
+          <p class="text-emerald-700 text-sm">
+            Las mejores operaciones se mueven en privado, sin prisas, sin portales y sin ruido. Quien tiene acceso a una buena red off-market compra antes y mejor que quien solo mira los portales.
+          </p>
+        </div>
+
+        <h2 id="como-acceder" class="text-2xl font-serif mt-12 mb-6">¿Cómo se accede a las propiedades off-market en Madrid?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          No existe un portal de inmuebles off-market: por definición, no se publican. El acceso se consigue de tres formas:
+        </p>
+        <div class="space-y-6 mb-8">
+          <div class="flex gap-4 items-start">
+            <span class="bg-primary text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0">1</span>
+            <div>
+              <p class="text-muted-foreground text-sm">A través de una <a href="/off-market/" class="text-primary underline">inmobiliaria con red privada</a> que conecta vendedores discretos con compradores cualificados.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <span class="bg-primary text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0">2</span>
+            <div>
+              <p class="text-muted-foreground text-sm">Mediante un servicio de <a href="/compradores/" class="text-primary underline">Personal Shopper inmobiliario</a>, donde defines qué buscas y un equipo activa su red para encontrarlo, esté o no publicado.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 items-start">
+            <span class="bg-primary text-white text-sm font-bold w-8 h-8 rounded-full flex items-center justify-center shrink-0">3</span>
+            <div>
+              <p class="text-muted-foreground text-sm">Formando parte de un círculo de inversores al que se ofrecen primero las oportunidades con rentabilidad analizada.</p>
+            </div>
+          </div>
+        </div>
+
+        <h2 id="personal-shopper" class="text-2xl font-serif mt-12 mb-6">¿Qué es un Personal Shopper inmobiliario?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Un Personal Shopper inmobiliario trabaja para el comprador, no para el vendedor. Su función es entender exactamente qué buscas y rastrear el mercado —incluido el off-market— para encontrarlo, filtrarlo y negociarlo en tu nombre. En lugar de perder tiempo en portales, defines tus criterios una sola vez y recibes solo oportunidades que encajan, muchas de ellas fuera del mercado público.
+        </p>
+
+        <h2 id="solo-grandes-patrimonios" class="text-2xl font-serif mt-12 mb-6">¿Es el off-market solo para grandes patrimonios?</h2>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          No. Aunque muchas operaciones discretas son de alto valor, el off-market también incluye oportunidades de inversión accesibles y viviendas de particulares que prefieren vender sin exposición. Lo determinante no es el presupuesto, sino tener acceso a la red adecuada y un perfil de comprador serio y cualificado.
+        </p>
+        <p class="text-muted-foreground leading-relaxed mb-6">
+          Eso sí, tanto en operaciones off-market como públicas, conviene protegerte con una revisión jurídica completa. Puedes ver los <a href="/blog/riesgos-ocultos-comprar-vivienda-madrid/" class="text-primary underline">riesgos ocultos que debes conocer antes de firmar</a>.
+        </p>
+
+        <!-- FAQ Section -->
+        <section id="preguntas-frecuentes" class="mt-16 not-prose">
+          <h2 class="text-2xl font-serif mb-8">Preguntas frecuentes</h2>
+          <div class="space-y-6">
+            {faqs.map((faq) => (
+              <div class="border border-slate-200 rounded-xl p-6">
+                <h3 class="text-lg font-serif mb-3 text-primary">{faq.question}</h3>
+                <p class="text-muted-foreground font-light leading-relaxed">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <!-- CTA -->
+        <div class="bg-primary text-white p-8 md:p-12 rounded-2xl mt-16 text-center not-prose">
+          <h3 class="text-2xl md:text-3xl font-serif mb-4">Accede a las oportunidades que nunca llegan a los portales</h3>
+          <p class="text-white/80 mb-8 max-w-2xl mx-auto font-light">
+            Cuéntanos qué buscas y activaremos nuestra red off-market para encontrarlo, esté o no publicado. Sin prisas, sin portales, sin ruido.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/off-market/" class="inline-flex items-center justify-center bg-white text-primary px-8 py-4 text-sm tracking-widest uppercase font-bold rounded-xl shadow-lg hover:bg-slate-50 transition-colors">
+              Acceder a Off-Market
+            </a>
+            <a href="/compradores/" class="inline-flex items-center justify-center border-2 border-white/60 text-white px-8 py-4 text-sm tracking-widest uppercase font-bold bg-transparent rounded-xl hover:bg-white/10 hover:border-white transition-all duration-300">
+              Activar Personal Shopper
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- Related Articles -->
+    <section class="py-16 px-6 bg-slate-50">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-2xl font-serif mb-8 text-center">Artículos Relacionados</h2>
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <a href="/blog/riesgos-ocultos-comprar-vivienda-madrid/" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-xs text-accent font-bold uppercase tracking-widest">Guías</span>
+            <h3 class="text-lg font-serif mt-2 hover:text-primary transition-colors">Riesgos Ocultos al Comprar una Vivienda en Madrid</h3>
+          </a>
+          <a href="/blog/tendencias-mercado-inmobiliario-2026/" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-xs text-accent font-bold uppercase tracking-widest">Tendencias</span>
+            <h3 class="text-lg font-serif mt-2 hover:text-primary transition-colors">Tendencias del Mercado Inmobiliario en 2026</h3>
+          </a>
+          <a href="/blog/guia-compra-primera-vivienda/" class="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-shadow">
+            <span class="text-xs text-accent font-bold uppercase tracking-widest">Guías</span>
+            <h3 class="text-lg font-serif mt-2 hover:text-primary transition-colors">Guía Completa para la Compra de tu Primera Vivienda</h3>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
