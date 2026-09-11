@@ -18,7 +18,7 @@ export default defineConfig({
       lastmod: new Date(),
       filter: (page) => !page.includes('/404'),
       serialize(item) {
-        const highPriority = ['/', '/inmuebles/', '/vender/', '/valoracion/', '/contacto/', '/compradores/'];
+        const highPriority = ['/', '/inmuebles/', '/vender/', '/valoracion/', '/contacto/', '/compradores/', '/calculadora-gastos-venta/'];
         const medPriority = ['/alquiler/', '/off-market/', '/estudio-financiero/', '/financiacion/', '/servicios/', '/extranjeria/', '/blog/'];
         const lowPriority = ['/privacidad/', '/aviso-legal/'];
 
@@ -101,6 +101,10 @@ export default defineConfig({
           /inset-/,
           /fixed/,
           /z-\[/,
+          /tabular-nums/,
+          /green-/,
+          /blue-/,
+          /amber-/,
         ],
       },
     }),

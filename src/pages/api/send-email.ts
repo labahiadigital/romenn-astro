@@ -74,6 +74,20 @@ interface PersonalShopperPayload extends BasePayload {
   notes?: string;
 }
 
+interface CalculadoraGastosPayload extends BasePayload {
+  formType: "calculadora_gastos";
+  sale_price?: number;
+  purchase_price?: number;
+  municipality?: string;
+  purchase_year?: number;
+  is_main_home?: boolean;
+  age_65_plus?: boolean;
+  full_reinvestment?: boolean;
+  available_low?: number;
+  available_high?: number;
+  calculation_version?: string;
+}
+
 type FormPayload =
   | ContactPayload
   | ValoracionPayload
@@ -81,7 +95,8 @@ type FormPayload =
   | TrabajaPayload
   | ResenasPayload
   | OffMarketPayload
-  | PersonalShopperPayload;
+  | PersonalShopperPayload
+  | CalculadoraGastosPayload;
 
 // ────────────────────────────────────────────
 // Helpers
@@ -367,6 +382,38 @@ const FORM_SPECS: Record<string, FormSpec> = {
         <p>Un Personal Shopper especializado se pondrá en contacto contigo muy pronto para afinar la búsqueda y mostrarte las primeras opciones.</p>`,
     },
   },
+  calculadora_gastos: {
+    label: "Calculadora Gastos Venta",
+    notificationTitle: "Nuevo lead desde calculadora de gastos de venta",
+    rows: (data) => {
+      const d = data as CalculadoraGastosPayload;
+      const fmt = (n: number | undefined) =>
+        n != null
+          ? new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n)
+          : "";
+      return [
+        ["Nombre", d.name],
+        ["Email", d.email],
+        ["Teléfono", d.phone],
+        ["Precio de venta", fmt(d.sale_price)],
+        ["Precio de compra", fmt(d.purchase_price)],
+        ["Municipio", d.municipality || ""],
+        ["Año de compra", d.purchase_year?.toString() || ""],
+        ["Vivienda habitual", d.is_main_home ? "Sí" : "No"],
+        ["Mayor de 65", d.age_65_plus ? "Sí" : "No"],
+        ["Reinversión total", d.full_reinvestment ? "Sí" : "No"],
+        ["Resultado estimado", `${fmt(d.available_low)} – ${fmt(d.available_high)}`],
+        ["Versión cálculo", d.calculation_version || ""],
+      ];
+    },
+    confirmation: {
+      subject: "Tu estimación de gastos de venta - Römenn Inmobiliaria",
+      body: (name) => `<p>Hola <strong>${name}</strong>,</p>
+        <p>Gracias por usar nuestra calculadora de gastos de venta. Adjuntamos un resumen de tu estimación.</p>
+        <p><strong>Recuerda:</strong> esta estimación es orientativa, no descuenta ninguna hipoteca pendiente y no tiene valor fiscal ni contractual.</p>
+        <p>Si quieres conocer la cifra real, nuestro equipo puede revisar tu caso de forma personalizada y sin compromiso. Llámanos al <strong>747 488 562</strong> o responde a este correo.</p>`,
+    },
+  },
 };
 
 const VALID_FORM_TYPES = new Set(Object.keys(FORM_SPECS));
@@ -457,10 +504,18 @@ export const POST: APIRoute = async (context) => {
     // ("valoracion") el nombre también: solo teléfono (+ dirección) son
     // obligatorios. El correo de confirmación al cliente y el replyTo ya
     // están condicionados a que exista email más abajo.
+    // En la calculadora de gastos el email es obligatorio y el teléfono opcional.
     const nameRequired = body.formType !== "valoracion";
-    if (!b.phone || (nameRequired && !b.name)) {
+    const phoneOptional = body.formType === "calculadora_gastos";
+    if ((!phoneOptional && !b.phone) || (nameRequired && !b.name)) {
       return new Response(
         JSON.stringify({ success: false, error: "Missing required fields" }),
+        { status: 400, headers: { "Content-Type": "application/json" } },
+      );
+    }
+    if (phoneOptional && !b.email) {
+      return new Response(
+        JSON.stringify({ success: false, error: "Email is required" }),
         { status: 400, headers: { "Content-Type": "application/json" } },
       );
     }
