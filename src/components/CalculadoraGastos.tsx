@@ -29,12 +29,11 @@ import { submitLead } from "@/lib/submitLead";
 import {
   MADRID_MUNICIPALITIES,
   MINOR_COSTS_FIXED,
-  AGENCY_FEE,
+  AGENCY_DISCLAIMER,
   PRIVACY_URL,
   CALCULATION_VERSION,
   calculate,
   formatCurrency,
-  roundToHundreds,
 } from "@/lib/calculadora-config";
 import type { CalculationResult } from "@/lib/calculadora-config";
 
@@ -771,10 +770,6 @@ const CalculadoraGastos = () => {
                   positive
                 />
                 <ResultRow
-                  label="Honorarios de venta e IVA"
-                  value={`- ${formatCurrency(result.feeTotal)}`}
-                />
-                <ResultRow
                   label="Plusvalia municipal estimada"
                   value={
                     result.plusvaliaMin === result.plusvaliaMax
@@ -796,6 +791,10 @@ const CalculadoraGastos = () => {
                 <ResultRow
                   label="Otros gastos de venta"
                   value={`- ${formatCurrency(MINOR_COSTS_FIXED)}`}
+                />
+                <ResultRow
+                  label="Gastos de inmobiliaria"
+                  value="Depende de la agencia"
                 />
                 <ResultRow
                   label="Importe estimado antes de hipoteca"
@@ -851,10 +850,13 @@ const CalculadoraGastos = () => {
                 {/* Mandatory disclaimer */}
                 <div className="flex items-start gap-3 bg-slate-100 rounded-lg p-4">
                   <Info className="w-5 h-5 text-muted-foreground flex-shrink-0 mt-0.5" />
-                  <p className="text-xs text-muted-foreground">
-                    Esta estimacion no descuenta ninguna hipoteca pendiente y no
-                    tiene valor fiscal ni contractual. {AGENCY_FEE.disclaimer}
-                  </p>
+                  <div className="text-xs text-muted-foreground space-y-1">
+                    <p>
+                      Esta estimacion no descuenta ninguna hipoteca pendiente y no
+                      tiene valor fiscal ni contractual.
+                    </p>
+                    <p>{AGENCY_DISCLAIMER}</p>
+                  </div>
                 </div>
               </div>
 
@@ -871,6 +873,7 @@ const CalculadoraGastos = () => {
                   href="https://wa.me/34747488562?text=Hola%2C%20he%20usado%20la%20calculadora%20de%20gastos%20de%20venta%20y%20me%20gustar%C3%ADa%20conocer%20mi%20cifra%20real."
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-whatsapp-track="calculadora_cta"
                   className="inline-flex items-center gap-2 bg-primary text-white px-8 py-4 rounded-lg font-medium hover:bg-primary/90 transition-colors"
                   onClick={() =>
                     pushDataLayer({ event: "contact_cta_click" })

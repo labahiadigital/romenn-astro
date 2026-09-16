@@ -5,15 +5,8 @@
  * Version: 2026.1
  */
 
-export type AgencyFeeType = "percentage" | "fixed";
-
-export const AGENCY_FEE = {
-  type: "percentage" as AgencyFeeType,
-  value: 0.03,
-  vat: 0.21,
-  disclaimer:
-    "La tarifa de cada agencia depende de la agencia que elijas. Hemos usado un porcentaje orientativo del 3\u00A0% + IVA.",
-};
+export const AGENCY_DISCLAIMER =
+  "Gastos de la inmobiliaria: dependen de la agencia que gestione la venta. No se incluyen en esta estimación.";
 
 export const MINOR_COSTS_FIXED = 450;
 
@@ -218,15 +211,6 @@ export const MADRID_MUNICIPALITIES: string[] = [
 
 // ---- Funciones de calculo ----
 
-/** Calcula los honorarios totales (con IVA). */
-export function computeFee(salePrice: number): number {
-  const base =
-    AGENCY_FEE.type === "percentage"
-      ? salePrice * AGENCY_FEE.value
-      : AGENCY_FEE.value;
-  return base * (1 + AGENCY_FEE.vat);
-}
-
 /** Devuelve la horquilla de plusvalia para un municipio. */
 export function getPlusvaliaRange(municipality: string): PlusvaliaRange {
   return PLUSVALIA_BY_MUNICIPALITY[municipality] ?? PLUSVALIA_DEFAULT;
@@ -265,7 +249,6 @@ export function formatCurrency(n: number): string {
 
 export type CalculationResult = {
   salePrice: number;
-  feeTotal: number;
   plusvaliaMin: number;
   plusvaliaMax: number;
   irpfMin: number;
@@ -296,7 +279,6 @@ export function calculate(params: {
     fullReinvestment,
   } = params;
 
-  const feeTotal = computeFee(salePrice);
   const rates = getPlusvaliaRange(municipality);
   const municipalityConfigured = municipality in PLUSVALIA_BY_MUNICIPALITY;
   const noGain = salePrice <= purchasePrice;
@@ -320,23 +302,25 @@ export function calculate(params: {
     exemptionReason = age65Plus ? "age_65" : "reinvestment";
   }
 
+  // Honorarios de inmobiliaria NO se restan: dependen de la agencia elegida.
+  // La ganancia patrimonial se calcula sin ellos.
   const gainWithMinPlusvalia = Math.max(
     0,
-    salePrice - purchasePrice - feeTotal - plusvaliaMin - MINOR_COSTS_FIXED,
+    salePrice - purchasePrice - plusvaliaMin - MINOR_COSTS_FIXED,
   );
   const gainWithMaxPlusvalia = Math.max(
     0,
-    salePrice - purchasePrice - feeTotal - plusvaliaMax - MINOR_COSTS_FIXED,
+    salePrice - purchasePrice - plusvaliaMax - MINOR_COSTS_FIXED,
   );
 
   const irpfForMin = irpfExempt ? 0 : computeProgressiveIrpf(gainWithMinPlusvalia);
   const irpfForMax = irpfExempt ? 0 : computeProgressiveIrpf(gainWithMaxPlusvalia);
 
   const availableWithMinPlusvalia = roundToHundreds(
-    salePrice - feeTotal - plusvaliaMin - MINOR_COSTS_FIXED - irpfForMin,
+    salePrice - plusvaliaMin - MINOR_COSTS_FIXED - irpfForMin,
   );
   const availableWithMaxPlusvalia = roundToHundreds(
-    salePrice - feeTotal - plusvaliaMax - MINOR_COSTS_FIXED - irpfForMax,
+    salePrice - plusvaliaMax - MINOR_COSTS_FIXED - irpfForMax,
   );
 
   const availableLow = Math.min(availableWithMinPlusvalia, availableWithMaxPlusvalia);
@@ -344,7 +328,6 @@ export function calculate(params: {
 
   return {
     salePrice,
-    feeTotal: roundToHundreds(feeTotal),
     plusvaliaMin: roundToHundreds(plusvaliaMin),
     plusvaliaMax: roundToHundreds(plusvaliaMax),
     irpfMin: roundToHundreds(Math.min(irpfForMin, irpfForMax)),

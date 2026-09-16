@@ -23,7 +23,7 @@ import {
   Shield
 } from "lucide-react";
 import { toast } from "sonner";
-import { trackFormSubmit } from "@/lib/gtm";
+import { trackFormSubmit, pushDataLayer } from "@/lib/gtm";
 import { submitLead } from "@/lib/submitLead";
 
 // Tipos de propiedad
@@ -143,6 +143,7 @@ const ValoracionForm = () => {
       });
 
       trackFormSubmit("valoracion");
+      pushDataLayer({ event: "valorador_solicitud_enviada" });
       setIsCompleted(true);
       toast.success("¡Solicitud enviada! Te contactaremos pronto.");
     } catch (error) {

@@ -159,9 +159,26 @@ const PHONE_DISPLAY = "747 488 562";
       rel="noopener noreferrer"
       class="fixed bottom-4 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-transform hover:scale-110"
       aria-label="Contactar por WhatsApp"
+      data-whatsapp-track="floating_landing"
     >
       <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="white" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 21 1.9-5.7a8.5 8.5 0 1 1 3.8 3.8z"/></svg>
     </a>
+
+    <!-- Tracking global de clics en WhatsApp -->
+    <script>
+      document.addEventListener("click", (e) => {
+        const link = (e.target as HTMLElement).closest<HTMLAnchorElement>('a[href*="wa.me"]');
+        if (!link) return;
+        const placement = link.dataset.whatsappTrack || link.closest("[data-whatsapp-track]")?.getAttribute("data-whatsapp-track") || "unknown";
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "whatsapp_click",
+          whatsapp_placement: placement,
+          whatsapp_url: link.href,
+          page_path: window.location.pathname,
+        });
+      });
+    </script>
 
     <Toaster client:load />
   </body>
