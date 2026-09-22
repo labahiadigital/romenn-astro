@@ -842,7 +842,7 @@ const CalculadoraGastos = () => {
                     <AlertTriangle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
                     <p className="text-sm text-amber-800">
                       La plusvalia se ha estimado con una horquilla general.
-                      Romenn puede calcularla con mayor precision.
+                      Römenn puede calcularla con mayor precisión.
                     </p>
                   </div>
                 )}
@@ -866,8 +866,8 @@ const CalculadoraGastos = () => {
                   ¿Quieres conocer la cifra real?
                 </h3>
                 <p className="text-sm text-muted-foreground mb-6 max-w-md mx-auto">
-                  Esta estimacion es orientativa. En Romenn revisamos tu caso y
-                  te explicamos claramente cuanto podrias obtener con la venta.
+                  Esta estimación es orientativa. En Römenn revisamos tu caso y
+                  te explicamos claramente cuánto podrías obtener con la venta.
                 </p>
                 <a
                   href="https://wa.me/34747488562?text=Hola%2C%20he%20usado%20la%20calculadora%20de%20gastos%20de%20venta%20y%20me%20gustar%C3%ADa%20conocer%20mi%20cifra%20real."

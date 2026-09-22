@@ -12,7 +12,11 @@ export const MINOR_COSTS_FIXED = 450;
 
 export type PlusvaliaRange = { low: number; high: number };
 
-export const PLUSVALIA_DEFAULT: PlusvaliaRange = { low: 0.003, high: 0.008 };
+// Horquilla orientativa: la plusvalía municipal real depende del valor catastral
+// del suelo, los años de tenencia y el tipo de gravamen municipal (29% en Madrid).
+// Como la calculadora no pide el valor catastral, usamos una horquilla del 1,5%–4%
+// del precio de venta que se ajusta mejor a los escenarios típicos de la CM.
+export const PLUSVALIA_DEFAULT: PlusvaliaRange = { low: 0.015, high: 0.04 };
 
 export const PLUSVALIA_BY_MUNICIPALITY: Record<string, PlusvaliaRange> = {};
 
