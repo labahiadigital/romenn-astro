@@ -305,6 +305,14 @@ const CalculadoraGastos = () => {
         full_reinvestment: formData.fullReinvestment,
         available_low: result.availableLow,
         available_high: result.availableHigh,
+        plusvalia_min: result.plusvaliaMin,
+        plusvalia_max: result.plusvaliaMax,
+        irpf_min: result.irpfMin,
+        irpf_max: result.irpfMax,
+        irpf_exempt: result.irpfExempt,
+        exemption_reason: result.exemptionReason,
+        no_gain: result.noGain,
+        municipality_configured: result.municipalityConfigured,
         calculation_version: CALCULATION_VERSION,
       };
       await submitLead({

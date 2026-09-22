@@ -85,6 +85,14 @@ interface CalculadoraGastosPayload extends BasePayload {
   full_reinvestment?: boolean;
   available_low?: number;
   available_high?: number;
+  plusvalia_min?: number;
+  plusvalia_max?: number;
+  irpf_min?: number;
+  irpf_max?: number;
+  irpf_exempt?: boolean;
+  exemption_reason?: "age_65" | "reinvestment" | null;
+  no_gain?: boolean;
+  municipality_configured?: boolean;
   calculation_version?: string;
 }
 
@@ -220,7 +228,7 @@ interface FormSpec {
   // Filas (clave/valor) que se listan en la notificación interna.
   rows: (data: FormPayload) => Array<[string, string]>;
   // Email de confirmación que recibe el cliente (omitido en formularios anónimos).
-  confirmation: { subject: string; body: (name: string) => string };
+  confirmation: { subject: string; body: (name: string, data?: FormPayload) => string };
 }
 
 const FORM_SPECS: Record<string, FormSpec> = {
@@ -402,16 +410,73 @@ const FORM_SPECS: Record<string, FormSpec> = {
         ["Vivienda habitual", d.is_main_home ? "Sí" : "No"],
         ["Mayor de 65", d.age_65_plus ? "Sí" : "No"],
         ["Reinversión total", d.full_reinvestment ? "Sí" : "No"],
+        ["Plusvalía estimada", `${fmt(d.plusvalia_min)} – ${fmt(d.plusvalia_max)}`],
+        ["IRPF estimado", d.irpf_exempt ? "0 € (exento)" : `${fmt(d.irpf_min)} – ${fmt(d.irpf_max)}`],
         ["Resultado estimado", `${fmt(d.available_low)} – ${fmt(d.available_high)}`],
         ["Versión cálculo", d.calculation_version || ""],
       ];
     },
     confirmation: {
       subject: "Tu estimación de gastos de venta - Römenn Inmobiliaria",
-      body: (name) => `<p>Hola <strong>${name}</strong>,</p>
-        <p>Gracias por usar nuestra calculadora de gastos de venta. Adjuntamos un resumen de tu estimación.</p>
-        <p><strong>Recuerda:</strong> esta estimación es orientativa, no descuenta ninguna hipoteca pendiente y no tiene valor fiscal ni contractual.</p>
-        <p>Si quieres conocer la cifra real, nuestro equipo puede revisar tu caso de forma personalizada y sin compromiso. Llámanos al <strong>747 488 562</strong> o responde a este correo.</p>`,
+      body: (name, data?) => {
+        const d = data as CalculadoraGastosPayload | undefined;
+        const fmt = (n: number | undefined) =>
+          n != null
+            ? new Intl.NumberFormat("es-ES", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(n)
+            : "—";
+        const fmtRange = (lo: number | undefined, hi: number | undefined) =>
+          lo != null && hi != null && lo !== hi ? `${fmt(lo)} – ${fmt(hi)}` : fmt(lo);
+
+        const breakdownHtml = d?.sale_price
+          ? `<table style="width:100%;border-collapse:collapse;margin:16px 0;font-size:14px;">
+              <tr style="border-bottom:1px solid #e2e8f0;">
+                <td style="padding:10px 0;color:#64748b;">Precio de venta</td>
+                <td style="padding:10px 0;text-align:right;font-weight:600;color:#059669;">+ ${fmt(d.sale_price)}</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e8f0;">
+                <td style="padding:10px 0;color:#64748b;">Plusvalía municipal estimada</td>
+                <td style="padding:10px 0;text-align:right;font-weight:500;">− ${fmtRange(d.plusvalia_min, d.plusvalia_max)}</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e8f0;">
+                <td style="padding:10px 0;color:#64748b;">IRPF estimado</td>
+                <td style="padding:10px 0;text-align:right;font-weight:500;">${d.irpf_exempt ? "0 € (exento)" : `− ${fmtRange(d.irpf_min, d.irpf_max)}`}</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e8f0;">
+                <td style="padding:10px 0;color:#64748b;">Otros gastos de venta</td>
+                <td style="padding:10px 0;text-align:right;font-weight:500;">− 450 €</td>
+              </tr>
+              <tr style="border-bottom:1px solid #e2e8f0;">
+                <td style="padding:10px 0;color:#64748b;">Gastos de inmobiliaria</td>
+                <td style="padding:10px 0;text-align:right;font-weight:500;font-style:italic;color:#94a3b8;">Depende de la agencia</td>
+              </tr>
+              <tr style="border-top:2px solid #10b981;">
+                <td style="padding:12px 0;font-weight:700;font-size:15px;">Importe estimado antes de hipoteca</td>
+                <td style="padding:12px 0;text-align:right;font-weight:700;font-size:16px;color:#10b981;">${fmtRange(d.available_low, d.available_high)}</td>
+              </tr>
+            </table>`
+          : "";
+
+        const exemptionMsg = d?.exemption_reason === "age_65"
+          ? `<p style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px;font-size:13px;color:#166534;">✅ No hemos incluido IRPF porque has indicado que tienes 65 años o más y vendes tu vivienda habitual.</p>`
+          : d?.exemption_reason === "reinvestment"
+            ? `<p style="background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:12px;font-size:13px;color:#166534;">✅ No hemos incluido IRPF porque has indicado que reinvertirás todo el importe obtenido en otra vivienda habitual.</p>`
+            : "";
+
+        const noGainMsg = d?.no_gain
+          ? `<p style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:8px;padding:12px;font-size:13px;color:#1e40af;">ℹ️ No estimamos ganancia patrimonial positiva. La operación puede seguir sujeta a obligaciones de declaración.</p>`
+          : "";
+
+        return `<p>Hola <strong>${name}</strong>,</p>
+        <p>Gracias por usar nuestra calculadora de gastos de venta. Este es el resumen de tu estimación:</p>
+        ${breakdownHtml}
+        ${exemptionMsg}
+        ${noGainMsg}
+        <p style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:12px;font-size:12px;color:#64748b;">
+          <strong>Recuerda:</strong> esta estimación es orientativa, no descuenta ninguna hipoteca pendiente y no tiene valor fiscal ni contractual.
+          Los gastos de inmobiliaria dependen de la agencia que gestione la venta y no se incluyen en esta estimación.
+        </p>
+        <p>Si quieres conocer la cifra real, nuestro equipo puede revisar tu caso de forma personalizada y sin compromiso. Llámanos al <strong>747 488 562</strong> o responde a este correo.</p>`;
+      },
     },
   },
 };
@@ -438,7 +503,7 @@ function buildClientConfirmationEmail(data: FormPayload): { subject: string; htm
 
   const html = wrapTemplate(
     "Confirmación de recepción",
-    `${t.body(name)}
+    `${t.body(name, data)}
     <hr style="border:none;border-top:1px solid #e2e8f0;margin:24px 0">
     <p style="font-size:13px;color:#64748b;">Este es un mensaje automático. Por favor, no respondas a este correo.</p>
     <p style="font-size:13px;color:#64748b;"><strong>Römenn Inmobiliaria</strong><br>
